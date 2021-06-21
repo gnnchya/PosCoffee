@@ -8,7 +8,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
 func (repo *Repository) Create(ctx context.Context, title *domain.UpdateQ) error{
