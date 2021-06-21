@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/config"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/config"
+	"github.com/gnnchya/PosCoffee/stock/config"
 )
 
 func main() {

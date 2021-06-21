@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
-
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
-
+	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/go-playground/validator/v10"
 )
 

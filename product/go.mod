@@ -1,4 +1,4 @@
-module github.com/gnnchya/PosCoffee/
+module github.com/gnnchya/PosCoffee/product
 
 go 1.16
 

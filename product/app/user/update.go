@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/app/view"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
+	"github.com/gnnchya/PosCoffee/product/app/view"
+	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
 func (ctrl *Controller) Update(c *gin.Context) {
