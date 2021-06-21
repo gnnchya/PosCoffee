@@ -1,0 +1,69 @@
+version: '3.8'
+services: # each service run simultaneously (parallel)
+#
+#  my-app:
+#    image: app:1.2
+#    depends_on:
+#      - mongodb
+#    restart: unless-stopped
+#    ports:
+#      - 8080:8080
+#    environment: # variable of the server or OS
+#      MONGODB_URI : "mongodb://touch:touchja@mongodb:27017"
+#    networks:
+#      - backend
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.1.0
+    ports:
+      - "2181:2181"
+    restart: always
+    environment:
+      ZOOKEEPER_SERVER_ID: "1"
+      ZOOKEEPER_CLIENT_PORT: "2181"
+      ZOOKEEPER_TICK_TIME: "2000"
+
+  kafka:
+    image: confluentinc/cp-kafka:6.1.0
+    depends_on:
+      - "zookeeper"
+    ports:
+      - "9094:9094"
+    restart: always
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://localhost:9094"
+      KAFKA_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://:9094"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "LISTENER_INTERNAL"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "LISTENER_INTERNAL:PLAINTEXT,LISTENER_LOCAL:PLAINTEXT"
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_NETWORK_THREADS: "8"
+      KAFKA_NUM_IO_THREADS: "16"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+
+  mongodb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    container_name: mongodb
+    environment: # variable of the server or OS
+      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+#    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+#      - "$PWD/data:/data/db"
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+
+  redis:
+    image: redis:alpine3.13
+    container_name: redis
+#    volumes:
+#      - "$PWD/config/redis.conf:/redis.conf"
+    ports:
+      - 6379:6379
+
+
+networks:
+  backend:
