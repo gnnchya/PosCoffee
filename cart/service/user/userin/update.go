@@ -6,20 +6,15 @@ import (
 )
 
 type UpdateInput struct {
-	ID         string   `json:"id"`
-	Name       string   `json:"name" validate:"required"`
-	ActualName string   `json:"actual_name" validate:"required"`
-	ActualLastName string `json:"actual_last_name"`
-	Gender     string   `json:"gender"`
-	BirthDate  int64    `json:"birth_date"`
-	Height     int      `json:"height" validate:"gte=0"`
-	SuperPower []string `json:"super_power"`
-	Alive      bool     `json:"alive"`
-	Universe       string   `json:"universe"`
-	Movies         []string `json:"movies"`
-	Enemies        []string `json:"enemies"`
-	FamilyMember   []string `json:"family_member"`
-	About          string   `json:"about"`
+	ID         		string   `bson:"_id" json:"id"`
+	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
+	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
+	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
+	Status     		string   `bson:"status" json:"status"`
+	Price  			int64    `bson:"birth_date" json:"birth_date"`
+	Branch     		string      `bson:"branch" json:"branch"`
+	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
+	Destination    	string     `bson:"destination" json:"destination"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
@@ -27,19 +22,14 @@ type UpdateInput struct {
 func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
 	return &domain.UpdateQ{
 		ID:             input.ID,
-		Name:           input.Name,
-		ActualName:     input.ActualName,
-		ActualLastName: input.ActualLastName,
-		Gender:         input.Gender,
-		BirthDate:      input.BirthDate,
-		Height:         input.Height,
-		SuperPower:     input.SuperPower,
-		Alive:          input.Alive,
-		Universe:       input.Universe,
-		Movies:         input.Movies,
-		Enemies:        input.Enemies,
-		FamilyMember:   input.FamilyMember,
-		About:          input.About,
+		CustomerName: input.CustomerName,
+		CustomerID: input.CustomerID,
+		Cart: input.Cart,
+		Status: input.Status,
+		Price: input.Price,
+		Branch: input.Branch,
+		TypeOfOrder: input.TypeOfOrder,
+		Destination: input.Destination,
 		Code: input.Code,
 		Err: input.Err,
 	}
@@ -48,19 +38,14 @@ func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
 func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateQ) {
 	return &domain.UpdateQ{
 		ID:             input.ID,
-		Name:           input.Name,
-		ActualName:     input.ActualName,
-		ActualLastName: input.ActualLastName,
-		Gender:         input.Gender,
-		BirthDate:      input.BirthDate,
-		Height:         input.Height,
-		SuperPower:     input.SuperPower,
-		Alive:          input.Alive,
-		Universe:       input.Universe,
-		Movies:         input.Movies,
-		Enemies:        input.Enemies,
-		FamilyMember:   input.FamilyMember,
-		About:          input.About,
+		CustomerName: input.CustomerName,
+		CustomerID: input.CustomerID,
+		Cart: input.Cart,
+		Status: input.Status,
+		Price: input.Price,
+		Branch: input.Branch,
+		TypeOfOrder: input.TypeOfOrder,
+		Destination: input.Destination,
 		Code: input.Code,
 		Err: input.Err,
 	}

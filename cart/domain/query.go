@@ -1,7 +1,7 @@
 package domain
 
 type InsertQ struct {
-	ID         		int64   `bson:"_id" json:"id"`
+	ID         		string   `bson:"_id" json:"id"`
 	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
 	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
@@ -10,7 +10,8 @@ type InsertQ struct {
 	Branch     		string      `bson:"branch" json:"branch"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
-	Time 			int64	 `bson:"time" json:"time"`
+	Code int `json:"code"`
+	Err error `json:"err"`
 
 }
 
@@ -21,7 +22,7 @@ type DeleteQ struct {
 }
 
 type UpdateQ struct {
-	ID         		int64   `bson:"_id" json:"id"`
+	ID         		string   `bson:"_id" json:"id"`
 	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
 	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
@@ -43,3 +44,4 @@ type ViewByPageQ struct {
 	PerPage int
 	Page    int
 }
+

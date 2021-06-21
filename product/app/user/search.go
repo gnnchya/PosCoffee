@@ -10,12 +10,7 @@ import (
 )
 
 func (ctrl *Controller) Search(c *gin.Context) {
-	// span, ctx := opentracing.StartSpanFromContextWithTracer(
-	// 	c.Request.Context(),
-	// 	opentracing.GlobalTracer(),
-	// 	"handler.staff.Create",
-	// )
-	// defer span.Finish()
+
 	input := &userin.Search{}
 	fmt.Println("input in app search:", input)
 	if err := c.ShouldBindJSON(input); err != nil {

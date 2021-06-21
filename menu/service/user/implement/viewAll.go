@@ -7,7 +7,7 @@ import (
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
-func (impl *implementation) ViewAll(ctx context.Context, input *userin.ViewAllInput)([]domain.InsertStruct, error) {
+func (impl *implementation) ViewAll(ctx context.Context, input *userin.ViewAllInput)([]domain.InsertQ, error) {
 	// err = impl.validator.Validate(input)
 	// if err != nil {
 	// 	return "", err
@@ -15,7 +15,7 @@ func (impl *implementation) ViewAll(ctx context.Context, input *userin.ViewAllIn
 
 	user := userin.ViewAllInputToUserDomain(input)
 
-	a, err := impl.elasRepo.ViewAll(user.Page, user.PerPage,ctx)
+	a, err := impl.elasRepo.ReadAll(user.Page, user.PerPage,ctx)
 	if err != nil {
 		return a, err
 	}

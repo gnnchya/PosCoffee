@@ -39,7 +39,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 		return "", err
 	}
 
-	return user.Name, nil
+	return user.CustomerName, nil
 }
 
 func (impl *implementation) sendMsgUpdate(input *userin.UpdateInput) (err error) {
