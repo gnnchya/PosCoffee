@@ -8,7 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
-func (impl *implementation) Search(ctx context.Context, input *userin.Search) ([]domain.InsertStruct, error) {
+func (impl *implementation) Search(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
