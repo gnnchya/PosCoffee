@@ -3,7 +3,7 @@ package elastic
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
 func BuildUpdateRequest(t *domain.UpdateQ) (buf bytes.Buffer, err error) {

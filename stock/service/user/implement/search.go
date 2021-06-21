@@ -3,15 +3,12 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/stock/domain"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
+	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
 )
 
-func (impl *implementation) Search(ctx context.Context, input *userin.Search) ([]domain.InsertStruct, error) {
+func (impl *implementation) Search(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)

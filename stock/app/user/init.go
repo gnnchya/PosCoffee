@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
+	"github.com/gnnchya/PosCoffee/stock/service/user"
 )
 
 type Controller struct {
