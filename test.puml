@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant Menu
+database MenuDB
+participant Cart
+database CartDB
+participant Product
+database ProductDB
+collections Transaction
+collections Money
+control Kafka
+participant Stock
+database StockDB
+
+User -> Menu: user search for menu
+activate Menu
+
+Menu -> MenuDB: query menu
+activate MenuDB
+
+MenuDB --> Menu: return menu
+deactivate MenuDB
+
+Menu --> User: return Menu
+deactivate Menu
+
+User -> Cart: user add items to cart
+activate Cart
+
+Cart -> CartDB: append to cart's database
+activate CartDB
+
+CartDB --> Cart: return cart
+deactivate CartDB
+
+Cart --> User: return cart
+deactivate Cart
+
+User -> Product: order in
+activate Product
+
+Product -> ProductDB: add transaction
+deactivate Product
+activate ProductDB
+
+ProductDB -> Transaction: append transaction
+deactivate ProductDB
+
+User -> Product: user purchase
+activate Product
+
+Product -> ProductDB: calculate change
+activate ProductDB
+
+ProductDB -> Money: request change
+activate Money
+
+Money -> ProductDB: return change
+deactivate Money
+
+ProductDB --> Product: return change
+deactivate ProductDB
+
+Product --> User: return change
+deactivate Product
+
+User -> Product: request stock
+activate Product
+
+Product -> Kafka: forward request
+activate Kafka
+
+Kafka -> Stock: query stock
+activate Stock
+
+Stock -> StockDB: query stock
+activate StockDB
+
+StockDB --> Stock: return stock
+deactivate StockDB
+
+Stock --> Kafka: return stock
+deactivate Stock
+
+Kafka --> Product: forward return
+deactivate Kafka
+
+Product --> User: return stock and change
+deactivate Product
+@enduml
