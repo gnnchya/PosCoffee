@@ -2,8 +2,8 @@ package util
 
 import (
 	"context"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/stock/domain"
+	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
 )
 
@@ -13,16 +13,16 @@ type Repository interface {
 	Update(ctx context.Context, ent interface{}, ID string) (err error)
 	Delete(ctx context.Context, id string) (err error)
 	//Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
-	View(ctx context.Context, id string) (a domain.InsertQ, err error)
-	ViewAll(ctx context.Context, perPage int, page int) (a []domain.InsertQ, err error)
+	View(ctx context.Context, id string) (a domain.CreateStruct, err error)
+	ViewAll(ctx context.Context, perPage int, page int) (a []domain.CreateStruct, err error)
 	CheckExistName(ctx context.Context, name string) (bool, error)
 	CheckExistActualName(ctx context.Context, actualName string) (bool, error)
 }
 
 type RepositoryElas interface {
-	Search(keyword string, ctx context.Context) ([]domain.InsertStruct, error)
-	View(id string, ctx context.Context) ([]domain.InsertStruct, error)
-	ViewAll(page int, size int, ctx context.Context) ([]domain.InsertStruct, error)
+	Search(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
+	View(id string, ctx context.Context) ([]domain.CreateStruct, error)
+	ViewAll(page int, size int, ctx context.Context) ([]domain.CreateStruct, error)
 	//Create(ctx context.Context, ent interface{}) (err error)
 	//Update(ctx context.Context, ent interface{}, ID string) (err error)
 	//Delete(ctx context.Context, id string) (err error)

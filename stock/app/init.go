@@ -2,8 +2,8 @@ package app
 
 import (
 	// "touch/service/user"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/app/user"
-	userService "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
+	"github.com/gnnchya/PosCoffee/stock/app/user"
+	userService "github.com/gnnchya/PosCoffee/stock/service/user"
 
 	"github.com/gin-gonic/gin"
 )

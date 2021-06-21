@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ctrl *Controller) View(c *gin.Context) {
+func (ctrl *Controller) Read(c *gin.Context) {
 	id := c.Param("id")
 
 	input := &userin.ViewInput{}

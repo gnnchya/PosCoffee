@@ -4,18 +4,18 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	domain "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	domain "github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	//"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	//"strconv"
 )
 
-func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.InsertQ, error) {
-	var result []domain.InsertQ
+func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateStruct, error) {
+	var result []domain.CreateStruct
 	for cursor.Next(ctx) {
 		var resultBson bson.M
-		var resultStruct domain.InsertQ
+		var resultStruct domain.CreateStruct
 		if err = cursor.Decode(&resultBson); err != nil {
 			return result,err
 		}
@@ -30,7 +30,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.In
 	return result,err
 }
 
-func toString(resultArray []domain.InsertQ, err error) (string, error){
+func toString(resultArray []domain.CreateStruct, err error) (string, error){
 	var result string
 	for _, temp := range resultArray{
 		out, err := json.Marshal(temp)
