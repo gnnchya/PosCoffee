@@ -2,7 +2,7 @@ package implement
 
 import (
 	"encoding/json"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
 )
 
 func(impl implementation) Sender(topic msgbrokerin.TopicMsgBroker, data interface{}) (err error){

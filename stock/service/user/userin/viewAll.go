@@ -2,7 +2,7 @@ package userin
 
 import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/domain"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/stock/domain"
 )
 
 type ViewAllInput struct {
@@ -19,8 +19,8 @@ func MakeTestViewAllInput() (input *UpdateInput) {
 	}
 }
 
-func ViewAllInputToUserDomain(input *ViewAllInput) (user *domain.ViewByPageQ) {
-	return &domain.ViewByPageQ{
+func ViewAllInputToUserDomain(input *ViewAllInput) (user *domain.ReadByPageStruct) {
+	return &domain.ReadByPageStruct{
 		PerPage: input.PerPage,
 		Page:    input.Page,
 	}

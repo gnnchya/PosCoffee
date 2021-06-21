@@ -1,9 +1,9 @@
 package implement
 
 import (
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker"
-	userService "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/util"
+	"github.com/gnnchya/PosCoffee/stock/service/msgbroker"
+	userService "github.com/gnnchya/PosCoffee/stock/service/user"
+	"github.com/gnnchya/PosCoffee/stock/service/util"
 
 	//"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
 )
