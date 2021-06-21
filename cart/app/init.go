@@ -23,10 +23,10 @@ func New(userService userService.Service) *App {
 func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/menu", app.user.Create)
-		apiRoutes.GET("/menu/:id", app.user.Read)
-		apiRoutes.PUT("/menu", app.user.Update)
-		apiRoutes.DELETE("/menu/:id", app.user.Delete)
+		apiRoutes.POST("/cart", app.user.Create)
+		apiRoutes.GET("/cart/:id", app.user.Read)
+		apiRoutes.PUT("/cart", app.user.Update)
+		apiRoutes.DELETE("/cart/:id", app.user.Delete)
 	}
 
 	return app
