@@ -2,18 +2,18 @@ package main
 
 import (
 	"context"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/config"
-	elasRepo "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/repository/elastic"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/repository/kafka"
-	msgBrokerService "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/implement"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/product/config"
+	elasRepo "github.com/gnnchya/PosCoffee/product/repository/elastic"
+	"github.com/gnnchya/PosCoffee/product/repository/kafka"
+	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
+	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"log"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/app"
-	validatorService "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/validator"
+	"github.com/gnnchya/PosCoffee/product/app"
+	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
 
-	userRepo "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/repository/user"
-	userService "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/implement"
+	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
+	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
 )
 
 func newApp(appConfig *config.Config) *app.App {
