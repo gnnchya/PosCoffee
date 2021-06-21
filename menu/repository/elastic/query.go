@@ -42,31 +42,31 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 	return r, err
 }
 
-func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.InsertStruct, error){
+func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildCategoryRequest(keyword))
 	result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.InsertStruct, error){
+func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildIngredientRequest(keyword))
 	result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.InsertStruct, error){
+func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildMenuRequest(keyword))
 	result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)View(id string,ctx context.Context)([]domain.InsertStruct, error){
+func (repo *Repository)View(id string,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildViewRequest(id))
 	result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)ViewAll(page int, size int,ctx context.Context)([]domain.InsertStruct, error){
+func (repo *Repository)ViewAll(page int, size int,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildViewAllRequest(page, size,repo.Index))
 	result := InToStruct(q)
 	return result, err
