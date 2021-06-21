@@ -10,7 +10,7 @@ import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
-func (impl *implementation) View(ctx context.Context, input *userin.ViewInput) ([]domain.InsertStruct, error) {
+func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) ([]domain.InsertStruct, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
