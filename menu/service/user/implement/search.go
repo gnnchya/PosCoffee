@@ -11,7 +11,7 @@ import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
-func (impl *implementation) SearchMenu(ctx context.Context, input *userin.Search) ([]domain.InsertStruct, error) {
+func (impl *implementation) SearchMenu(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -28,7 +28,7 @@ func (impl *implementation) SearchMenu(ctx context.Context, input *userin.Search
 	return a, nil
 }
 
-func (impl *implementation) SearchIngredient(ctx context.Context, input *userin.Search) ([]domain.InsertStruct, error) {
+func (impl *implementation) SearchIngredient(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -45,7 +45,7 @@ func (impl *implementation) SearchIngredient(ctx context.Context, input *userin.
 	return a, nil
 }
 
-func (impl *implementation) SearchCategory(ctx context.Context, input *userin.Search) ([]domain.InsertStruct, error) {
+func (impl *implementation) SearchCategory(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)

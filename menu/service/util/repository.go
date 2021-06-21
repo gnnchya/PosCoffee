@@ -20,11 +20,11 @@ type Repository interface {
 }
 
 type RepositoryElas interface {
-	SearchCategory(keyword string, ctx context.Context) ([]domain.InsertStruct, error)
-	SearchIngredient(keyword string, ctx context.Context) ([]domain.InsertStruct, error)
-	SearchMenu(keyword string, ctx context.Context) ([]domain.InsertStruct, error)
-	View(id string, ctx context.Context) ([]domain.InsertStruct, error)
-	ViewAll(page int, size int, ctx context.Context) ([]domain.InsertStruct, error)
+	SearchCategory(keyword string, ctx context.Context) ([]domain.InsertQ, error)
+	SearchIngredient(keyword string, ctx context.Context) ([]domain.InsertQ, error)
+	SearchMenu(keyword string, ctx context.Context) ([]domain.InsertQ, error)
+	View(id string, ctx context.Context) ([]domain.InsertQ, error)
+	ViewAll(page int, size int, ctx context.Context) ([]domain.InsertQ, error)
 	//Create(ctx context.Context, ent interface{}) (err error)
 	//Update(ctx context.Context, ent interface{}, ID string) (err error)
 	//Delete(ctx context.Context, id string) (err error)

@@ -11,7 +11,7 @@ import (
 	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
 )
 
-func (repo *Repository) Insert(ctx context.Context, title *domain.UpdateQ) error{
+func (repo *Repository) Create(ctx context.Context, title *domain.UpdateQ) error{
 	out, err := json.Marshal(title)
 	if err != nil {
 		return err

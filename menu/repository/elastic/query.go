@@ -60,13 +60,13 @@ func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.I
 	return result, err
 }
 
-func (repo *Repository)View(id string,ctx context.Context)([]domain.InsertQ, error){
+func (repo *Repository)Read(id string,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildViewRequest(id))
 	result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)ViewAll(page int, size int,ctx context.Context)([]domain.InsertQ, error){
+func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.InsertQ, error){
 	q, err := repo.query(ctx,buildViewAllRequest(page, size,repo.Index))
 	result := InToStruct(q)
 	return result, err
