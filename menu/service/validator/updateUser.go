@@ -2,7 +2,7 @@ package validator
 
 import (
 	"context"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
+	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 	"github.com/go-playground/validator/v10"
 )
 

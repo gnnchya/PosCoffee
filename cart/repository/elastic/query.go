@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 
 )
 

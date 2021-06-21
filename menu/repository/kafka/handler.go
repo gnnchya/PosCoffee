@@ -1,7 +1,7 @@
 package kafka
 
 import (
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/menu/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
 	)
 

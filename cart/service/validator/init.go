@@ -1,8 +1,8 @@
 package validator
 
 import (
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/util"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/cart/service/util"
 	"github.com/go-playground/validator/v10"
 )
 

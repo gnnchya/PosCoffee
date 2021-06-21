@@ -2,7 +2,7 @@ package userin
 
 import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/domain"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 )
 
 type ViewAllInput struct {

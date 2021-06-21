@@ -1,6 +1,6 @@
 package userin
 
-import "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+import "github.com/gnnchya/PosCoffee/menu/service/msgbroker/msgbrokerin"
 
 type MsgBrokerCreate struct{
 	Action msgbrokerin.ActionMsgBroker `json:"action"`

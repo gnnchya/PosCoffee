@@ -3,8 +3,8 @@ package user
 import (
 	"fmt"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/app/view"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
+	"github.com/gnnchya/PosCoffee/cart/app/view"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 	goxid "github.com/touchtechnologies-product/xid"
 
 	"github.com/gin-gonic/gin"

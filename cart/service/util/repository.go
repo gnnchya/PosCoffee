@@ -2,8 +2,8 @@ package util
 
 import (
 	"context"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/cart/domain"
+	"github.com/gnnchya/PosCoffee/cart/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
 )
 

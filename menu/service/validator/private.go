@@ -6,7 +6,7 @@ import (
 	"log"
 	"regexp"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 
 	"github.com/go-playground/validator/v10"
 )

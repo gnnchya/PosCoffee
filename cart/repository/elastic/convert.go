@@ -2,7 +2,7 @@ package elastic
 
 import (
 	"fmt"
-	domain "github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	domain "github.com/gnnchya/PosCoffee/cart/domain"
 	"strconv"
 	"strings"
 )

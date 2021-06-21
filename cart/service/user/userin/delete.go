@@ -1,7 +1,7 @@
 package userin
 
 import (
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 )
 
 type DeleteInput struct {

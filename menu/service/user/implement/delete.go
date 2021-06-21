@@ -3,14 +3,11 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/menu/service/msgbroker/msgbrokerin"
 	"log"
 	"time"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
+	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
 func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error) {

@@ -3,8 +3,8 @@ package user
 import (
 	"strconv"
 
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/app/view"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
+	"github.com/gnnchya/PosCoffee/menu/app/view"
+	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 
 	"github.com/gin-gonic/gin"
 )

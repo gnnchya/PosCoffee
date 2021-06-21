@@ -2,9 +2,9 @@ package user
 
 import (
 	"context"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/domain"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/msgbroker/msgbrokerin"
-	"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user/userin"
+	"github.com/gnnchya/PosCoffee/cart/domain"
+	"github.com/gnnchya/PosCoffee/cart/service/msgbroker/msgbrokerin"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
 // "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/staff/out"
