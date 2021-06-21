@@ -11,12 +11,6 @@ import (
 )
 
 func (ctrl *Controller) Create(c *gin.Context) {
-	// span, ctx := opentracing.StartSpanFromContextWithTracer(
-	// 	c.Request.Context(),
-	// 	opentracing.GlobalTracer(),
-	// 	"handler.staff.Create",
-	// )
-	// defer span.Finish()
 	input := &userin.CreateInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
 		// view.MakeErrResp(c, err)
