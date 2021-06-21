@@ -21,14 +21,12 @@ func New(userService userService.Service) *App {
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
-	apiRoutes := router.Group("/api/v1")
+	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/superheroes", app.user.Create)
-		apiRoutes.PUT("/superheroes", app.user.Update)
-		apiRoutes.GET("/superheroes/search", app.user.Search)
-		apiRoutes.DELETE("/superheroes/:id", app.user.Delete)
-		apiRoutes.GET("/superheroes/:id", app.user.View)
-		apiRoutes.GET("/superheroes", app.user.ViewAll)
+		apiRoutes.POST("/menu", app.user.Create)
+		apiRoutes.GET("/menu/:id", app.user.Read)
+		apiRoutes.PUT("/menu", app.user.Update)
+		apiRoutes.DELETE("/menu/:id", app.user.Delete)
 	}
 
 	return app

@@ -1,13 +1,13 @@
 package user
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/app/view"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/product/app/view"
+	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 
 	"github.com/gin-gonic/gin"
 )
 
-func (ctrl *Controller) View(c *gin.Context) {
+func (ctrl *Controller) Read(c *gin.Context) {
 	id := c.Param("id")
 
 	input := &userin.ViewInput{}

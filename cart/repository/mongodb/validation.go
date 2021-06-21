@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"go.mongodb.org/mongo-driver/bson"
-	"log"
 )
 
 func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, error) {
@@ -17,7 +16,7 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 }
 
 func (repo *Repository) CheckExistName(ctx context.Context, name string) (bool, error) {
-	log.Println("checkexistname")
+	//log.Println("Check Exist Name")
 	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"name", name}})
 	if count < 1 {
 		return false, err
