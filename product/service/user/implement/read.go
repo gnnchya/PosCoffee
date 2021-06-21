@@ -3,12 +3,11 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/menu/domain"
-
-	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) View(ctx context.Context, input *userin.ViewInput) ([]domain.InsertQ, error) {
+func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) ([]domain.InsertStruct, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)

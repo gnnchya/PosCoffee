@@ -13,7 +13,7 @@ func (ctrl *Controller) Read(c *gin.Context) {
 	input := &userin.ViewInput{}
 
 	input.ID = id
-	a, err := ctrl.service.View(c, input)
+	a, err := ctrl.service.Read(c, input)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
