@@ -10,7 +10,8 @@ type InsertQ struct {
 	Branch     		string      `bson:"branch" json:"branch"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
-	Time 			int64	 `bson:"time" json:"time"`
+	Code int `json:"code"`
+	Err error `json:"err"`
 
 }
 
@@ -43,3 +44,4 @@ type ViewByPageQ struct {
 	PerPage int
 	Page    int
 }
+
