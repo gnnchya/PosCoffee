@@ -12,7 +12,7 @@ type Service interface {
 	Create(ctx context.Context, input *userin.CreateInput) (ID string, err error)
 	Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error)
 	Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error)
-	View(ctx context.Context, input *userin.ViewInput) ([]domain.InsertQ, error)
+	Read(ctx context.Context, input *userin.ViewInput) ([]domain.InsertQ, error)
 	ViewAll(ctx context.Context, input *userin.ViewAllInput) ([]domain.InsertQ, error)
 	SearchMenu(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error)
 	SearchCategory(ctx context.Context, input *userin.Search) ([]domain.InsertQ, error)
