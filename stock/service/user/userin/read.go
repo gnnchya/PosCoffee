@@ -11,7 +11,7 @@ type ReadInput struct {
 	Err 	error 	`json:"err"`
 }
 
-func ViewInputToUserDomain(input *ReadInput) (user *domain.ReadIDStruct) {
+func ReadInputToUserDomain(input *ReadInput) (user *domain.ReadIDStruct) {
 	return &domain.ReadIDStruct{
 		ID: 			input.ID,
 		Code: 			input.Code,
