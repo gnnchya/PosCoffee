@@ -23,8 +23,18 @@ func (repo *Repository) checkStockLeft(ctx context.Context, itemName string) (bo
 				bson.M{"amount": bson.M{"$gt": 0}},
 			}})
 	if count < 1 {
-		err = errors.New("ID does not exist")
+		err = errors.New("there is no ingredient left to make this menu")
 		return false, err
+	}
+	return true, err
+}
+
+func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients []string) (state bool, err error) {
+	for _, entity := range ingredients {
+		state , err = repo.checkStockLeft(ctx, entity)
+		if state == false{
+			return false, err
+		}
 	}
 	return true, err
 }
