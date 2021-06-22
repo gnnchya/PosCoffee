@@ -6,4 +6,5 @@ type User struct {
 
 type SearchValue struct {
 	Value string `bson:"value"`
+	Type  string `bson:"type"`
 }
