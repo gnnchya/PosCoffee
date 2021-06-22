@@ -27,7 +27,7 @@ func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name str
 }
 
 func (v *GoPlayGroundValidator) checkNameUnique(ctx context.Context, structLV validator.StructLevel, name string) (user *domain.InsertQ) {
-	a, err := v.userRepo.CheckExistName(ctx, name)
+	a, err := v.elasRepo.CheckExistName(ctx, name)
 	if err != nil {
 		structLV.ReportError(err, "err validation", "err validation", "error from database", "")
 	}
@@ -49,14 +49,17 @@ func (v *GoPlayGroundValidator) checkNameUnique(ctx context.Context, structLV va
 //}
 
 func (v *GoPlayGroundValidator) checkNameUniqueUpdate(ctx context.Context, structLV validator.StructLevel, name string, id string) (user *domain.UpdateQ) {
-	n, err := v.userRepo.CheckExistName(ctx, name)
+	n, err := v.elasRepo.CheckExistName(ctx, name)
+	if err != nil{
+		structLV.ReportError(err, "err update validation", "err update validation", "err update validation", "")
+	}
 	if n == true { //jer name
-		if an == true { //
-			temp, _ := v.userRepo.View(ctx, id)
-			if temp.Name != name {
-				structLV.ReportError(actualName, "actual_name", "actual_name", "unique", "")
-			}
+
+		temp, err := v.elasRepo.Read(id, ctx)
+		if temp.ID != name {
+			structLV.ReportError(actualName, "actual_name", "actual_name", "unique", "")
 		}
+
 	}
 	return user
 }
