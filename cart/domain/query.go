@@ -28,7 +28,7 @@ type CreateStruct struct {
 	Purchased     	bool   		`bson:"purchased" json:"purchased"`
 	Price  			int64    	`bson:"price" json:"price"`
 	TypeOfOrder 	string 		`bson:"type_of_order" json:"type_of_order"`
-	Destination    	GeoJson     	`bson:"destination" json:"destination"`
+	Destination    	GeoJson     `bson:"destination" json:"destination"`
 	Time			int64 		`bson:"time" json:"time"`
 	Code 			int 		`json:"code"`
 	Err 			error		`json:"err"`
