@@ -31,8 +31,8 @@ func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option 
 	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
 	bsonBytes, _ := bson.Marshal(resultBson)
 	bson.Unmarshal(bsonBytes, &resultStruct)
-	for _, temp := range resultStruct.Cart{
-		if temp.Menu.ID == id{
+	for _, temp := range resultStruct.Menu{
+		if temp.ID == id{
 			if temp.Option == option{
 				return true,err
 			} else {
@@ -43,22 +43,5 @@ func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option 
 	return false, err
 }
 
-func (repo *Repository) CheckAmountForDelete(ctx context.Context, id string, amount int64) (int64, bool, error) {
-	var resultStruct domain.CreateStruct
-	var resultBson bson.D
-	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-	bsonBytes, _ := bson.Marshal(resultBson)
-	bson.Unmarshal(bsonBytes, &resultStruct)
-	for _, temp := range resultStruct.Cart{
-		if temp.Menu.ID == id{
-			if temp.Amount > amount{
-				return  temp.Amount,true,err
-			} else {
-				return  temp.Amount,false,err
-			}
-		}
-	}
-	return  -1,false, err
-}
 
 

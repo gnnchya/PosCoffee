@@ -43,18 +43,19 @@ func toString(resultArray []domain.CreateStruct, err error) (string, error){
 	return result, err
 }
 
-func (repo *Repository)Search(ctx context.Context,search *domain.SearchValue) /*(result []domain.InsertQ,err error)*/ (result string, err error){
+func (repo *Repository)Search(ctx context.Context,search *domain.SearchValue) (result []domain.CreateStruct,err error) /*(result string, err error)*/{
 	fmt.Println("Searching for ",search.Value,"in")
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$or": bson.A{
-				bson.M{"name": primitive.Regex{Pattern: search.Value, Options: "i"}},
-				bson.M{"ingredient": primitive.Regex{Pattern: search.Value, Options: "i"}},
-				bson.M{"category": primitive.Regex{Pattern: search.Value, Options: "i"}},
+				bson.M{"menu.name": primitive.Regex{Pattern: search.Value, Options: "i"}},
+				bson.M{"menu.ingredient": primitive.Regex{Pattern: search.Value, Options: "i"}},
+				bson.M{"menu.category": primitive.Regex{Pattern: search.Value, Options: "i"}},
 			}})
 	if err != nil {
-		return toString(AddToArray(cursor,err,ctx))
+		//return toString(AddToArray(cursor,err,ctx))
+		return AddToArray(cursor,err,ctx)
 	}
-	return toString(AddToArray(cursor,err,ctx))
+	return AddToArray(cursor,err,ctx)
 }
 
