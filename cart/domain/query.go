@@ -52,7 +52,7 @@ type UpdateStruct struct {
 			Amount 	int64   `bson:"amount" json:"amount"`
 			Option 	string  `bson:"option" json:"option"`
 	}   					`bson:"cart" json:"cart"`
-	Purchase     	bool   	`bson:"status" json:"status"`
+	Purchased     	bool   	`bson:"purchased" json:"purchased"`
 	Price  			int64   `bson:"price" json:"price"`
 	TypeOfOrder 	string 	`bson:"type_of_order" json:"type_of_order"`
 	Destination    	string  `bson:"destination" json:"destination"`
