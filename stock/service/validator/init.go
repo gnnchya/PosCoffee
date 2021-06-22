@@ -10,7 +10,7 @@ type GoPlayGroundValidator struct {
 	userRepo util.Repository
 }
 
-func New(userRepo util.Repository, elasRepo util.RepositoryElas) (v *GoPlayGroundValidator) {
+func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
 		userRepo: userRepo,
