@@ -1,11 +1,5 @@
 package domain
 
-type Cart struct{
-	Menu		Menu 	`bson:"menu" json:"menu"`
-	Amount 		int64   `bson:"amount" json:"amount"`
-	Option 		string  `bson:"option" json:"option"`
-}
-
 type GeoJson struct {
 	Type        string    `json:"-"`
 	Coordinates []float64 `json:"coordinates"`
@@ -18,20 +12,17 @@ type Menu struct{
 	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
 	Price      		int64    `bson:"price" json:"price"`
 	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
 	Code 			int 	 `json:"code"`
 	Err 			error 	 `json:"err"`
 }
 type CreateStruct struct {
-	ID         		string   	`bson:"_id" json:"id"`
-	CustomerID 		string   	`bson:"customer_id" json:"customer_id"`
-	Cart  			[]Cart  	`bson:"cart" json:"cart"`
-	Purchased     	bool   		`bson:"purchased" json:"purchased"`
-	Price  			int64    	`bson:"price" json:"price"`
-	TypeOfOrder 	string 		`bson:"type_of_order" json:"type_of_order"`
-	Destination    	GeoJson     `bson:"destination" json:"destination"`
-	Time			int64 		`bson:"time" json:"time"`
-	Code 			int 		`json:"code"`
-	Err 			error		`json:"err"`
+	ID 				string  `bson:"_id" json:"_id"`
+	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
+	Menu			[]Menu 	`bson:"menu" json:"menu"`
+	Code 			int 	`json:"code"`
+	Err 			error	`json:"err"`
 }
 
 type DeleteStruct struct {
@@ -41,33 +32,15 @@ type DeleteStruct struct {
 }
 
 type UpdateStruct struct {
-	ID         		string   `bson:"_id" json:"id"`
-	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
-	Cart  			[]struct{
-			Menu	struct{
-							ID         		string   `bson:"_id" json:"id"`
-							Category       	string   `bson:"category" json:"category"`
-							Name 			string   `bson:"name" json:"name" validate:"required"`
-							Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-							Price      		int64    `bson:"price" json:"price"`
-							Available 		bool	 `bson:"available" json:"available"`
-							Code 			int 	 `json:"code"`
-							Err				error 	 `json:"err"`
-						   }`bson:"menu" json:"menu"`
-			Amount 	int64   `bson:"amount" json:"amount"`
-			Option 	string  `bson:"option" json:"option"`
-	}   					`bson:"cart" json:"cart"`
-	Purchased     	bool   	`bson:"purchased" json:"purchased"`
-	Price  			int64   `bson:"price" json:"price"`
-	TypeOfOrder 	string 	`bson:"type_of_order" json:"type_of_order"`
-	Destination    	GeoJson `bson:"destination" json:"destination"`
-	Time			int64 	`bson:"time" json:"time"`
+	ID 				string  `bson:"_id" json:"_id"`
+	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
+	Menu			[]Menu 	`bson:"menu" json:"menu"`
 	Code 			int 	`json:"code"`
-	Err 			error 	`json:"err"`
+	Err 			error	`json:"err"`
 }
+
 type ReadStruct struct {
 	ID string `bson:"_id" json:"id"`
-
 }
 
 type ReadAllStruct struct {
