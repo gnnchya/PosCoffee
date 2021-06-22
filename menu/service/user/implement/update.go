@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
-	"time"
-
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
@@ -28,11 +26,12 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 
 	//user := userin.UpdateInputToUserDomain(input)
 	user := input.UpdateInputToUserDomain()
-	time.Sleep(5 * time.Second)
-	_, err = impl.repo.Read(ctx, input.ID)
+	//time.Sleep(5 * time.Second)
+	//_, err = impl.elasRepo.Read(ctx, input.ID)
+	err = impl.elasRepo.Update(ctx, user)
 	if err != nil {
 		return "", err
 	}
 
-	return user.Name, nil
+	return user.ID, nil
 }
