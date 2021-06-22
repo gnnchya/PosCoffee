@@ -22,9 +22,9 @@ type CreateOrderStruct struct {
 	Cart			[]MenuStruct   	`bson:"amount" json:"amount"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
-	Type 			string 			`bson:"type" json:"type"`
+	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	DateTime		int64      		`bson:"date_time" json:"date_time"`
+	Time			int64      		`bson:"date_time" json:"date_time"`
 	Code 			int 			`json:"code"`
 	Err 			error 			`json:"err"`
 }
