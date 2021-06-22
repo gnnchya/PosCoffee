@@ -60,10 +60,10 @@ func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.C
 	return result, err
 }
 
-func (repo *Repository)Read(id string,ctx context.Context)([]domain.CreateStruct, error){
+func (repo *Repository)Read(id string,ctx context.Context)(domain.CreateStruct, error){
 	q, err := repo.query(ctx,buildViewRequest(id))
 	result := InToStruct(q)
-	return result, err
+	return result[0], err
 }
 
 func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.CreateStruct, error){
