@@ -19,7 +19,7 @@ func (ctrl *Controller) Create(c *gin.Context) {
 	// defer span.Finish()
 	input := &userin.CreateInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
-		// view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422, err)
 		fmt.Println("error")
 		return
 	}

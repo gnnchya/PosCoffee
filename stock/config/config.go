@@ -9,7 +9,7 @@ type Config struct {
 
 	// MongoDB config
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27017"`
-	MongoDBName             string `env:"MONGODB_NAME" envDefault:"superhero"`
+	MongoDBName             string `env:"MONGODB_NAME" envDefault:"stock"`
 	MongoDBHeroTableName string `env:"MONGODB_HERO_TABLE_NAME" envDefault:"lists"`
 
 	// Jaeger config
