@@ -19,8 +19,8 @@ func MakeTestViewAllInput() (input *UpdateInput) {
 	}
 }
 
-func ViewAllInputToUserDomain(input *ViewAllInput) (user *domain.ViewByPageQ) {
-	return &domain.ViewByPageQ{
+func ViewAllInputToUserDomain(input *ViewAllInput) (user *domain.ReadAllStruct) {
+	return &domain.ReadAllStruct{
 		PerPage: input.PerPage,
 		Page:    input.Page,
 	}

@@ -16,8 +16,8 @@ type CreateInput struct {
 	Err error `json:"err"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.InsertQ) {
-	return &domain.InsertQ{
+func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
+	return &domain.CreateStruct{
 		ID:             input.ID,
 		Category: input.Category,
 		Name:           input.Name,

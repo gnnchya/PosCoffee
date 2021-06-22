@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"strings"
 )
-func InToStruct(r map[string]interface{}) []domain.InsertQ{
-	var temp domain.InsertQ
-	var result []domain.InsertQ
+func InToStruct(r map[string]interface{}) []domain.CreateStruct{
+	var temp domain.CreateStruct
+	var result []domain.CreateStruct
 	for _, hit := range r["hits"].(map[string]interface{})["hits"].([]interface{}) {
 		s := hit.(map[string]interface{})["_source"]
 		temp.Name = fmt.Sprintf("%v", s.(map[string]interface{})["name"])

@@ -3,9 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/menu/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
-	"log"
 	"time"
 
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
@@ -30,9 +28,6 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 
 	//user := userin.UpdateInputToUserDomain(input)
 	user := input.UpdateInputToUserDomain()
-	if err == impl.sendMsgUpdate(input){
-		log.Println(err)
-	}
 	time.Sleep(5 * time.Second)
 	_, err = impl.repo.View(ctx, input.ID)
 	if err != nil {
@@ -40,24 +35,4 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 	}
 
 	return user.Name, nil
-}
-
-func (impl *implementation) sendMsgUpdate(input *userin.UpdateInput) (err error) {
-	return impl.MsgSender("update", userin.MsgBrokerUpdate{
-		Action:     msgbrokerin.ActionUpdate,
-		ID:             input.ID,
-		Name:           input.Name,
-		ActualName:     input.ActualName,
-		ActualLastName: input.ActualLastName,
-		Gender:         input.Gender,
-		BirthDate:      input.BirthDate,
-		Height:         input.Height,
-		SuperPower:     input.SuperPower,
-		Alive:          input.Alive,
-		Universe:       input.Universe,
-		Movies:         input.Movies,
-		Enemies:        input.Enemies,
-		FamilyMember:   input.FamilyMember,
-		About:          input.About,
-	})
 }

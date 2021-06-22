@@ -15,8 +15,8 @@ type UpdateInput struct {
 	Err error `json:"err"`
 }
 
-func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
-	return &domain.UpdateQ{
+func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateStruct) {
+	return &domain.UpdateStruct{
 		ID:             input.ID,
 		Category: input.Category,
 		Name:           input.Name,
@@ -28,8 +28,8 @@ func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
 	}
 }
 
-func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateQ) {
-	return &domain.UpdateQ{
+func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateStruct) {
+	return &domain.UpdateStruct{
 		ID:             input.ID,
 		Category: input.Category,
 		Name:           input.Name,

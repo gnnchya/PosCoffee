@@ -17,7 +17,6 @@ func (repo *Repository) CheckExistID(ctx context.Context, id string) (bool, erro
 	return true, err
 }
 
-
 func (repo *Repository) CheckExistName(ctx context.Context, name string) (bool, error) {
 	buf, err := BuildCheckNameRequest(name)
 	if err != nil{
@@ -43,3 +42,5 @@ func (repo *Repository) CheckExistIndex(ctx context.Context, Index string) (bool
 	}
 	return true, err
 }
+
+//

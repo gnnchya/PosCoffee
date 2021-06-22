@@ -1,6 +1,6 @@
 package domain
 
-type InsertQ struct {
+type CreateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
@@ -11,13 +11,13 @@ type InsertQ struct {
 	Err error `json:"err"`
 }
 
-type DeleteQ struct {
+type DeleteStruct struct {
 	ID string `bson:"_id" json:"id"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
 
-type UpdateQ struct {
+type UpdateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
@@ -28,12 +28,12 @@ type UpdateQ struct {
 	Err error `json:"err"`
 }
 
-type ViewQ struct {
+type ReadStruct struct {
 	ID string `bson:"_id" json:"id"`
 
 }
 
-type ViewByPageQ struct {
+type ReadAllStruct struct {
 	PerPage int
 	Page    int
 }

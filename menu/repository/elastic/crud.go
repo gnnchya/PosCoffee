@@ -11,7 +11,7 @@ import (
 	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
-func (repo *Repository) Create(ctx context.Context, title *domain.UpdateQ) error{
+func (repo *Repository) Create(ctx context.Context, title *domain.CreateStruct) error{
 	out, err := json.Marshal(title)
 	if err != nil {
 		return err
@@ -34,7 +34,7 @@ func (repo *Repository) Create(ctx context.Context, title *domain.UpdateQ) error
 	return err
 }
 
-func (repo *Repository)Update(ctx context.Context, title *domain.UpdateQ) error{
+func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) error{
 	buf, err := BuildUpdateRequest(title)
 	if err != nil {
 		return err
