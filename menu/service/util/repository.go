@@ -11,7 +11,7 @@ type RepositoryElas interface {
 	SearchCategory(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
 	SearchIngredient(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
 	SearchMenu(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
-	Read(id string, ctx context.Context) ([]domain.CreateStruct, error)
+	Read(id string, ctx context.Context) (domain.CreateStruct, error)
 	ReadAll(page int, size int, ctx context.Context) ([]domain.CreateStruct, error)
 	Create(ctx context.Context, ent domain.CreateStruct) (err error)
 	Update(ctx context.Context, ent domain.UpdateStruct) (err error)
