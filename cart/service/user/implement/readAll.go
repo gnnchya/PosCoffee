@@ -10,7 +10,7 @@ import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
-func (impl *implementation) ViewAll(ctx context.Context, input *userin.ViewAllInput)([]domain.InsertStruct, error) {
+func (impl *implementation) ReadAll(ctx context.Context, input *userin.ViewAllInput)([]domain.CreateStruct, error) {
 	// err = impl.validator.Validate(input)
 	// if err != nil {
 	// 	return "", err
@@ -18,7 +18,7 @@ func (impl *implementation) ViewAll(ctx context.Context, input *userin.ViewAllIn
 
 	user := userin.ViewAllInputToUserDomain(input)
 
-	a, err := impl.elasRepo.ViewAll(user.Page, user.PerPage,ctx)
+	a, err := impl.repo.ReadAll(ctx, user.PerPage,user.Page)
 	if err != nil {
 		return a, err
 	}

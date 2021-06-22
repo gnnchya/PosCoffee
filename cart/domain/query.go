@@ -1,46 +1,60 @@
 package domain
 
-type InsertQ struct {
+type CreateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
-	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
-	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
+	Cart  			[]struct{
+		ID         		string   `bson:"_id" json:"id"`
+		Category       	string   `bson:"category" json:"category"`
+		Name 			string   `bson:"name" json:"name" validate:"required"`
+		Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+		Price      		int64    `bson:"price" json:"price"`
+		Available 		bool	 `bson:"available" json:"available"`
+		Code int `json:"code"`
+		Err error `json:"err"`
+	}   `bson:"cart" json:"cart"`
 	Status     		string   `bson:"status" json:"status"`
-	Price  			int64    `bson:"birth_date" json:"birth_date"`
-	Branch     		string      `bson:"branch" json:"branch"`
+	Price  			int64    `bson:"price" json:"price"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
+	Time			int64 	`bson:"time" json:"time"`
 	Code int `json:"code"`
 	Err error `json:"err"`
-
 }
 
-type DeleteQ struct {
+type DeleteStruct struct {
 	ID string `bson:"_id" json:"id"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
 
-type UpdateQ struct {
+type UpdateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
-	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
-	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
+	Cart  			[]struct{
+		ID         		string   `bson:"_id" json:"id"`
+		Category       	string   `bson:"category" json:"category"`
+		Name 			string   `bson:"name" json:"name" validate:"required"`
+		Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+		Price      		int64    `bson:"price" json:"price"`
+		Available 		bool	 `bson:"available" json:"available"`
+		Code int `json:"code"`
+		Err error `json:"err"`
+	}   `bson:"cart" json:"cart"`
 	Status     		string   `bson:"status" json:"status"`
-	Price  			int64    `bson:"birth_date" json:"birth_date"`
-	Branch     		string      `bson:"branch" json:"branch"`
+	Price  			int64    `bson:"price" json:"price"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
+	Time			int64 	`bson:"time" json:"time"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
-
-type ViewQ struct {
+type ReadStruct struct {
 	ID string `bson:"_id" json:"id"`
 
 }
 
-type ViewByPageQ struct {
+type ReadAllStruct struct {
 	PerPage int
 	Page    int
 }

@@ -3,9 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/cart/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
-	"log"
 	"time"
 )
 
@@ -36,35 +34,11 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//	return "", err
 	//}
 
-	if err == impl.sendMsgCreate(input) {
-		log.Println(err)
-	}
-
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}
 
 	return user.ID, nil
-}
-
-func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {
-	return impl.MsgSender("create", userin.MsgBrokerCreate{
-		Action:         msgbrokerin.ActionCreate,
-		ID:             input.ID,
-		Name:           input.Name,
-		ActualName:     input.ActualName,
-		ActualLastName: input.ActualLastName,
-		Gender:         input.Gender,
-		BirthDate:      input.BirthDate,
-		Height:         input.Height,
-		SuperPower:     input.SuperPower,
-		Alive:          input.Alive,
-		Universe:       input.Universe,
-		Movies:         input.Movies,
-		Enemies:        input.Enemies,
-		FamilyMember:   input.FamilyMember,
-		About:          input.About,
-	})
 }
