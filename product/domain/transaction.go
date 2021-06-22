@@ -25,7 +25,7 @@ type GeoJson struct {
 type CreateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	CustomerID 		string  		`bson:"customer_id" json:"customer_id"`
-	Cart			[]Cart   	`bson:"amount" json:"amount"`
+	Cart			[]Cart   		`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
@@ -44,7 +44,7 @@ type DeleteOrderStruct struct {
 type UpdateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	CustomerID 		string  		`bson:"customer_id" json:"customer_id"`
-	Cart			[]MenuStruct   	`bson:"amount" json:"amount"`
+	Cart			[]Cart		  	`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
