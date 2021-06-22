@@ -11,6 +11,6 @@ type implementation struct {
 	elasRepo  util.RepositoryElas
 }
 
-func New(validator validator.Validator,elasRepo util.RepositoryElas) (service user.Service) {
+func New(validator validator.Validator, elasRepo util.RepositoryElas) (service user.Service) {
 	return &implementation{validator, elasRepo}
 }
