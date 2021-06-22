@@ -12,6 +12,17 @@ type CreateInput struct {
 	Err 			error	`json:"err"`
 }
 
+type CreateMenu struct {
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	string   `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
+}
+
 func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 	return &domain.CreateStruct{
 		ID:             input.ID,
