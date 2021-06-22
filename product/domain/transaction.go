@@ -1,6 +1,6 @@
 package domain
 
-type MenuStruct struct {
+type Menu struct {
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
@@ -11,6 +11,12 @@ type MenuStruct struct {
 	Err 			error 	 `json:"err"`
 }
 
+type Cart struct{
+	Menu		Menu 	`bson:"menu" json:"menu"`
+	Amount 		int64   `bson:"amount" json:"amount"`
+	Option 		string  `bson:"option" json:"option"`
+}
+
 type GeoJson struct {
 	Type        string    `json:"-"`
 	Coordinates []float64 `json:"coordinates"`
@@ -19,7 +25,7 @@ type GeoJson struct {
 type CreateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	CustomerID 		string  		`bson:"customer_id" json:"customer_id"`
-	Cart			[]MenuStruct   	`bson:"amount" json:"amount"`
+	Cart			[]Cart   	`bson:"amount" json:"amount"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
@@ -37,15 +43,13 @@ type DeleteOrderStruct struct {
 
 type UpdateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
-	CustomerName    string   		`bson:"customer_name" json:"customer_name"`
 	CustomerID 		string  		`bson:"customer_id" json:"customer_id"`
 	Cart			[]MenuStruct   	`bson:"amount" json:"amount"`
-	Active			bool     		`bson:"active" json:"active"`
+	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
-	branch		    string   		`bson:"branch" json:"branch"`
-	Type 			string 			`bson:"type" json:"type"`
+	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	DateTime		int64      		`bson:"date_time" json:"date_time"`
+	Time			int64      		`bson:"date_time" json:"date_time"`
 	Code 			int 			`json:"code"`
 	Err 			error 			`json:"err"`
 }

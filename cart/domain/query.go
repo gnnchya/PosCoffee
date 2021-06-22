@@ -6,6 +6,11 @@ type Cart struct{
 	Option 		string  `bson:"option" json:"option"`
 }
 
+type GeoJson struct {
+	Type        string    `json:"-"`
+	Coordinates []float64 `json:"coordinates"`
+}
+
 type Menu struct{
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
@@ -23,7 +28,7 @@ type CreateStruct struct {
 	Purchased     	bool   		`bson:"purchased" json:"purchased"`
 	Price  			int64    	`bson:"price" json:"price"`
 	TypeOfOrder 	string 		`bson:"type_of_order" json:"type_of_order"`
-	Destination    	string     	`bson:"destination" json:"destination"`
+	Destination    	GeoJson     	`bson:"destination" json:"destination"`
 	Time			int64 		`bson:"time" json:"time"`
 	Code 			int 		`json:"code"`
 	Err 			error		`json:"err"`
@@ -55,7 +60,7 @@ type UpdateStruct struct {
 	Purchased     	bool   	`bson:"purchased" json:"purchased"`
 	Price  			int64   `bson:"price" json:"price"`
 	TypeOfOrder 	string 	`bson:"type_of_order" json:"type_of_order"`
-	Destination    	string  `bson:"destination" json:"destination"`
+	Destination    	GeoJson `bson:"destination" json:"destination"`
 	Time			int64 	`bson:"time" json:"time"`
 	Code 			int 	`json:"code"`
 	Err 			error 	`json:"err"`
