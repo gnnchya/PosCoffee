@@ -1,10 +1,5 @@
 package domain
 
-type GeoJson struct {
-	Type        string    `json:"-"`
-	Coordinates []float64 `json:"coordinates"`
-}
-
 type Menu struct{
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
