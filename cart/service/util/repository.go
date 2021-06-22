@@ -13,8 +13,10 @@ type Repository interface {
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a domain.CreateStruct, err error)
 	ReadAll(ctx context.Context, perPage int, page int) (a []domain.CreateStruct, err error)
-	CheckExistName(ctx context.Context, name string) (bool, error)
-	CheckExistActualName(ctx context.Context, actualName string) (bool, error)
+	CheckExistID(ctx context.Context, id string) (bool, error)
+	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
+	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
+	CheckAmountForDelete(ctx context.Context, id string, amount int64) (int64, bool, error)
 }
 
 type RepositoryUsers interface {
