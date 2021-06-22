@@ -44,7 +44,7 @@ func toString(resultArray []domain.CreateStruct, err error) (string, error){
 }
 
 func (repo *Repository)Search(ctx context.Context,search *domain.SearchValue) (result []domain.CreateStruct,err error) /*(result string, err error)*/{
-	fmt.Println("Searching for ",search.Value,"in")
+	fmt.Println("Searching for ",search.Value)
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$or": bson.A{
