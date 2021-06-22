@@ -19,7 +19,7 @@ type CreateInput struct {
 			Code int `json:"code"`
 			Err error `json:"err"`
 		}	`bson:"menu" json:"menu"`
-		Amount 		string   `bson:"amount" json:"amount"`
+		Amount 		int64   `bson:"amount" json:"amount"`
 		Option 		string   `bson:"option" json:"option"`
 	}   `bson:"cart" json:"cart"`
 	Purchase     		bool   `bson:"status" json:"status"`
