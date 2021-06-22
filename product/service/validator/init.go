@@ -1,7 +1,6 @@
 package validator
 
 import (
-	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 	"github.com/gnnchya/PosCoffee/product/service/util"
 	"github.com/go-playground/validator/v10"
 )
@@ -18,8 +17,8 @@ func New(userRepo util.Repository, elasRepo util.RepositoryElas) (v *GoPlayGroun
 		userRepo: userRepo,
 		elasRepo: elasRepo,
 	}
-	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.CreateInput{})
-	v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
+	//v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.CreateInput{})
+	//v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
 
 	return v
 }
