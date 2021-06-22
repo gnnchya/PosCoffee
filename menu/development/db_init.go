@@ -19,9 +19,9 @@ type Menu struct {
 }
 
 var Sp_list =  []Menu{
-	{"Coffee",  "Americano", []string{"Coffee beans", "Water"}, 50, true},
-	{"Coffee",  "Americano", []string{"Cofee beans", "Water"}, 50, true},
-	{"Coffee",  "Americano", []string{"Cofee beans", "Water"}, 50, true},
+	{"Coffee",  "Iced Americano", []string{"Coffee beans", "Water", "Ice", "Plastic cup"}, 55, true},
+	{"Coffee",  "Hot Americano (Small)", []string{"Coffee beans", "Water", "Small hot cup"}, 35, true},
+	{"Coffee",  "Hot Americano (Large)", []string{"Coffee beans", "Water", "Large hot cup"}, 45, true},
 	{"Coffee",  "Americano", []string{"Cofee beans", "Water"}, 50, true},
 	{"Coffee",  "Americano", []string{"Cofee beans", "Water"}, 50, true},
 	{"Coffee",  "Americano", []string{"Cofee beans", "Water"}, 50, true},

@@ -14,3 +14,12 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 	}
 	return true, err
 }
+
+func (repo *Repository) checkStockLeft(ctx context.Context, itemName string) (bool, error) {
+	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"item_name", itemName}})
+	if count < 1 {
+		err = errors.New("ID does not exist")
+		return false, err
+	}
+	return true, err
+}
