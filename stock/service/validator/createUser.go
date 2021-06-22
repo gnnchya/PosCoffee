@@ -8,7 +8,7 @@ import (
 
 func (v *GoPlayGroundValidator) IsProud(structLV validator.StructLevel) {
 	input := structLV.Current().Interface().(userin.CreateInput)
-	v.checkName(structLV, input.Name)
+	v.checkName(structLV, input.ItemName)
 }
 
 func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validator.StructLevel) {
@@ -16,7 +16,8 @@ func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validat
 	input := structLV.Current().Interface().(userin.CreateInput)
 	//v.checkTH(structLV, input.Name)
 	// v.checkName(structLV, input.Name)
-	v.checkUserNameUnique(ctx, structLV, input.Name)
-	v.checkUserActualNameUnique(ctx, structLV, input.ActualName)
+	v.checkUserNameUnique(ctx, structLV, input.ItemName)
+
+	//v.checkUserActualNameUnique(ctx, structLV, input.ActualName)
 }
 

@@ -6,55 +6,36 @@ import (
 
 
 type CreateInput struct {
-	ID         string   `json:"id"`
-	Name       string   `son:"name" validate:"required"`
-	ActualName string   `json:"actual_name" validate:"required"`
-	ActualLastName string `json:"actual_last_name"`
-	Gender     string   `json:"gender"`
-	BirthDate  int64    `json:"birth_date"`
-	Height     int      `json:"height" validate:"gte=0"`
-	SuperPower []string `json:"super_power"`
-	Alive      bool     `json:"alive"`
-	Universe       string   `json:"universe"`
-	Movies         []string `json:"movies"`
-	Enemies        []string `json:"enemies"`
-	FamilyMember   []string `json:"family_member"`
-	About          string   `json:"about"`
-	Code int `json:"code"`
-	Err error `json:"err"`
+	ID         		string   	`bson:"_id" json:"id"`
+	ItemName       	string   	`bson:"item_name" json:"item_name"`
+	Category 		string  	`bson:"category" json:"category"`
+	Amount			int64   	`bson:"amount" json:"amount"`
+	Unit     		string   	`bson:"unit" json:"unit"`
+	CostPerUnit		int64      	`bson:"cost_per_unit" json:"cost_per_unit"`
+	EXPDate     	int64   	`bson:"exp_date" json:"exp_date"`
+	ImportDate      int64   	`bson:"import_date" json:"import_date"`
+	Supplier 		string 		`bson:"supplier" json:"supplier"`
+	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
+	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
+	Code 			int 		`json:"code"`
+	Err 			error 		`json:"err"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.InsertQ) {
-	return &domain.InsertQ{
+func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
+	return &domain.CreateStruct{
 		ID:             input.ID,
-		Name:           input.Name,
-		ActualName:     input.ActualName,
-		ActualLastName: input.ActualLastName,
-		Gender:         input.Gender,
-		BirthDate:      input.BirthDate,
-		Height:         input.Height,
-		SuperPower:     input.SuperPower,
-		Alive:          input.Alive,
-		Universe:       input.Universe,
-		Movies:         input.Movies,
-		Enemies:        input.Enemies,
-		FamilyMember:   input.FamilyMember,
-		About:          input.About,
-		Code: input.Code,
-		Err: input.Err,
+		ItemName:       input.ItemName,
+		Category:     	input.Category,
+		Amount: 		input.Amount,
+		Unit:         	input.Unit,
+		CostPerUnit:    input.CostPerUnit,
+		EXPDate:        input.EXPDate,
+		ImportDate:     input.ImportDate,
+		Supplier:       input.Supplier,
+		TotalCost:      input.TotalCost,
+		TotalAmount:    input.TotalAmount,
+		Code: 			input.Code,
+		Err: 			input.Err,
 	}
 }
 
-//func ToDomain(input *CreateInput) (user *domain.InsertQ) {
-//
-//	return &domain.InsertQ{
-//		ID:         input.ID,
-//		Name:       input.Name,
-//		ActualName: input.ActualName,
-//		Gender:     input.Gender,
-//		BirthDate:  input.BirthDate,
-//		Height:     input.Height,
-//		SuperPower: input.SuperPower,
-//		Alive:      input.Alive,
-//	}
-//}

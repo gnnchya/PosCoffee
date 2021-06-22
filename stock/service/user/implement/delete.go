@@ -14,20 +14,9 @@ import (
 )
 
 func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error) {
-	//defer func(){
-	//	if !reflect2.IsNil(err){
-	//		return
-	//	}
-	//	if err == impl.sendMsgDelete(input){
-	//		log.Println(err)
-	//	}
-	//}()
 	user := userin.DeleteInputToUserDomain(input)
 	fmt.Println("user input delete:", user)
 
-	//err = impl.repo.Delete(ctx, user.ID)
-	//fmt.Println("output del:", user)
-	//fmt.Println("err del:", err)
 	if err == impl.sendMsgDelete(input){
 		log.Println(err)
 	}

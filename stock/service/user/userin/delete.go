@@ -10,18 +10,18 @@ type DeleteInput struct {
 	Err error `json:"err"`
 }
 
-func DeleteInputToUserDomain(input *DeleteInput) (user *domain.DeleteQ) {
-	return &domain.DeleteQ{
-		ID: input.ID,
+func DeleteInputToUserDomain(input *DeleteInput) (user *domain.DeleteStruct) {
+	return &domain.DeleteStruct{
+		ID:   input.ID,
 		Code: input.Code,
-		Err: input.Err,
+		Err:  input.Err,
 	}
 }
 
-func (input *DeleteInput)DeleteInputToUserDomain() (user *domain.DeleteQ) {
-	return &domain.DeleteQ{
-		ID:             input.ID,
+func (input *DeleteInput)DeleteInputToUserDomain() (user *domain.DeleteStruct) {
+	return &domain.DeleteStruct{
+		ID:   input.ID,
 		Code: input.Code,
-		Err: input.Err,
+		Err:  input.Err,
 	}
 }
