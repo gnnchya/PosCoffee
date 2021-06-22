@@ -7,16 +7,16 @@ import (
 	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
 )
 
-func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) ([]domain.CreateStruct, error) {
-	err := impl.validator.Validate(input)
+func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (a domain.CreateStruct, err error) {
+	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return nil, err
+		return a, err
 	}
 	user := userin.ViewInputToUserDomain(input)
 	fmt.Println("user input view: ", user)
 	fmt.Println("user.ID: ", user.ID)
-	a, err := impl.elasRepo.View(user.ID, ctx)
+	a, err = impl.repo.Read(ctx, user.ID)
 	fmt.Println("err:", err)
 	if err != nil {
 		return a, err
