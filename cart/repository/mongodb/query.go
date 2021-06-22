@@ -26,7 +26,7 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 	return err
 }
 
-func (repo *Repository) View(ctx context.Context, id string) (resultStruct domain.InsertQ, err error) {
+func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
 	_, err = repo.checkExistID(ctx, id)
 	if err != nil {
 		return resultStruct, err
@@ -38,7 +38,7 @@ func (repo *Repository) View(ctx context.Context, id string) (resultStruct domai
 	return resultStruct, err
 }
 
-func (repo *Repository) ViewAll(ctx context.Context, perPage int, page int) ([]domain.InsertQ, error) {
+func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.CreateStruct, error) {
 	skip := int64(page * perPage)
 	limit := int64(perPage)
 	opts := options.FindOptions{

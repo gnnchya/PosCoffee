@@ -3,8 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/cart/service/msgbroker/msgbrokerin"
-	"log"
+
 	"time"
 
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
@@ -28,21 +27,13 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 	//err = impl.repo.Delete(ctx, user.ID)
 	//fmt.Println("output del:", user)
 	//fmt.Println("err del:", err)
-	if err == impl.sendMsgDelete(input){
-		log.Println(err)
-	}
+
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}
 	return user.ID, err
 }
 
-func (impl *implementation) sendMsgDelete(input *userin.DeleteInput) (err error) {
-	return impl.MsgSender("delete", userin.MsgBrokerDelete{
-		Action:     msgbrokerin.ActionDelete,
-		ID:             input.ID,
-	})
-}
 

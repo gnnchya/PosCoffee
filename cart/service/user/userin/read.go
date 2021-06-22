@@ -20,13 +20,13 @@ func MakeTestViewInput() (input *UpdateInput) {
 	return &UpdateInput{
 		ID: "test",
 		// ID:        "test",
-		Name: "test",
+		//Name: "test",
 		// Tel:       "test",
 	}
 }
 
-func ViewInputToUserDomain(input *ViewInput) (user *domain.ViewQ) {
-	return &domain.ViewQ{
+func ViewInputToUserDomain(input *ViewInput) (user *domain.ReadStruct) {
+	return &domain.ReadStruct{
 		ID: input.ID,
 	}
 }

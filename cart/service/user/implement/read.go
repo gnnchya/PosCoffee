@@ -10,16 +10,16 @@ import (
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
-func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) ([]domain.InsertStruct, error) {
+func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) (domain.CreateStruct, error) {
 	err := impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return nil, err
+		return domain.CreateStruct{}, err
 	}
 	user := userin.ViewInputToUserDomain(input)
 	fmt.Println("user input view: ", user)
 	fmt.Println("user.ID: ", user.ID)
-	a, err := impl.elasRepo.View(user.ID, ctx)
+	a, err := impl.repo.Read(ctx,user.ID)
 	fmt.Println("err:", err)
 	if err != nil {
 		return a, err

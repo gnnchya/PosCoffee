@@ -7,27 +7,33 @@ import (
 
 type UpdateInput struct {
 	ID         		string   `bson:"_id" json:"id"`
-	CustomerName    string   `bson:"customer_name" json:"customer_name" validate:"required"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
-	Cart  			string   `bson:"actual_lastname" json:"actual_lastname"`
+	Cart  			[]struct{
+		ID         		string   `bson:"_id" json:"id"`
+		Category       	string   `bson:"category" json:"category"`
+		Name 			string   `bson:"name" json:"name" validate:"required"`
+		Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+		Price      		int64    `bson:"price" json:"price"`
+		Available 		bool	 `bson:"available" json:"available"`
+		Code int `json:"code"`
+		Err error `json:"err"`
+	}   `bson:"cart" json:"cart"`
 	Status     		string   `bson:"status" json:"status"`
-	Price  			int64    `bson:"birth_date" json:"birth_date"`
-	Branch     		string      `bson:"branch" json:"branch"`
+	Price  			int64    `bson:"price" json:"price"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
+	Time			int64 	`bson:"time" json:"time"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
 
-func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
-	return &domain.UpdateQ{
+func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateStruct) {
+	return &domain.UpdateStruct{
 		ID:             input.ID,
-		CustomerName: input.CustomerName,
 		CustomerID: input.CustomerID,
 		Cart: input.Cart,
 		Status: input.Status,
 		Price: input.Price,
-		Branch: input.Branch,
 		TypeOfOrder: input.TypeOfOrder,
 		Destination: input.Destination,
 		Code: input.Code,
@@ -35,15 +41,13 @@ func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateQ) {
 	}
 }
 
-func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateQ) {
-	return &domain.UpdateQ{
+func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateStruct) {
+	return &domain.UpdateStruct{
 		ID:             input.ID,
-		CustomerName: input.CustomerName,
 		CustomerID: input.CustomerID,
 		Cart: input.Cart,
 		Status: input.Status,
 		Price: input.Price,
-		Branch: input.Branch,
 		TypeOfOrder: input.TypeOfOrder,
 		Destination: input.Destination,
 		Code: input.Code,

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/stock/config"
-	elasRepo "github.com/gnnchya/PosCoffee/stock/repository/elastic"
 	"github.com/gnnchya/PosCoffee/stock/repository/kafka"
 	msgBrokerService "github.com/gnnchya/PosCoffee/stock/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
@@ -18,15 +17,13 @@ import (
 
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
-	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "superhero")
-	panicIfErr(err)
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBHeroTableName)
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)
-	validator := validatorService.New(uRepo, elasRepo)
+	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo, kRepo, elasRepo)
+	user := userService.New(validator, uRepo, kRepo)
 	msgService := msgBrokerService.New(kRepo, user)
 	//wg.Add(1)
 	msgService.Receiver(topics)
