@@ -8,9 +8,6 @@ import (
 	"time"
 
 	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
 func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error) {
@@ -21,7 +18,7 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 		log.Println(err)
 	}
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}

@@ -22,7 +22,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 		log.Println(err)
 	}
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}
