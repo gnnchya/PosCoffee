@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
-	"time"
+	goxid "github.com/touchtechnologies-product/xid"
 )
 
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
@@ -22,7 +22,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return "validate error", err
 	}
-
+	initID := goxid.New()
+	input.ID = initID.Gen()
 	//user := userin.CreateInputToUserDomain(input)
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
@@ -34,7 +35,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//	return "", err
 	//}
 
-	time.Sleep(5 * time.Second)
+	//time.Sleep(5 * time.Second)
 	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
