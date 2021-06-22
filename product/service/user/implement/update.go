@@ -3,11 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
-	"log"
-	"time"
-
 )
 
 func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error) {
@@ -24,12 +20,12 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 	//	log.Println(err)
 	//}
 	//time.Sleep(5 * time.Second)
-	//_, err = impl.repo.Update(user, user.ID)
+	err = impl.repo.Update(ctx, user, user.ID)
 	if err != nil {
 		return "", err
 	}
 
-	return user.Name, nil
+	return ID, nil
 }
 
 //func (impl *implementation) sendMsgUpdate(input *userin.UpdateInput) (err error) {
