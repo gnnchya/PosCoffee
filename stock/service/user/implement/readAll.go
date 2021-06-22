@@ -11,7 +11,7 @@ import (
 
 func (impl *implementation) ReadCategoryAll(ctx context.Context, input *userin.ReadCategoryAllInput)([]domain.CreateStruct, error) {
 	user := userin.ReadCategoryInputToUserDomain(input)
-	a, err := impl.repo.ReadAll(ctx, user.PerPage, user.Page)
+	a, err := impl.repo.ReadCategoryAll(ctx, user)
 	if err != nil {
 		return a, err
 	}
@@ -21,10 +21,9 @@ func (impl *implementation) ReadCategoryAll(ctx context.Context, input *userin.R
 
 func (impl *implementation) ReadNameAll(ctx context.Context, input *userin.ReadNameAllInput)([]domain.CreateStruct, error) {
 	user := userin.ReadNameInputToUserDomain(input)
-	a, err := impl.repo.ReadAll(ctx, user.PerPage, user.Page)
+	a, err := impl.repo.ReadNameAll(ctx, user)
 	if err != nil {
 		return a, err
 	}
-
 	return a, nil
 }
