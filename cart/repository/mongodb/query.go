@@ -13,7 +13,7 @@ func (repo *Repository) Create(ctx context.Context, figure interface{}) (err err
 }
 
 func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
-	_, err = repo.checkExistID(ctx, id)
+	_, err = repo.CheckExistID(ctx, id)
 	if err != nil {
 		return err
 	}
@@ -27,7 +27,7 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 }
 
 func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
-	_, err = repo.checkExistID(ctx, id)
+	_, err = repo.CheckExistID(ctx, id)
 	if err != nil {
 		return resultStruct, err
 	}

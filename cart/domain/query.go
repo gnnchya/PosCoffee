@@ -1,20 +1,20 @@
 package domain
 
 type cart struct{
-Menu		menu `bson:"menu" json:"menu"`
-Amount 		int64   `bson:"amount" json:"amount"`
-Option 		string   `bson:"option" json:"option"`
+	Menu		menu `bson:"menu" json:"menu"`
+	Amount 		int64   `bson:"amount" json:"amount"`
+	Option 		string   `bson:"option" json:"option"`
 }
 
 type menu struct{
-ID         		string   `bson:"_id" json:"id"`
-Category       	string   `bson:"category" json:"category"`
-Name 			string   `bson:"name" json:"name" validate:"required"`
-Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-Price      		int64    `bson:"price" json:"price"`
-Available 		bool	 `bson:"available" json:"available"`
-Code int `json:"code"`
-Err error `json:"err"`
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	string   `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Code int `json:"code"`
+	Err error `json:"err"`
 }
 type CreateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`

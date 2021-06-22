@@ -13,15 +13,14 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return "validate error", err
 	}
-
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
 	//if err == impl.sendMsgCreate(input) {
 	//	log.Println(err)
 	//}
-
 	//time.Sleep(5 * time.Second)
+
 	ID, err = impl.Create(ctx, input)
 	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
