@@ -35,3 +35,14 @@ func (v *GoPlayGroundValidator) checkCreateStruct(structLV validator.StructLevel
 		}
 	}
 }
+
+func (v *GoPlayGroundValidator) checkUpdateStruct(structLV validator.StructLevel, cart []domain.Cart){
+	if len(cart) == 0{
+		structLV.ReportError(cart, "err validation cart is 0", "err validation cart is 0", "zero", "")
+	}
+	for i, j := range cart{
+		if j.Amount <= 0{
+			structLV.ReportError(cart, "err validation for cart #"+strconv.Itoa(i), "err validation for cart #"+strconv.Itoa(i), "zero", "")
+		}
+	}
+}
