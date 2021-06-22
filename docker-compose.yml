@@ -2,7 +2,7 @@ version: '3'
 services: # each service run simultaneously (parallel)
 
   menu-app:
-    image: app1:latest
+    image: menu:latest
     depends_on:
       - "mongodb"
       - "elas"
@@ -16,7 +16,7 @@ services: # each service run simultaneously (parallel)
       ELASTIC_PASSWORD: "touchja"
 
   cart-app:
-    image: app2:latest
+    image: cart:latest
     depends_on:
       - "mongodb"
     restart: always
@@ -25,7 +25,7 @@ services: # each service run simultaneously (parallel)
 
 
   stock-app:
-    image: app2:latest
+    image: stock:latest
     depends_on:
       - "kafka"
       - "mongodb"
@@ -39,7 +39,7 @@ services: # each service run simultaneously (parallel)
       MESSAGE_BROKER_VERSION: "2.6.1"
 
   product-app:
-    image: app2:latest
+    image: product:latest
     depends_on:
       - "kafka"
       - "mongodb"
