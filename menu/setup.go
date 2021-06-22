@@ -1,10 +1,8 @@
 package main
 
 import (
-	"context"
 	"github.com/gnnchya/PosCoffee/menu/config"
 	elasRepo "github.com/gnnchya/PosCoffee/menu/repository/elastic"
-	"github.com/gnnchya/PosCoffee/menu/service/msgbroker/msgbrokerin"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/menu/app"
