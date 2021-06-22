@@ -4,9 +4,9 @@ type InsertQ struct {
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-	Price      		int64    `bson:"price" json:"price"`
-	Available 		bool	 `bson:"available" json:"available"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient" validate:"required"`
+	Price      		int64    `bson:"price" json:"price" validate:"required"`
+	Available 		bool	 `bson:"available" json:"available" validate:"required"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }
@@ -18,12 +18,12 @@ type DeleteQ struct {
 }
 
 type UpdateQ struct {
-	ID         		string   `bson:"_id" json:"id"`
-	Category       	string   `bson:"category" json:"category"`
+	ID         		string   `bson:"_id" json:"id" validate:"required"`
+	Category       	string   `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-	Price      		int64    `bson:"price" json:"price"`
-	Available 		bool	 `bson:"available" json:"available"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient" validate:"required"`
+	Price      		int64    `bson:"price" json:"price" validate:"required"`
+	Available 		bool	 `bson:"available" json:"available" validate:"required"`
 	Code int `json:"code"`
 	Err error `json:"err"`
 }

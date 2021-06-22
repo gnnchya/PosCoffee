@@ -16,7 +16,7 @@ func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validat
 	input := structLV.Current().Interface().(userin.CreateInput)
 	//v.checkTH(structLV, input.Name)
 	// v.checkName(structLV, input.Name)
-	v.checkUserNameUnique(ctx, structLV, input.Name)
-	v.checkUserActualNameUnique(ctx, structLV, input.ActualName)
+	v.checkNameUnique(ctx, structLV, input.Name)
+	//v.checkUserActualNameUnique(ctx, structLV, input.ActualName)
 }
 

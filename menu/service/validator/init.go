@@ -18,17 +18,8 @@ func New(userRepo util.Repository, elasRepo util.RepositoryElas) (v *GoPlayGroun
 		userRepo: userRepo,
 		elasRepo: elasRepo,
 	}
-	// v.validate.RegisterStructValidation(v.IsProud, &userin.CreateInput{})
 	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.CreateInput{})
 	v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
-	// v.validate.RegisterStructValidation(v.UserIDStructLevelValidation, &userin.UpdateInput{})
-	// v.validate.RegisterStructValidation(v.UserIDStructLevelValidation, &userin.Search{})
-	// v.validate.RegisterStructValidation(v.UserIDStructLevelValidation, &userin.ViewInput{})
-	// v.validate.RegisterStructValidation(v.UserIDStructLevelValidation, &userin.DeleteInput{})
-	// v.validate.RegisterStructValidation(v.CompanyCreateStructLevelValidation, &companyin.CreateInput{})
-	// v.validate.RegisterStructValidation(v.CompanyUpdateStructLevelValidation, &companyin.UpdateInput{})
-	// v.validate.RegisterStructValidation(v.PageOptionStructLevelValidation, &domain.PageOption{})
-
 	return v
 }
 

@@ -9,7 +9,7 @@ import (
 func (v *GoPlayGroundValidator) UserUpdateStructLevelValidation(structLV validator.StructLevel) {
 	ctx := context.Background()
 	input := structLV.Current().Interface().(userin.UpdateInput)
-	v.checkUserNameUniqueUpdate(ctx, structLV, input.Name, input.ActualName, input.ID)
+	v.checkNameUniqueUpdate(ctx, structLV, input.Name, input.ID)
 	//v.checkUserIDUnique(ctx, structLV, input.ID)
 	// v.checkName(structLV, input.Name)
 }
