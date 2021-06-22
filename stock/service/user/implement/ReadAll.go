@@ -11,8 +11,7 @@ import (
 
 func (impl *implementation) ReadCategoryAll(ctx context.Context, input *userin.ReadCategoryAllInput)([]domain.CreateStruct, error) {
 	user := userin.ReadCategoryInputToUserDomain(input)
-	//TODO change to use repo from mongodb
-	a, err := impl.elasRepo.ViewAll(user.Page, user.PerPage,ctx)
+	a, err := impl.repo.ReadAll(ctx, user.PerPage, user.Page)
 	if err != nil {
 		return a, err
 	}
@@ -22,8 +21,7 @@ func (impl *implementation) ReadCategoryAll(ctx context.Context, input *userin.R
 
 func (impl *implementation) ReadNameAll(ctx context.Context, input *userin.ReadNameAllInput)([]domain.CreateStruct, error) {
 	user := userin.ReadNameInputToUserDomain(input)
-	//TODO change to use repo from mongodb
-	a, err := impl.elasRepo.ViewAll(user.Page, user.PerPage,ctx)
+	a, err := impl.repo.ReadAll(ctx, user.PerPage, user.Page)
 	if err != nil {
 		return a, err
 	}
