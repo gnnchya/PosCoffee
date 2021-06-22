@@ -3,6 +3,7 @@ package mongodb
 import (
 	"context"
 	"errors"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -15,19 +16,27 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 	return true, err
 }
 
-func (repo *Repository) CheckExistName(ctx context.Context, name string) (bool, error) {
-	//log.Println("Check Exist Name")
-	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"name", name}})
+func (repo *Repository) checkExistCustomerID(ctx context.Context, id string) (bool, error) {
+	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"customer_id", id}})
 	if count < 1 {
+		err = errors.New("CustomerID does not exist")
 		return false, err
 	}
 	return true, err
 }
 
-func (repo *Repository) CheckExistActualName(ctx context.Context, actualName string) (bool, error) {
-	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"actual_name", actualName}})
-	if count < 1 {
-		return false, err
+func (repo *Repository) CheckExistInCart(ctx context.Context, id string) (bool, error) {
+	var resultStruct domain.CreateStruct
+	var resultBson bson.D
+	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
+	bsonBytes, _ := bson.Marshal(resultBson)
+	bson.Unmarshal(bsonBytes, &resultStruct)
+	for _, temp := range resultStruct.Cart{
+		if temp.ID == id{
+
+		}
 	}
-	return true, err
+	return false, err
 }
+
+

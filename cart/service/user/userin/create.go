@@ -9,16 +9,20 @@ type CreateInput struct {
 	ID         		string   `bson:"_id" json:"id"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
 	Cart  			[]struct{
-		ID         		string   `bson:"_id" json:"id"`
-		Category       	string   `bson:"category" json:"category"`
-		Name 			string   `bson:"name" json:"name" validate:"required"`
-		Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-		Price      		int64    `bson:"price" json:"price"`
-		Available 		bool	 `bson:"available" json:"available"`
-		Code int `json:"code"`
-		Err error `json:"err"`
+		Menu	struct{
+			ID         		string   `bson:"_id" json:"id"`
+			Category       	string   `bson:"category" json:"category"`
+			Name 			string   `bson:"name" json:"name" validate:"required"`
+			Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+			Price      		int64    `bson:"price" json:"price"`
+			Available 		bool	 `bson:"available" json:"available"`
+			Code int `json:"code"`
+			Err error `json:"err"`
+		}	`bson:"menu" json:"menu"`
+		Amount 		string   `bson:"amount" json:"amount"`
+		Option 		string   `bson:"option" json:"option"`
 	}   `bson:"cart" json:"cart"`
-	Status     		string   `bson:"status" json:"status"`
+	Purchase     		bool   `bson:"status" json:"status"`
 	Price  			int64    `bson:"price" json:"price"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`
 	Destination    	string     `bson:"destination" json:"destination"`
@@ -32,7 +36,7 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 		ID:             input.ID,
 		CustomerID: input.CustomerID,
 		Cart: input.Cart,
-		Status: input.Status,
+		Purchase: input.Purchase,
 		Price: input.Price,
 		TypeOfOrder: input.TypeOfOrder,
 		Destination: input.Destination,
