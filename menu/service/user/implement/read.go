@@ -8,7 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
-func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) (a domain.CreateStruct, err error) {
+func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (a domain.CreateStruct, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
