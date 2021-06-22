@@ -10,7 +10,5 @@ func (v *GoPlayGroundValidator) UserUpdateStructLevelValidation(structLV validat
 	ctx := context.Background()
 	input := structLV.Current().Interface().(userin.UpdateInput)
 	v.checkNameUniqueUpdate(ctx, structLV, input.Name, input.ID)
-	//v.checkUserIDUnique(ctx, structLV, input.ID)
-	// v.checkName(structLV, input.Name)
 }
 

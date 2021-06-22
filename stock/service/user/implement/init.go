@@ -10,9 +10,8 @@ type implementation struct {
 	validator validator.Validator
 	repo      util.Repository
 	mBroker   util.RepositoryMsgBroker
-	elasRepo  util.RepositoryElas
 }
 
-func New(validator validator.Validator, repo util.Repository, mBroker util.RepositoryMsgBroker, elasRepo util.RepositoryElas) (service user.Service) {
-	return &implementation{validator, repo, mBroker, elasRepo}
+func New(validator validator.Validator, repo util.Repository, mBroker util.RepositoryMsgBroker) (service user.Service) {
+	return &implementation{validator, repo, mBroker}
 }

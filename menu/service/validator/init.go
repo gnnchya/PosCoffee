@@ -8,14 +8,12 @@ import (
 
 type GoPlayGroundValidator struct {
 	validate *validator.Validate
-	userRepo util.Repository
 	elasRepo util.RepositoryElas
 }
 
-func New(userRepo util.Repository, elasRepo util.RepositoryElas) (v *GoPlayGroundValidator) {
+func New(elasRepo util.RepositoryElas) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
-		userRepo: userRepo,
 		elasRepo: elasRepo,
 	}
 	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.CreateInput{})
@@ -26,22 +24,3 @@ func New(userRepo util.Repository, elasRepo util.RepositoryElas) (v *GoPlayGroun
 func (v *GoPlayGroundValidator) Validate(item interface{}) (err error) {
 	return v.validate.Struct(item)
 }
-
-// type Person struct {
-// 	Name string `json:"name" validate:"required"`
-// }
-
-// type Err struct {
-// 	Code  int
-// 	Cause string
-// }
-
-// func IsValid(v ValidatorInterface) {
-// 	v.ValidInter()
-// }
-// func (e Err) ValidInter(structLV validator.StructLevel, input Person) {
-// 	if input.Name != "Proud" {
-// 		e.Cause = "not Proud"
-// 		e.Code = 400
-// 	}
-// }
