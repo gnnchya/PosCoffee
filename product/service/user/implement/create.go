@@ -32,12 +32,12 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}
 
-	return user.ID, nil
+	return ID, nil
 }
 
 func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {

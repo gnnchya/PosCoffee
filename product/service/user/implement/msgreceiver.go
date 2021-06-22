@@ -47,7 +47,7 @@ func (impl *implementation) receiveCreateAction(ctx context.Context, msgBrokerIn
 	//if input.Code == 422{
 	//	return input.Err
 	//}
-	err = impl.repo.Create(ctx, domainUser)
+	err = impl.repo.Create(ctx, domainUser, domainUser.ID)
 	if err != nil {
 		return err
 	}
