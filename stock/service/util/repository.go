@@ -14,7 +14,8 @@ type Repository interface {
 	Delete(ctx context.Context, id string) (err error)
 	//Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a domain.CreateStruct, err error)
-	ReadAll(ctx context.Context, perPage int, page int) (a []domain.CreateStruct, err error)
+	ReadNameAll(ctx context.Context, user *domain.ReadNameByPageStruct) (a []domain.CreateStruct, err error)
+	ReadCategoryAll(ctx context.Context, user *domain.ReadCategoryByPageStruct) (a []domain.CreateStruct, err error)
 }
 
 type RepositoryUsers interface{
