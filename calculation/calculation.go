@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Money struct {
 	//ID 			string
@@ -9,8 +12,7 @@ type Money struct {
 	//Currency	string
 }
 
-
-func Calculation(value int64, note []Money) map[int64]int64{
+func Calculation(value int64, note []Money) (map[int64]int64, error){
 	change := make(map[int64]int64)
 	for _,i := range note{
 		if value >= i.Value{
@@ -23,11 +25,18 @@ func Calculation(value int64, note []Money) map[int64]int64{
 			}
 		}
 	}
-	return change
+	if value != 0{
+		return nil, fmt.Errorf("error: not enough change")
+	}
+	return change,nil
 }
 
 func main(){
-	thai := []Money{{1000,20},{500,2},{100,2},{50,2},
+	thai := []Money{{1000,200},{500,2},{100,2},{50,2},
 		{20,2},{10,2},{5,2},{2,2},{1,200000}}
-	fmt.Println(Calculation(23451,thai))
+	change, err := Calculation(23456,thai)
+	if err != nil{
+		log.Fatal(err)
+	}
+	fmt.Println(change)
 }
