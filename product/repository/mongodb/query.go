@@ -6,19 +6,33 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func (repo *Repository) Create(ctx context.Context, figure interface{}, id string) (err error) {
-	_, err = repo.checkExistID(ctx, id)
-	if err != nil {
-		return err
+func (repo *Repository) Create(ctx context.Context, figure interface{}, id string, val int) (err error) {
+	if id == "nil"{
+		_, err = repo.checkExistVal(ctx, val)
+		if err != nil {
+			return err
+		}
+	}else if val == -1{
+		_, err = repo.checkExistID(ctx, id)
+		if err != nil {
+			return err
+		}
 	}
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }
 
-func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
-	_, err = repo.checkExistID(ctx, id)
-	if err != nil {
-		return err
+func (repo *Repository) Delete(ctx context.Context, id string, val int) (err error) {
+	if id == "nil"{
+		_, err = repo.checkExistVal(ctx, val)
+		if err != nil {
+			return err
+		}
+	}else if val == -1{
+		_, err = repo.checkExistID(ctx, id)
+		if err != nil {
+			return err
+		}
 	}
 	_, err = repo.Coll.DeleteOne(ctx, bson.M{"_id": id})
 	return err
