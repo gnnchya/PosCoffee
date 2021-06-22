@@ -1,12 +1,12 @@
 package domain
 
-type cart struct{
-	Menu		menu `bson:"menu" json:"menu"`
+type Cart struct{
+	Menu		Menu `bson:"menu" json:"menu"`
 	Amount 		int64   `bson:"amount" json:"amount"`
 	Option 		string   `bson:"option" json:"option"`
 }
 
-type menu struct{
+type Menu struct{
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
@@ -19,7 +19,7 @@ type menu struct{
 type CreateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
 	CustomerID 		string   `bson:"customer_id" json:"customer_id"`
-	Cart  			[]cart  `bson:"cart" json:"cart"`
+	Cart  			[]Cart  `bson:"cart" json:"cart"`
 	Purchase     		bool   `bson:"status" json:"status"`
 	Price  			int64    `bson:"price" json:"price"`
 	TypeOfOrder 	string `bson:"type_of_order" json:"type_of_order"`

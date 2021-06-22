@@ -24,22 +24,3 @@ func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
 func (v *GoPlayGroundValidator) Validate(item interface{}) (err error) {
 	return v.validate.Struct(item)
 }
-
-// type Person struct {
-// 	Name string `json:"name" validate:"required"`
-// }
-
-// type Err struct {
-// 	Code  int
-// 	Cause string
-// }
-
-// func IsValid(v ValidatorInterface) {
-// 	v.ValidInter()
-// }
-// func (e Err) ValidInter(structLV validator.StructLevel, input Person) {
-// 	if input.Name != "Proud" {
-// 		e.Cause = "not Proud"
-// 		e.Code = 400
-// 	}
-// }
