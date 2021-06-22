@@ -5,12 +5,12 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 )
 
-type ViewInput struct {
+type ReadInput struct {
 	ID string `json:"id"`
 }
 
 
-func ReadInputToUserDomain(input *ViewInput) (user *domain.ReadOrderStruct) {
+func ReadInputToUserDomain(input *ReadInput) (user *domain.ReadOrderStruct) {
 	return &domain.ReadOrderStruct{
 		ID: input.ID,
 	}
