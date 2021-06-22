@@ -5,28 +5,13 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 )
 
-type ViewInput struct {
+type ReadInput struct {
 	ID string `json:"id"`
-	// Name       string   `son:"name" validate:"required"`
-	// ActualName string   `json:"actual_name" validate:"required"`
-	// Gender     string   `json:"gender"`
-	// BirthDate  int64    `json:"birth_date"`
-	// Height     int      `json:"height" validate:"gte=0"`
-	// SuperPower []string `json:"super_power"`
-	// Alive      bool     `json:"alive"`
-} // @Name StaffCreateInput
-
-func MakeTestViewInput() (input *UpdateInput) {
-	return &UpdateInput{
-		ID: "test",
-		// ID:        "test",
-		Name: "test",
-		// Tel:       "test",
-	}
 }
 
-func ViewInputToUserDomain(input *ViewInput) (user *domain.ViewQ) {
-	return &domain.ViewQ{
+
+func ReadInputToUserDomain(input *ReadInput) (user *domain.ReadOrderStruct) {
+	return &domain.ReadOrderStruct{
 		ID: input.ID,
 	}
 }
