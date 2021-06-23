@@ -10,24 +10,15 @@ import (
 )
 
 func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error) {
-	//defer func(){
-	//	if !reflect2.IsNil(err){
-	//		return
-	//	}
-	//	if err == impl.sendMsgUpdate(input){
-	//		log.Println(err)
-	//	}
-	//}()
+
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
 		return "validate error", err
 	}
 
-	//user := userin.UpdateInputToUserDomain(input)
 	user := input.UpdateInputToUserDomain()
-	//time.Sleep(5 * time.Second)
-	//_, err = impl.elasRepo.Read(ctx, input.ID)
+	fmt.Println("user in service update", user)
 	err = impl.elasRepo.Update(ctx, user)
 	if err != nil {
 		return "", err

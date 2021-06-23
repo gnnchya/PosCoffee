@@ -11,20 +11,10 @@ import (
 
 func (ctrl *Controller) Delete(c *gin.Context) {
 	id := c.Param("id")
-	// span, ctx := opentracing.StartSpanFromContextWithTracer(
-	// 	c.Request.Context(),
-	// 	opentracing.GlobalTracer(),
-	// 	"handler.staff.Create",
-	// )
-	// defer span.Finish()
+
 	input := &userin.DeleteInput{}
 	input.ID = id
-	// if err := c.ShouldBindJSON(input); err != nil {
-	// 	// view.MakeErrResp(c, err)
-	// 	fmt.Println("error")
-	// 	returns
-	// }
-	// _, err := ctrl.service.Create(c, input)
+
 	id, err := ctrl.service.Delete(c, input)
 	fmt.Println("id", err)
 	if err != nil {
