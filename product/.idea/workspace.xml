@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/user/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/user/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/user/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/stock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/implement/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/implement/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/implement/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/userin/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/userin/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/userin/updateStock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/userin/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/userin/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/userin/msgbroker.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/userin/msgbroker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stock/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stock/service/msgbroker/implement/private.go" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/service/msgbroker/implement/private.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stock/service/user/implement/msgreceiver.go" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/service/user/implement/msgreceiver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stock/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/init.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

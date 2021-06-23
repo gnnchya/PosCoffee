@@ -16,7 +16,6 @@ type App struct {
 func New(userService userService.Service) *App {
 	return &App{
 		user: user.New(userService),
-		// company: company.New(companyService),
 	}
 }
 
@@ -28,6 +27,9 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.PUT("/product/transaction", app.user.Update)
 		apiRoutes.DELETE("/product/transaction/:id", app.user.Delete)
 		apiRoutes.GET("/product/transaction/:id", app.user.ReadAll)
+		apiRoutes.POST("/product/stock", app.user.CreateStock)
+		apiRoutes.PUT("/product/stock", app.user.UpdateStock)
+		apiRoutes.DELETE("/product/stock/:id", app.user.DeleteStock)
 	}
 
 	return app
