@@ -125,6 +125,29 @@ func randBool() bool{
 	}
 }
 
+func randTypeofOrder() string{
+	rd := rand.Intn(100)
+	switch {
+	case rd <= 20: //20%
+		return "Delivery"
+	case rd <= 90: //70%
+		return "Dine-in"
+	case rd <= 100: //10%
+		return "Takeaway"
+	default:
+		return "Dine-in"
+	}
+}
+
+func randGeoJson() GeoJson {
+	var destination GeoJson
+	longitude := -180 + rand.Float64() * (360)
+	latitude := -90 + rand.Float64() * (180)
+	destination.Type = "Point"
+	destination.Coordinates = []float64{longitude, latitude}
+	return destination
+}
+
 var CartList []Cart
 var totalPricePerMenu []int64
 var TransactionList []Transaction
@@ -187,20 +210,15 @@ func main(){
 		SingleTransaction.Cart = CartList[i]
 		SingleTransaction.Finished = randBool()
 		SingleTransaction.Price = totalPricePerMenu[i]
+		SingleTransaction.TypeOfOrder = randTypeofOrder()
+		SingleTransaction.Destination = randGeoJson()
+		SingleTransaction.Time = randomTime(time.Duration(i*2), time.Duration(i*2 + 1))
 
-		TransactionList = append(TransactionList, )
+		TransactionList = append(TransactionList, SingleTransaction)
 	}
 
 	for _ ,v := range TransactionList{
-		initID := goxid.New()
-		idGen := initID.Gen()
-		_, err = moneyCollection.InsertOne(ctx, bson.D{
-			{"_id", idGen},
-			{"value", v.Value},
-			{"amount", v.Amount},
-			{"currency", v.Currency},
-		})
-
+		_, err = transactionCollection.InsertOne(ctx, v)
 		if err != nil {
 			log.Fatal(err)
 		}
