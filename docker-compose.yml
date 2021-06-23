@@ -4,7 +4,7 @@ services: # each service run simultaneously (parallel)
   menu-app:
     image: menu:latest
     depends_on:
-      - "menudb"
+      - menudb
     restart: always
     ports:
       - 8080:8080
