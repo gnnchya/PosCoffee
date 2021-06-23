@@ -27,15 +27,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	//err = impl.repo.Create(ctx, user)
-	// fmt.Println("output create:", user)
-
-	//if err != nil {
-	//	return "", err
-	//}
-
 	time.Sleep(5 * time.Second)
-	_, err = impl.repo.View(ctx, input.ID)
+	err = impl.elasRepo.Create(ctx, input)
 	if err != nil {
 		return "", err
 	}
