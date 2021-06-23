@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/service/validator/createStock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/validator/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/validator/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/validator/private.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/validator/private.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
