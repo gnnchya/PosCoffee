@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ctrl *Controller) ViewAll(c *gin.Context) {
+func (ctrl *Controller) ReadAll(c *gin.Context) {
 
 	input := &userin.ViewAllInput{}
 	limit := 2
@@ -30,7 +30,7 @@ func (ctrl *Controller) ViewAll(c *gin.Context) {
 	// 	view.MakeErrResp(c, 400, "can't bind")
 	// 	return
 	// }
-	a, err := ctrl.service.ViewAll(c, input)
+	a, err := ctrl.service.ReadAll(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error viewAll")
 		return

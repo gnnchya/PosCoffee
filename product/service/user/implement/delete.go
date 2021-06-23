@@ -3,22 +3,11 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
 func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error) {
-	//defer func(){
-	//	if !reflect2.IsNil(err){
-	//		return
-	//	}
-	//	if err == impl.sendMsgDelete(input){
-	//		log.Println(err)
-	//	}
-	//}()
+
 	user := userin.DeleteInputToUserDomain(input)
 	fmt.Println("user input delete:", user)
 
@@ -36,10 +25,10 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 	return ID, err
 }
 
-func (impl *implementation) sendMsgDelete(input *userin.DeleteInput) (err error) {
-	return impl.MsgSender("delete", userin.MsgBrokerDelete{
-		Action:     msgbrokerin.ActionDelete,
-		ID:             input.ID,
-	})
-}
+//func (impl *implementation) sendMsgDelete(input *userin.DeleteInput) (err error) {
+//	return impl.MsgSender("delete", userin.MsgBrokerDelete{
+//		Action:     msgbrokerin.ActionDelete,
+//		ID:             input.ID,
+//	})
+//}
 

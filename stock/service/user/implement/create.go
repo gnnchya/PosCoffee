@@ -3,7 +3,6 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
 )
 
@@ -30,19 +29,19 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	return ID, nil
 }
 
-func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {
-	return impl.MsgSender("create", userin.MsgBrokerCreate{
-		Action:         msgbrokerin.ActionCreate,
-		ID:             input.ID,
-		ItemName:       input.ItemName,
-		Category:     	input.Category,
-		Amount: 		input.Amount,
-		Unit:         	input.Unit,
-		CostPerUnit:    input.CostPerUnit,
-		EXPDate:        input.EXPDate,
-		ImportDate:     input.ImportDate,
-		Supplier:       input.Supplier,
-		TotalCost:      input.TotalCost,
-		TotalAmount:    input.TotalAmount,
-	})
-}
+//func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {
+//	return impl.MsgSender("create", userin.MsgBrokerCreate{
+//		Action:         msgbrokerin.ActionCreate,
+//		ID:             input.ID,
+//		ItemName:       input.ItemName,
+//		Category:     	input.Category,
+//		Amount: 		input.Amount,
+//		Unit:         	input.Unit,
+//		CostPerUnit:    input.CostPerUnit,
+//		EXPDate:        input.EXPDate,
+//		ImportDate:     input.ImportDate,
+//		Supplier:       input.Supplier,
+//		TotalCost:      input.TotalCost,
+//		TotalAmount:    input.TotalAmount,
+//	})
+//}

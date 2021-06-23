@@ -10,7 +10,7 @@ import (
 func (ctrl *Controller) Read(c *gin.Context) {
 	id := c.Param("id")
 
-	input := &userin.ViewInput{}
+	input := &userin.ReadInput{}
 
 	input.ID = id
 	a, err := ctrl.service.Read(c, input)
