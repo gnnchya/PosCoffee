@@ -10,7 +10,7 @@ import (
 )
 
 func newApp(appConfig *config.Config) *app.App {
-	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "superhero")
+	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
 	panicIfErr(err)
 	validator := validatorService.New(elasRepo)
 	user := userService.New(validator, elasRepo)
