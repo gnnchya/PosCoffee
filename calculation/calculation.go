@@ -32,11 +32,15 @@ func Calculation(value int64, note []CreateMoneyStruct) (map[int64]int64, error)
 }
 
 func main(){
-	thai := []CreateMoneyStruct{{"-",1000,200,"-"},{"-",500,2,"-"},{"-",100,2,"-"},{"-",50,2,"-"},
-		{"-",20,2,"-"},{"-",10,2,"-"},{"-",5,2,"-"},{"-",2,2,"-"},{"-",1,200000,"-"}}
-	change, err := Calculation(23456,thai)
+	thai := []CreateMoneyStruct{{"-",1000,20,"-"},{"-",500,20,"-"},{"-",100,20,"-"},{"-",50,20,"-"},
+		{"-",20,20,"-"},{"-",10,20,"-"},{"-",5,20,"-"},{"-",2,20,"-"},{"-",1,20,"-"}}
+	change, err := Calculation(9999,thai)
 	if err != nil{
 		log.Fatal(err)
 	}
 	fmt.Println(change)
 }
+
+//Default
+//Not enough money
+//Not enough change
