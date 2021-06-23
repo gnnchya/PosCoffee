@@ -31,7 +31,7 @@ type CreateOrderStruct struct {
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	Time			int64      		`bson:"date_time" json:"date_time"`
+	Time			int64      		`bson:"time" json:"time"`
 	Code 			int 			`json:"code"`
 	Err 			error 			`json:"err"`
 }
@@ -49,7 +49,7 @@ type UpdateOrderStruct struct {
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	Time			int64      		`bson:"date_time" json:"date_time"`
+	Time			int64      		`bson:"time" json:"time"`
 	Code 			int 			`json:"code"`
 	Err 			error 			`json:"err"`
 }

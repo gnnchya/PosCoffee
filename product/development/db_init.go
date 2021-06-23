@@ -7,42 +7,122 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"math/rand"
 	"time"
 )
 
-type Sp struct {
-	Name      		string   `bson:"name" json:"name" validate:"required"`
-	ActualName 		string   `bson:"actual_name" json:"actual_name"`
-	ActualLastName  string   `bson:"actual_lastname" json:"actual_lastname"`
-	Gender     		string   `bson:"gender" json:"gender"`
-	BirthDate  		int64    `bson:"birth_date" json:"birth_date"`
-	Height     		int      `bson:"height" json:"height" validate:"gte=0"`
-	SuperPower 		[]string `bson:"super_power" json:"super_power"`
-	Alive      		bool     `bson:"alive" json:"alive"`
-	Universe 		string	 `bson:"universe" json:"universe"`
-	Movies			[]string `bson:"movies" json:"movies"`
-	Enemies			[]string `bson:"enemies" json:"enemies"`
-	FamilyMember	[]string `bson:"family_member" json:"family_member"`
-	About			string	 `bson:"about" json:"about"`
+type Money struct {
+	Value   	int64   	`bson:"value" json:"value"`
+	Amount 		int64  		`bson:"amount" json:"amount"`
+	Currency	string   	`bson:"currency" json:"currency"`
 }
 
-var Sp_list =  []Sp{
-	{"Spider-Man", "Peter", "Parker", "Male", 997401600, 178, []string{"Web-shooting"}, true, "Marvel", []string{"Spiderman", "The Avengers"}, []string{"Globlin", "Doctor Octopus"}, []string{"Richard Parker", "Mary Parker"}, "A boy who has been bitten by a spider and become superhero."},
-	{"Batman", "Bruce", "Wayne", "Male", 261619200, 188, []string{"Rich"}, true, "DC", []string{"Batman", "Justice League", "The Dark Knight"}, []string{"Joker", "Superman"}, []string{"Tim Drake", "Cassandra Cain"}, "A rich man who want to be a superhero."},
-	{"Superman", "Clark", "Kent", "Male", 230169600, 191, []string{"Flight", "Strength"}, true, "DC", []string{"Superman", "Man of Steel", "Justice League"}, []string{"Batman", "Justice league"}, []string{"Kara Kent", "Linda Danvers"}, "A alien who come from Krypton and become superhero in the earth."},
-	{"Wonder woman", "Diana", "Prince", "Female", -908236800, 178, []string{"Agility" , "Strength"}, true, "DC", []string{"Wonder Woman", "Justice League"}, []string{"Doctor Poison"}, []string{"Donna Troy", "Miss America"}, "A girl from the mystery island and become a superhero in the real world."},
-	{"Doctor Strange", "Stephen", "Strange", "Male", -1234569600, 183, []string{"Magic"}, true, "Marvel", []string{"Doctor Strange", "The Avengers"}, []string{"Baron Karl Amadeus Mordo", "Thanos"}, []string{"Donna Strange"}, "A doctor who has a lot of maditation and become a superhero."},
-	{"Iron man", "Tony", "Stark", "Male", 12787200, 185, []string{"Genius", "super-suit"}, false, "Marvel", []string{"Iron Man", "The Avengers"}, []string{"Mandarin", "Doctor Doom"}, []string{"Howard Stark", "Maria Stark"}, "A rich man who become superhero in the super suit."},
-	{"Black Widow", "Natasha", "Romanoff", "Female", 469929600, 170, []string{"Expert spy"}, false, "Marvel", []string{"Captain America", "The Avengers"}, []string{"Thanos", "Hulk"}, []string{"Melina Vostokoff", "Yelena Belova"}, "A Shield's spy agent who become a superhero."},
-	{"Scarlet Witch", "Wanda", "Maximoff",  "Female", 192758400, 170, []string{"Energy manipulation"}, true, "Marvel", []string{"Captain America", "The Avengers"}, []string{"Iron man", "Ultron"}, []string{"Marya Maximoff", "Natalya Maximoff"}, "A witch who become superhero."},
-	{"Harley Quinn", "Harleen", "Quinzel", "Female",  929836800, 168, []string{"Immunity", "Strength"}, true, "DC", []string{"Suicide Squad", "Birds of Prey"}, []string{"Batman", "Brimstone"}, []string{"Delia Quinn"}, "A doctor who become crazy and in love with Joker."},
-	{"Captain America", "Steve", "Rogers", "Male", -1625097600, 188, []string{"Immunity", "Strength"}, true, "Marvel", []string{"Captain America", "The Avengers"}, []string{"Red Skull", "Thanos"}, []string{"Michael Rogers"}, "A man who become a superhero by the government experiment."},
+var MoneyList =  []Money{
+	{100000,20,"THB"},
+	{50000,10,"THB"},
+	{10000,30,"THB"},
+	{5000,10,"THB"},
+	{2000,50,"THB"},
+	{1000,50,"THB"},
+	{500,50,"THB"},
+	{200,20,"THB"},
+	{100,60,"THB"},
 }
+
+type Menu struct {
+	ID				string	 `bson:"_id" json:"_id"`
+	Category       	[]string `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
+}
+
+type Menu2 struct {
+	Category       	[]string `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
+}
+
+var MenuList =  []Menu2{
+	{[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []string{"Coffee beans", "Water", "Ice", "Plastic cup"}, 5500, true, 1, ""},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true, 2, ""},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []string{"Coffee beans", "Water", "Large hot cup"}, 4500, true,1, ""},
+	{[]string{"Coffee", "Iced"},  "Iced Espresso", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 5500, true, 1, ""},
+	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true, 1, ""},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true,1, ""},
+	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true, 1,""},
+	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true, 2, ""},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []string{"Coffee beans", "Water", "Milk", "Small hot cup"}, 4500, true,1,""},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []string{"Coffee beans", "Water", "Milk", "Large hot cup"}, 5500, true,2,""},
+	{[]string{"Coffee", "Iced"},  "Iced Latte", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true,1,""},
+	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 7000, true,2,""},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []string{"Earl Grey tea", "Water", "Small hot cup"}, 4000, true,1,""},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []string{"English Breakfast tea", "Water", "Small hot cup"}, 4000, true,1,""},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []string{"Camomile tea", "Water", "Small hot cup"}, 4000, true,2,""},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []string{"Jasmin Green tea", "Water", "Small hot cup"}, 4000, true,1,""},
+	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []string{"Green tea", "Water", "Milk", "Small hot cup"}, 4500, true,2,""},
+	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []string{"Green tea", "Water", "Milk", "Large hot cup"}, 4500, true,1,""},
+	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true,1,""},
+	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true,1,""},
+	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []string{"Milk", "Small hot cup"}, 3500, true,1,""},
+	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []string{"Milk", "Large hot cup"}, 4500, true,2,""},
+	{[]string{"Milk", "Iced"},  "Iced Fresh Milk", []string{"Milk", "Iced", "Plastic cup"}, 4500, true,1,""},
+	{[]string{"Milk", "Frappe"},  "Fresh Milk Frappe", []string{"Milk", "Iced", "Plastic cup"}, 5000, true,1,""},
+	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Small)", []string{"Chocolate", "Milk", "Small hot cup"}, 4000, true,2,""},
+	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Large)", []string{"Chocolate", "Milk", "Large hot cup"}, 5000, true,1,""},
+	{[]string{"Chocolate", "Iced"},  "Iced Chocolate", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5000, true,1,""},
+	{[]string{"Chocolate", "Frappe"},  "Chocolate Frappe", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5500, true,2,""},
+	{[]string{"Juice", "Iced"},  "Lychee Juice", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4000, true,3,""},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Lychee Frappe", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4500, true,2,""},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []string{"Strawberry Juice", "Iced", "Plastic cup"}, 5500, true,1,""},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []string{"Kiwi Juice", "Iced", "Plastic cup"}, 4500, true,1,""},
+}
+
+type Cart struct{
+	ID			string	`bson:"_id" json:"_id"`
+	CustomerID 	string  `bson:"customer_id" json:"customer_id"`
+	Menu		[]Menu 	`bson:"menu" json:"menu"`
+}
+
+type GeoJson struct {
+	Type        string    `json:"-"`
+	Coordinates []float64 `json:"coordinates"`
+}
+
+type Transaction struct {
+	Cart			Cart   			`bson:"cart" json:"cart"`
+	Finished		bool     		`bson:"finished" json:"finished"`
+	Price	     	int64   		`bson:"price" json:"price"`
+	TypeOfOrder 	string 			`bson:"type" json:"type"`
+	Destination		GeoJson      	`bson:"destination" json:"destination"`
+	Time			int64      		`bson:"time" json:"time"`
+}
+
+func randomTime(minTime time.Duration , maxTime time.Duration) int64{
+	min := time.Now().Add(time.Minute *minTime)
+	max := min.Add(time.Minute * maxTime).Unix()
+	delta := max - min.Unix()
+
+	sec := rand.Int63n(delta) + min.Unix()
+	return sec
+}
+
+var CartList []Cart
+var totalPricePerMenu []int64
+var TransactionList []Transaction
 
 func main(){
 	uri := "mongodb://touch:touchja@localhost:27018"
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
-	collection := client.Database("superhero").Collection("lists")
+	moneyCollection := client.Database("product").Collection("money")
+	transactionCollection := client.Database("product").Collection("transactions")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
@@ -51,21 +131,14 @@ func main(){
 
 
 	defer client.Disconnect(ctx)
-	for _ ,v := range Sp_list{
-		if err != nil {
-			log.Fatal(err)
-		}
+	for _ ,v := range MoneyList{
 		initID := goxid.New()
 		idGen := initID.Gen()
-		_, err = collection.InsertOne(ctx, bson.D{
+		_, err = moneyCollection.InsertOne(ctx, bson.D{
 			{"_id", idGen},
-			{"name", v.Name},
-			{"actual_name", v.ActualName},
-			{"gender", v.Gender},
-			{"birth_date", v.BirthDate},
-			{"height", v.Height},
-			{"super_power", v.SuperPower},
-			{"alive", v.Alive},
+			{"value", v.Value},
+			{"amount", v.Amount},
+			{"currency", v.Currency},
 		})
 
 		if err != nil {
@@ -73,25 +146,60 @@ func main(){
 		}
 
 	}
-	_, err = collection.Indexes().CreateOne(
-		context.Background(),
-		mongo.IndexModel{
-			Keys: bson.M{
-				"name": 1,
-			},
-			Options: options.Index().SetUnique(true),
-		},
-	)
-	if err != nil {
-		log.Fatal(err)
+
+	for i:=1; i<=10; i++{
+		initID := goxid.New()
+		CartID := initID.Gen()
+		CustomerID := initID.Gen()
+		orderAmount := rand.Intn(4)+1
+		var menuList []Menu
+		var totalPrice int64 = 0
+		for j:=1; j<=orderAmount; j++{
+			var order Menu
+			randTemp := rand.Intn(30)
+			order.ID 		= initID.Gen()
+			order.Category 	= MenuList[randTemp].Category
+			order.Name 		= MenuList[randTemp].Name
+			order.Ingredient = MenuList[randTemp].Ingredient
+			order.Price     = MenuList[randTemp].Price
+			order.Available	= MenuList[randTemp].Available
+			order.Amount 	= MenuList[randTemp].Amount
+			order.Option 	= MenuList[randTemp].Option
+			totalPrice += MenuList[randTemp].Price
+		}
+		CartList = append(CartList , Cart{CartID, CustomerID, menuList})
+		totalPricePerMenu = append(totalPricePerMenu, totalPrice)
 	}
-	_, err = collection.Indexes().CreateOne(
+
+	for i:=1; i<=10; i++ {
+		var SingleTransaction Transaction
+		SingleTransaction.Cart = CartList[i]
+		SingleTransaction.Finished = rand.Intn(1)
+		TransactionList = append(TransactionList, )
+	}
+
+	for _ ,v := range TransactionList{
+		initID := goxid.New()
+		idGen := initID.Gen()
+		_, err = moneyCollection.InsertOne(ctx, bson.D{
+			{"_id", idGen},
+			{"value", v.Value},
+			{"amount", v.Amount},
+			{"currency", v.Currency},
+		})
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+	}
+
+	_, err = moneyCollection.Indexes().CreateOne(
 		context.Background(),
 		mongo.IndexModel{
 			Keys: bson.M{
-				"actual_name": 1,
+				"value": 1,
 			},
-			Options: options.Index().SetUnique(true),
 		},
 	)
 	if err != nil {
