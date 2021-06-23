@@ -32,7 +32,7 @@ services: # each service run simultaneously (parallel)
     ports:
       - 8083:8083
     environment: # variable of the server or OS
-      MONGODB_ENDPOINT: "mongodb://touch:touchja@stockdb:27019"
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@stockdb:27017"
       MESSAGE_BROKER_BACKOFF_TIME: "2"
       MESSAGE_BROKER_MAXIMUM_RETRY: "3"
       MESSAGE_BROKER_ENDPOINT: "kafka:9094"
@@ -48,7 +48,7 @@ services: # each service run simultaneously (parallel)
     ports:
       - 8082:8082
     environment: # variable of the server or OS
-      MONGODB_ENDPOINT: "mongodb://touch:touchja@productdb:27018"
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@productdb:27017"
       MESSAGE_BROKER_BACKOFF_TIME: "2"
       MESSAGE_BROKER_MAXIMUM_RETRY: "3"
       MESSAGE_BROKER_ENDPOINT: "kafka:9094"

@@ -14,7 +14,7 @@ func (ctrl *Controller) Create(c *gin.Context) {
 	input := &userin.CreateInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp(c, 400, "can't bind")
-		fmt.Println("error")
+		fmt.Println("error", err)
 		return
 	}
 	fmt.Println("input create app:", input)
