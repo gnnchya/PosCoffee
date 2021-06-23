@@ -16,10 +16,10 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	initID := goxid.New()
 	input.ID = initID.Gen()
 	//user := userin.CreateInputToUserDomain(input)
-	user := input.CreateInputToUserDomain()
-	fmt.Println("user input create:", user)
+	//user := input.CreateInputToUserDomain()
+	fmt.Println("user input create:", input)
 
-	err = impl.repo.Create(ctx, user)
+	err = impl.repo.Create(ctx, input)
 	// fmt.Println("output create:", user)
 
 	//if err != nil {
@@ -32,5 +32,5 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		return "", err
 	}
 
-	return user.ID, nil
+	return input.ID, nil
 }
