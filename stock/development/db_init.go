@@ -25,23 +25,36 @@ type Stock struct {
 }
 
 var StockList =  []Stock{
-	{"Milk",  "Dairy", 15, " 2000ml Gallon(s)" ,9175, randomExpDate(15), randomImportDate(5), "Meji", 275250, 30},
-	{"Milk",  "Dairy", 15, " 2000ml Gallon(s)" ,9175, randomExpDate(15), randomImportDate(5), "Meji", 275250, 30},
+	{"Milk",  "Dairy", 15, " 2000ml Gallon(s)" ,9175, randomExpDate(0,0,15), randomImportDate(0,0,5), "Meji", 275250, 30},
+	{"Coffee beans",  "Coffee", 35, " 250g Pack(s)" ,2500, randomExpDate(0, 1, 15), randomImportDate(0,0,10), "Doi Chang", 1250000, 50},
+	{"Water",  "Water", 3, " 5Litre Gallon(s)" ,5500, randomExpDate(1, 0, 0), randomImportDate(0,3,0), "Mont Fleur", 275000, 50},
+	{"Ice",  "Ice", 1, " 20kg Bag(s)" ,2400, randomExpDate(0, 0, 1), randomImportDate(0,0,1), "TMice", 2400, 1},
+	{"Earl Grey tea",  "Tea", 10, " 2g Bag(s)" ,980, randomExpDate(1, 0, 0), randomImportDate(0,6,0), "Twinings", 98000, 100},
+	{"English Breakfast tea",  "Tea", 50, " 2g Bag(s)" ,1036, randomExpDate(1, 0, 0), randomImportDate(0,10,0), "Twinings", 103600, 100},
+	{"Camomile tea",  "Tea", 30, " 2g Bag(s)" ,1020, randomExpDate(1, 0, 0), randomImportDate(0,8,0), "Twinings", 102000, 100},
+	{"Green tea",  "Tea", 105, " 2g Bag(s)" ,1032, randomExpDate(1, 0, 0), randomImportDate(0,1,0), "Twinings", 309600, 300},
+	{"Chocolate",  "Chocolate", 15, " 200g Box(s)" ,14500, randomExpDate(0, 5, 0), randomImportDate(0,1,0), "Cocoa Dutch", 435000, 30},
+	{"Lychee Juice",  "Juice", 5, " 1Litre Carton(s)" ,5000, randomExpDate(0, 6, 0), randomImportDate(0,3,0), "Malee", 50000, 10},
+	{"Strawberry Juice",  "Juice", 6, " 1Litre Carton(s)" ,5000, randomExpDate(0, 6, 0), randomImportDate(0,2,20), "Malee", 50000, 10},
+	{"Kiwi Juice",  "Juice", 7, " 1Litre Carton(s)" ,5600, randomExpDate(0, 6, 0), randomImportDate(0,3,0), "Malee", 56000, 10},
+	{"Plastic cup",  "Cup", 1000, " Cup(s)" ,130, randomExpDate(1, 0, 0), randomImportDate(0,1,0), "CupDee", 130000, 1000},
+	{"Small hot cup",  "Cup", 1000, " Cup(s)" ,180, randomExpDate(1, 0, 0), randomImportDate(0,1,0), "CupDee", 180000, 1000},
+	{"Large hot cup",  "Cup", 1000, " Cup(s)" ,230, randomExpDate(1, 0, 0), randomImportDate(0,1,0), "CupDee", 230000, 1000},
 
 }
 
-func randomExpDate(days int) int64{
+func randomExpDate(years int, months int, days int) int64{
 	min := time.Now()
-	max := min.AddDate(0,0, days).Unix()
+	max := min.AddDate(years,months, days).Unix()
 	delta := max - min.Unix()
 
 	sec := rand.Int63n(delta) + min.Unix()
 	return sec
 }
 
-func randomImportDate(days int) int64{
+func randomImportDate(years int, months int, days int) int64{
 	max := time.Now()
-	min := max.AddDate(0,0, -days).Unix()
+	min := max.AddDate(-years,-months, -days).Unix()
 	delta := max.Unix() - min
 
 	sec := rand.Int63n(delta) + min
