@@ -6,7 +6,7 @@ import (
 )
 
 type UpdateInput struct {
-	ID 				string  `bson:"_id" json:"_id"`
+	ID 				string  `bson:"_id" json:"id"`
 	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
 	Menu			[]domain.Menu 	`bson:"menu" json:"menu"`
 	Code 			int 	`json:"code"`
