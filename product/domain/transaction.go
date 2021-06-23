@@ -2,7 +2,7 @@ package domain
 
 type Menu struct {
 	ID         		string   `bson:"_id" json:"id"`
-	Category       	string   `bson:"category" json:"category"`
+	Category       	[]string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
 	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
 	Price      		int64    `bson:"price" json:"price"`
