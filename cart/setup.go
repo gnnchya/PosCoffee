@@ -14,7 +14,7 @@ import (
 
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
-	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBHeroTableName)
+	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 

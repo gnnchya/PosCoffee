@@ -8,9 +8,9 @@ type Config struct {
 	AppName string `env:"APP_NAME" envDefault:"gogo_blueprint"`
 
 	// MongoDB config
-	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27017"`
-	MongoDBName             string `env:"MONGODB_NAME" envDefault:"superhero"`
-	MongoDBHeroTableName string `env:"MONGODB_HERO_TABLE_NAME" envDefault:"lists"`
+	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27018"`
+	MongoDBName             string `env:"MONGODB_NAME" envDefault:"product"`
+	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"product"`
 
 	// Jaeger config
 	JaegerAgentHost string `env:"JAEGER_AGENT_HOST" envDefault:"localhost"`

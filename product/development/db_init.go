@@ -40,7 +40,7 @@ var Sp_list =  []Sp{
 }
 
 func main(){
-	uri := "mongodb://touch:touchja@localhost:27017"
+	uri := "mongodb://touch:touchja@localhost:27018"
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 	collection := client.Database("superhero").Collection("lists")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)

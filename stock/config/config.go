@@ -8,9 +8,9 @@ type Config struct {
 	AppName string `env:"APP_NAME" envDefault:"gogo_blueprint"`
 
 	// MongoDB config
-	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27017"`
+	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27019"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"stock"`
-	MongoDBHeroTableName string `env:"MONGODB_HERO_TABLE_NAME" envDefault:"lists"`
+	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"stock"`
 
 	// Jaeger config
 	JaegerAgentHost string `env:"JAEGER_AGENT_HOST" envDefault:"localhost"`
@@ -22,10 +22,6 @@ type Config struct {
 	MessageBrokerEndpoint     []string `env:"MESSAGE_BROKER_ENDPOINT" envDefault:"localhost:9094"`
 	MessageBrokerGroup        string   `env:"MESSAGE_BROKER_GROUP" envDefault:"my-group"`
 	MessageBrokerVersion      string   `env:"MESSAGE_BROKER_VERSION" envDefault:"2.6.1"`
-
-	ElasticDBEndpoint     string `env:"ELASTIC_ENDPOINT" envDefault:"http://localhost:9200"`
-	ElasticDBUsername     string `env:"ELASTIC_USERNAME" envDefault:"touch"`
-	ElasticDBPassword	  string `env:"ELASTIC_PASSWORD" envDefault:"touchja"`
 
 }
 
