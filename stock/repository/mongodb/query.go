@@ -42,10 +42,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	} else if state == false{
 		return resultStruct, errors.New("this ID does not exist")
 	}
-	var resultBson bson.D
-	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-	bsonBytes, _ := bson.Marshal(resultBson)
-	bson.Unmarshal(bsonBytes, &resultStruct)
+	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct)
 	return resultStruct, err
 }
 

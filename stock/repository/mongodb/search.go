@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	domain "github.com/gnnchya/PosCoffee/stock/domain"
-	"go.mongodb.org/mongo-driver/bson"
 	//"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	//"strconv"
@@ -14,14 +13,8 @@ import (
 func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateStruct, error) {
 	var result []domain.CreateStruct
 	for cursor.Next(ctx) {
-		var resultBson bson.M
 		var resultStruct domain.CreateStruct
-		if err = cursor.Decode(&resultBson); err != nil {
-			return result,err
-		}
-		bsonBytes, _ := bson.Marshal(resultBson)
-		err1 := bson.Unmarshal(bsonBytes, &resultStruct)
-		if err1 != nil{
+		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
 		fmt.Println(resultStruct)
