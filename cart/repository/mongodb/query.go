@@ -34,7 +34,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	var resultBson bson.D
 	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
 	bsonBytes, _ := bson.Marshal(resultBson)
-	bson.Unmarshal(bsonBytes, &resultStruct)
+	_ = bson.Unmarshal(bsonBytes, &resultStruct)
 	return resultStruct, err
 }
 
