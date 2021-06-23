@@ -85,7 +85,7 @@ services: # each service run simultaneously (parallel)
       KAFKA_NUM_IO_THREADS: "16"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
 
-  mongodb:
+  cartdb:
     image: mongo:4.4 # need to specify the version to prevent code corruption
     #    container_name: mongodb
     environment: # variable of the server or OS
@@ -97,11 +97,35 @@ services: # each service run simultaneously (parallel)
     ports:
       - "27017:27017"
 
-#  elas:
+  stockdb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27019:27019"
+
+  productdb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27018:27018"
+
+#  menudb:
 #    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
-#    container_name: elas
+#    container_name: menu
 #    environment:
-#      #      - node.name=es01
+#      #      - node.name=menu
 #      #      - cluster.name=es-docker-cluster
 #      - discovery.type=single-node
 #    #      - cluster.initial_master_nodes=es01,es02,es03
