@@ -5,13 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
+	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 	"log"
 	"strings"
-
-	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
-func (repo *Repository) Create(ctx context.Context, title *domain.CreateStruct) error{
+func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) error{
 	out, err := json.Marshal(title)
 	if err != nil {
 		return err
@@ -34,7 +33,7 @@ func (repo *Repository) Create(ctx context.Context, title *domain.CreateStruct) 
 	return err
 }
 
-func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) error{
+func (repo *Repository)Update(ctx context.Context, title *userin.UpdateInput) error{
 	buf, err := BuildUpdateRequest(title)
 	if err != nil {
 		return err
