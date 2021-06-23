@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/product/config"
-	elasRepo "github.com/gnnchya/PosCoffee/product/repository/elastic"
 	"github.com/gnnchya/PosCoffee/product/repository/kafka"
 	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"

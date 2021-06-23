@@ -3,10 +3,10 @@ package elastic
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
-func BuildUpdateRequest(t *userin.UpdateInput) (buf bytes.Buffer, err error) {
+func BuildUpdateRequest(t *domain.UpdateStruct) (buf bytes.Buffer, err error) {
 	query := map[string]interface{}{
 		"doc": map[string]interface{}{
 			"name" : t.Name,

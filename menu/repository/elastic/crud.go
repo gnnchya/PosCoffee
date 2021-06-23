@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 	"log"
 	"strings"
@@ -33,7 +34,7 @@ func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) e
 	return err
 }
 
-func (repo *Repository)Update(ctx context.Context, title *userin.UpdateInput) error{
+func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) error{
 	buf, err := BuildUpdateRequest(title)
 	if err != nil {
 		return err

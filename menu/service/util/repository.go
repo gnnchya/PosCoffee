@@ -15,7 +15,7 @@ type RepositoryElas interface {
 	Read(id string, ctx context.Context) (domain.CreateStruct, error)
 	ReadAll(page int, size int, ctx context.Context) ([]domain.CreateStruct, error)
 	Create(ctx context.Context, ent *userin.CreateInput) (err error)
-	Update(ctx context.Context, ent *userin.UpdateInput) (err error)
+	Update(ctx context.Context, ent *domain.UpdateStruct) (err error)
 	Delete(ctx context.Context, id string) (err error)
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistName(ctx context.Context, name string) (bool, error)

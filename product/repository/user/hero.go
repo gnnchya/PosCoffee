@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"github.com/gnnchya/PosCoffee/stock/repository/mongodb"
+	"github.com/gnnchya/PosCoffee/product/repository/mongodb"
 )
 
 type Repository struct {
