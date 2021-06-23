@@ -25,6 +25,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 	{
 		apiRoutes.POST("/cart", app.user.Create)
 		apiRoutes.GET("/cart/:id", app.user.Read)
+		apiRoutes.GET("/cart", app.user.ReadAll)
 		apiRoutes.PUT("/cart", app.user.Update)
 		apiRoutes.DELETE("/cart/:id", app.user.Delete)
 		//apiRoutes.POST("/cart/:id/finish", app.user.Finish)

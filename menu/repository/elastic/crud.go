@@ -31,6 +31,7 @@ func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) e
 		return err
 	}
 	defer res.Body.Close()
+	fmt.Println("in create repo", title)
 	return err
 }
 
