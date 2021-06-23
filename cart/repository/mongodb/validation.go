@@ -42,6 +42,3 @@ func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option 
 	}
 	return false, err
 }
-
-
-
