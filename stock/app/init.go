@@ -1,7 +1,6 @@
 package app
 
 import (
-	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/stock/app/user"
 	userService "github.com/gnnchya/PosCoffee/stock/service/user"
 
