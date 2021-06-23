@@ -23,24 +23,26 @@ func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
 }
 
 func (repo *Repository) Update(ctx context.Context, figure interface{}, id string) (err error) {
-	fmt.Println("นาย",figure,id)
-
+	fmt.Println("นาย",figure)
+	fmt.Println("นาย",id)
 	_, err = repo.Coll.UpdateOne(ctx, bson.M{"_id": id}, bson.D{{"$set", figure}})
 	return err
 }
 
-func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
-	_, err = repo.CheckExistID(ctx, id)
-	if err != nil {
-		return resultStruct, err
-	}
-	var resultBson bson.D
-	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-	bsonBytes, _ := bson.Marshal(resultBson)
-	_ = bson.Unmarshal(bsonBytes, &resultStruct)
-	fmt.Println("นส",resultStruct,id)
-	return resultStruct, err
-}
+//func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
+//	fmt.Println("นส",id)
+//	_, err = repo.CheckExistID(ctx, id)
+//	if err != nil {
+//		return resultStruct, err
+//	}
+//	var resultBson bson.M
+//	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
+//	bsonBytes, _ := bson.Marshal(resultBson)
+//	_ = bson.Unmarshal(bsonBytes, &resultStruct)
+//	fmt.Println("นส",resultStruct)
+//	fmt.Println("นส",resultStruct.Menu)
+//	return resultStruct, err
+//}
 
 func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.CreateStruct, error) {
 	skip := int64(page * perPage)
