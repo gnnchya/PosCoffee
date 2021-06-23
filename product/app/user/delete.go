@@ -13,10 +13,7 @@ func (ctrl *Controller) Delete(c *gin.Context) {
 	id := c.Param("id")
 	input := &userin.DeleteInput{}
 	input.ID = id
-	if err := c.ShouldBindJSON(input); err != nil {
-		view.MakeErrResp(c, 400, "can't bind")
-		return
-	}
+
 	id, err := ctrl.service.Delete(c, input)
 	fmt.Println("id", err)
 	if err != nil {

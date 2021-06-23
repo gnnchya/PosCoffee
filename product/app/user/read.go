@@ -15,7 +15,7 @@ func (ctrl *Controller) Read(c *gin.Context) {
 	input.ID = id
 	a, err := ctrl.service.Read(c, input)
 	if err != nil {
-		view.MakeErrResp(c, 400, "can't bind")
+		view.MakeErrResp2(c, 400, err)
 		return
 	}
 
