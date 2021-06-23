@@ -19,7 +19,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	//err = impl.repo.Create(ctx, user)
+	err = impl.repo.Create(ctx, user)
 	// fmt.Println("output create:", user)
 
 	//if err != nil {
@@ -27,7 +27,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//}
 
 	//time.Sleep(5 * time.Second)
-	_, err = impl.repo.Read(ctx, input.ID)
+	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}
