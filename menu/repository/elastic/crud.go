@@ -25,12 +25,12 @@ func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) e
 		Body:       strings.NewReader(b.String()),
 		Refresh:    "true",
 	}
-
 	res, err := req.Do(ctx, repo.Client)
 	if err != nil {
 		return err
 	}
 	defer res.Body.Close()
+	fmt.Println("in create repo", title)
 	return err
 }
 

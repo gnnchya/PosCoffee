@@ -9,14 +9,10 @@ import (
 )
 
 func (ctrl *Controller) Update(c *gin.Context) {
-	// id := c.Param("id")
-
 	input := &userin.UpdateInput{}
-	// input.ID = id
 
 	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp(c, 400, "can't bind")
-		// fmt.Println("error")
 		return
 	}
 	fmt.Println("user input update", input)

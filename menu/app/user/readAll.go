@@ -26,10 +26,7 @@ func (ctrl *Controller) ReadAll(c *gin.Context) {
 	}
 	input.Page = page
 	input.PerPage = limit
-	// if err := c.ShouldBindJSON(input); err != nil {
-	// 	view.MakeErrResp(c, 400, "can't bind")
-	// 	return
-	// }
+
 	a, err := ctrl.service.ReadAll(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error viewAll")

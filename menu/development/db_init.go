@@ -67,7 +67,7 @@ func initDb(uri string, username string, password string)(*elasticsearch.Client,
 }
 
 func main(){
-	es, err := initDb("http://localhost:9200", "touch", "touchja" )
+	es, err := initDb("http://localhost:9200", "touch", "touchja")
 	if err != nil {
 		log.Fatal(err)
 	}

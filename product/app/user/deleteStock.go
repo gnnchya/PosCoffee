@@ -13,10 +13,6 @@ func (ctrl *Controller) DeleteStock(c *gin.Context) {
 	id := c.Param("id")
 	input := &userin.DeleteStockInput{}
 	input.ID = id
-	if err := c.ShouldBindJSON(input); err != nil {
-		view.MakeErrResp(c, 400, "can't bind")
-		return
-	}
 	id, err := ctrl.service.DeleteStock(c, input)
 	fmt.Println("id", err)
 	if err != nil {

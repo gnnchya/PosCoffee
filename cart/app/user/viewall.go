@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ctrl *Controller) ViewAll(c *gin.Context) {
+func (ctrl *Controller) ReadAll(c *gin.Context) {
 
 	input := &userin.ViewAllInput{}
 	limit := 2

@@ -4,7 +4,7 @@ services: # each service run simultaneously (parallel)
   menu-app:
     image: menu:latest
     depends_on:
-      - "menudb"
+      - menudb
     restart: always
     ports:
       - 8080:8080
@@ -126,7 +126,6 @@ services: # each service run simultaneously (parallel)
 
   menudb:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
-    container_name: menu
     environment:
       #      - node.name=menu
       #      - cluster.name=es-docker-cluster
