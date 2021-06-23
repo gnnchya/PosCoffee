@@ -114,6 +114,17 @@ func randomTime(minTime time.Duration , maxTime time.Duration) int64{
 	return sec
 }
 
+func randBool() bool{
+	switch rand.Intn(1){
+	case 0:
+		return false
+	case 1:
+		return true
+	default:
+		return true
+	}
+}
+
 var CartList []Cart
 var totalPricePerMenu []int64
 var TransactionList []Transaction
@@ -174,7 +185,9 @@ func main(){
 	for i:=1; i<=10; i++ {
 		var SingleTransaction Transaction
 		SingleTransaction.Cart = CartList[i]
-		SingleTransaction.Finished = rand.Intn(1)
+		SingleTransaction.Finished = randBool()
+		SingleTransaction.Price = totalPricePerMenu[i]
+
 		TransactionList = append(TransactionList, )
 	}
 
