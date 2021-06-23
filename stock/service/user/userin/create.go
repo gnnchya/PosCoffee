@@ -34,8 +34,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 		Supplier:       input.Supplier,
 		TotalCost:      input.TotalCost,
 		TotalAmount:    input.TotalAmount,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	}
 }
 
