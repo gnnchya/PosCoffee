@@ -30,17 +30,3 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStru
 		Err: 			input.Err,
 	}
 }
-
-//func ToDomain(input *CreateInput) (user *domain.InsertQ) {
-//
-//	return &domain.InsertQ{
-//		ID:         input.ID,
-//		Name:       input.Name,
-//		ActualName: input.ActualName,
-//		Gender:     input.Gender,
-//		BirthDate:  input.BirthDate,
-//		Height:     input.Height,
-//		SuperPower: input.SuperPower,
-//		Alive:      input.Alive,
-//	}
-//}

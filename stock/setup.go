@@ -47,8 +47,8 @@ func configKafka(appConfig *config.Config) *kafka.Config {
 	}
 }
 var topics = []msgbrokerin.TopicMsgBroker{
-	msgbrokerin.TopicResponseCreate,
-	msgbrokerin.TopicResponseUpdate,
-	msgbrokerin.TopicResponseDelete,
+	msgbrokerin.TopicCreate,
+	msgbrokerin.TopicUpdate,
+	msgbrokerin.TopicDelete,
 }
 

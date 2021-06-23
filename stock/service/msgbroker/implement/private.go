@@ -11,13 +11,13 @@ func (impl implementation) newHandler(topic msgbrokerin.TopicMsgBroker) (handler
 	return func(ctx context.Context, msg []byte) {
 		var err error
 		switch topic {
-		case msgbrokerin.TopicResponseCreate:
+		case msgbrokerin.TopicCreate:
 			fmt.Println("enter newHandler responseCreate topic")
 			err = impl.usrService.MsgReceiver(ctx, msg)
-		case msgbrokerin.TopicResponseUpdate:
+		case msgbrokerin.TopicUpdate:
 			fmt.Println("enter newHandler responseUpdate topic")
 			err = impl.usrService.MsgReceiver(ctx, msg)
-		case msgbrokerin.TopicResponseDelete:
+		case msgbrokerin.TopicDelete:
 			fmt.Println("enter newHandler responseDel topic")
 			err = impl.usrService.MsgReceiver(ctx, msg)
 		default:
