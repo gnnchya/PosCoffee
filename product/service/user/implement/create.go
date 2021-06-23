@@ -13,7 +13,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		return "validate error", err
 	}
 
-	//user := userin.CreateInputToUserDomain(input)
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
