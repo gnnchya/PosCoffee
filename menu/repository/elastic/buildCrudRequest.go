@@ -6,7 +6,7 @@ import (
 	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
-func BuildUpdateRequest(t *domain.UpdateQ) (buf bytes.Buffer, err error) {
+func BuildUpdateRequest(t *domain.UpdateStruct) (buf bytes.Buffer, err error) {
 	query := map[string]interface{}{
 		"doc": map[string]interface{}{
 			"name" : t.Name,
