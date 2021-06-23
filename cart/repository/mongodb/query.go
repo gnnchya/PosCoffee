@@ -23,7 +23,8 @@ func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
 }
 
 func (repo *Repository) Update(ctx context.Context, figure interface{}, id string) (err error) {
-	fmt.Println("นาย",figure)
+	fmt.Println("นาย",figure,id)
+
 	_, err = repo.Coll.UpdateOne(ctx, bson.M{"_id": id}, bson.D{{"$set", figure}})
 	return err
 }
@@ -37,7 +38,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
 	bsonBytes, _ := bson.Marshal(resultBson)
 	_ = bson.Unmarshal(bsonBytes, &resultStruct)
-	fmt.Println("นส",resultStruct)
+	fmt.Println("นส",resultStruct,id)
 	return resultStruct, err
 }
 
