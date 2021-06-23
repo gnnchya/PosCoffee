@@ -6,6 +6,7 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
 )
 
 func (repo *Repository) Create(ctx context.Context, figure interface{}) (err error) {
@@ -29,20 +30,23 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 	return err
 }
 
-//func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
-//	fmt.Println("นส",id)
-//	_, err = repo.CheckExistID(ctx, id)
-//	if err != nil {
-//		return resultStruct, err
-//	}
-//	var resultBson bson.M
-//	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-//	bsonBytes, _ := bson.Marshal(resultBson)
-//	_ = bson.Unmarshal(bsonBytes, &resultStruct)
-//	fmt.Println("นส",resultStruct)
-//	fmt.Println("นส",resultStruct.Menu)
-//	return resultStruct, err
-//}
+func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
+	fmt.Println("นส",id)
+	_, err = repo.CheckExistID(ctx, id)
+	if err != nil {
+		return resultStruct, err
+	}
+	var res domain.CreateStructTest
+	//var out interface{}
+
+	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&res)
+	log.Println("pppp", res)
+	//bsonBytes, _ := bson.Marshal(resultBson)
+	//_ = bson.Unmarshal(bsonBytes, &resultStruct)
+	//fmt.Println("นส",resultStruct)
+	//fmt.Println("นส",resultStruct.Menu)
+	return resultStruct, err
+}
 
 func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.CreateStruct, error) {
 	skip := int64(page * perPage)
