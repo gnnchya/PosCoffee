@@ -1,56 +1,59 @@
 version: '3'
 services: # each service run simultaneously (parallel)
 
-#  menu-app:
-#    image: menu:latest
-#    depends_on:
-#      - "mongodb"
-#      - "elas"
-#    restart: always
-#    ports:
-#      - 8080:8080
-#    environment: # variable of the server or OS
-#      MONGODB_ENDPOINT : "mongodb://touch:touchja@mongodb:27017"
-#      ELASTIC_ENDPOINT: "http://elas:9200"
-#      ELASTIC_USERNAME: "touch"
-#      ELASTIC_PASSWORD: "touchja"
+  menu-app:
+    image: menu:latest
+    depends_on:
+      - "menudb"
+    restart: always
+    ports:
+      - 8080:8080
+    environment: # variable of the server or OS
+      ELASTIC_ENDPOINT: "http://elas:9200"
+      ELASTIC_USERNAME: "touch"
+      ELASTIC_PASSWORD: "touchja"
 #
-#  cart-app:
-#    image: cart:latest
-#    depends_on:
-#      - "mongodb"
-#    restart: always
-#    environment:
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@mongodb:27017"
+  cart-app:
+    image: cart:latest
+    depends_on:
+      - "cartdb"
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@cartdb:27017"
+
+  stock-app:
+    image: stock:latest
+    depends_on:
+      - "kafka"
+      - "stockdb"
+    restart: always
+    ports:
+      - 8083:8083
+    environment: # variable of the server or OS
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@stockdb:27019"
+      MESSAGE_BROKER_BACKOFF_TIME: "2"
+      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
+      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
+      MESSAGE_BROKER_GROUP: "my-group"
+      MESSAGE_BROKER_VERSION: "2.6.1"
 #
-#
-#  stock-app:
-#    image: stock:latest
-#    depends_on:
-#      - "kafka"
-#      - "mongodb"
-#    restart: always
-#    environment: # variable of the server or OS
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@mongodb:27017"
-#      MESSAGE_BROKER_BACKOFF_TIME: "2"
-#      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
-#      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
-#      MESSAGE_BROKER_GROUP: "my-group"
-#      MESSAGE_BROKER_VERSION: "2.6.1"
-#
-#  product-app:
-#    image: product:latest
-#    depends_on:
-#      - "kafka"
-#      - "mongodb"
-#    restart: always
-#    environment: # variable of the server or OS
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@mongodb:27017"
-#      MESSAGE_BROKER_BACKOFF_TIME: "2"
-#      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
-#      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
-#      MESSAGE_BROKER_GROUP: "my-group"
-#      MESSAGE_BROKER_VERSION: "2.6.1"
+  product-app:
+    image: product:latest
+    depends_on:
+      - "kafka"
+      - "productdb"
+    restart: always
+    ports:
+      - 8082:8082
+    environment: # variable of the server or OS
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@productdb:27018"
+      MESSAGE_BROKER_BACKOFF_TIME: "2"
+      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
+      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
+      MESSAGE_BROKER_GROUP: "my-group"
+      MESSAGE_BROKER_VERSION: "2.6.1"
 
   zookeeper:
     image: confluentinc/cp-zookeeper:6.1.0
@@ -121,34 +124,34 @@ services: # each service run simultaneously (parallel)
     ports:
       - "27018:27018"
 
-#  menudb:
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
-#    container_name: menu
-#    environment:
-#      #      - node.name=menu
-#      #      - cluster.name=es-docker-cluster
-#      - discovery.type=single-node
-#    #      - cluster.initial_master_nodes=es01,es02,es03
-#    #      - bootstrap.memory_lock=true
-#    #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#    #    volumes:
-#    #      - data01:/usr/share/elasticsearch/data
-#    ports:
-#      - 9200:9200
-#    restart: always
-#
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana:7.13.1
-#    env_file:
-#      - kibana.env
-#    ports:
-#      - "5601:5601"
-#    environment:
-#      ELASTICSEARCH_URL: http://elas:9200
-#      ELASTICSEARCH_HOSTS: http://elas:9200
-#    depends_on:
-#      - elas
+  menudb:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
+    container_name: menu
+    environment:
+      #      - node.name=menu
+      #      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+    #      - cluster.initial_master_nodes=es01,es02,es03
+    #      - bootstrap.memory_lock=true
+    #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    #    volumes:
+    #      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    restart: always
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.1
+    env_file:
+      - kibana.env
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_URL: http://elas:9200
+      ELASTICSEARCH_HOSTS: http://elas:9200
+    depends_on:
+      - menudb
