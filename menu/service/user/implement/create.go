@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
-	"time"
 )
 
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
@@ -27,7 +26,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	time.Sleep(5 * time.Second)
 	err = impl.elasRepo.Create(ctx, input)
 	if err != nil {
 		return "", err

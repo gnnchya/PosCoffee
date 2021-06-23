@@ -20,13 +20,13 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//}
 	//time.Sleep(5 * time.Second)
 
-	ID, err = impl.Create(ctx, input)
+	err = impl.repo.Create(ctx, user, user.ID)
 	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "error create in stock", err
 	}
 
-	return ID, nil
+	return user.ID, nil
 }
 
 //func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {

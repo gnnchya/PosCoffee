@@ -9,7 +9,7 @@ services: # each service run simultaneously (parallel)
     ports:
       - 8080:8080
     environment: # variable of the server or OS
-      ELASTIC_ENDPOINT: "http://elas:9200"
+      ELASTIC_ENDPOINT: "http://menudb:9200"
       ELASTIC_USERNAME: "touch"
       ELASTIC_PASSWORD: "touchja"
 #
@@ -110,7 +110,7 @@ services: # each service run simultaneously (parallel)
     #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
     #      - "$PWD/data:/data/db"
     ports:
-      - "27019:27019"
+      - "27019:27017"
 
   productdb:
     image: mongo:4.4 # need to specify the version to prevent code corruption
@@ -122,7 +122,7 @@ services: # each service run simultaneously (parallel)
     #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
     #      - "$PWD/data:/data/db"
     ports:
-      - "27018:27018"
+      - "27018:27017"
 
   menudb:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
@@ -151,7 +151,7 @@ services: # each service run simultaneously (parallel)
     ports:
       - "5601:5601"
     environment:
-      ELASTICSEARCH_URL: http://elas:9200
-      ELASTICSEARCH_HOSTS: http://elas:9200
+      ELASTICSEARCH_URL: http://menudb:9200
+      ELASTICSEARCH_HOSTS: http://menudb:9200
     depends_on:
       - menudb
