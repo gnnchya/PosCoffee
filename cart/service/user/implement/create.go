@@ -3,11 +3,11 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 	goxid "github.com/touchtechnologies-product/xid"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
+func (impl *implementation) Create(ctx context.Context, input *domain.CreateStruct) (ID string, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -20,14 +20,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	fmt.Println("user input create:", input)
 
 	err = impl.repo.Create(ctx, input)
-	// fmt.Println("output create:", user)
 
-	//if err != nil {
-	//	return "", err
-	//}
-
-	//time.Sleep(5 * time.Second)
-	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}

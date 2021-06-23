@@ -10,14 +10,6 @@ import (
 )
 
 func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error) {
-	//defer func(){
-	//	if !reflect2.IsNil(err){
-	//		return
-	//	}
-	//	if err == impl.sendMsgUpdate(input){
-	//		log.Println(err)
-	//	}
-	//}()
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -26,6 +18,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 
 	//user := userin.UpdateInputToUserDomain(input)
 	user := input.UpdateInputToUserDomain()
+	fmt.Println("user update input", user)
 	err = impl.repo.Update(ctx, user, user.ID)
 	//time.Sleep(5 * time.Second)
 	//_, err = impl.repo.Read(ctx, input.ID)

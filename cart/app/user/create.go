@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/cart/app/view"
 	"github.com/gnnchya/PosCoffee/cart/domain"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	goxid "github.com/touchtechnologies-product/xid"
 )
 
 func (ctrl *Controller) Create(c *gin.Context) {
@@ -15,12 +15,12 @@ func (ctrl *Controller) Create(c *gin.Context) {
 		return
 	}
 	fmt.Println("input create app:", cart)
-	input := &userin.CreateInput{}
-	//initID := goxid.New()
-	//input.ID = initID.Gen()
-	//initID = goxid.New()
-	//input.CustomerID = initID.Gen()
-	_, err := ctrl.service.Create(c, input)
+	//input := &userin.CreateInput{}
+	initID := goxid.New()
+	cart.ID = initID.Gen()
+	initID = goxid.New()
+	cart.CustomerID = initID.Gen()
+	_, err := ctrl.service.Create(c, cart)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
