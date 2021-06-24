@@ -15,7 +15,7 @@ type Service interface {
 	Read(ctx context.Context, input *userin.ReadInput) (domain.CreateStruct, error)
 	ReadCategoryAll(ctx context.Context, input *userin.ReadCategoryAllInput) ([]domain.CreateStruct, error)
 	ReadNameAll(ctx context.Context, input *userin.ReadNameAllInput) ([]domain.CreateStruct, error)
-	Search(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
+	Search(ctx context.Context, input *userin.Search) (string, error)
 	MsgReceiver(ctx context.Context, msg []byte) (err error)
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)
 }

@@ -17,6 +17,7 @@ type Repository interface {
 	ReadNameAll(ctx context.Context, user *domain.ReadNameByPageStruct) (a []domain.CreateStruct, err error)
 	ReadCategoryAll(ctx context.Context, user *domain.ReadCategoryByPageStruct) (a []domain.CreateStruct, err error)
 	CheckMenuAvailability(ctx context.Context, ingredients []string) (state bool, err error)
+	Search(ctx context.Context,search *domain.SearchValue) /*(result []domain.InsertQ,err error)*/ (result string, err error)
 }
 
 type RepositoryUsers interface{

@@ -19,7 +19,7 @@ func (ctrl *Controller) Search(c *gin.Context) {
 	input := &userin.Search{}
 	fmt.Println("input in app search:", input)
 	if err := c.ShouldBindJSON(input); err != nil {
-		// view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422, err)
 		fmt.Println("error")
 		return
 	}
