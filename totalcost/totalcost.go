@@ -3,13 +3,13 @@ package main
 import "fmt"
 
 type Ingredient struct{
-	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName      string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
 type CalculateCost struct{
-	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
-	CostPerUnit      		int64    `bson:"cost_per_unit" json:"cost_per_unit"`
+	IngredientName      string   `bson:"ingredient_name" json:"ingredient-name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit" json:"cost_per_unit"`
 }
 
 type Menu struct {
@@ -41,7 +41,7 @@ type CreateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
-	TotalCost	     	int64   		`bson:"total_cost" json:"total_cost"`
+	TotalCost	    int64   		`bson:"total_cost" json:"total_cost"`
 	PaymentMethod	string			`bson:"payment_method" json:"payment_method"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
