@@ -10,7 +10,7 @@ import (
 )
 
 func (ctrl *Controller) ReadNameAll(c *gin.Context) {
-
+	name := c.Param("name")
 	input := &userin.ReadNameAllInput{}
 	limit := 2
 	page := 0
@@ -26,6 +26,7 @@ func (ctrl *Controller) ReadNameAll(c *gin.Context) {
 	}
 	input.Page = page
 	input.PerPage = limit
+	input.ItemName = name
 	a, err := ctrl.service.ReadNameAll(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error read name")

@@ -27,8 +27,8 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.GET("/stock/search", app.user.Search)
 		apiRoutes.DELETE("/stock/:id", app.user.Delete)
 		apiRoutes.GET("/stock/:id", app.user.Read)
-		apiRoutes.GET("/stock/name", app.user.ReadNameAll)
-		apiRoutes.GET("/stock/category", app.user.ReadCategoryAll)
+		apiRoutes.GET("/stock/name/:name", app.user.ReadNameAll)
+		apiRoutes.GET("/stock/category/:category", app.user.ReadCategoryAll)
 	}
 
 	return app
