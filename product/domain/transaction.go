@@ -17,6 +17,7 @@ type Cart struct{
 	ID 			string  `bson:"_id" json:"_id"`
 	CustomerID 	string  `bson:"customer_id" json:"customer_id"`
 	Menu		[]Menu 	`bson:"menu" json:"menu"`
+	TotalPrice	int64	`bson:"total_price"`
 }
 
 type GeoJson struct {
@@ -29,6 +30,7 @@ type CreateOrderStruct struct {
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
+	PaymentMethod	string			`bson:"payment_method" json:"payment_method"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
 	Time			int64      		`bson:"time" json:"time"`

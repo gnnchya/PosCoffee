@@ -14,7 +14,7 @@ type Repository interface {
 	Delete(ctx context.Context, id string) (err error)
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a interface{}, err error)
-	//ViewMoneyAll(ctx context.Context) (a []interface{}, err error)
+	ReadMoneyAll(ctx context.Context, currency string) (a []interface{}, err error)
 	ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct)([]interface{}, error)
 }
 
