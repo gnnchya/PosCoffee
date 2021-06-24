@@ -12,6 +12,7 @@ type CreateStruct struct {
 	Supplier 		string 		`bson:"supplier"`
 	TotalCost		int64      	`bson:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount"`
+	Status 			string		`bson:"status"`
 }
 
 type DeleteStruct struct {
@@ -23,6 +24,7 @@ type DeleteStruct struct {
 type Updatestruct struct {
 	ID      string  `bson:"_id" json:"id" validate:"required"`
 	Amount	int64   `bson:"amount" json:"amount" validate:"required"`
+	Status 	string	`bson:"status" json:"status" validate:"required"`
 	Code 	int 	`json:"code"`
 	Err 	error   `json:"err"`
 }
