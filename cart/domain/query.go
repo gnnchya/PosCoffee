@@ -33,8 +33,7 @@ type UpdateStruct struct {
 	ID 				string  `bson:"_id" json:"_id"`
 	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
 	Menu			[]Menu 	`bson:"menu" json:"menu"`
-	Code 			int 	`json:"code"`
-	Err 			error	`json:"err"`
+	TotalPrice		int64	`bson:"total_price"`
 }
 
 type ReadStruct struct {
