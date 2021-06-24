@@ -1,92 +1,92 @@
 version: '3'
 services: # each service run simultaneously (parallel)
-#
-#  menu-app:
-#    image: menu:latest
-#    depends_on:
-#      - menudb
-#    restart: always
-#    ports:
-#      - 8080:8080
-#    environment: # variable of the server or OS
-#      ELASTIC_ENDPOINT: "http://menudb:9200"
-#      ELASTIC_USERNAME: "touch"
-#      ELASTIC_PASSWORD: "touchja"
-#
-#  cart-app:
-#    image: cart:latest
-#    depends_on:
-#      - "cartdb"
-#    restart: always
-#    ports:
-#      - 8081:8081
-#    environment:
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@cartdb:27017"
 
-#  stock-app:
-#    image: stock:latest
-#    depends_on:
-#      - "kafka"
-#      - "stockdb"
-#    restart: always
-#    ports:
-#      - 8083:8083
-#    environment: # variable of the server or OS
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@stockdb:27017"
-#      MESSAGE_BROKER_BACKOFF_TIME: "2"
-#      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
-#      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
-#      MESSAGE_BROKER_GROUP: "my-group"
-#      MESSAGE_BROKER_VERSION: "2.6.1"
-#
-#  product-app:
-#    image: product:latest
-#    depends_on:
-#      - "kafka"
-#      - "productdb"
-#    restart: always
-#    ports:
-#      - 8082:8082
-#    environment: # variable of the server or OS
-#      MONGODB_ENDPOINT: "mongodb://touch:touchja@productdb:27017"
-#      MESSAGE_BROKER_BACKOFF_TIME: "2"
-#      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
-#      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
-#      MESSAGE_BROKER_GROUP: "my-group"
-#      MESSAGE_BROKER_VERSION: "2.6.1"
+  menu-app:
+    image: menu:latest
+    depends_on:
+      - menudb
+    restart: always
+    ports:
+      - 8080:8080
+    environment: # variable of the server or OS
+      ELASTIC_ENDPOINT: "http://menudb:9200"
+      ELASTIC_USERNAME: "touch"
+      ELASTIC_PASSWORD: "touchja"
 
-#  zookeeper:
-#    image: confluentinc/cp-zookeeper:6.1.0
-#    ports:
-#      - "2181:2181"
-#    restart: always
-#    environment:
-#      ZOOKEEPER_SERVER_ID: "1"
-#      ZOOKEEPER_CLIENT_PORT: "2181"
-#      ZOOKEEPER_TICK_TIME: "2000"
-#
-#  kafka:
-#    image: confluentinc/cp-kafka:6.1.0
-#    depends_on:
-#      - "zookeeper"
-#    ports:
-#      - "9094:9094"
-#      - "9092:9092"
-#    restart: always
-#    environment:
-#      ALLOW_PLAINTEXT_LISTENER: "yes"
-#      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-#      KAFKA_ADVERTISED_LISTENERS: "LISTENER_INTERNAL://localhost:9092,LISTENER_LOCAL://kafka:9094"
-#      #      KAFKA_ADVERTISED_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://localhost:9094"
-#
-#      KAFKA_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://:9094"
-#      KAFKA_INTER_BROKER_LISTENER_NAME: "LISTENER_INTERNAL"
-#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "LISTENER_INTERNAL:PLAINTEXT,LISTENER_LOCAL:PLAINTEXT"
-#      KAFKA_DELETE_TOPIC_ENABLE: "true"
-#      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
-#      KAFKA_NUM_NETWORK_THREADS: "8"
-#      KAFKA_NUM_IO_THREADS: "16"
-#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+  cart-app:
+    image: cart:latest
+    depends_on:
+      - "cartdb"
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@cartdb:27017"
+
+  stock-app:
+    image: stock:latest
+    depends_on:
+      - "kafka"
+      - "stockdb"
+    restart: always
+    ports:
+      - 8083:8083
+    environment: # variable of the server or OS
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@stockdb:27017"
+      MESSAGE_BROKER_BACKOFF_TIME: "2"
+      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
+      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
+      MESSAGE_BROKER_GROUP: "my-group"
+      MESSAGE_BROKER_VERSION: "2.6.1"
+
+  product-app:
+    image: product:latest
+    depends_on:
+      - "kafka"
+      - "productdb"
+    restart: always
+    ports:
+      - 8082:8082
+    environment: # variable of the server or OS
+      MONGODB_ENDPOINT: "mongodb://touch:touchja@productdb:27017"
+      MESSAGE_BROKER_BACKOFF_TIME: "2"
+      MESSAGE_BROKER_MAXIMUM_RETRY: "3"
+      MESSAGE_BROKER_ENDPOINT: "kafka:9094"
+      MESSAGE_BROKER_GROUP: "my-group"
+      MESSAGE_BROKER_VERSION: "2.6.1"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.1.0
+    ports:
+      - "2181:2181"
+    restart: always
+    environment:
+      ZOOKEEPER_SERVER_ID: "1"
+      ZOOKEEPER_CLIENT_PORT: "2181"
+      ZOOKEEPER_TICK_TIME: "2000"
+
+  kafka:
+    image: confluentinc/cp-kafka:6.1.0
+    depends_on:
+      - "zookeeper"
+    ports:
+      - "9094:9094"
+      - "9092:9092"
+    restart: always
+    environment:
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: "LISTENER_INTERNAL://localhost:9092,LISTENER_LOCAL://kafka:9094"
+      #      KAFKA_ADVERTISED_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://localhost:9094"
+
+      KAFKA_LISTENERS: "LISTENER_INTERNAL://:9092,LISTENER_LOCAL://:9094"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "LISTENER_INTERNAL"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "LISTENER_INTERNAL:PLAINTEXT,LISTENER_LOCAL:PLAINTEXT"
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_NETWORK_THREADS: "8"
+      KAFKA_NUM_IO_THREADS: "16"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
 
   cartdb:
     image: mongo:4.4 # need to specify the version to prevent code corruption
@@ -100,29 +100,29 @@ services: # each service run simultaneously (parallel)
     ports:
       - "27017:27017"
 
-#  stockdb:
-#    image: mongo:4.4 # need to specify the version to prevent code corruption
-#    #    container_name: mongodb
-#    environment: # variable of the server or OS
-#      #      MONGO_INITDB_DATABASE: gin
-#      MONGO_INITDB_ROOT_USERNAME: touch
-#      MONGO_INITDB_ROOT_PASSWORD: touchja
-#    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
-#    #      - "$PWD/data:/data/db"
-#    ports:
-#      - "27019:27017"
-#
-#  productdb:
-#    image: mongo:4.4 # need to specify the version to prevent code corruption
-#    #    container_name: mongodb
-#    environment: # variable of the server or OS
-#      #      MONGO_INITDB_DATABASE: gin
-#      MONGO_INITDB_ROOT_USERNAME: touch
-#      MONGO_INITDB_ROOT_PASSWORD: touchja
-#    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
-#    #      - "$PWD/data:/data/db"
-#    ports:
-#      - "27018:27017"
+  stockdb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27019:27017"
+
+  productdb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27018:27017"
 
   menudb:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
@@ -133,10 +133,10 @@ services: # each service run simultaneously (parallel)
     #      - cluster.initial_master_nodes=es01,es02,es03
     #      - bootstrap.memory_lock=true
     #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     #    volumes:
     #      - data01:/usr/share/elasticsearch/data
     ports:

@@ -16,7 +16,7 @@ func (impl *implementation) Search(ctx context.Context, input *userin.Search) (a
 	}
 	user := userin.SearchInputToUserDomain(input)
 	fmt.Println("user input search:", user)
-	//a, err := impl.repo.Search(user.Value, ctx)
+	//err := impl.repo.Search(user.Value, ctx)
 	fmt.Println("output search:", user)
 	if err != nil {
 		return a, err

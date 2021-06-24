@@ -7,6 +7,7 @@ import (
 
 type Search struct {
 	// ID        string `json:"id" validate:"required"`
+	Type string `json:"value" validate:"required"`
 	Value string `json:"value" validate:"required"`
 	// Tel       string `json:"tel" validate:"required"`
 } // @Name StaffCreateInput
@@ -21,6 +22,7 @@ func MakeTestSearchInput() (input *Search) {
 
 func SearchInputToUserDomain(input *Search) (user *domain.SearchValue) {
 	return &domain.SearchValue{
+		Type: input.Type,
 		Value: input.Value,
 	}
 }
