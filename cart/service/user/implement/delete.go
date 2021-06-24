@@ -21,7 +21,7 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 	//}()
 	user := userin.DeleteInputToUserDomain(input)
 	fmt.Println("user input delete:", user)
-
+	//TODO admin delete everyday
 	err = impl.repo.Delete(ctx, user.ID)
 	//fmt.Println("output del:", user)
 	//fmt.Println("err del:", err)
