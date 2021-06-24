@@ -3,7 +3,7 @@ package mongodbmoney
 import (
 	"context"
 	"errors"
-	"github.com/gnnchya/PosCoffee/product/service/calculation"
+	"github.com/gnnchya/PosCoffee/product/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -34,6 +34,17 @@ func (repo *RepositoryMoney) Update(ctx context.Context, figure interface{}, id 
 	return err
 }
 
+func (repo *RepositoryMoney) UpdateByVal(ctx context.Context, figure interface{}, val int64) (err error) {
+	state, err := repo.checkExistVal(ctx, val)
+	if err != nil{
+		return err
+	} else if state == false{
+		return errors.New("this ID does not exist")
+	}
+	_, err = repo.Coll.UpdateOne(ctx, bson.M{"value": val}, bson.D{{"$set", figure}})
+	return err
+}
+
 func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct interface{}, err error) {
 	state, err := repo.checkExistID(ctx, id)
 	if err != nil{
@@ -48,7 +59,7 @@ func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct 
 	return resultStruct, err
 }
 
-func (repo *RepositoryMoney) ReadMoneyAll(ctx context.Context) ([]calculation.CreateMoneyStruct, error) {
+func (repo *RepositoryMoney) ReadMoneyAll(ctx context.Context) ([]domain.CreateMoneyStruct, error) {
 	cursor, err := repo.Coll.Find(nil, bson.M{"currency" : repo.Currency})
 	return AddToArray(cursor, err, ctx)
 }

@@ -2,16 +2,11 @@ package calculation
 
 import (
 	"fmt"
+	"github.com/gnnchya/PosCoffee/product/domain"
 )
 
-type CreateMoneyStruct struct {
-	ID 			string
-	Value   	int64
-	Amount 		int64
-	Currency	string
-}
 
-func Calculation(paid int64, price int64, note []CreateMoneyStruct) ([]CreateMoneyStruct, map[int64]int64, error){
+func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]domain.CreateMoneyStruct, map[int64]int64, error){
 	value := paid - price
 	change := make(map[int64]int64)
 	for x,i := range note{
