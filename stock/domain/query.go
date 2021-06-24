@@ -58,3 +58,8 @@ type FilterStruct struct {
 	Ascending	bool	`bson:"ascending" json:"ascending"`
 	Active 		bool	`bson:"active" json:"active"`
 }
+
+type Ingredient struct{
+	IngredientName      string   `bson:"ingredient_name" json:"ingredient-name"`
+	Amount      		int64    `bson:"amount" json:"amount"`
+}
