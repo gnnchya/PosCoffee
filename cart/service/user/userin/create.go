@@ -9,14 +9,14 @@ type Input struct {
 	ID 				string  `json:"_id"`
 	CustomerID 		string  `json:"customer_id"`
 	Menu			[]domain.Menu 	`json:"menu"`
-	TotalPrice           int64	`json:"total_price"`
+	TotalPrice      int64	`json:"total_price"`
 }
 
 func (input *Input)CreateInputToUserDomain() (user *domain.CreateStruct) {
 	return &domain.CreateStruct{
 		ID:             input.ID,
-		CustomerID: input.CustomerID,
-		Menu: input.Menu,
-		TotalPrice: totalprice.CalculateTotalPrice(input),
+		CustomerID: 	input.CustomerID,
+		Menu: 			input.Menu,
+		TotalPrice: 	totalprice.CalculateTotalPrice(input),
 	}
 }
