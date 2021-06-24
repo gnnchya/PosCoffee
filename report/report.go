@@ -1,1 +1,59 @@
-package report
+package main
+
+type Ingredient struct{
+IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+Amount      		int64    `bson:"amount" json:"amount"`
+}
+
+type Menu struct {
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	[]string  `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
+	Code 			int 	 `json:"code"`
+	Err 			error 	 `json:"err"`
+}
+
+type Cart struct{
+	ID 			string  `bson:"_id" json:"_id"`
+	CustomerID 	string  `bson:"customer_id" json:"customer_id"`
+	Menu		[]Menu 	`bson:"menu" json:"menu"`
+	TotalPrice	int64	`bson:"total_price"`
+}
+
+type GeoJson struct {
+	Type        string    `json:"-"`
+	Coordinates []float64 `json:"coordinates"`
+}
+
+type CreateOrderStruct struct {
+	ID         		string   		`bson:"_id" json:"id"`
+	Cart			Cart   			`bson:"cart" json:"cart"`
+	Finished		bool     		`bson:"finished" json:"finished"`
+	Price	     	int64   		`bson:"price" json:"price"`
+	PaymentMethod	string			`bson:"payment_method" json:"payment_method"`
+	TypeOfOrder 	string 			`bson:"type" json:"type"`
+	Destination		GeoJson      	`bson:"destination" json:"destination"`
+	Time			int64      		`bson:"time" json:"time"`
+	Code 			int 			`json:"code"`
+	Err 			error 			`json:"err"`
+}
+
+type Report struct{
+	Transaction		[]CreateOrderStruct		`bson:"transaction" json:"transaction"`
+	TotalIncome		int64					`bson:"total_income" json:"total_income"`
+	TotalCost		int64					`bson:"total_cost" json:"total_cost"`
+	TotalProfit		int64					`bson:"total_profit" json:"total_profit"`
+}
+
+func CalculateProfit(){
+
+}
+
+func main(){
+
+}
