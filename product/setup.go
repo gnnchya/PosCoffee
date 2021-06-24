@@ -18,12 +18,13 @@ import (
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
+	uRepoMoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName, "THB")
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo, kRepo)
+	user := userService.New(validator, uRepo, uRepoMoney, kRepo)
 	msgService := msgBrokerService.New(kRepo, user)
 	//wg.Add(1)
 	msgService.Receiver(topics)

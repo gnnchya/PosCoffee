@@ -14,8 +14,19 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		return "validate error", err
 	}
 
-	calculation.Calculation()
 	//TODO check with the stock if the ingredients are enough to make
+	var paid int64
+	if input.PaymentMethod == "Cash"{
+		var temp []calculation.CreateMoneyStruct
+			temp , err := impl.repom.ReadMoneyAll(ctx)
+			if err != nil{
+				return input.ID , err
+			}
+			calculation.Calculation(paid, input.Price, temp)
+	}
+
+
+
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 

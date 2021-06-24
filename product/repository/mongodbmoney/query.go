@@ -1,23 +1,18 @@
-package mongodb
+package mongodbmoney
 
 import (
 	"context"
 	"errors"
-	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/calculation"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func (repo *Repository) Create(ctx context.Context, figure interface{}, id string) (err error) {
-	//_, err = repo.checkExistID(ctx, id)
-	//if err != nil {
-	//	return  err
-	//}
+func (repo *RepositoryMoney) Create(ctx context.Context, figure interface{}, id string) (err error) {
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }
 
-func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
+func (repo *RepositoryMoney) Delete(ctx context.Context, id string) (err error) {
 	state, err := repo.checkExistID(ctx, id)
 	if err != nil{
 		return err
@@ -28,7 +23,7 @@ func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
 	return err
 }
 
-func (repo *Repository) Update(ctx context.Context, figure interface{}, id string) (err error) {
+func (repo *RepositoryMoney) Update(ctx context.Context, figure interface{}, id string) (err error) {
 	state, err := repo.checkExistID(ctx, id)
 	if err != nil{
 		return err
@@ -39,7 +34,7 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 	return err
 }
 
-func (repo *Repository) Read(ctx context.Context, id string) (resultStruct interface{}, err error) {
+func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct interface{}, err error) {
 	state, err := repo.checkExistID(ctx, id)
 	if err != nil{
 		return resultStruct, err
@@ -53,13 +48,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct inter
 	return resultStruct, err
 }
 
-func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct) ([]interface{}, error) {
-	skip := int64(user.Page * user.PerPage)
-	limit := int64(user.PerPage)
-	opts := options.FindOptions{
-		Skip:  &skip,
-		Limit: &limit,
-	}
-	cursor, err := repo.Coll.Find(ctx, bson.M{}, &opts)
+func (repo *RepositoryMoney) ReadMoneyAll(ctx context.Context) ([]calculation.CreateMoneyStruct, error) {
+	cursor, err := repo.Coll.Find(nil, bson.M{"currency" : repo.Currency})
 	return AddToArray(cursor, err, ctx)
 }
