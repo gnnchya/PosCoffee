@@ -16,7 +16,7 @@ func (impl *implementation) Create(ctx context.Context, input *domain.CreateStru
 	}
 	initID := goxid.New()
 	input.ID = initID.Gen()
-=	user := userin.Input.CreateInputToUserDomain(input)
+	user := userin.Input.CreateInputToUserDomain(input)
 	fmt.Println("user input create:", user)
 
 	fmt.Println("user input create:", input)
