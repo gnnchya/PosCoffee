@@ -28,7 +28,7 @@ func Calculation(paid int64, price int64, note []CreateMoneyStruct) ([]CreateMon
 		}
 	}
 	if value != 0{
-		return note,nil, fmt.Errorf("error: not enough change")
+		return nil,nil, fmt.Errorf("error: not enough change")
 	}
 	return note, change,nil
 }
