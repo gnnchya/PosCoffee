@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/gnnchya/PosCoffee/menu/app/view"
@@ -13,7 +14,7 @@ func (ctrl *Controller) ReadAll(c *gin.Context) {
 
 	input := &userin.ViewAllInput{}
 	limit := 2
-	page := 0
+	page := 1
 	query := c.Request.URL.Query()
 	for key, value := range query {
 		queryValue := value[len(value)-1]
@@ -26,7 +27,7 @@ func (ctrl *Controller) ReadAll(c *gin.Context) {
 	}
 	input.Page = page
 	input.PerPage = limit
-
+	fmt.Println("input:", input)
 	a, err := ctrl.service.ReadAll(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error viewAll")

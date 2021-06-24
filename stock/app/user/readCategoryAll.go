@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/gnnchya/PosCoffee/stock/app/view"
@@ -10,7 +11,7 @@ import (
 )
 
 func (ctrl *Controller) ReadCategoryAll(c *gin.Context) {
-
+	category := c.Param("category")
 	input := &userin.ReadCategoryAllInput{}
 	limit := 2
 	page := 0
@@ -26,6 +27,8 @@ func (ctrl *Controller) ReadCategoryAll(c *gin.Context) {
 	}
 	input.Page = page
 	input.PerPage = limit
+	input.Category = category
+	fmt.Println("input for read category:", input)
 	a, err := ctrl.service.ReadCategoryAll(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error read category")

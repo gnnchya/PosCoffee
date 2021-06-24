@@ -1,7 +1,6 @@
 package userin
 
 import (
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/domain"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 )
 
@@ -12,8 +11,8 @@ type UpdateInput struct {
 	Err 	error   `json:"err"`
 }
 
-func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateStruct) {
-	return &domain.UpdateStruct{
+func UpdateInputToUserDomain(input *UpdateInput) (user *domain.Updatestruct) {
+	return &domain.Updatestruct{
 		ID:        	input.ID,
 		Amount:   	input.Amount,
 		Code: 		input.Code,
@@ -21,8 +20,8 @@ func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateStruct) {
 	}
 }
 
-func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateStruct) {
-	return &domain.UpdateStruct{
+func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.Updatestruct) {
+	return &domain.Updatestruct{
 		ID:        	input.ID,
 		Amount:   	input.Amount,
 		Code: 		input.Code,
