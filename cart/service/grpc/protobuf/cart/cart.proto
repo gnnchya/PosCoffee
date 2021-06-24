@@ -1,0 +1,17 @@
+syntax="proto3";
+option go_package=  "github.com/gnnchya/PosCoffee/cart/domain";
+
+package cart;
+
+message Request{
+  int64 id = 1;
+}
+
+message Reply{
+  int64  id = 1;
+  string arr = 2;
+}
+
+service GetMenu{
+  rpc Menu (Request) returns (Reply);
+}
