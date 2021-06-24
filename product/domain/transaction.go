@@ -39,6 +39,7 @@ type CreateOrderStruct struct {
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
 	Time			int64      		`bson:"time" json:"time"`
+	TotalCost 		int64			`bson:"total" json:"total"`
 }
 
 type DeleteOrderStruct struct {

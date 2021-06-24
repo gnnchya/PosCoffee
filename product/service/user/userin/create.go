@@ -26,6 +26,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStru
 		TypeOfOrder: 	input.TypeOfOrder,
 		Destination: 	input.Destination,
 		Time:			input.Time,
-		TotalCost:		totalCost.CalculateTotalCost,
+		TotalCost:		totalcost.CalculateTotalCost(input.Cart),
 	}
 }

@@ -1,4 +1,4 @@
-package main
+package totalcost
 
 import (
 	"github.com/gnnchya/PosCoffee/product/domain"
