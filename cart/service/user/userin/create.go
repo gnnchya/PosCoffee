@@ -5,9 +5,9 @@ import (
 )
 
 type CreateInput struct {
-	ID 				string  `bson:"_id" json:"_id"`
-	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
-	Menu			[]domain.Menu 	`bson:"menu" json:"menu"`
+	ID 				string  `json:"_id"`
+	CustomerID 		string  `json:"customer_id"`
+	Menu			[]domain.Menu 	`json:"menu"`
 	Code 			int 	`json:"code"`
 	Err 			error	`json:"err"`
 }
@@ -28,8 +28,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 		ID:             input.ID,
 		CustomerID: input.CustomerID,
 		Menu: input.Menu,
-		Code: input.Code,
-		Err: input.Err,
 	}
 }
 
