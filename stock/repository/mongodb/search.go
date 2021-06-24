@@ -7,8 +7,6 @@ import (
 	domain "github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"strconv"
-
 	//"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	//"strconv"
@@ -42,35 +40,25 @@ func toString(resultArray []domain.CreateStruct, err error) (string, error){
 func (repo *Repository)Search(ctx context.Context,search *domain.SearchValue) /*(result []domain.InsertQ,err error)*/ (result string, err error){
 	fmt.Println("Searching for ",search.Value,"in",search.Type)
 	switch search.Type{
-	case "name", "actual_name", "gender", "super_power":
+	case "_id", "item_name", "category", "unit", "supplier":
 		cursor, err := repo.Coll.Find(ctx, bson.M{search.Type: primitive.Regex{Pattern: search.Value, Options: "i"}})
 		if err != nil {
 			return toString(AddToArray(cursor,err,ctx))
 		}
 		return toString(AddToArray(cursor,err,ctx))
-	case "alive":
-		alive, err := strconv.ParseBool(search.Value)
-		if err != nil {
-			return "Can not convert "+search.Value+" to boolean", err
-		}
-		cursor, err := repo.Coll.Find(ctx, bson.M{search.Type: alive})
-		if err != nil {
-			return toString(AddToArray(cursor,err,ctx))
-		}
-		return toString(AddToArray(cursor,err,ctx))
-	case "height":
+	case "amount", "cost_per_unit", "exp_date", "import_date", "total_cost", "total_amount":
 		cursor, err := repo.Coll.Find(ctx, bson.M{"$where":
 			"/"+search.Value+".*/.test(this."+search.Type+")"})
 		if err != nil {
 			return toString(AddToArray(cursor,err,ctx))
 		}
 		return toString(AddToArray(cursor,err,ctx))
-	case "both_name":
+	case "both":
 		cursor, err := repo.Coll.Find(ctx,
 			bson.M{
 				"$or": bson.A{
-					bson.M{"name": primitive.Regex{Pattern: search.Value, Options: "i"}},
-					bson.M{"actual_name": primitive.Regex{Pattern: search.Value, Options: "i"}},
+					bson.M{"item_name": primitive.Regex{Pattern: search.Value, Options: "i"}},
+					bson.M{"category": primitive.Regex{Pattern: search.Value, Options: "i"}},
 				}})
 		if err != nil {
 			return toString(AddToArray(cursor,err,ctx))
