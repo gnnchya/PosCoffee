@@ -46,7 +46,5 @@ func (impl *implementation) sendMsgCreate(input *domain.CreateStockStruct) (err 
 		Supplier:       input.Supplier,
 		TotalCost:      input.TotalCost,
 		TotalAmount:    input.TotalAmount,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	})
 }
