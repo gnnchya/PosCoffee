@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Ingredient struct{
 	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
@@ -48,44 +50,48 @@ type CreateOrderStruct struct {
 	Err 			error 			`json:"err"`
 }
 
+type StockStruct struct {
+	ID         		string   	`bson:"_id"`
+	ItemName       	string   	`bson:"item_name"`
+	Category 		string  	`bson:"category"`
+	Amount			int64   	`bson:"amount"`
+	Unit     		string   	`bson:"unit"`
+	CostPerUnit		int64      	`bson:"cost_per_unit" `
+	EXPDate     	int64   	`bson:"exp_date"`
+	ImportDate      int64   	`bson:"import_date"`
+	Supplier 		string 		`bson:"supplier"`
+	TotalCost		int64      	`bson:"total_cost"`
+	TotalAmount		int64      	`bson:"total_amount"`
+	Status 			string		`bson:"status"`
+}
+
 type ReportStruct struct{
 	Transaction		[]CreateOrderStruct		`bson:"transaction" json:"transaction"`
+	UsedStock		[]StockStruct			`bson:"used_stock" json:"used_stock"`
+	OutOfStock		[]StockStruct			`bson:"out_of_stock" json:"out_of_stock"`
 	TotalIncome		int64					`bson:"total_income" json:"total_income"`
 	TotalCost		int64					`bson:"total_cost" json:"total_cost"`
 	TotalProfit		int64					`bson:"total_profit" json:"total_profit"`
 }
 
-func CalculateProfit(period string) (int64, int64, int64){
-	var test []CreateOrderStruct
-	switch period{
-	case "date":
-		return CalculateProfitByDate(test)
-	case "month":
-		return CalculateProfitByMonth(test)
-	case "year":
-		return CalculateProfitByYear(test)
+func CalculateProfit(transaction []CreateOrderStruct) (int64, int64, int64){
+	var TotalIncome int64
+	var TotalCost int64
+	for _,order := range transaction{
+		TotalIncome = TotalIncome + order.Cart.TotalPrice
+		TotalCost = TotalCost + order.TotalCost
 	}
+	return TotalIncome, TotalCost, TotalIncome-TotalCost
 }
 
-func CalculateProfitByDate(input []CreateOrderStruct) (int64, int64, int64){
-	for _,o := range input{
-		income := o.Cart.TotalPrice
-		cost := o.TotalCost
-	}
-}
-
-func CalculateProfitByMonth(input []CreateOrderStruct) (int64, int64, int64){
-
-}
-
-func CalculateProfitByYear(input []CreateOrderStruct) (int64, int64, int64){
-
-}
-
-func Report() ReportStruct{
-
+func Report(transaction []CreateOrderStruct, outOfStock []StockStruct,usedStock []StockStruct) (result ReportStruct){
+	result.Transaction = transaction
+	result.UsedStock = usedStock
+	result.OutOfStock = outOfStock
+	result.TotalIncome, result.TotalCost, result.TotalProfit = CalculateProfit(transaction)
+	return result
 }
 
 func main(){
-
+	fmt.Println("-")
 }
