@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 	goxid "github.com/touchtechnologies-product/xid"
 )
 
@@ -15,9 +16,8 @@ func (impl *implementation) Create(ctx context.Context, input *domain.CreateStru
 	}
 	initID := goxid.New()
 	input.ID = initID.Gen()
-	//user := userin.CreateInputToUserDomain(input)
-	//user := input.CreateInputToUserDomain()
-	fmt.Println("user input create:", input)
+	user := userin.CreateInput.CreateInputToUserDomain(input)
+	fmt.Println("user input create:", user)
 
 	err = impl.repo.Create(ctx, input)
 
