@@ -3,6 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
+	"github.com/gnnchya/PosCoffee/product/service/calculation"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
@@ -13,6 +14,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		return "validate error", err
 	}
 
+	calculation.Calculation()
+	//TODO check with the stock if the ingredients are enough to make
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 

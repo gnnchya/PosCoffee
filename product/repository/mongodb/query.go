@@ -53,8 +53,8 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct inter
 	return resultStruct, err
 }
 
-func (repo *Repository) ReadMoneyAll(ctx context.Context) ([]interface{}, error) {
-	cursor, err := repo.Coll.Find(nil, bson.M{})
+func (repo *Repository) ReadMoneyAll(ctx context.Context, currency string) ([]interface{}, error) {
+	cursor, err := repo.Coll.Find(nil, bson.M{"currency" : currency})
 	return AddToArray(cursor, err, ctx)
 }
 
