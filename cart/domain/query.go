@@ -15,6 +15,7 @@ type CreateStruct struct {
 	ID 				string  `bson:"_id"`
 	CustomerID 		string  `bson:"customer_id"`
 	Menu			[]Menu	`bson:"menu"`
+	TotalPrice		int64	`bson:"total_price"`
 }
 
 type DeleteStruct struct {
