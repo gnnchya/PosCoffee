@@ -3,6 +3,7 @@ package util
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/domain"
+	"google.golang.org/grpc"
 )
 
 //go:generate mockery --name=Repository
@@ -21,4 +22,8 @@ type Repository interface {
 
 type RepositoryUsers interface {
 	Repository
+}
+
+type RepositoryGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
 }
