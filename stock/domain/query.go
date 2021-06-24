@@ -63,3 +63,8 @@ type Ingredient struct{
 	IngredientName      string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
 }
+
+type CalculateCost struct{
+	ItemName         	string   `bson:"item_name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit"`
+}
