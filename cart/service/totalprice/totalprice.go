@@ -22,7 +22,7 @@ import (
 //	TotalPrice		int64	`bson:"total_price"`
 //}
 
-func CalculateTotalPrice(cart *userin.CreateInput) int64{
+func CalculateTotalPrice(cart *userin.Input) int64{
 	for _,i := range cart.Menu{
 		cart.TotalPrice = cart.TotalPrice+(i.Amount*i.Price)
 	}
