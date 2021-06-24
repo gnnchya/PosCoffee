@@ -1,10 +1,15 @@
 package domain
 
+type Ingredient struct{
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	Amount      		int64    `bson:"amount" json:"amount"`
+}
+
 type CreateStruct struct {
 	ID         		string   `bson:"_id" json:"id"`
 	Category       	[]string   `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient" validate:"required"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
 	Available 		bool	 `bson:"available" json:"available" validate:"required"`
 	Code int `json:"code"`

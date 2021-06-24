@@ -1,12 +1,10 @@
 package domain
 
 type CreateMoneyStruct struct {
-	ID 			string		`bson:"-id" json:"_id"`
-	Value   	int64   	`bson:"value" json:"value"`
-	Amount 		int64  		`bson:"amount" json:"amount"`
-	Currency	string   	`bson:"currency" json:"currency"`
-	Code 		int 		`json:"code"`
-	Err 		error 		`json:"err"`
+	ID 			string		`bson:"-id"`
+	Value   	int64   	`bson:"value"`
+	Amount 		int64  		`bson:"amount"`
+	Currency	string   	`bson:"currency"`
 }
 
 type DeleteMoneyStruct struct {

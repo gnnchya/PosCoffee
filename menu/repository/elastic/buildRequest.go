@@ -82,7 +82,7 @@ func buildIngredientRequest(keyword string) bytes.Buffer {
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
 				"fields" : []interface{}{
-					"ingredient",
+					"ingredient.ingredient_name",
 				},
 			},
 		},

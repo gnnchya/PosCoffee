@@ -1,8 +1,13 @@
-package domain
+package main
 
 type Ingredient struct{
 	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
+}
+
+type CalculateCost struct{
+	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+	CostPerUnit      		int64    `bson:"cost_per_unit" json:"cost_per_unit"`
 }
 
 type Menu struct {
@@ -34,7 +39,7 @@ type CreateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
-	Price	     	int64   		`bson:"price" json:"price"`
+	TotalCost	     	int64   		`bson:"total_cost" json:"total_cost"`
 	PaymentMethod	string			`bson:"payment_method" json:"payment_method"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
@@ -43,31 +48,44 @@ type CreateOrderStruct struct {
 	Err 			error 			`json:"err"`
 }
 
-type DeleteOrderStruct struct {
-	ID 		string	`bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
+type ReportStruct struct{
+	Transaction		[]CreateOrderStruct		`bson:"transaction" json:"transaction"`
+	TotalIncome		int64					`bson:"total_income" json:"total_income"`
+	TotalCost		int64					`bson:"total_cost" json:"total_cost"`
+	TotalProfit		int64					`bson:"total_profit" json:"total_profit"`
 }
 
-type UpdateOrderStruct struct {
-	ID         		string   		`bson:"_id" json:"id"`
-	Cart			Cart		  	`bson:"cart" json:"cart"`
-	Finished		bool     		`bson:"finished" json:"finished"`
-	Price	     	int64   		`bson:"price" json:"price"`
-	TypeOfOrder 	string 			`bson:"type" json:"type"`
-	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	Time			int64      		`bson:"time" json:"time"`
-	Code 			int 			`json:"code"`
-	Err 			error 			`json:"err"`
+func CalculateProfit(period string) (int64, int64, int64){
+	var test []CreateOrderStruct
+	switch period{
+	case "date":
+		return CalculateProfitByDate(test)
+	case "month":
+		return CalculateProfitByMonth(test)
+	case "year":
+		return CalculateProfitByYear(test)
+	}
 }
 
+func CalculateProfitByDate(input []CreateOrderStruct) (int64, int64, int64){
+	for _,o := range input{
+		income := o.Cart.TotalPrice
+		cost := o.TotalCost
+	}
+}
 
-type ReadOrderStruct struct {
-	ID string `bson:"_id" json:"id"`
+func CalculateProfitByMonth(input []CreateOrderStruct) (int64, int64, int64){
 
 }
 
-type ReadOrderByPageStruct struct {
-	PerPage int
-	Page    int
+func CalculateProfitByYear(input []CreateOrderStruct) (int64, int64, int64){
+
+}
+
+func Report() ReportStruct{
+
+}
+
+func main(){
+
 }

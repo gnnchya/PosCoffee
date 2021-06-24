@@ -8,6 +8,7 @@ type CreateInput struct {
 	ID 				string  `json:"_id"`
 	CustomerID 		string  `json:"customer_id"`
 	Menu			[]domain.Menu 	`json:"menu"`
+	Price           int64	`json:"price"`
 	Code 			int 	`json:"code"`
 	Err 			error	`json:"err"`
 }

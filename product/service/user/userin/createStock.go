@@ -31,7 +31,5 @@ func (input *CreateStockInput)CreateStockInputToUserDomain() (user *domain.Creat
 		Supplier:       input.Supplier,
 		TotalCost:      input.TotalCost,
 		TotalAmount:    input.TotalAmount,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	}
 }
