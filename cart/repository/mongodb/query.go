@@ -13,9 +13,11 @@ func (repo *Repository) Create(ctx context.Context, figure interface{}) (err err
 }
 
 func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
-	_, err = repo.CheckExistID(ctx, id)
-	if err != nil {
+	state, err := repo.CheckExistID(ctx, id)
+	if err != nil{
 		return err
+	} else if state == false{
+		return fmt.Errorf("this ID does not exist")
 	}
 	_, err = repo.Coll.DeleteOne(ctx, bson.M{"_id": id})
 	return err
@@ -33,9 +35,11 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 }
 
 func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateStruct, err error) {
-	_, err = repo.CheckExistID(ctx, id)
-	if err != nil {
+	state, err := repo.CheckExistID(ctx, id)
+	if err != nil{
 		return resultStruct, err
+	} else if state == false{
+		return resultStruct, fmt.Errorf("this ID does not exist")
 	}
 	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct) //bsonBytes, _ := bson.Marshal(resultBson)
 	return resultStruct, err
