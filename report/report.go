@@ -1,1 +1,6 @@
-package report
+package main
+
+func main(){
+
+}
+
