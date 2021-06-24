@@ -3,51 +3,40 @@ package implement
 import (
 	"context"
 	"fmt"
+	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/calculation"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, change  map[int64]int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return "validate error", err
+		return "validate error", change, err
 	}
 
 	//TODO check with the stock if the ingredients are enough to make
 	var paid int64
+	var remainMoney []domain.CreateMoneyStruct
 	if input.PaymentMethod == "Cash"{
-		var temp []calculation.CreateMoneyStruct
-			temp , err := impl.repom.ReadMoneyAll(ctx)
-			if err != nil{
-				return input.ID , err
-			}
-			calculation.Calculation(paid, input.Price, temp)
+		temp , err := impl.repom.ReadMoneyAll(ctx)
+		if err != nil{
+			return input.ID, change , err
+		}
+		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
+		for _ , i := range(remainMoney){
+			err = impl.repom.UpdateByVal(ctx, i, i.Value)
+		}
 	}
-
-
 
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
-
 	err = impl.repo.Create(ctx, user, user.ID)
-	//fmt.Println("output create:", user)
-
-	//if err != nil {
-	//	return "", err
-	//}
-
-	//if err == impl.sendMsgCreate(input) {
-	//	log.Println(err)
-	//}
-
-	//time.Sleep(5 * time.Second)
-	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
-		return "", err
+		return "",change,  err
 	}
 
-	return ID, nil
+	return ID, change, nil
 }
 
 //func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {

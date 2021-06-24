@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 type Ingredient struct{
-	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName         		string   `bson:"ingredient_name" json:"ingredient_name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
 type CalculateCost struct{
-	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName         		string   `bson:"ingredient_name" json:"ingredient_name"`
 	CostPerUnit      		int64    `bson:"cost_per_unit" json:"cost_per_unit"`
 }
 

@@ -25,10 +25,10 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo)
+	user := userService.New(validator, uRepo, gService)
 	//wg.Add(1)
 	//time.Sleep(10 * time.Second)
-	return app.New(user)
+	return app.New(user, gService)
 }
 
 func panicIfErr(err error) {
