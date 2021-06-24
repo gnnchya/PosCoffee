@@ -29,19 +29,20 @@ func Calculation(paid int64, price int64, note []CreateMoneyStruct) ([]CreateMon
 		}
 	}
 	if value != 0{
-		return note,nil, fmt.Errorf("error: not enough change")
+		return nil,nil, fmt.Errorf("error: not enough change")
 	}
 	return note, change,nil
 }
 
 func main(){
-	thai := []CreateMoneyStruct{{"-",1000,20,"-"},{"-",500,20,"-"},{"-",100,20,"-"},{"-",50,20,"-"},
+	thai := []CreateMoneyStruct{{"-",1000,2,"-"},{"-",500,20,"-"},{"-",100,20,"-"},{"-",50,20,"-"},
 		{"-",20,20,"-"},{"-",10,20,"-"},{"-",5,20,"-"},{"-",2,20,"-"},{"-",1,20,"-"}}
 	remain,change, err := Calculation(9999,0,thai)
 	if err != nil{
 		log.Fatal(err)
 	}
 	fmt.Println(change)
+	fmt.Println(remain)
 	for _,x := range remain{
 		fmt.Println("asd",x)
 	}
