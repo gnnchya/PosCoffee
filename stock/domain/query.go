@@ -60,7 +60,7 @@ type FilterStruct struct {
 }
 
 type Ingredient struct{
-	IngredientName      string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName      string   `bson:"ingredient_name" json:"ingredient_name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
