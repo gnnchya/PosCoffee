@@ -6,9 +6,9 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/grpc/protobuf"
 )
 
-func (impl implementation) SendCart(ctx context.Context, request *protobuf.Request) (*protobuf.Reply, error){
+func (impl implementation) SendCart(ctx context.Context, request *protobuf.Request2) (*protobuf.Reply2, error){
 	fmt.Println("here is the request from cart app:", request)
-	output := &protobuf.Reply{
+	output := &protobuf.Reply2{
 		Id : 123,
 	}
 

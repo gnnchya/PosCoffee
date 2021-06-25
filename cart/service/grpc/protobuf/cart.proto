@@ -32,6 +32,6 @@ message ingredient{
   int64 amount = 2;
 }
 
-service SendCart{
+service ReceiveChange{
   rpc ReceiveChange (Request) returns (Reply);
 }

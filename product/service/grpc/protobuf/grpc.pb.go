@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Reply struct {
+type Reply2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -32,8 +32,8 @@ type Reply struct {
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *Reply) Reset() {
-	*x = Reply{}
+func (x *Reply2) Reset() {
+	*x = Reply2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_grpc_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -41,13 +41,13 @@ func (x *Reply) Reset() {
 	}
 }
 
-func (x *Reply) String() string {
+func (x *Reply2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Reply) ProtoMessage() {}
+func (*Reply2) ProtoMessage() {}
 
-func (x *Reply) ProtoReflect() protoreflect.Message {
+func (x *Reply2) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_grpc_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -59,28 +59,28 @@ func (x *Reply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Reply.ProtoReflect.Descriptor instead.
-func (*Reply) Descriptor() ([]byte, []int) {
+// Deprecated: Use Reply2.ProtoReflect.Descriptor instead.
+func (*Reply2) Descriptor() ([]byte, []int) {
 	return file_protobuf_grpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Reply) GetId() int64 {
+func (x *Reply2) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-type Request struct {
+type Request2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Cart *Cart `protobuf:"bytes,1,opt,name=cart,proto3" json:"cart,omitempty"`
+	Cart *Cart2 `protobuf:"bytes,1,opt,name=cart,proto3" json:"cart,omitempty"`
 }
 
-func (x *Request) Reset() {
-	*x = Request{}
+func (x *Request2) Reset() {
+	*x = Request2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_grpc_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -88,13 +88,13 @@ func (x *Request) Reset() {
 	}
 }
 
-func (x *Request) String() string {
+func (x *Request2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Request) ProtoMessage() {}
+func (*Request2) ProtoMessage() {}
 
-func (x *Request) ProtoReflect() protoreflect.Message {
+func (x *Request2) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_grpc_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -106,31 +106,31 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Request.ProtoReflect.Descriptor instead.
-func (*Request) Descriptor() ([]byte, []int) {
+// Deprecated: Use Request2.ProtoReflect.Descriptor instead.
+func (*Request2) Descriptor() ([]byte, []int) {
 	return file_protobuf_grpc_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Request) GetCart() *Cart {
+func (x *Request2) GetCart() *Cart2 {
 	if x != nil {
 		return x.Cart
 	}
 	return nil
 }
 
-type Cart struct {
+type Cart2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         string  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CustomerId string  `protobuf:"bytes,2,opt,name=customerId,proto3" json:"customerId,omitempty"`
-	Menu       []*Menu `protobuf:"bytes,3,rep,name=menu,proto3" json:"menu,omitempty"`
-	Price      int64   `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	Id         string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CustomerId string   `protobuf:"bytes,2,opt,name=customerId,proto3" json:"customerId,omitempty"`
+	Menu       []*Menu2 `protobuf:"bytes,3,rep,name=menu,proto3" json:"menu,omitempty"`
+	Price      int64    `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
 }
 
-func (x *Cart) Reset() {
-	*x = Cart{}
+func (x *Cart2) Reset() {
+	*x = Cart2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_grpc_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -138,13 +138,13 @@ func (x *Cart) Reset() {
 	}
 }
 
-func (x *Cart) String() string {
+func (x *Cart2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Cart) ProtoMessage() {}
+func (*Cart2) ProtoMessage() {}
 
-func (x *Cart) ProtoReflect() protoreflect.Message {
+func (x *Cart2) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_grpc_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -156,54 +156,54 @@ func (x *Cart) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Cart.ProtoReflect.Descriptor instead.
-func (*Cart) Descriptor() ([]byte, []int) {
+// Deprecated: Use Cart2.ProtoReflect.Descriptor instead.
+func (*Cart2) Descriptor() ([]byte, []int) {
 	return file_protobuf_grpc_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Cart) GetId() string {
+func (x *Cart2) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Cart) GetCustomerId() string {
+func (x *Cart2) GetCustomerId() string {
 	if x != nil {
 		return x.CustomerId
 	}
 	return ""
 }
 
-func (x *Cart) GetMenu() []*Menu {
+func (x *Cart2) GetMenu() []*Menu2 {
 	if x != nil {
 		return x.Menu
 	}
 	return nil
 }
 
-func (x *Cart) GetPrice() int64 {
+func (x *Cart2) GetPrice() int64 {
 	if x != nil {
 		return x.Price
 	}
 	return 0
 }
 
-type Menu struct {
+type Menu2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         string        `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Category   []string      `protobuf:"bytes,2,rep,name=category,proto3" json:"category,omitempty"`
-	Name       string        `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Ingredient []*Ingredient `protobuf:"bytes,4,rep,name=ingredient,proto3" json:"ingredient,omitempty"`
-	Price      int64         `protobuf:"varint,5,opt,name=price,proto3" json:"price,omitempty"`
-	Available  bool          `protobuf:"varint,6,opt,name=available,proto3" json:"available,omitempty"`
+	Id         string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Category   []string       `protobuf:"bytes,2,rep,name=category,proto3" json:"category,omitempty"`
+	Name       string         `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Ingredient []*Ingredient2 `protobuf:"bytes,4,rep,name=ingredient,proto3" json:"ingredient,omitempty"`
+	Price      int64          `protobuf:"varint,5,opt,name=price,proto3" json:"price,omitempty"`
+	Available  bool           `protobuf:"varint,6,opt,name=available,proto3" json:"available,omitempty"`
 }
 
-func (x *Menu) Reset() {
-	*x = Menu{}
+func (x *Menu2) Reset() {
+	*x = Menu2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_grpc_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -211,13 +211,13 @@ func (x *Menu) Reset() {
 	}
 }
 
-func (x *Menu) String() string {
+func (x *Menu2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Menu) ProtoMessage() {}
+func (*Menu2) ProtoMessage() {}
 
-func (x *Menu) ProtoReflect() protoreflect.Message {
+func (x *Menu2) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_grpc_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -229,54 +229,54 @@ func (x *Menu) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Menu.ProtoReflect.Descriptor instead.
-func (*Menu) Descriptor() ([]byte, []int) {
+// Deprecated: Use Menu2.ProtoReflect.Descriptor instead.
+func (*Menu2) Descriptor() ([]byte, []int) {
 	return file_protobuf_grpc_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Menu) GetId() string {
+func (x *Menu2) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Menu) GetCategory() []string {
+func (x *Menu2) GetCategory() []string {
 	if x != nil {
 		return x.Category
 	}
 	return nil
 }
 
-func (x *Menu) GetName() string {
+func (x *Menu2) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *Menu) GetIngredient() []*Ingredient {
+func (x *Menu2) GetIngredient() []*Ingredient2 {
 	if x != nil {
 		return x.Ingredient
 	}
 	return nil
 }
 
-func (x *Menu) GetPrice() int64 {
+func (x *Menu2) GetPrice() int64 {
 	if x != nil {
 		return x.Price
 	}
 	return 0
 }
 
-func (x *Menu) GetAvailable() bool {
+func (x *Menu2) GetAvailable() bool {
 	if x != nil {
 		return x.Available
 	}
 	return false
 }
 
-type Ingredient struct {
+type Ingredient2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -285,8 +285,8 @@ type Ingredient struct {
 	Amount         int64  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
 }
 
-func (x *Ingredient) Reset() {
-	*x = Ingredient{}
+func (x *Ingredient2) Reset() {
+	*x = Ingredient2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_grpc_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -294,13 +294,13 @@ func (x *Ingredient) Reset() {
 	}
 }
 
-func (x *Ingredient) String() string {
+func (x *Ingredient2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Ingredient) ProtoMessage() {}
+func (*Ingredient2) ProtoMessage() {}
 
-func (x *Ingredient) ProtoReflect() protoreflect.Message {
+func (x *Ingredient2) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_grpc_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -312,19 +312,19 @@ func (x *Ingredient) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Ingredient.ProtoReflect.Descriptor instead.
-func (*Ingredient) Descriptor() ([]byte, []int) {
+// Deprecated: Use Ingredient2.ProtoReflect.Descriptor instead.
+func (*Ingredient2) Descriptor() ([]byte, []int) {
 	return file_protobuf_grpc_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *Ingredient) GetIngredientName() string {
+func (x *Ingredient2) GetIngredientName() string {
 	if x != nil {
 		return x.IngredientName
 	}
 	return ""
 }
 
-func (x *Ingredient) GetAmount() int64 {
+func (x *Ingredient2) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
@@ -335,38 +335,39 @@ var File_protobuf_grpc_proto protoreflect.FileDescriptor
 
 var file_protobuf_grpc_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x63, 0x61, 0x72, 0x74, 0x22, 0x17, 0x0a, 0x05, 0x52,
-	0x65, 0x70, 0x6c, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x02, 0x69, 0x64, 0x22, 0x29, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x1e, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e,
-	0x63, 0x61, 0x72, 0x74, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x52, 0x04, 0x63, 0x61, 0x72, 0x74, 0x22,
-	0x6c, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x75, 0x73, 0x74, 0x6f,
-	0x6d, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x04, 0x6d, 0x65, 0x6e, 0x75, 0x18,
-	0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x6d, 0x65, 0x6e,
-	0x75, 0x52, 0x04, 0x6d, 0x65, 0x6e, 0x75, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x22, 0xac, 0x01,
-	0x0a, 0x04, 0x6d, 0x65, 0x6e, 0x75, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f,
-	0x72, 0x79, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f,
-	0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x0a, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64,
-	0x69, 0x65, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x61, 0x72,
-	0x74, 0x2e, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x52, 0x0a, 0x69, 0x6e,
-	0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63,
-	0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x12, 0x1c,
-	0x0a, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x6c, 0x65, 0x22, 0x4c, 0x0a, 0x0a,
-	0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x26, 0x0a, 0x0e, 0x69, 0x6e,
-	0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0e, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61,
-	0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x32, 0x32, 0x0a, 0x08, 0x53, 0x65,
-	0x6e, 0x64, 0x43, 0x61, 0x72, 0x74, 0x12, 0x26, 0x0a, 0x08, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x61,
-	0x72, 0x74, 0x12, 0x0d, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x0b, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x42, 0x07,
-	0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x63, 0x61, 0x72, 0x74, 0x22, 0x18, 0x0a, 0x06, 0x52,
+	0x65, 0x70, 0x6c, 0x79, 0x32, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2b, 0x0a, 0x08, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x32, 0x12, 0x1f, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x0b, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x32, 0x52, 0x04, 0x63, 0x61,
+	0x72, 0x74, 0x22, 0x6e, 0x0a, 0x05, 0x63, 0x61, 0x72, 0x74, 0x32, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x63,
+	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x04, 0x6d,
+	0x65, 0x6e, 0x75, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x63, 0x61, 0x72, 0x74,
+	0x2e, 0x6d, 0x65, 0x6e, 0x75, 0x32, 0x52, 0x04, 0x6d, 0x65, 0x6e, 0x75, 0x12, 0x14, 0x0a, 0x05,
+	0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72, 0x69,
+	0x63, 0x65, 0x22, 0xae, 0x01, 0x0a, 0x05, 0x6d, 0x65, 0x6e, 0x75, 0x32, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
+	0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08,
+	0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x31, 0x0a, 0x0a,
+	0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x11, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65,
+	0x6e, 0x74, 0x32, 0x52, 0x0a, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x12,
+	0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05,
+	0x70, 0x72, 0x69, 0x63, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62,
+	0x6c, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61,
+	0x62, 0x6c, 0x65, 0x22, 0x4d, 0x0a, 0x0b, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e,
+	0x74, 0x32, 0x12, 0x26, 0x0a, 0x0e, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x69, 0x6e, 0x67, 0x72,
+	0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d,
+	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75,
+	0x6e, 0x74, 0x32, 0x34, 0x0a, 0x08, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x61, 0x72, 0x74, 0x12, 0x28,
+	0x0a, 0x08, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x61, 0x72, 0x74, 0x12, 0x0e, 0x2e, 0x63, 0x61, 0x72,
+	0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x32, 0x1a, 0x0c, 0x2e, 0x63, 0x61, 0x72,
+	0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x32, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70,
+	0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -383,18 +384,18 @@ func file_protobuf_grpc_proto_rawDescGZIP() []byte {
 
 var file_protobuf_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_protobuf_grpc_proto_goTypes = []interface{}{
-	(*Reply)(nil),      // 0: cart.Reply
-	(*Request)(nil),    // 1: cart.Request
-	(*Cart)(nil),       // 2: cart.cart
-	(*Menu)(nil),       // 3: cart.menu
-	(*Ingredient)(nil), // 4: cart.ingredient
+	(*Reply2)(nil),      // 0: cart.Reply2
+	(*Request2)(nil),    // 1: cart.Request2
+	(*Cart2)(nil),       // 2: cart.cart2
+	(*Menu2)(nil),       // 3: cart.menu2
+	(*Ingredient2)(nil), // 4: cart.ingredient2
 }
 var file_protobuf_grpc_proto_depIdxs = []int32{
-	2, // 0: cart.Request.cart:type_name -> cart.cart
-	3, // 1: cart.cart.menu:type_name -> cart.menu
-	4, // 2: cart.menu.ingredient:type_name -> cart.ingredient
-	1, // 3: cart.SendCart.SendCart:input_type -> cart.Request
-	0, // 4: cart.SendCart.SendCart:output_type -> cart.Reply
+	2, // 0: cart.Request2.cart:type_name -> cart.cart2
+	3, // 1: cart.cart2.menu:type_name -> cart.menu2
+	4, // 2: cart.menu2.ingredient:type_name -> cart.ingredient2
+	1, // 3: cart.SendCart.SendCart:input_type -> cart.Request2
+	0, // 4: cart.SendCart.SendCart:output_type -> cart.Reply2
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -409,7 +410,7 @@ func file_protobuf_grpc_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_protobuf_grpc_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Reply); i {
+			switch v := v.(*Reply2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -421,7 +422,7 @@ func file_protobuf_grpc_proto_init() {
 			}
 		}
 		file_protobuf_grpc_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request); i {
+			switch v := v.(*Request2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -433,7 +434,7 @@ func file_protobuf_grpc_proto_init() {
 			}
 		}
 		file_protobuf_grpc_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Cart); i {
+			switch v := v.(*Cart2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -445,7 +446,7 @@ func file_protobuf_grpc_proto_init() {
 			}
 		}
 		file_protobuf_grpc_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Menu); i {
+			switch v := v.(*Menu2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -457,7 +458,7 @@ func file_protobuf_grpc_proto_init() {
 			}
 		}
 		file_protobuf_grpc_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Ingredient); i {
+			switch v := v.(*Ingredient2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -501,7 +502,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SendCartClient interface {
-	SendCart(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error)
+	SendCart(ctx context.Context, in *Request2, opts ...grpc.CallOption) (*Reply2, error)
 }
 
 type sendCartClient struct {
@@ -512,8 +513,8 @@ func NewSendCartClient(cc grpc.ClientConnInterface) SendCartClient {
 	return &sendCartClient{cc}
 }
 
-func (c *sendCartClient) SendCart(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error) {
-	out := new(Reply)
+func (c *sendCartClient) SendCart(ctx context.Context, in *Request2, opts ...grpc.CallOption) (*Reply2, error) {
+	out := new(Reply2)
 	err := c.cc.Invoke(ctx, "/cart.SendCart/SendCart", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -523,14 +524,14 @@ func (c *sendCartClient) SendCart(ctx context.Context, in *Request, opts ...grpc
 
 // SendCartServer is the server API for SendCart service.
 type SendCartServer interface {
-	SendCart(context.Context, *Request) (*Reply, error)
+	SendCart(context.Context, *Request2) (*Reply2, error)
 }
 
 // UnimplementedSendCartServer can be embedded to have forward compatible implementations.
 type UnimplementedSendCartServer struct {
 }
 
-func (*UnimplementedSendCartServer) SendCart(context.Context, *Request) (*Reply, error) {
+func (*UnimplementedSendCartServer) SendCart(context.Context, *Request2) (*Reply2, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendCart not implemented")
 }
 
@@ -539,7 +540,7 @@ func RegisterSendCartServer(s *grpc.Server, srv SendCartServer) {
 }
 
 func _SendCart_SendCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+	in := new(Request2)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -551,7 +552,7 @@ func _SendCart_SendCart_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/cart.SendCart/SendCart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SendCartServer).SendCart(ctx, req.(*Request))
+		return srv.(SendCartServer).SendCart(ctx, req.(*Request2))
 	}
 	return interceptor(ctx, in, info, handler)
 }

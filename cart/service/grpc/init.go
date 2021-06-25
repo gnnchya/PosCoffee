@@ -27,7 +27,7 @@ func NewServer(conf *config.Config, userService user.Service){
 	lis, err := net.Listen(NETWORK, conf.GRPCHost)
 	grpcServer := grpc.NewServer()
 	//lis, err := grpcRepo.NetListener()
-	protobuf.RegisterSendCartServer(grpcServer, &impl)
+	protobuf.RegisterReceiveChangeServer(grpcServer, &impl)
 	if err = grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

@@ -362,12 +362,12 @@ var file_protobuf_cart_proto_rawDesc = []byte{
 	0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x0e, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x4e, 0x61,
 	0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x32, 0x37, 0x0a, 0x08, 0x53, 0x65,
-	0x6e, 0x64, 0x43, 0x61, 0x72, 0x74, 0x12, 0x2b, 0x0a, 0x0d, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76,
-	0x65, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x0d, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0b, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65,
-	0x70, 0x6c, 0x79, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x32, 0x3c, 0x0a, 0x0d, 0x52, 0x65,
+	0x63, 0x65, 0x69, 0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x2b, 0x0a, 0x0d, 0x52,
+	0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x0d, 0x2e, 0x63,
+	0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0b, 0x2e, 0x63, 0x61,
+	0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70,
+	0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -394,8 +394,8 @@ var file_protobuf_cart_proto_depIdxs = []int32{
 	2, // 0: cart.Reply.cart:type_name -> cart.cart
 	3, // 1: cart.cart.menu:type_name -> cart.menu
 	4, // 2: cart.menu.ingredient:type_name -> cart.ingredient
-	0, // 3: cart.SendCart.ReceiveChange:input_type -> cart.Request
-	1, // 4: cart.SendCart.ReceiveChange:output_type -> cart.Reply
+	0, // 3: cart.ReceiveChange.ReceiveChange:input_type -> cart.Request
+	1, // 4: cart.ReceiveChange.ReceiveChange:output_type -> cart.Reply
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -498,72 +498,72 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// SendCartClient is the client API for SendCart service.
+// ReceiveChangeClient is the client API for ReceiveChange service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type SendCartClient interface {
+type ReceiveChangeClient interface {
 	ReceiveChange(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error)
 }
 
-type sendCartClient struct {
+type receiveChangeClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSendCartClient(cc grpc.ClientConnInterface) SendCartClient {
-	return &sendCartClient{cc}
+func NewReceiveChangeClient(cc grpc.ClientConnInterface) ReceiveChangeClient {
+	return &receiveChangeClient{cc}
 }
 
-func (c *sendCartClient) ReceiveChange(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error) {
+func (c *receiveChangeClient) ReceiveChange(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error) {
 	out := new(Reply)
-	err := c.cc.Invoke(ctx, "/cart.SendCart/ReceiveChange", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cart.ReceiveChange/ReceiveChange", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SendCartServer is the server API for SendCart service.
-type SendCartServer interface {
+// ReceiveChangeServer is the server API for ReceiveChange service.
+type ReceiveChangeServer interface {
 	ReceiveChange(context.Context, *Request) (*Reply, error)
 }
 
-// UnimplementedSendCartServer can be embedded to have forward compatible implementations.
-type UnimplementedSendCartServer struct {
+// UnimplementedReceiveChangeServer can be embedded to have forward compatible implementations.
+type UnimplementedReceiveChangeServer struct {
 }
 
-func (*UnimplementedSendCartServer) ReceiveChange(context.Context, *Request) (*Reply, error) {
+func (*UnimplementedReceiveChangeServer) ReceiveChange(context.Context, *Request) (*Reply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReceiveChange not implemented")
 }
 
-func RegisterSendCartServer(s *grpc.Server, srv SendCartServer) {
-	s.RegisterService(&_SendCart_serviceDesc, srv)
+func RegisterReceiveChangeServer(s *grpc.Server, srv ReceiveChangeServer) {
+	s.RegisterService(&_ReceiveChange_serviceDesc, srv)
 }
 
-func _SendCart_ReceiveChange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ReceiveChange_ReceiveChange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SendCartServer).ReceiveChange(ctx, in)
+		return srv.(ReceiveChangeServer).ReceiveChange(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cart.SendCart/ReceiveChange",
+		FullMethod: "/cart.ReceiveChange/ReceiveChange",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SendCartServer).ReceiveChange(ctx, req.(*Request))
+		return srv.(ReceiveChangeServer).ReceiveChange(ctx, req.(*Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _SendCart_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "cart.SendCart",
-	HandlerType: (*SendCartServer)(nil),
+var _ReceiveChange_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "cart.ReceiveChange",
+	HandlerType: (*ReceiveChangeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ReceiveChange",
-			Handler:    _SendCart_ReceiveChange_Handler,
+			Handler:    _ReceiveChange_ReceiveChange_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
