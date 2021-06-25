@@ -8,11 +8,11 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput, cost []domain.CalculateCost) (ID string, change map[int64]int64, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput, cost []domain.CalculateCost) (change map[int64]int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return "validate error", change, err
+		return  change, err
 	}
 
 	//TODO check with the stock if the ingredients are enough to make
@@ -21,7 +21,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	if input.PaymentMethod == "Cash"{
 		temp , err := impl.repom.ReadMoneyAll(ctx)
 		if err != nil{
-			return input.ID, nil , err
+			return nil , err
 		}
 		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
 		for _,i := range remainMoney{
@@ -35,10 +35,10 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	fmt.Println("user input create:", user)
 	err = impl.repo.Create(ctx, user, user.ID)
 	if err != nil {
-		return "",change,  err
+		return change,  err
 	}
 
-	return ID, change, nil
+	return change, nil
 }
 
 //func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {
