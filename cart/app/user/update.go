@@ -11,7 +11,7 @@ import (
 func (ctrl *Controller) Update(c *gin.Context) {
 	// id := c.Param("id")
 
-	input := &userin.UpdateInput{}
+	input := &userin.Input{}
 	// input.ID = id
 
 	if err := c.ShouldBindJSON(input); err != nil {

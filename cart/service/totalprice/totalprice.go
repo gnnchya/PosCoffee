@@ -1,9 +1,5 @@
 package totalprice
 
-import (
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
-)
-
 //type Menu struct{
 //	ID         		string   `bson:"_id"`
 //	Category       	[]string   `bson:"category"`
@@ -22,12 +18,12 @@ import (
 //	TotalPrice		int64	`bson:"total_price"`
 //}
 
-func CalculateTotalPrice(cart *userin.Input) int64{
-	for _,i := range cart.Menu{
-		cart.TotalPrice = cart.TotalPrice+(i.Amount*i.Price)
-	}
-	return cart.TotalPrice
-}
+//func CalculateTotalPrice(cart *userin.Input) (T int64){
+//	for _,i := range cart.Menu{
+//		T = T+(i.Amount*i.Price)
+//	}
+//	return T
+//}
 //
 //func main(){
 //	var test CreateStruct

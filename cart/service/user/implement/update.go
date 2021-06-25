@@ -17,7 +17,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.Input) (ID
 		return "validate error", err
 	}
 	//user := userin.UpdateInputToUserDomain(input)
-	user := userin.Input.UpdateInputToUserDomain(input)
+	user := input.UpdateInputToUserDomain()
 	fmt.Println("user update input", user)
 	//TODO request menu by grpc
 	err = impl.repo.Update(ctx, user, user.ID)

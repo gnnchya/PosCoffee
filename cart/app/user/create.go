@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/cart/app/view"
-	"github.com/gnnchya/PosCoffee/cart/domain"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 	goxid "github.com/touchtechnologies-product/xid"
 )
 
 func (ctrl *Controller) Create(c *gin.Context) {
-	cart := &domain.CreateStruct{}
+	cart := &userin.Input{}
 	if err := c.ShouldBindJSON(cart); err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return

@@ -2,7 +2,6 @@ package validator
 
 import (
 	"fmt"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 	"github.com/go-playground/validator/v10"
 	"regexp"
 )
@@ -23,12 +22,12 @@ func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name str
 }
 
 
-func (v *GoPlayGroundValidator) checkAmountStruct(structLV validator.StructLevel, menu userin.CreateMenu){
-	if menu.Amount < 0{
-		structLV.ReportError(menu.Amount, "err validation for menu", "err validation for menu", "zero", "")
-	}
-
-}
+//func (v *GoPlayGroundValidator) checkAmountStruct(structLV validator.StructLevel, menu userin.Input){
+//	if menu.Menu < 0{
+//		structLV.ReportError(menu.Amount, "err validation for menu", "err validation for menu", "zero", "")
+//	}
+//
+//}
 
 //func (v *GoPlayGroundValidator) checkUpdateStruct(structLV validator.StructLevel, cart []domain.Cart){
 //	if len(cart) == 0{
