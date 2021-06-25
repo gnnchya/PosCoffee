@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/user/finish.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/grpc/protobuf/cart.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/grpc/protobuf/cart.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/grpcClient/implement/sendCart.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/grpcClient/protobuf/grpc.pb.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/service/grpcClient/protobuf/grpc.proto" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/service/user/implement/finish.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../product/repository/grpc/server.go" afterDir="false" />
