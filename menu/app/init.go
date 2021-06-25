@@ -4,20 +4,17 @@ import (
 	"github.com/gin-gonic/gin"
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/menu/app/user"
-	grpcService "github.com/gnnchya/PosCoffee/menu/service/grpcClient"
 	userService "github.com/gnnchya/PosCoffee/menu/service/user"
 )
 
 type App struct {
 	user *user.Controller
-	grpcService grpcService.Service
 	// company *company.Controller
 }
 
-func New(userService userService.Service, grpcService grpcService.Service) *App {
+func New(userService userService.Service) *App {
 	return &App{
-		user: user.New(userService, grpcService),
-		grpcService: grpcService,
+		user: user.New(userService),
 		// company: company.New(companyService),
 	}
 }
@@ -30,6 +27,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.PUT("/menu", app.user.Update)
 		apiRoutes.DELETE("/menu/:id", app.user.Delete)
 		apiRoutes.GET("/menu", app.user.ReadAll)
+		//apiRoutes.POST("/menu/:id/cart", app.user.ToCart)
 	}
 
 	return app

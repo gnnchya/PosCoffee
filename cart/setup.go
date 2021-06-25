@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/config"
-	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpc/implement"
+	"github.com/gnnchya/PosCoffee/cart/service/grpc"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/cart/app"
-	validatorService "github.com/gnnchya/PosCoffee/cart/service/validator"
-
 	repoGrpc "github.com/gnnchya/PosCoffee/cart/repository/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/cart/repository/user"
+	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient/implement"
 	userService "github.com/gnnchya/PosCoffee/cart/service/user/implement"
+	validatorService "github.com/gnnchya/PosCoffee/cart/service/validator"
 )
 
 const (
@@ -21,13 +21,13 @@ func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
-	//gService := grpcService.New(grpcRepo)
+	gService := grpcService.New(grpcRepo)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo)
-	go grpcService.New(grpcRepo, user)
-	return app.New(user)
+	user := userService.New(validator, uRepo, gService)
+	go grpc.NewServer(appConfig, user)
+	return app.New(user, gService)
 }
 
 func panicIfErr(err error) {

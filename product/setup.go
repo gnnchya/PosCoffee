@@ -10,9 +10,10 @@ import (
 
 	"github.com/gnnchya/PosCoffee/product/app"
 	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
-
+	"github.com/gnnchya/PosCoffee/product/repository/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
+	grpcService"github.com/gnnchya/PosCoffee/product/service/grpc/implement"
 )
 
 func newApp(appConfig *config.Config) *app.App {
@@ -24,8 +25,13 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
+	grpcRepo := grpc.New(configGrpc(appConfig))
+
+
 	user := userService.New(validator, uRepo, uRepoMoney, kRepo)
 	msgService := msgBrokerService.New(kRepo, user)
+	go grpcService.New(grpcRepo, user)
+
 	//wg.Add(1)
 	msgService.Receiver(topics)
 	//time.Sleep(10 * time.Second)
@@ -53,3 +59,9 @@ var topics = []msgbrokerin.TopicMsgBroker{
 	msgbrokerin.TopicResponseDelete,
 }
 
+func configGrpc(appConfig *config.Config) *grpc.Config {
+	return &grpc.Config{
+		Network: "tcp",
+		Port:    appConfig.GRPCSenderHost,
+	}
+}

@@ -2,6 +2,8 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
+	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient"
+
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/cart/app/user"
 	userService "github.com/gnnchya/PosCoffee/cart/service/user"
@@ -9,13 +11,13 @@ import (
 
 type App struct {
 	user *user.Controller
-	//grpcService grpcService.Service
+	grpcService grpcService.Service
 }
 
-func New(userService userService.Service) *App {
+func New(userService userService.Service, grpcService grpcService.Service) *App {
 	return &App{
 		user: user.New(userService),
-		//grpcService: grpcService,
+		grpcService: grpcService,
 		// company: company.New(companyService),
 	}
 }
@@ -29,7 +31,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.PUT("/cart", app.user.Update)
 		apiRoutes.DELETE("/cart/:id", app.user.Delete)
 		//apiRoutes.GET("/cart/search", app.user.Search)
-		//apiRoutes.POST("/cart/:id/finish", app.user.Finish)
+		apiRoutes.POST("/cart/:id/finish", app.user.Finish)
 	}
 
 	return app

@@ -5,6 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
+	"net"
 )
 
 //go:generate mockery --name=Repository
@@ -34,4 +35,9 @@ type RepositoryMsgBroker interface{
 	Consumer()
 	Producer(topic msgbrokerin.TopicMsgBroker, msg []byte) (err error)
 	RegisterHandler(topics msgbrokerin.TopicMsgBroker, handler common.Handler)
+}
+
+
+type RepositoryGRPC interface {
+	NetListener() (lis net.Listener, err error)
 }
