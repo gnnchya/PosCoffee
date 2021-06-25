@@ -68,3 +68,8 @@ type ReadOrderByPageStruct struct {
 	PerPage int
 	Page    int
 }
+
+type CalculateCost struct{
+	ItemName         	string   `bson:"item_name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit"`
+}
