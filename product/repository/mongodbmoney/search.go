@@ -5,16 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
-	"github.com/gnnchya/PosCoffee/product/service/calculation"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"strconv"
 )
 
-func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) (result []calculation.CreateMoneyStruct, eir error) {
+func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) (result []domain.CreateMoneyStruct, eir error) {
 	for cursor.Next(ctx) {
-		var resultStruct calculation.CreateMoneyStruct
+		var resultStruct domain.CreateMoneyStruct
 		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
@@ -27,7 +26,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) (result []ca
 	return result,err
 }
 
-func toString(resultArray []calculation.CreateMoneyStruct, err error) (string, error){
+func toString(resultArray []domain.CreateMoneyStruct, err error) (string, error){
 	var result string
 	for _, temp := range resultArray{
 		out, err := json.Marshal(temp)

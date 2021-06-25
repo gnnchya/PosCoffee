@@ -2,7 +2,6 @@ package userin
 
 import (
 	"github.com/gnnchya/PosCoffee/product/domain"
-	"github.com/gnnchya/PosCoffee/product/service/totalcost"
 )
 
 type CreateInput struct {
@@ -16,6 +15,19 @@ type CreateInput struct {
 	Time			int64      		`bson:"date_time" json:"date_time"`
 }
 
+func CalculateTotalCost(order *CreateInput, cost []domain.CalculateCost)(TotalCost int64){
+	for _,i := range order.Cart.Menu {
+		for _, y := range i.Ingredient {
+			for _, x := range cost {
+				if x.ItemName == y.IngredientName{
+					TotalCost = TotalCost + (x.CostPerUnit*y.Amount*i.Amount)
+				}
+			}
+		}
+	}
+	return TotalCost
+}
+
 func (input *CreateInput)CreateInputToUserDomain(cost []domain.CalculateCost) (user *domain.CreateOrderStruct) {
 	return &domain.CreateOrderStruct{
 		ID:             input.ID,
@@ -25,6 +37,6 @@ func (input *CreateInput)CreateInputToUserDomain(cost []domain.CalculateCost) (u
 		TypeOfOrder: 	input.TypeOfOrder,
 		Destination: 	input.Destination,
 		Time:			input.Time,
-		TotalCost:		totalcost.CalculateTotalCost(input, cost),
+		TotalCost:		CalculateTotalCost(input, cost),
 	}
 }
