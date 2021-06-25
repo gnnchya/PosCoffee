@@ -14,8 +14,6 @@ type Menu struct {
 	Available 		bool	 `bson:"available" json:"available"`
 	Amount 			int64    `bson:"amount" json:"amount"`
 	Option 			string   `bson:"option" json:"option"`
-	Code 			int 	 `json:"code"`
-	Err 			error 	 `json:"err"`
 }
 
 type Cart struct{
