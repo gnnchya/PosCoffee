@@ -30,7 +30,7 @@ func toMenuArr(menu []domain.Menu)(a []*protobuf.Menu2){
 		var ingre []*protobuf.Ingredient2
 		for _, key2 := range key.Ingredient{
 			toProtoIngre := &protobuf.Ingredient2{
-				IngredientName: key2.IngredientName,
+				IngredientName: key2.ItemName,
 				Amount:         key2.Amount,
 			}
 			ingre = append(ingre, toProtoIngre)
