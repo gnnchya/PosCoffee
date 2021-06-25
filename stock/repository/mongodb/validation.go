@@ -16,8 +16,8 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 	return true, err
 }
 
-func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.Ingredient) (bool, []domain.CalculateCost, error) {
-	var result []domain.CalculateCost
+func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.Ingredient) (state bool, result domain.CalculateCost, err error) {
+	var totalCost, count int64 = 0, 0
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$and": bson.A{
@@ -26,28 +26,37 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.In
 				bson.M{"status": "in-use"},
 			}})
 	if err != nil{
-		return false, nil, err
+		return false, result, err
 	}
 	for cursor.Next(ctx) {
 		var resultStruct domain.CalculateCost
 		if err = cursor.Decode(&resultStruct); err != nil {
-			return false, nil, err
+			return false, result, err
 		}
-		result = append(result, resultStruct)
+		totalCost += resultStruct.CostPerUnit
+		count += 1
 	}
-	if len(result) == 0 {
+	if count == 0 {
 		err = errors.New("error : there is no ingredient left to make this menu")
-		return false, nil,  err
+		return false, result,  err
 	}
+
+	result = domain.CalculateCost{
+		ItemName: ingredient.IngredientName,
+		CostPerUnit: totalCost/count,
+	}
+
 	return true, result, err
 }
 
 func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients []domain.Ingredient) (state bool, expenses []domain.CalculateCost, err error) {
+	var cost domain.CalculateCost
 	for _, entity := range ingredients {
-		state ,expenses, err = repo.checkStockLeft(ctx, entity)
+		state ,cost, err = repo.checkStockLeft(ctx, entity)
 		if state == false{
 			return false, nil,  err
 		}
+		expenses = append(expenses, cost)
 	}
 	return true, expenses, err
 }
