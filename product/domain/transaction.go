@@ -1,7 +1,7 @@
 package domain
 
 type Ingredient struct{
-	IngredientName         		string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
@@ -14,8 +14,6 @@ type Menu struct {
 	Available 		bool	 `bson:"available" json:"available"`
 	Amount 			int64    `bson:"amount" json:"amount"`
 	Option 			string   `bson:"option" json:"option"`
-	Code 			int 	 `json:"code"`
-	Err 			error 	 `json:"err"`
 }
 
 type Cart struct{
@@ -39,8 +37,7 @@ type CreateOrderStruct struct {
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
 	Time			int64      		`bson:"time" json:"time"`
-	Code 			int 			`json:"code"`
-	Err 			error 			`json:"err"`
+	TotalCost 		int64			`bson:"total" json:"total"`
 }
 
 type DeleteOrderStruct struct {
@@ -70,4 +67,9 @@ type ReadOrderStruct struct {
 type ReadOrderByPageStruct struct {
 	PerPage int
 	Page    int
+}
+
+type CalculateCost struct{
+	ItemName         	string   `bson:"item_name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit"`
 }

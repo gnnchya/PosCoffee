@@ -16,14 +16,14 @@ type ViewInput struct {
 	// Alive      bool     `json:"alive"`
 } // @Name StaffCreateInput
 
-func MakeTestViewInput() (input *UpdateInput) {
-	return &UpdateInput{
-		ID: "test",
-		// ID:        "test",
-		//Name: "test",
-		// Tel:       "test",
-	}
-}
+//func MakeTestViewInput() (input *Input) {
+//	return &domain.UpdateStruct{
+//		ID: "test",
+//		// ID:        "test",
+//		//Name: "test",
+//		// Tel:       "test",
+//	}
+//}
 
 func ViewInputToUserDomain(input *ViewInput) (user *domain.ReadStruct) {
 	return &domain.ReadStruct{

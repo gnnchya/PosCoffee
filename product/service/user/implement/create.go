@@ -8,7 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, change  map[int64]int64, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput, cost []domain.CalculateCost) (ID string, change map[int64]int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -21,15 +21,17 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	if input.PaymentMethod == "Cash"{
 		temp , err := impl.repom.ReadMoneyAll(ctx)
 		if err != nil{
-			return input.ID, change , err
+			return input.ID, nil , err
 		}
 		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
-		for _ , i := range(remainMoney){
+		for _,i := range remainMoney{
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}
 	}
 
-	user := input.CreateInputToUserDomain()
+
+	user := input.CreateInputToUserDomain(cost)
+	//TODO input from kafka from check stock
 	fmt.Println("user input create:", user)
 	err = impl.repo.Create(ctx, user, user.ID)
 	if err != nil {

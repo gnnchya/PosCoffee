@@ -8,7 +8,7 @@ import (
 
 
 type Service interface {
-	Create(ctx context.Context, input *userin.CreateInput) (ID string, err error)
+	Create(ctx context.Context, input *userin.CreateInput) (ID string, change map[int64]int64, err error)
 	CreateStock(ctx context.Context, input *userin.CreateStockInput) (ID string, err error)
 	Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error)
 	DeleteStock(ctx context.Context, input *userin.DeleteStockInput) (ID string, err error)

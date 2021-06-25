@@ -2,8 +2,8 @@ package userin
 
 import (
 	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/totalcost"
 )
-
 
 type CreateInput struct {
 	ID         		string   		`bson:"_id" json:"id"`
@@ -14,11 +14,9 @@ type CreateInput struct {
 	PaymentMethod	string			`bson:"payment_method" json:"payment_method"`
 	Destination		domain.GeoJson  `bson:"destination" json:"destination"`
 	Time			int64      		`bson:"date_time" json:"date_time"`
-	Code 			int 			`json:"code"`
-	Err 			error 			`json:"err"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStruct) {
+func (input *CreateInput)CreateInputToUserDomain(cost []domain.CalculateCost) (user *domain.CreateOrderStruct) {
 	return &domain.CreateOrderStruct{
 		ID:             input.ID,
 		Cart: 			input.Cart,
@@ -27,7 +25,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStru
 		TypeOfOrder: 	input.TypeOfOrder,
 		Destination: 	input.Destination,
 		Time:			input.Time,
-		Code: 			input.Code,
-		Err: 			input.Err,
+		TotalCost:		totalcost.CalculateTotalCost(input, cost),
 	}
 }

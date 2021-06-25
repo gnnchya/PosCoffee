@@ -1,26 +1,26 @@
 package domain
 
 type Ingredient struct{
-	IngredientName      string   `bson:"ingredient_name"`
-	Amount      		int64    `bson:"amount"`
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
 type Menu struct{
-	ID         		string   `bson:"_id"`
-	Category       	[]string   `bson:"category"`
-	Name 			string   `bson:"name"`
-	Ingredient 		[]Ingredient `bson:"ingredient"`
-	Price      		int64    `bson:"price"`
-	Available 		bool	 `bson:"available"`
-	Amount 			int64    `bson:"amount"`
-	Option 			string   `bson:"option"`
+	ID         		string   `bson:"_id" json:"_id"`
+	Category       	[]string   `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
+	Amount 			int64    `bson:"amount" json:"amount"`
+	Option 			string   `bson:"option" json:"option"`
 }
 
 type CreateStruct struct {
-	ID 				string  `bson:"_id"`
-	CustomerID 		string  `bson:"customer_id"`
-	Menu			[]Menu	`bson:"menu"`
-	TotalPrice		int64	`bson:"total_price"`
+	ID 				string  `bson:"_id" json:"_id"`
+	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
+	Menu			[]Menu	`bson:"menu" json:"menu"`
+	TotalPrice		int64	`bson:"total_price" json:"total_price"`
 }
 
 type DeleteStruct struct {
@@ -33,8 +33,7 @@ type UpdateStruct struct {
 	ID 				string  `bson:"_id" json:"_id"`
 	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
 	Menu			[]Menu 	`bson:"menu" json:"menu"`
-	Code 			int 	`json:"code"`
-	Err 			error	`json:"err"`
+	TotalPrice		int64	`bson:"total_price" json:"total_price"`
 }
 
 type ReadStruct struct {
