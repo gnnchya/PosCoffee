@@ -23,6 +23,7 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.In
 			"$and": bson.A{
 				bson.M{"item_name": ingredient.IngredientName},
 				bson.M{"amount": bson.M{"$gt": 0}},
+				bson.M{"status": "in-use"},
 			}})
 	if err != nil{
 		return false, nil, err

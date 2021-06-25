@@ -8,7 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, change  map[int64]int64, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, change map[int64]int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -21,7 +21,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	if input.PaymentMethod == "Cash"{
 		temp , err := impl.repom.ReadMoneyAll(ctx)
 		if err != nil{
-			return input.ID, change , err
+			return input.ID, nil , err
 		}
 		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
 		for _,i := range remainMoney{
