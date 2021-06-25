@@ -14,7 +14,7 @@ type CreateInput struct {
 	Destination		domain.GeoJson  `bson:"destination" json:"destination"`
 	Time			int64      		`bson:"date_time" json:"date_time"`
 }
-
+//TODO receive input from total cost
 func CalculateTotalCost(order *CreateInput, cost []domain.CalculateCost)(TotalCost int64){
 	for _,i := range order.Cart.Menu {
 		for _, y := range i.Ingredient {
