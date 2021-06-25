@@ -28,7 +28,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}
 	}
-
+	var cost []domain.CalculateCost
 	user := input.CreateInputToUserDomain(cost)
 	//TODO input from kafka from check stock
 	fmt.Println("user input create:", user)
