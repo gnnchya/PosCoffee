@@ -5,7 +5,6 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/totalcost"
 )
 
-
 type CreateInput struct {
 	ID         		string   		`bson:"_id" json:"id"`
 	Cart			domain.Cart   	`bson:"cart" json:"cart"`
