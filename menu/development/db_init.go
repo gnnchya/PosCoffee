@@ -10,47 +10,52 @@ import (
 	"strings"
 )
 
+type Ingredient struct{
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	Amount      	 int64    `bson:"amount" json:"amount"`
+}
+
 type Menu struct {
 	Category       	[]string   `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient" validate:"required"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
 	Available 		bool	 `bson:"available" json:"available" validate:"required"`
 }
 
 var MenuList =  []Menu{
-	{[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []string{"Coffee beans", "Water", "Ice", "Plastic cup"}, 5500, true},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []string{"Coffee beans", "Water", "Large hot cup"}, 4500, true},
-	{[]string{"Coffee", "Iced"},  "Iced Espresso", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 5500, true},
-	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true},
-	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true},
-	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []string{"Coffee beans", "Water", "Milk", "Small hot cup"}, 4500, true},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []string{"Coffee beans", "Water", "Milk", "Large hot cup"}, 5500, true},
-	{[]string{"Coffee", "Iced"},  "Iced Latte", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true},
-	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 7000, true},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []string{"Earl Grey tea", "Water", "Small hot cup"}, 4000, true},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []string{"English Breakfast tea", "Water", "Small hot cup"}, 4000, true},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []string{"Camomile tea", "Water", "Small hot cup"}, 4000, true},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []string{"Jasmin Green tea", "Water", "Small hot cup"}, 4000, true},
-	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []string{"Green tea", "Water", "Milk", "Small hot cup"}, 4500, true},
-	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []string{"Green tea", "Water", "Milk", "Large hot cup"}, 4500, true},
-	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true},
-	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true},
-	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []string{"Milk", "Small hot cup"}, 3500, true},
-	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []string{"Milk", "Large hot cup"}, 4500, true},
-	{[]string{"Milk", "Iced"},  "Iced Fresh Milk", []string{"Milk", "Iced", "Plastic cup"}, 4500, true},
-	{[]string{"Milk", "Frappe"},  "Fresh Milk Frappe", []string{"Milk", "Iced", "Plastic cup"}, 5000, true},
-	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Small)", []string{"Chocolate", "Milk", "Small hot cup"}, 4000, true},
-	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Large)", []string{"Chocolate", "Milk", "Large hot cup"}, 5000, true},
-	{[]string{"Chocolate", "Iced"},  "Iced Chocolate", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5000, true},
-	{[]string{"Chocolate", "Frappe"},  "Chocolate Frappe", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5500, true},
-	{[]string{"Juice", "Iced"},  "Lychee Juice", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4000, true},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Lychee Frappe", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4500, true},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []string{"Strawberry Juice", "Iced", "Plastic cup"}, 5500, true},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []string{"Kiwi Juice", "Iced", "Plastic cup"}, 4500, true},
+	{[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 002}, {"Ice", 00025}, {"Plastic cup", 100}}, 5500, true},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 002}, {"Small hot cup", 100}}, 3500, true},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []Ingredient{Ingredient{"Coffee beans", 007}, {"Water", 004}, {"Large hot cup", 100}}, 4500, true},
+	{[]string{"Coffee", "Iced"},  "Iced Espresso", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 001}, {"Milk", 0005},{"Ice", 00025}, {"Plastic cup", 100}}, 5500, true},
+	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 001}, {"Milk", 0005},{"Ice", 00025}, {"Plastic cup", 100}}, 6000, true},
+	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 002}, {"Small hot cup", 100}}, 3500, true},
+	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 001}, {"Milk", 0005},{"Ice", 00025}, {"Plastic cup", 100}}, 6000, true},
+	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 001}, {"Milk", 0005},{"Ice", 00025}, {"Plastic cup", 100}}, 6500, true},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 001}, {"Milk", 0005}, {"Small hot cup", 100}}, 4500, true},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []Ingredient{Ingredient{"Coffee beans", 007}, {"Water", 002}, {"Milk", 001}, {"Large hot cup", 100}}, 5500, true},
+	{[]string{"Coffee", "Iced"},  "Iced Latte", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 0005}, {"Milk", 001},{"Ice", 00025}, {"Plastic cup", 100}}, 6500, true},
+	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []Ingredient{Ingredient{"Coffee beans", 004}, {"Water", 0005}, {"Milk", 001},{"Ice", 00025}, {"Plastic cup", 100}}, 7000, true},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []Ingredient{Ingredient{"Earl Grey tea", 100}, {"Water", 002}, {"Small hot cup", 100}}, 4000, true},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []Ingredient{Ingredient{"English Breakfast tea", 100}, {"Water", 002}, {"Small hot cup", 100}}, 4000, true},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []Ingredient{Ingredient{"Camomile tea", 100}, {"Water", 002}, {"Small hot cup", 100}}, 4000, true},
+	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []Ingredient{Ingredient{"Jasmine Green tea", 100}, {"Water", 002}, {"Small hot cup", 100}}, 4000, true},
+	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []Ingredient{Ingredient{"Green tea", 100}, {"Water", 002}, {"Milk", 001}, {"Small hot cup", 100}}, 4500, true},
+	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []Ingredient{Ingredient{"Green tea", 200}, {"Water", 004}, {"Milk", 002}, {"Large hot cup", 100}}, 4500, true},
+	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []Ingredient{Ingredient{"Green tea", 100}, {"Water", 002}, {"Milk", 001}, {"Ice", 00025},{"Plastic cup", 100}}, 5000, true},
+	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []Ingredient{Ingredient{"Green tea", 100}, {"Water", 002}, {"Milk", 001}, {"Ice", 00025},{"Plastic cup", 100}}, 5000, true},
+	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []Ingredient{Ingredient{"Milk", 002}, {"Small hot cup", 100}}, 3500, true},
+	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []Ingredient{Ingredient{"Milk", 004}, {"Large hot cup", 100}}, 4500, true},
+	{[]string{"Milk", "Iced"},  "Iced Fresh Milk", []Ingredient{Ingredient{"Milk", 002}, {"Ice", 00025},{"Plastic cup", 100}}, 4500, true},
+	{[]string{"Milk", "Frappe"},  "Fresh Milk Frappe", []Ingredient{Ingredient{"Milk", 002}, {"Ice", 00025},{"Plastic cup", 100}}, 5000, true},
+	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Small)", []Ingredient{Ingredient{"Chocolate", 001},Ingredient{"Milk", 002}, {"Small hot cup", 100}}, 4000, true},
+	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Large)", []Ingredient{Ingredient{"Chocolate", 002},Ingredient{"Milk", 004}, {"Large hot cup", 100}}, 5000, true},
+	{[]string{"Chocolate", "Iced"},  "Iced Chocolate", []Ingredient{Ingredient{"Chocolate", 001},Ingredient{"Milk", 002}, {"Ice", 00025},{"Plastic cup", 100}}, 5000, true},
+	{[]string{"Chocolate", "Frappe"},  "Chocolate Frappe", []Ingredient{Ingredient{"Chocolate", 001},Ingredient{"Milk", 002}, {"Ice", 00025},{"Plastic cup", 100}}, 5500, true},
+	{[]string{"Juice", "Iced"},  "Lychee Juice", []Ingredient{{"Lychee Juice", 015}, {"Ice", 00025}, {"Plastic cup", 100}}, 4000, true},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Lychee Frappe", []Ingredient{{"Lychee Juice", 015}, {"Ice", 00025}, {"Plastic cup", 100}}, 4500, true},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []Ingredient{{"Strawberry Juice", 015}, {"Ice", 00025}, {"Plastic cup", 100}}, 5500, true},
+	{[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []Ingredient{{"Kiwi Juice", 015}, {"Ice", 00025}, {"Plastic cup", 100}}, 4500, true},
 }
 
 func initDb(uri string, username string, password string)(*elasticsearch.Client, error){
