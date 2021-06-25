@@ -10,4 +10,3 @@ func CalculateTotalCost(cart domain.Cart) (TotalCost int64){
 	}
 	return TotalCost
 }
-
