@@ -16,4 +16,5 @@ type Service interface {
 	SearchMenu(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
 	SearchCategory(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
 	SearchIngredient(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
+	//Menu(ctx context.Context, data *pb.Request) (*pb.Reply, error)
 }

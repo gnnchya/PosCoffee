@@ -1,7 +1,7 @@
 syntax="proto3";
-option go_package=  "/cart";
+option go_package=  "/menu";
 
-package cart;
+package menu;
 
 message Request{
   int64 id = 1;
@@ -13,5 +13,5 @@ message Reply{
 }
 
 service GetMenu{
-  rpc GetMenu (Request) returns (Reply);
+  rpc Menu (Request) returns (Reply);
 }

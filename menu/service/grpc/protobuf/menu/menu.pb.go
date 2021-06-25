@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.26.0
 // 	protoc        v3.17.3
-// source: cart/cart.proto
+// source: menu/menu.proto
 
-package cart
+package menu
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ type Request struct {
 func (x *Request) Reset() {
 	*x = Request{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cart_cart_proto_msgTypes[0]
+		mi := &file_menu_menu_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -48,7 +48,7 @@ func (x *Request) String() string {
 func (*Request) ProtoMessage() {}
 
 func (x *Request) ProtoReflect() protoreflect.Message {
-	mi := &file_cart_cart_proto_msgTypes[0]
+	mi := &file_menu_menu_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request.ProtoReflect.Descriptor instead.
 func (*Request) Descriptor() ([]byte, []int) {
-	return file_cart_cart_proto_rawDescGZIP(), []int{0}
+	return file_menu_menu_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Request) GetId() int64 {
@@ -83,7 +83,7 @@ type Reply struct {
 func (x *Reply) Reset() {
 	*x = Reply{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cart_cart_proto_msgTypes[1]
+		mi := &file_menu_menu_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -96,7 +96,7 @@ func (x *Reply) String() string {
 func (*Reply) ProtoMessage() {}
 
 func (x *Reply) ProtoReflect() protoreflect.Message {
-	mi := &file_cart_cart_proto_msgTypes[1]
+	mi := &file_menu_menu_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +109,7 @@ func (x *Reply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Reply.ProtoReflect.Descriptor instead.
 func (*Reply) Descriptor() ([]byte, []int) {
-	return file_cart_cart_proto_rawDescGZIP(), []int{1}
+	return file_menu_menu_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Reply) GetId() int64 {
@@ -126,41 +126,41 @@ func (x *Reply) GetArr() string {
 	return ""
 }
 
-var File_cart_cart_proto protoreflect.FileDescriptor
+var File_menu_menu_proto protoreflect.FileDescriptor
 
-var file_cart_cart_proto_rawDesc = []byte{
-	0x0a, 0x0f, 0x63, 0x61, 0x72, 0x74, 0x2f, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x12, 0x04, 0x63, 0x61, 0x72, 0x74, 0x22, 0x19, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65,
+var file_menu_menu_proto_rawDesc = []byte{
+	0x0a, 0x0f, 0x6d, 0x65, 0x6e, 0x75, 0x2f, 0x6d, 0x65, 0x6e, 0x75, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x12, 0x04, 0x6d, 0x65, 0x6e, 0x75, 0x22, 0x19, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02,
 	0x69, 0x64, 0x22, 0x29, 0x0a, 0x05, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x61,
-	0x72, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x72, 0x72, 0x32, 0x30, 0x0a,
-	0x07, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x6e, 0x75, 0x12, 0x25, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4d,
-	0x65, 0x6e, 0x75, 0x12, 0x0d, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x0b, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x42,
-	0x07, 0x5a, 0x05, 0x2f, 0x63, 0x61, 0x72, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x72, 0x72, 0x32, 0x2d, 0x0a,
+	0x07, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x6e, 0x75, 0x12, 0x22, 0x0a, 0x04, 0x4d, 0x65, 0x6e, 0x75,
+	0x12, 0x0d, 0x2e, 0x6d, 0x65, 0x6e, 0x75, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x0b, 0x2e, 0x6d, 0x65, 0x6e, 0x75, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x42, 0x07, 0x5a, 0x05,
+	0x2f, 0x6d, 0x65, 0x6e, 0x75, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_cart_cart_proto_rawDescOnce sync.Once
-	file_cart_cart_proto_rawDescData = file_cart_cart_proto_rawDesc
+	file_menu_menu_proto_rawDescOnce sync.Once
+	file_menu_menu_proto_rawDescData = file_menu_menu_proto_rawDesc
 )
 
-func file_cart_cart_proto_rawDescGZIP() []byte {
-	file_cart_cart_proto_rawDescOnce.Do(func() {
-		file_cart_cart_proto_rawDescData = protoimpl.X.CompressGZIP(file_cart_cart_proto_rawDescData)
+func file_menu_menu_proto_rawDescGZIP() []byte {
+	file_menu_menu_proto_rawDescOnce.Do(func() {
+		file_menu_menu_proto_rawDescData = protoimpl.X.CompressGZIP(file_menu_menu_proto_rawDescData)
 	})
-	return file_cart_cart_proto_rawDescData
+	return file_menu_menu_proto_rawDescData
 }
 
-var file_cart_cart_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_cart_cart_proto_goTypes = []interface{}{
-	(*Request)(nil), // 0: cart.Request
-	(*Reply)(nil),   // 1: cart.Reply
+var file_menu_menu_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_menu_menu_proto_goTypes = []interface{}{
+	(*Request)(nil), // 0: menu.Request
+	(*Reply)(nil),   // 1: menu.Reply
 }
-var file_cart_cart_proto_depIdxs = []int32{
-	0, // 0: cart.GetMenu.GetMenu:input_type -> cart.Request
-	1, // 1: cart.GetMenu.GetMenu:output_type -> cart.Reply
+var file_menu_menu_proto_depIdxs = []int32{
+	0, // 0: menu.GetMenu.Menu:input_type -> menu.Request
+	1, // 1: menu.GetMenu.Menu:output_type -> menu.Reply
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -168,13 +168,13 @@ var file_cart_cart_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_cart_cart_proto_init() }
-func file_cart_cart_proto_init() {
-	if File_cart_cart_proto != nil {
+func init() { file_menu_menu_proto_init() }
+func file_menu_menu_proto_init() {
+	if File_menu_menu_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cart_cart_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_menu_menu_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Request); i {
 			case 0:
 				return &v.state
@@ -186,7 +186,7 @@ func file_cart_cart_proto_init() {
 				return nil
 			}
 		}
-		file_cart_cart_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_menu_menu_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Reply); i {
 			case 0:
 				return &v.state
@@ -203,20 +203,20 @@ func file_cart_cart_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cart_cart_proto_rawDesc,
+			RawDescriptor: file_menu_menu_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_cart_cart_proto_goTypes,
-		DependencyIndexes: file_cart_cart_proto_depIdxs,
-		MessageInfos:      file_cart_cart_proto_msgTypes,
+		GoTypes:           file_menu_menu_proto_goTypes,
+		DependencyIndexes: file_menu_menu_proto_depIdxs,
+		MessageInfos:      file_menu_menu_proto_msgTypes,
 	}.Build()
-	File_cart_cart_proto = out.File
-	file_cart_cart_proto_rawDesc = nil
-	file_cart_cart_proto_goTypes = nil
-	file_cart_cart_proto_depIdxs = nil
+	File_menu_menu_proto = out.File
+	file_menu_menu_proto_rawDesc = nil
+	file_menu_menu_proto_goTypes = nil
+	file_menu_menu_proto_depIdxs = nil
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -231,7 +231,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GetMenuClient interface {
-	GetMenu(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error)
+	Menu(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error)
 }
 
 type getMenuClient struct {
@@ -242,9 +242,9 @@ func NewGetMenuClient(cc grpc.ClientConnInterface) GetMenuClient {
 	return &getMenuClient{cc}
 }
 
-func (c *getMenuClient) GetMenu(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error) {
+func (c *getMenuClient) Menu(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Reply, error) {
 	out := new(Reply)
-	err := c.cc.Invoke(ctx, "/cart.GetMenu/GetMenu", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/menu.GetMenu/Menu", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -253,48 +253,48 @@ func (c *getMenuClient) GetMenu(ctx context.Context, in *Request, opts ...grpc.C
 
 // GetMenuServer is the server API for GetMenu service.
 type GetMenuServer interface {
-	GetMenu(context.Context, *Request) (*Reply, error)
+	Menu(context.Context, *Request) (*Reply, error)
 }
 
 // UnimplementedGetMenuServer can be embedded to have forward compatible implementations.
 type UnimplementedGetMenuServer struct {
 }
 
-func (*UnimplementedGetMenuServer) GetMenu(context.Context, *Request) (*Reply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMenu not implemented")
+func (*UnimplementedGetMenuServer) Menu(context.Context, *Request) (*Reply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Menu not implemented")
 }
 
 func RegisterGetMenuServer(s *grpc.Server, srv GetMenuServer) {
 	s.RegisterService(&_GetMenu_serviceDesc, srv)
 }
 
-func _GetMenu_GetMenu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GetMenu_Menu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GetMenuServer).GetMenu(ctx, in)
+		return srv.(GetMenuServer).Menu(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cart.GetMenu/GetMenu",
+		FullMethod: "/menu.GetMenu/Menu",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GetMenuServer).GetMenu(ctx, req.(*Request))
+		return srv.(GetMenuServer).Menu(ctx, req.(*Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 var _GetMenu_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "cart.GetMenu",
+	ServiceName: "menu.GetMenu",
 	HandlerType: (*GetMenuServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMenu",
-			Handler:    _GetMenu_GetMenu_Handler,
+			MethodName: "Menu",
+			Handler:    _GetMenu_Menu_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cart/cart.proto",
+	Metadata: "menu/menu.proto",
 }

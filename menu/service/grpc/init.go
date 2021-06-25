@@ -1,17 +1,16 @@
-package protobuf
+package grpc
 
 import (
 	"context"
-	"github.com/gnnchya/PosCoffee/cart/config"
-	pb "github.com/gnnchya/PosCoffee/cart/service/grpc/protobuf/cart"
-	"github.com/gnnchya/PosCoffee/cart/service/user"
+	"github.com/gnnchya/PosCoffee/menu/config"
+	pb "github.com/gnnchya/PosCoffee/menu/service/grpc/protobuf/menu"
+	"github.com/gnnchya/PosCoffee/menu/service/user"
 	"google.golang.org/grpc"
 	"net"
 )
 
 type GetMenuServerImpl struct {
 	userService user.Service
-	pb.UnimplementedGetMenuServer
 }
 
 

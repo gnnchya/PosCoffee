@@ -18,7 +18,7 @@ func (impl *implementation) Create(ctx context.Context, input *domain.CreateStru
 	//user := userin.CreateInputToUserDomain(input)
 	//user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", input)
-	//TODO grpc request for menu here
+	//TODO grpc receive menu here
 	err = impl.repo.Create(ctx, input)
 
 	if err != nil {

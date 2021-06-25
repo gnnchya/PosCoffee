@@ -3,6 +3,7 @@ package implement
 import (
 	"context"
 	"fmt"
+	pb "github.com/gnnchya/PosCoffee/menu/service/grpcClient/protobuf/cart"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
@@ -16,7 +17,14 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	err = impl.elasRepo.Create(ctx, input)
+	//err = impl.elasRepo.Create(ctx, input)
+	send := &pb.Request{Id: 123123}
+	checked, err := impl.client.GetMenu(send)
+	if err != nil{
+		fmt.Println("grpc error: ", err)
+		return "", err
+	}
+	fmt.Println("checked grpc:", checked)
 	if err != nil {
 		return "", err
 	}

@@ -13,7 +13,7 @@ import (
 func (ctrl *Controller) Create(c *gin.Context) {
 	input := &userin.CreateInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
-		// view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 400, err)
 		fmt.Println("error")
 		return
 	}

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/config"
-	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient/implement"
+	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpc/implement"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/cart/app"
@@ -21,14 +21,13 @@ func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
-	gService := grpcService.New(grpcRepo)
+	//gService := grpcService.New(grpcRepo)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo, gService)
-	//wg.Add(1)
-	//time.Sleep(10 * time.Second)
-	return app.New(user, gService)
+	user := userService.New(validator, uRepo)
+	go grpcService.New(grpcRepo, user)
+	return app.New(user)
 }
 
 func panicIfErr(err error) {
