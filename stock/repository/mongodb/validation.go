@@ -51,5 +51,3 @@ func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients [
 	}
 	return true, expenses, err
 }
-
-

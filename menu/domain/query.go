@@ -12,8 +12,6 @@ type CreateStruct struct {
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
 	Available 		bool	 `bson:"available" json:"available" validate:"required"`
-	Code int `json:"code"`
-	Err error `json:"err"`
 }
 
 type DeleteStruct struct {
@@ -29,8 +27,6 @@ type UpdateStruct struct {
 	Ingredient 		[]string `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
 	Available 		bool	 `bson:"available" json:"available" validate:"required"`
-	Code int `json:"code"`
-	Err error `json:"err"`
 }
 
 type ReadStruct struct {
