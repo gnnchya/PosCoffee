@@ -2,7 +2,7 @@ package implement
 
 import (
 	"context"
-	"github.com/gnnchya/PosCoffee/cart/service/grpc/protobuf"
+	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
 	"time"
 )
 

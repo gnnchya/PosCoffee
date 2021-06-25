@@ -1,8 +1,8 @@
 package implement
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/service/grpc/protobuf"
 	"github.com/gnnchya/PosCoffee/cart/service/grpcClient"
+	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/cart/service/util"
 	"google.golang.org/grpc"
 )
