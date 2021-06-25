@@ -16,7 +16,7 @@ type CreateInput struct {
 	Time			int64      		`bson:"date_time" json:"date_time"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStruct) {
+func (input *CreateInput)CreateInputToUserDomain(cost []domain.CalculateCost) (user *domain.CreateOrderStruct) {
 	return &domain.CreateOrderStruct{
 		ID:             input.ID,
 		Cart: 			input.Cart,
@@ -25,6 +25,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateOrderStru
 		TypeOfOrder: 	input.TypeOfOrder,
 		Destination: 	input.Destination,
 		Time:			input.Time,
-		TotalCost:		totalcost.CalculateTotalCost(input.Cart),
+		TotalCost:		totalcost.CalculateTotalCost(input, cost),
 	}
 }

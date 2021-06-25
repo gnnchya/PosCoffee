@@ -5,7 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func CalculateTotalCost(order userin.CreateInput, cost []domain.CalculateCost)(TotalCost int64){
+func CalculateTotalCost(order *userin.CreateInput, cost []domain.CalculateCost)(TotalCost int64){
 	for _,i := range order.Cart.Menu {
 		for _, y := range i.Ingredient {
 			for _, x := range cost {
