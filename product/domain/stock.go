@@ -1,6 +1,6 @@
 package domain
 
-type CreateStruct struct {
+type CreateStockStruct struct {
 	ID         		string   	`bson:"_id" json:"_id"`
 	ItemName       	string   	`bson:"item_name" json:"item_name"`
 	Category 		string  	`bson:"category" json:"category"`

@@ -1,8 +1,8 @@
 package domain
 
 type Ingredient struct{
-	ItemName      string   `bson:"item_name" json:"item_name"`
-	Amount     int64    `bson:"amount" json:"amount"`
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	Amount      		int64    `bson:"amount" json:"amount"`
 }
 
 type Menu struct{

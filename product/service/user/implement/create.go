@@ -24,7 +24,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			return input.ID, change , err
 		}
 		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
-		for _ , i := range(remainMoney){
+		for _,i := range remainMoney{
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}
 	}
