@@ -8,7 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput, cost []domain.CalculateCost) (change map[int64]int64, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (change map[int64]int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -28,7 +28,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}
 	}
-
 
 	user := input.CreateInputToUserDomain(cost)
 	//TODO input from kafka from check stock
