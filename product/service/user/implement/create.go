@@ -29,7 +29,9 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		}
 	}
 
+
 	user := input.CreateInputToUserDomain()
+	//TODO input from kafka from check stock
 	fmt.Println("user input create:", user)
 	err = impl.repo.Create(ctx, user, user.ID)
 	if err != nil {
