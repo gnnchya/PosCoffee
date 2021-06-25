@@ -9,11 +9,11 @@ import (
 	"log"
 
 	"github.com/gnnchya/PosCoffee/product/app"
-	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
 	"github.com/gnnchya/PosCoffee/product/repository/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
+	grpcService "github.com/gnnchya/PosCoffee/product/service/grpc/implement"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
-	grpcService"github.com/gnnchya/PosCoffee/product/service/grpc/implement"
+	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
 )
 
 func newApp(appConfig *config.Config) *app.App {
