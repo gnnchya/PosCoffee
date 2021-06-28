@@ -16,7 +16,16 @@ message Changes{
 
 message Request2{
   cart2 cart = 1;
-  int64 paid = 5;
+  int64 paid = 2;
+  string paymentMethod = 3;
+  string type = 4;
+  GeoJson geo = 5;
+}
+
+message GeoJson{
+  string type = 1;
+  float long = 2;
+  float lat = 3;
 }
 
 message cart2{

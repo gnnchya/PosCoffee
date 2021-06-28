@@ -21,14 +21,14 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	// bool, expenses =  []domain.CalculateCost, err
 	var cost []domain.CalculateCost
 	//if else, if false or err don't calculate change
-	var paid int64 // TODO parameter as paid from customer
+
 	var remainMoney []domain.CreateMoneyStruct
 	if input.PaymentMethod == "Cash"{
 		temp, err := impl.repom.ReadMoneyAll(ctx)
 		if err != nil{
 			return nil , err
 		}
-		remainMoney, change, err = calculation.Calculation(paid, input.Price, temp)
+		remainMoney, change, err = calculation.Calculation(input.Paid, input.Price, temp)
 		for _,i := range remainMoney{
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}

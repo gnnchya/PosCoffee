@@ -2,18 +2,17 @@ package main
 
 import (
 	"context"
-	"github.com/gnnchya/PosCoffee/product/config"
-	"github.com/gnnchya/PosCoffee/product/repository/kafka"
-	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
-	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
-	"log"
-
 	"github.com/gnnchya/PosCoffee/product/app"
-	"github.com/gnnchya/PosCoffee/product/repository/grpc"
+	"github.com/gnnchya/PosCoffee/product/config"
+	repoGrpc "github.com/gnnchya/PosCoffee/product/repository/grpc"
+	"github.com/gnnchya/PosCoffee/product/repository/kafka"
 	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
 	grpcService "github.com/gnnchya/PosCoffee/product/service/grpc/implement"
+	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
+	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
+	"log"
 )
 
 func newApp(appConfig *config.Config) *app.App {
@@ -25,14 +24,15 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	grpcRepo := grpc.New(configGrpc(appConfig))
-
-
+	grpcRepo := repoGrpc.New(configGrpc(appConfig))
 	user := userService.New(validator, uRepo, uRepoMoney, kRepo)
+
+	//gService := grpcService.New(grpcRepo, user)
+
 	msgService := msgBrokerService.New(kRepo, user)
+
 	go grpcService.New(grpcRepo, user)
 
-	//wg.Add(1)
 	msgService.Receiver(topics)
 	//time.Sleep(10 * time.Second)
 	return app.New(user)
@@ -59,9 +59,13 @@ var topics = []msgbrokerin.TopicMsgBroker{
 	msgbrokerin.TopicResponseDelete,
 }
 
-func configGrpc(appConfig *config.Config) *grpc.Config {
-	return &grpc.Config{
-		Network: "tcp",
+const (
+	NETWORK = "tcp"
+)
+
+func configGrpc(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
 		Port:    appConfig.GRPCSenderHost,
 	}
 }

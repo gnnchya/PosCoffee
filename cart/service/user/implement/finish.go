@@ -18,10 +18,18 @@ func (impl *implementation) Finish(ctx context.Context, id string) (ID string, e
 			Menu:      menu,
 			Price:      input.TotalPrice,
 		},
+		Paid: 123,
+		PaymentMethod: "credit",
+		Type: "here",
+		Geo: &protobuf.GeoJson{
+			Type: "point",
+			Long: 0,
+			Lat:  0,
+		},
 	}
 	fmt.Println("inputProto", inputProtobuf)
-	response, err:= impl.client.SendCart(inputProtobuf)
-	fmt.Println("response", response)
+	_, err= impl.client.SendCart(inputProtobuf)
+	//fmt.Println("response", response.Change)
 	return input.ID, nil
 }
 
