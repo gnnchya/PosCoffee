@@ -8,7 +8,7 @@ import (
 )
 
 func (impl *implementation) SendIngredients(input *protobuf.RequestToStock) (*protobuf.ReplyFromStock, error){
-	fmt.Println("input from cart", input)
+	fmt.Println("input to stock", input)
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
 	r, err := impl.client.SendIngredients(ctx, input)
 	if err != nil {
