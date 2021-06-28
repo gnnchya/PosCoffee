@@ -15,7 +15,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return  change, err
 	}
-
+	fmt.Println("input cart", input.Cart)
 	var ingredientList []string
 	for _, menu := range input.Cart.Menu{
 		for _, ingredient := range menu.Ingredient{
@@ -25,6 +25,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		}
 	}
 	inputIngre := &protobuf.RequestToStock{Ingredient: ingredientList}
+	fmt.Println("ingredientList", ingredientList)
+	fmt.Println("ingredientList", inputIngre)
 	res, err := impl.client.SendIngredients(inputIngre)
 	fmt.Println("response from stock", res)
 	//TODO check with the stock if the ingredients are enough to make

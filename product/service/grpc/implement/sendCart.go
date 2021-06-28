@@ -18,13 +18,13 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 	geo = append(geo, float64(request.Geo.Long))
 	initID := goxid.New()
 	ID := initID.Gen()
-	fmt.Println("id", ID)
+	menu := toMenu(request.Cart.Menu)
 	input := &userin.CreateInput{
 		ID:            ID,
 		Cart:          domain.Cart{
 			ID:        request.Cart.Id,
 			CustomerID: request.Cart.CustomerId,
-			Menu:       nil,
+			Menu:       menu,
 			TotalPrice: request.Cart.Price,
 		},
 		Finished:      false,
@@ -38,6 +38,7 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Time:          time.Now().Unix(),
 		Paid:          request.Paid,
 	}
+	fmt.Println("cart", input.Cart)
 	//out, err := impl.userService.Create(ctx, input)
 	impl.userService.Create(ctx, input)
 	//var stock bool
@@ -51,4 +52,31 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Changes: nil,
 	}
 	return output, nil
+}
+
+func toMenu(input []*protobuf.Menu2)([]domain.Menu){
+	var in []domain.Ingredient
+	var menu []domain.Menu
+	for _, v := range input{
+		for _, v2 := range v.Ingredient{
+			ingre := domain.Ingredient{
+				IngredientName: v2.IngredientName,
+				Amount:         v2.Amount,
+			}
+			in = append(in, ingre)
+		}
+
+		m := domain.Menu{
+			ID:         v.Id,
+			Category:   v.Category,
+			Name:       v.Name,
+			Ingredient: in,
+			Price:      v.Price,
+			Available:  false,
+			Amount:     v.Amount,
+			Option:     v.Option,
+		}
+		menu = append(menu, m)
+	}
+	return menu
 }
