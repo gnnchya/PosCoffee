@@ -6,7 +6,7 @@ import (
 )
 
 
-func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]domain.CreateMoneyStruct, []domain.ChangeMoney, error){
+func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]domain.CreateMoneyStruct, []domain.ChangeStruct, error){
 	value := paid - price
 	var change []domain.ChangeMoney
 	for x,i := range note{
@@ -17,7 +17,8 @@ func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]do
 				value = value - (i.Amount*i.Value)
 				note[x].Amount = 0
 			} else {
-				change[x].Value = value/i.Value
+				change[x].Value = i.Value
+				change[x].Amount = value/i.Value
 				note[x].Amount = i.Amount - (value/i.Value)
 				value = value % i.Value
 			}
