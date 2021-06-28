@@ -39,24 +39,29 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Paid:          request.Paid,
 	}
 	fmt.Println("cart", input.Cart)
-	//out, err := impl.userService.Create(ctx, input)
-	impl.userService.Create(ctx, input)
-	//var stock bool
-	//if err != nil{
-	//	stock = false
-	//}
-
+	change, err := impl.userService.Create(ctx, input)
+	var stock bool
+	if err != nil{
+		stock = false
+	}
+	var changes []*protobuf.Changes
+	for k, v := range change{
+		cha := &protobuf.Changes{
+			Key:   k,
+			Value: v,
+		}
+		changes = append(changes, cha)
+	}
 	output := &protobuf.Reply2{
-		Change:  0,
-		Stock:   false,
-		Changes: nil,
+		Stock:   stock,
+		Changes: changes,
+		Err: err.Error(),
 	}
 	return output, nil
 }
 
-func toMenu(input []*protobuf.Menu2)([]domain.Menu){
+func toMenu(input []*protobuf.Menu2)(menu []domain.Menu){
 	var in []domain.Ingredient
-	var menu []domain.Menu
 	for _, v := range input{
 		for _, v2 := range v.Ingredient{
 			ingre := domain.Ingredient{
