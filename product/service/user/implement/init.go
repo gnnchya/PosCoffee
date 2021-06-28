@@ -11,6 +11,7 @@ type implementation struct {
 	repo      util.Repository
 	repom     util.RepositoryMoney
 	mBroker   util.RepositoryMsgBroker
+	//client    grpcClient.Service
 }
 
 func New(validator validator.Validator, repo util.Repository,repom util.RepositoryMoney, mBroker util.RepositoryMsgBroker) (service user.Service) {

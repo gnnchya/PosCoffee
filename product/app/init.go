@@ -10,12 +10,13 @@ import (
 
 type App struct {
 	user *user.Controller
-	// company *company.Controller
+	//grpcService grpcService.Service
 }
 
 func New(userService userService.Service) *App {
 	return &App{
 		user: user.New(userService),
+		//grpcService: grpcService,
 	}
 }
 

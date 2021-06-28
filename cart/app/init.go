@@ -15,9 +15,8 @@ type App struct {
 
 func New(userService userService.Service, grpcService grpcService.Service) *App {
 	return &App{
-		user: user.New(userService),
+		user: user.New(userService, grpcService),
 		grpcService: grpcService,
-		// company: company.New(companyService),
 	}
 }
 

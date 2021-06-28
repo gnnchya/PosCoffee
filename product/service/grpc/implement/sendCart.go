@@ -18,6 +18,7 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 	geo = append(geo, float64(request.Geo.Long))
 	initID := goxid.New()
 	ID := initID.Gen()
+	fmt.Println("id", ID)
 	input := &userin.CreateInput{
 		ID:            ID,
 		Cart:          domain.Cart{
