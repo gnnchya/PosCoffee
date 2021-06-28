@@ -16,6 +16,11 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 
 	//TODO check with the stock if the ingredients are enough to make
+	//TODO input from GRPC from check stock
+	// TODO Return from GRPC get err, and []domain.CalculateCost then check if err != nil then return
+	// bool, expenses =  []domain.CalculateCost, err
+	var cost []domain.CalculateCost
+	//if else, if false or err don't calculate change
 	var paid int64 // TODO parameter as paid from customer
 	var remainMoney []domain.CreateMoneyStruct
 	if input.PaymentMethod == "Cash"{
@@ -28,10 +33,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			err = impl.repom.UpdateByVal(ctx, i, i.Value)
 		}
 	}
-	var cost []domain.CalculateCost
 	user := input.CreateInputToUserDomain(cost)
-	//TODO input from GRPC from check stock
-	// TODO Return from GRPC get err, and []domain.CalculateCost then check if err != nil then return
 	fmt.Println("user input create:", user)
 	err = impl.repo.Create(ctx, user, user.ID)
 	if err != nil {
