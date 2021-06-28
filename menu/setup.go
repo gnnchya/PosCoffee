@@ -18,11 +18,11 @@ func newApp(appConfig *config.Config) *app.App {
 
 	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
 	panicIfErr(err)
-	redisRpo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword)
+	redisRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword)
 	panicIfErr(err)
 
 	validator := validatorService.New(elasRepo)
-	user := userService.New(validator, elasRepo, redisRpo)
+	user := userService.New(validator, elasRepo, redisRepo)
 	return app.New(user)
 }
 
