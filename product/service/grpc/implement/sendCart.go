@@ -30,7 +30,6 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Destination:   domain.GeoJson{},
 		Time:          time.Now().Unix(),
 	}
-	//TODO check with stock
 	impl.userService.Create(ctx, input)
 	output := &protobuf.Reply2{
 		Id : 123,
