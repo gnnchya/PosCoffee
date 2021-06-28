@@ -10,7 +10,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (change map[int64]int64, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (change []domain.ChangeStruct, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
