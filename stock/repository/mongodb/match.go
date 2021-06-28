@@ -42,7 +42,7 @@ func (repo *Repository) match(ctx context.Context) []domain.CreateStruct{
 	return result
 }
 
-func (repo *Repository) report(ctx context.Context) []domain.CreateStruct {
+func (repo *Repository) Report(ctx context.Context) []domain.CreateStruct {
 	arr := repo.match(ctx)
 	var result []domain.CreateStruct
 	for _, i := range arr {
