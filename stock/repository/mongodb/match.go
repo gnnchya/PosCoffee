@@ -15,8 +15,8 @@ func contains(s []domain.CreateStruct, val string) (int, bool) {
 	return 0, false
 }
 
-func (repo *Repository) ReadByStatus(ctx context.Context, status string) ([]domain.CreateStruct, error) {
-	cursor, err := repo.Coll.Find(ctx, bson.M{"status" : status})
+func (repo *Repository) ReadByStatus(ctx context.Context) ([]domain.CreateStruct, error) {
+	cursor, err := repo.Coll.Find(ctx, bson.M{"status" : "in-use"})
 	return AddToArray(cursor, err, ctx)
 }
 
@@ -25,7 +25,7 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 		cursor, err := repo.Coll.Find(ctx,
 			bson.M{
 				"$and": bson.A{
-					bson.M{"status" : "not in use"},
+					bson.M{"status" : "not in-use"},
 					bson.M{"item_name" : i.ItemName},
 				}})
 		arr,_ := AddToArray(cursor, err, ctx)
@@ -36,14 +36,14 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 	return res
 }
 
-func (repo *Repository) match(ctx context.Context, status string) []domain.CreateStruct{
-	arr, _ := repo.ReadByStatus(ctx, status)
+func (repo *Repository) match(ctx context.Context) []domain.CreateStruct{
+	arr, _ := repo.ReadByStatus(ctx)
 	result := repo.ReadTotalAmount(ctx,arr)
 	return result
 }
 
-func (repo *Repository) report(ctx context.Context, status string) []domain.CreateStruct {
-	arr := repo.match(ctx, status)
+func (repo *Repository) report(ctx context.Context) []domain.CreateStruct {
+	arr := repo.match(ctx)
 	var result []domain.CreateStruct
 	for _, i := range arr {
 		val, err := contains(result, i.ItemName)
