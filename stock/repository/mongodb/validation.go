@@ -19,13 +19,14 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 
 func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (state bool, result domain.CalculateCost, err error) {
 	var totalCost, count int64 = 0, 0
-	cursor, err := repo.Coll.Find(ctx,
-		bson.M{
-			"$and": bson.A{
-				//bson.M{"item_name": ingredient},
-				//bson.M{"amount": bson.M{"$gt": 0}},
-				bson.M{"status": "in-use"},
-			}})
+	//cursor, err := repo.Coll.Find(ctx,
+	//	bson.M{
+	//		"$and": bson.A{
+	//			//bson.M{"item_name": ingredient},
+	//			//bson.M{"amount": bson.M{"$gt": 0}},
+	//			bson.M{"status": "in-use"},
+	//		}})
+	cursor, err := repo.Coll.Find(ctx, bson.M{"item_name" : "Milk"})
 	if err != nil{
 		return false, result, err
 	}
