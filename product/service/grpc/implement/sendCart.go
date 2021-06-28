@@ -45,10 +45,10 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		stock = false
 	}
 	var changes []*protobuf.Changes
-	for k, v := range change{
+	for _, v := range change{
 		cha := &protobuf.Changes{
-			Key:   k,
-			Value: v,
+			Value: v.Value,
+			Amount: v.Amount,
 		}
 		changes = append(changes, cha)
 	}

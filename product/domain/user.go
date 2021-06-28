@@ -8,3 +8,8 @@ type SearchValue struct {
 	Value string `bson:"value"`
 	Type  string `bson:"type"`
 }
+
+type ReportValue struct{
+	From int64
+	Until int64
+}
