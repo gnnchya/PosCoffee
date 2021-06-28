@@ -9,7 +9,7 @@ import (
 
 func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange) *os.File{
 	transaction,_ := impl.repo.ReadByTimeRange(ctx, input.From,input.Until)
-	stock := //proud
+	//stock := //proud
 	report := report.Report(transaction, stock)
 	return report
 }
