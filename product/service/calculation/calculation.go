@@ -13,7 +13,7 @@ func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]do
 		if value >= i.Value{
 			if value/i.Value > i.Amount{
 				change[x].Value = i.Value
-				change[x].Amount = i.Amount])
+				change[x].Amount = i.Amount
 				value = value - (i.Amount*i.Value)
 				note[x].Amount = 0
 			} else {
