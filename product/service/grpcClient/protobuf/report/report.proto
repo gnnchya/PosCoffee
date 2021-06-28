@@ -7,4 +7,8 @@ message reportRequest{
   string Category = 3;
   int64 Amount = 4;
   string Unit = 5;
+  int64 CostPerUnit = 6;
+  int64 EXPDate = 7;
+  int64 ImportDate = 8;
+  string Supplier = 9;
 }
