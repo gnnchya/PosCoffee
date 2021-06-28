@@ -25,7 +25,7 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 		cursor, err := repo.Coll.Find(ctx,
 			bson.M{
 				"$and": bson.A{
-					bson.M{"status" : "not in-use"},
+					bson.M{"status" : "not-used"},
 					bson.M{"item_name" : i.ItemName},
 				}})
 		arr,_ := AddToArray(cursor, err, ctx)
