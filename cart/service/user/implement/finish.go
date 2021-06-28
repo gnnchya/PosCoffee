@@ -42,6 +42,8 @@ func toMenuArr(menu []domain.Menu)(a []*protobuf.Menu2){
 			Ingredient: ingre,
 			Price:      key.Price,
 			Available:  key.Available,
+			Amount: key.Amount,
+			Option: key.Option,
 		}
 		a = append(a, toProto)
 	}

@@ -24,6 +24,8 @@ message menu2{
   repeated ingredient2 ingredient = 4;
   int64 price = 5;
   bool available = 6;
+  int64 amount = 7;
+  string option = 8;
 
 }
 
