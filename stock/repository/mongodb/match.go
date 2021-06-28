@@ -6,6 +6,15 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+func contains(s []domain.CreateStruct, val string) (int, bool) {
+	for i, v := range s {
+		if v.ItemName == val {
+			return i,true
+		}
+	}
+	return 0, false
+}
+
 func (repo *Repository) ReadByStatus(ctx context.Context, status string) ([]domain.CreateStruct, error) {
 	cursor, err := repo.Coll.Find(ctx, bson.M{"status" : status})
 	return AddToArray(cursor, err, ctx)
@@ -13,7 +22,12 @@ func (repo *Repository) ReadByStatus(ctx context.Context, status string) ([]doma
 
 func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateStruct) (res []domain.CreateStruct) {
 	for _,i := range st{
-		cursor, err := repo.Coll.Find(ctx, bson.M{"name" : i.ItemName})
+		cursor, err := repo.Coll.Find(ctx,
+			bson.M{
+				"$and": bson.A{
+					bson.M{"status" : "not in use"},
+					bson.M{"item_name" : i.ItemName},
+				}})
 		arr,_ := AddToArray(cursor, err, ctx)
 		for _,x := range arr{
 			res = append(res,x)
@@ -22,8 +36,22 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 	return res
 }
 
-func (repo *Repository) report(ctx context.Context, status string) []domain.CreateStruct{
+func (repo *Repository) match(ctx context.Context, status string) []domain.CreateStruct{
 	arr, _ := repo.ReadByStatus(ctx, status)
 	result := repo.ReadTotalAmount(ctx,arr)
+	return result
+}
+
+func (repo *Repository) report(ctx context.Context, status string) []domain.CreateStruct {
+	arr := repo.match(ctx, status)
+	var result []domain.CreateStruct
+	for _, i := range arr {
+		val, err := contains(result, i.ItemName)
+		if err {
+			result[val].Amount = result[val].Amount + i.Amount
+		} else {
+			result = append(result, i)
+		}
+	}
 	return result
 }
