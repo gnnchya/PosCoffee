@@ -27,7 +27,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 	inputIngre := &protobuf.RequestToStock{Ingredient: ingredientList}
 	res, err := impl.client.SendIngredients(inputIngre)
-	fmt.Println("response from stock", res.Stock)
+	//fmt.Println("response from stock", res.Stock)
 	var cost []domain.CalculateCost
 	var remainMoney []domain.CreateMoneyStruct
 	if res.Stock == true{
