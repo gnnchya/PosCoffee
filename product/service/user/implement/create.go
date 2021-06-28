@@ -15,13 +15,21 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return  change, err
 	}
-	//TODO combine same ingredients before send ingredients
-	var b []*protobuf.IngredientToStock
-	a := &protobuf.IngredientToStock{
-		IngredientName: "Milk",
-		Amount:         2,
+
+	var ingredientList []*protobuf.IngredientToStock
+	for _, menu := range input.Cart.Menu{
+		for _, ingredient := range menu.Ingredient{
+			usedIngredient := &protobuf.IngredientToStock{
+				IngredientName: ingredient.IngredientName,
+				Amount:         ingredient.Amount,
+			}
+			if usedIngredient
+			ingredientList = append(ingredientList, usedIngredient)
+		}
 	}
-	b = append(b, a)
+	//TODO combine same ingredients before send ingredients
+
+
 	inputIngre := &protobuf.RequestToStock{Ingredient: b}
 	res, err := impl.client.SendIngredients(inputIngre)
 	fmt.Println("response from stock", res)
