@@ -4,9 +4,9 @@ option go_package=  "/grpc";
 package cart;
 
 message Reply2{
-  int64 Change = 1;
-  bool Stock = 2;
-  repeated Changes Changes = 3;
+  bool Stock = 1;
+  repeated Changes Changes = 2;
+  string err = 3;
 }
 
 message Changes{

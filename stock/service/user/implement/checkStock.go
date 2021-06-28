@@ -6,8 +6,7 @@ import (
 )
 
 func (impl *implementation) CheckStock(ctx context.Context, input []string) (state bool, expenses []domain.CalculateCost, err string) {
-	state, expenses, _ = impl.repo.CheckMenuAvailability(ctx, input)
-
-	errString := "test error"
-	return state, expenses, errString
+	state, expenses, e := impl.repo.CheckMenuAvailability(ctx, input)
+	err = e.Error()
+	return state, expenses, err
 }
