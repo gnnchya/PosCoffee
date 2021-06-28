@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/calculation"
+	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
@@ -14,7 +15,16 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return  change, err
 	}
-
+	//TODO combine same ingredients before send ingredients
+	var b []*protobuf.IngredientToStock
+	a := &protobuf.IngredientToStock{
+		IngredientName: "Milk",
+		Amount:         2,
+	}
+	b = append(b, a)
+	inputIngre := &protobuf.RequestToStock{Ingredient: b}
+	res, err := impl.client.SendIngredients(inputIngre)
+	fmt.Println("response from stock", res)
 	//TODO check with the stock if the ingredients are enough to make
 	//TODO input from GRPC from check stock
 	// TODO Return from GRPC get err, and []domain.CalculateCost then check if err != nil then return
