@@ -35,7 +35,8 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (
 
 	var resultStruct domain.CalculateCost
 	if err = cursor.Decode(&resultStruct); err != nil {
-		//err = errors.New("error : there is no ingredient left to make this menu")
+		fmt.Println("error ja fukcckckckckckc:", cursor)
+		err = errors.New("error : there is no ingredient left to make this menu")
 		return false, result, err
 	}
 	totalCost += resultStruct.CostPerUnit
