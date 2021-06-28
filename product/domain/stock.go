@@ -27,12 +27,3 @@ type UpdateStockStruct struct {
 	Code 	int 	`json:"code"`
 	Err 	error   `json:"err"`
 }
-
-type ReportStruct struct{
-	Transaction		[]CreateOrderStruct		`bson:"transaction" json:"transaction"`
-	UsedStock		[]CreateStockStruct			`bson:"used_stock" json:"used_stock"`
-	OutOfStock		[]CreateStockStruct			`bson:"out_of_stock" json:"out_of_stock"`
-	TotalIncome		int64					`bson:"total_income" json:"total_income"`
-	TotalCost		int64					`bson:"total_cost" json:"total_cost"`
-	TotalProfit		int64					`bson:"total_profit" json:"total_profit"`
-}

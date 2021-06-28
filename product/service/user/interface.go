@@ -5,6 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
+	"os"
 )
 
 
@@ -20,4 +21,5 @@ type Service interface {
 	Search(ctx context.Context, input *userin.Search) (string, error)
 	MsgReceiver(ctx context.Context, msg []byte) (err error)
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)
+	Report(ctx context.Context, input *userin.ReportRange) *os.File
 }
