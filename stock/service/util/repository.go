@@ -5,7 +5,6 @@ import (
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
-	"google.golang.org/grpc"
 	"net"
 )
 
@@ -18,7 +17,7 @@ type Repository interface {
 	Read(ctx context.Context, id string) (a domain.CreateStruct, err error)
 	ReadNameAll(ctx context.Context, user *domain.ReadNameByPageStruct) (a []domain.CreateStruct, err error)
 	ReadCategoryAll(ctx context.Context, user *domain.ReadCategoryByPageStruct) (a []domain.CreateStruct, err error)
-	CheckMenuAvailability(ctx context.Context, ingredients []domain.Ingredient) (state bool, expenses []domain.CalculateCost, err error)
+	CheckMenuAvailability(ctx context.Context, ingredients []string) (state bool, expenses []domain.CalculateCost, err error)
 	Search(ctx context.Context,search *domain.SearchValue) /*(result []domain.InsertQ,err error)*/ (result string, err error)
 }
 
@@ -34,5 +33,5 @@ type RepositoryMsgBroker interface{
 
 type RepositoryGRPC interface {
 	NetListener() (lis net.Listener, err error)
-	NewClient() (*grpc.ClientConn, error)
+	//NewClient() (*grpc.ClientConn, error)
 }

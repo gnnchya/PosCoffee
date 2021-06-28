@@ -10,10 +10,10 @@ import (
 	"log"
 
 	"github.com/gnnchya/PosCoffee/stock/app"
-	validatorService "github.com/gnnchya/PosCoffee/stock/service/validator"
-	grpcService "github.com/gnnchya/PosCoffee/stock/service/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/stock/repository/user"
+	grpcService "github.com/gnnchya/PosCoffee/stock/service/grpc/implement"
 	userService "github.com/gnnchya/PosCoffee/stock/service/user/implement"
+	validatorService "github.com/gnnchya/PosCoffee/stock/service/validator"
 )
 
 func newApp(appConfig *config.Config) *app.App {
