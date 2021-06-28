@@ -16,10 +16,10 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 
 	//TODO check with the stock if the ingredients are enough to make
-	var paid int64
+	var paid int64 // TODO parameter as paid from customer
 	var remainMoney []domain.CreateMoneyStruct
 	if input.PaymentMethod == "Cash"{
-		temp , err := impl.repom.ReadMoneyAll(ctx)
+		temp, err := impl.repom.ReadMoneyAll(ctx)
 		if err != nil{
 			return nil , err
 		}
@@ -30,7 +30,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 	var cost []domain.CalculateCost
 	user := input.CreateInputToUserDomain(cost)
-	//TODO input from kafka from check stock
+	//TODO input from GRPC from check stock
+	// TODO Return from GRPC get err, and []domain.CalculateCost then check if err != nil then return
 	fmt.Println("user input create:", user)
 	err = impl.repo.Create(ctx, user, user.ID)
 	if err != nil {
