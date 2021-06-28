@@ -23,13 +23,14 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (
 		bson.M{
 			"$and": bson.A{
 				bson.M{"item_name": ingredient},
-				bson.M{"amount": bson.M{"$gt": 0}},
+				//bson.M{"amount": bson.M{"$gt": 0}},
 				bson.M{"status": "in-use"},
 			}})
 	if err != nil{
 		return false, result, err
 	}
-	fmt.Println("ingredient: ", ingredient)
+
+	fmt.Println("cursor:", cursor)
 
 	var resultStruct domain.CalculateCost
 	if err = cursor.Decode(&resultStruct); err != nil {
