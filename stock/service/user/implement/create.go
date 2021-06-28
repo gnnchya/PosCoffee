@@ -15,13 +15,8 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	//if err == impl.sendMsgCreate(input) {
-	//	log.Println(err)
-	//}
-	//time.Sleep(5 * time.Second)
-
 	err = impl.repo.Create(ctx, user, user.ID)
-	//_, err = impl.repo.Read(ctx, input.ID)
+	fmt.Println("err in create", err)
 	if err != nil {
 		return "error create in stock", err
 	}

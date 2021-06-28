@@ -3,12 +3,14 @@ package mongodb
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func (repo *Repository) Create(ctx context.Context, figure interface{}, id string) (err error) {
+	fmt.Println("figure", figure)
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }
