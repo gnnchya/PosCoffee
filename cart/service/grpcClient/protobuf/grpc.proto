@@ -4,12 +4,19 @@ option go_package=  "/grpc";
 package cart;
 
 message Reply2{
-  int64 change = 1;
+  int64 Change = 1;
+  bool Stock = 2;
+  repeated Changes Changes = 3;
+}
 
+message Changes{
+  int64 Key = 1;
+  int64 Value = 2;
 }
 
 message Request2{
   cart2 cart = 1;
+  int64 paid = 5;
 }
 
 message cart2{
@@ -27,7 +34,6 @@ message menu2{
   bool available = 6;
   int64 amount = 7;
   string option = 8;
-
 }
 
 message ingredient2{
