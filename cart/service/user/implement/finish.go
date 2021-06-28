@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
@@ -28,7 +29,14 @@ func (impl *implementation) Finish(ctx context.Context, id string) (ID string, e
 		},
 	}
 	fmt.Println("inputProto", inputProtobuf)
-	_, err= impl.client.SendCart(inputProtobuf)
+	res, err := impl.client.SendCart(inputProtobuf)
+	if err != nil {
+		return input.ID, err
+	}
+	if res.Stock == false{
+		return input.ID, errors.New(res.Err)
+	}
+
 	//fmt.Println("response", response.Change)
 	return input.ID, nil
 }
