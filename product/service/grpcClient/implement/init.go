@@ -22,6 +22,5 @@ func New(grpcRepo util.RepositoryGRPC) (service grpcClient.Service) {
 		client: protobuf.NewSendIngredientsClient(conn),
 	}
 	return impl
-
 }
 

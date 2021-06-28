@@ -5,6 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/touchtechnologies-product/message-broker/common"
+	"google.golang.org/grpc"
 	"net"
 )
 
@@ -40,5 +41,5 @@ type RepositoryMsgBroker interface{
 
 type RepositoryGRPC interface {
 	NetListener() (lis net.Listener, err error)
-	//NewClient() (*grpc.ClientConn, error)
+	NewClient() (*grpc.ClientConn, error)
 }

@@ -9,7 +9,7 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/app"
 	repoGrpc "github.com/gnnchya/PosCoffee/cart/repository/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/cart/repository/user"
-	"github.com/gnnchya/PosCoffee/cart/service/grpc"
+	//"github.com/gnnchya/PosCoffee/cart/service/grpc"
 	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient/implement"
 	userService "github.com/gnnchya/PosCoffee/cart/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/cart/service/validator"
@@ -27,7 +27,7 @@ func newApp(appConfig *config.Config) *app.App {
 	validator := validatorService.New(uRepo)
 
 	user := userService.New(validator, uRepo, gService)
-	go grpc.NewServer(appConfig, user)
+	//go grpc.NewServer(appConfig, user)
 	time.Sleep(1 * time.Second)
 	return app.New(user, gService)
 }

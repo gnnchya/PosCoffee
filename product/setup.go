@@ -8,6 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/repository/kafka"
 	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
 	grpcService "github.com/gnnchya/PosCoffee/product/service/grpc/implement"
+	grpcClientService "github.com/gnnchya/PosCoffee/product/service/grpcClient/implement"
 	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
@@ -25,9 +26,10 @@ func newApp(appConfig *config.Config) *app.App {
 	validator := validatorService.New(uRepo)
 
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
-	user := userService.New(validator, uRepo, uRepoMoney, kRepo)
 
-	//gService := grpcService.New(grpcRepo, user)
+
+	gService := grpcClientService.New(grpcRepo)
+	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
 
 	msgService := msgBrokerService.New(kRepo, user)
 
@@ -35,7 +37,7 @@ func newApp(appConfig *config.Config) *app.App {
 
 	msgService.Receiver(topics)
 	//time.Sleep(10 * time.Second)
-	return app.New(user)
+	return app.New(user, gService)
 }
 
 func panicIfErr(err error) {
