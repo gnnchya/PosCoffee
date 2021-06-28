@@ -13,6 +13,9 @@ import (
 func (impl implementation) SendCart(ctx context.Context, request *protobuf.Request2) (*protobuf.Reply2, error){
 	fmt.Println("here is the request from cart app:", request)
 	//TODO get change and return
+	var geo []float64
+	geo = append(geo, float64(request.Geo.Lat))
+	geo = append(geo, float64(request.Geo.Long))
 	initID := goxid.New()
 	ID := initID.Gen()
 	input := &userin.CreateInput{
@@ -25,10 +28,14 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		},
 		Finished:      false,
 		Price:         request.Cart.Price,
-		TypeOfOrder:   "",
-		PaymentMethod: "",
-		Destination:   domain.GeoJson{},
+		TypeOfOrder:   request.Type,
+		PaymentMethod: request.PaymentMethod,
+		Destination:   domain.GeoJson{
+			Type:       request.Geo.Type,
+			Coordinates: geo,
+		},
 		Time:          time.Now().Unix(),
+		Paid:          request.Paid,
 	}
 	//out, err := impl.userService.Create(ctx, input)
 	impl.userService.Create(ctx, input)
