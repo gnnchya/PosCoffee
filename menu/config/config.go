@@ -24,6 +24,9 @@ type Config struct {
 
 	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
+
+	RedisEndpoint string `env:"REDIS_ENDPOINT" envDefault:"localhost:6379"`
+	RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
 }
 
 func Get() *Config {
