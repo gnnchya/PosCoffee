@@ -15,14 +15,16 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return  change, err
 	}
-	//TODO combine same ingredients before send ingredients
-	var b []*protobuf.IngredientToStock
-	a := &protobuf.IngredientToStock{
-		IngredientName: "Milk",
-		Amount:         2,
+
+	var ingredientList []string
+	for _, menu := range input.Cart.Menu{
+		for _, ingredient := range menu.Ingredient{
+			if found := Find(ingredientList, ingredient.IngredientName); !found{
+				ingredientList = append(ingredientList, ingredient.IngredientName)
+			}
+		}
 	}
-	b = append(b, a)
-	inputIngre := &protobuf.RequestToStock{Ingredient: b}
+	inputIngre := &protobuf.RequestToStock{Ingredient: ingredientList}
 	res, err := impl.client.SendIngredients(inputIngre)
 	fmt.Println("response from stock", res)
 	//TODO check with the stock if the ingredients are enough to make
@@ -51,6 +53,15 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	}
 
 	return change, nil
+}
+
+func Find(slice []string, val string) bool{
+	for _, item := range slice {
+		if item == val {
+			return  true
+		}
+	}
+	return false
 }
 
 //func (impl *implementation) sendMsgCreate(input *userin.CreateInput) (err error) {

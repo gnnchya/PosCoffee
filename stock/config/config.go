@@ -23,6 +23,7 @@ type Config struct {
 	MessageBrokerGroup        string   `env:"MESSAGE_BROKER_GROUP" envDefault:"my-group"`
 	MessageBrokerVersion      string   `env:"MESSAGE_BROKER_VERSION" envDefault:"2.6.1"`
 
+	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50051"`
 }
 
 func Get() *Config {

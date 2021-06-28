@@ -16,12 +16,12 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 	return true, err
 }
 
-func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.Ingredient) (state bool, result domain.CalculateCost, err error) {
+func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (state bool, result domain.CalculateCost, err error) {
 	var totalCost, count int64 = 0, 0
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$and": bson.A{
-				bson.M{"item_name": ingredient.IngredientName},
+				bson.M{"item_name": ingredient},
 				bson.M{"amount": bson.M{"$gt": 0}},
 				bson.M{"status": "in-use"},
 			}})
@@ -42,14 +42,14 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient domain.In
 	}
 
 	result = domain.CalculateCost{
-		ItemName: ingredient.IngredientName,
+		ItemName: ingredient,
 		CostPerUnit: totalCost/count,
 	}
 
 	return true, result, err
 }
 
-func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients []domain.Ingredient) (state bool, expenses []domain.CalculateCost, err error) {
+func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients []string) (state bool, expenses []domain.CalculateCost, err error) {
 	var cost domain.CalculateCost
 	for _, entity := range ingredients {
 		state ,cost, err = repo.checkStockLeft(ctx, entity)

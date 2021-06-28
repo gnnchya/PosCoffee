@@ -15,12 +15,7 @@ message CalculateCost{
 }
 
 message RequestToStock{
-  repeated ingredientToStock ingredient = 1;
-}
-
-message ingredientToStock{
-  string ingredientName = 1;
-  int64 amount = 2;
+  repeated string ingredient = 1;
 }
 
 service SendIngredients{

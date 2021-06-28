@@ -3,16 +3,17 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/stock/config"
+	"github.com/gnnchya/PosCoffee/stock/repository/grpc"
 	"github.com/gnnchya/PosCoffee/stock/repository/kafka"
 	msgBrokerService "github.com/gnnchya/PosCoffee/stock/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/stock/app"
-	validatorService "github.com/gnnchya/PosCoffee/stock/service/validator"
-
 	userRepo "github.com/gnnchya/PosCoffee/stock/repository/user"
+	grpcService "github.com/gnnchya/PosCoffee/stock/service/grpc/implement"
 	userService "github.com/gnnchya/PosCoffee/stock/service/user/implement"
+	validatorService "github.com/gnnchya/PosCoffee/stock/service/validator"
 )
 
 func newApp(appConfig *config.Config) *app.App {
@@ -23,11 +24,12 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	grpcRepo := grpc.New()
+	grpcRepo := grpc.New(configGrpc(appConfig))
 
 	user := userService.New(validator, uRepo, kRepo)
 	msgService := msgBrokerService.New(kRepo, user)
 	//wg.Add(1)
+	go grpcService.New(grpcRepo, user)
 	msgService.Receiver(topics)
 	return app.New(user)
 }
