@@ -27,3 +27,7 @@ type ReadMoneyStruct struct {
 	ID 		string	`bson:"-id" json:"_id"`
 }
 
+type ChangeMoney struct{
+	Value int64
+	Amount int64
+}

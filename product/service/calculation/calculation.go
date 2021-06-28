@@ -8,11 +8,12 @@ import (
 
 func Calculation(paid int64, price int64, note []domain.CreateMoneyStruct) ([]domain.CreateMoneyStruct, map[int64]int64, error){
 	value := paid - price
-	change := make(map[int64]int64)
+	change := []domain.ChangeMoney
 	for x,i := range note{
 		if value >= i.Value{
 			if value/i.Value > i.Amount{
-				change[i.Value] = i.Amount
+				change[x].Value = i.Value
+				change[x].Amount = i.Amount])
 				value = value - (i.Amount*i.Value)
 				note[x].Amount = 0
 			} else {
