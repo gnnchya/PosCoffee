@@ -3,6 +3,7 @@ package mongodb
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -28,6 +29,16 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (
 	if err != nil{
 		return false, result, err
 	}
+	fmt.Println("ingredient: ", ingredient)
+
+	var resultStruct domain.CalculateCost
+	if err = cursor.Decode(&resultStruct); err != nil {
+		err = errors.New("error : there is no ingredient left to make this menu")
+		return false, result, err
+	}
+	totalCost += resultStruct.CostPerUnit
+	count += 1
+
 	for cursor.Next(ctx) {
 		var resultStruct domain.CalculateCost
 		if err = cursor.Decode(&resultStruct); err != nil {
@@ -36,10 +47,10 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (
 		totalCost += resultStruct.CostPerUnit
 		count += 1
 	}
-	if count == 0 {
-		err = errors.New("error : there is no ingredient left to make this menu")
-		return false, result,  err
-	}
+	//if count == 0 {
+	//	err = errors.New("error : there is no ingredient left to make this menu")
+	//	return false, result,  err
+	//}
 
 	result = domain.CalculateCost{
 		ItemName: ingredient,
