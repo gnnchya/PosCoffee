@@ -94,6 +94,7 @@ func main(){
 			{"supplier", v.Supplier},
 			{"total_cost", v.TotalCost},
 			{"total_amount", v.TotalAmount},
+			{"status", v.Status},
 		})
 
 		if err != nil {
