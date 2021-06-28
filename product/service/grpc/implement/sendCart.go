@@ -57,6 +57,7 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Changes: changes,
 		Err: err.Error(),
 	}
+	fmt.Println("output to cart", output)
 	return output, nil
 }
 

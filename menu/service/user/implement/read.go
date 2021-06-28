@@ -17,11 +17,16 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 	user := userin.ViewInputToUserDomain(input)
 	fmt.Println("user input view: ", user)
 	fmt.Println("user.ID: ", user.ID)
+	if result, err := impl.redisRepo.Get(ctx, user.ID); err == nil && result != ""{
+
+	}
+
 	a, err = impl.elasRepo.Read(user.ID, ctx)
 	fmt.Println("err:", err)
 	if err != nil {
 		return a, err
 	}
+
 
 	return a, nil
 }
