@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/menu/domain"
-
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
@@ -17,8 +16,9 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 	user := userin.ViewInputToUserDomain(input)
 	fmt.Println("user input view: ", user)
 	fmt.Println("user.ID: ", user.ID)
-	if result, err := impl.redisRepo.Get(ctx, user.ID); err == nil && result != ""{
 
+	if err := impl.redisRepo.Get(ctx, user.ID, a); err == nil{
+		return a , nil
 	}
 
 	a, err = impl.elasRepo.Read(user.ID, ctx)
@@ -27,6 +27,7 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 		return a, err
 	}
 
-
+	// TODO message broker to redis
+	_ = impl.redisRepo.Set(ctx, user.ID, a)
 	return a, nil
 }

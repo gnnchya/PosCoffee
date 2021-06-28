@@ -3,13 +3,15 @@ package redis
 import (
 	"context"
 	"github.com/go-redis/redis/v8"
+	"time"
 )
 
 type Redis struct {
 	Client *redis.Client
+	Expires time.Duration
 }
 
-func New(ctx context.Context, server string, password string) (repoRedis *Redis, err error) {
+func New(ctx context.Context, server string, password string, exp time.Duration) (repoRedis *Redis, err error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     server,
 		Password: password,
@@ -34,6 +36,7 @@ func New(ctx context.Context, server string, password string) (repoRedis *Redis,
 
 	repoRedis = &Redis{
 		Client: client,
+		Expires: exp,
 	}
 
 	return repoRedis, nil

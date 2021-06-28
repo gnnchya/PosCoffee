@@ -9,6 +9,7 @@ import (
 	userService "github.com/gnnchya/PosCoffee/menu/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/menu/service/validator"
 	"log"
+	"time"
 )
 const (
 	NETWORK = "tcp"
@@ -18,7 +19,7 @@ func newApp(appConfig *config.Config) *app.App {
 
 	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
 	panicIfErr(err)
-	redisRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword)
+	redisRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword, 24 * time.Hour)
 	panicIfErr(err)
 
 	validator := validatorService.New(elasRepo)

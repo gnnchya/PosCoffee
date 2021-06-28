@@ -2,21 +2,21 @@ package redis
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
 	"time"
 
 	"github.com/go-redis/redis/v8"
 )
 
-func (repoRedis *Redis) Get(ctx context.Context, key string) (result string, err error) {
-	val, err := repoRedis.Client.Get(ctx, key).Result()
+func (repoRedis *Redis) Get(ctx context.Context, key string, dest interface{}) (err error) {
+	val, err := repoRedis.Client.Get(ctx, key).Bytes()
 	if err == redis.Nil {
-		// Key does not exists
-		return "", nil
+		return errors.New("error : Key does not exist")
 	} else if err != nil {
-		return "", err
+		return  err
 	}
-
-	return val, nil
+	return json.Unmarshal(val, dest)
 }
 
 func (repoRedis *Redis) GetExpire(ctx context.Context, key string) (result time.Duration, err error) {
