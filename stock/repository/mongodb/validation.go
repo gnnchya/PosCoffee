@@ -22,7 +22,7 @@ func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$and": bson.A{
-				bson.M{"item_name": ingredient},
+				//bson.M{"item_name": ingredient},
 				//bson.M{"amount": bson.M{"$gt": 0}},
 				bson.M{"status": "in-use"},
 			}})
