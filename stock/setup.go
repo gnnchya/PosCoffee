@@ -23,11 +23,12 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
+	grpcRepo := grpc.New()
+
 	user := userService.New(validator, uRepo, kRepo)
 	msgService := msgBrokerService.New(kRepo, user)
 	//wg.Add(1)
 	msgService.Receiver(topics)
-	//time.Sleep(10 * time.Second)
 	return app.New(user)
 }
 
@@ -52,3 +53,9 @@ var topics = []msgbrokerin.TopicMsgBroker{
 	msgbrokerin.TopicDelete,
 }
 
+func configGrpc(appConfig *config.Config) *grpc.Config {
+	return &grpc.Config{
+		Network: "tcp",
+		Port:    appConfig.GRPCSenderHost,
+	}
+}
