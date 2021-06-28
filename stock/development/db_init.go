@@ -67,7 +67,7 @@ func randomImportDate(years int, months int, days int) int64{
 func main(){
 	uri := "mongodb://touch:touchja@localhost:27019"
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
-	collection := client.Database("stock").Collection("stock_lists")
+	collection := client.Database("stock").Collection("stock")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
