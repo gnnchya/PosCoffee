@@ -29,10 +29,13 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 					bson.M{"status" : "not-used"},
 					bson.M{"item_name" : i.ItemName},
 				}})
-		arr, err := AddToArray(cursor, err, ctx)
-		for _,x := range arr{
-			res = append(res,x)
+		if err == nil{
+		arr,_ := AddToArray(cursor, err, ctx)
+			for _,x := range arr{
+				res = append(res,x)
+			}
 		}
+
 	}
 	return res, err
 }
@@ -45,6 +48,9 @@ func (repo *Repository) match(ctx context.Context)(result []domain.CreateStruct,
 	result, err = repo.ReadTotalAmount(ctx,arr)
 	if err != nil{
 		return result, err
+	}
+	for _, i := range arr{
+		result = append(result, i)
 	}
 	fmt.Println("match in repo", result)
 	return result, err
