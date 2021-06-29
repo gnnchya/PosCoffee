@@ -6,7 +6,7 @@ import (
 )
 
 type ReadInput struct {
-	ID string `json:"id"`
+	ID string `json:"_id"`
 }
 
 
