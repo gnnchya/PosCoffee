@@ -27,7 +27,6 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 		return a, err
 	}
 
-	// TODO message broker to redis
 	_ = impl.redisRepo.Set(ctx, user.ID, a)
 	return a, nil
 }
