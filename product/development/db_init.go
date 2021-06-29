@@ -209,7 +209,7 @@ func main(){
 		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 
-	for i:=1; i<=10; i++ {
+	for i:=0; i<10; i++ {
 		var SingleTransaction Transaction
 		SingleTransaction.Cart = CartList[i]
 		SingleTransaction.Finished = randBool()
