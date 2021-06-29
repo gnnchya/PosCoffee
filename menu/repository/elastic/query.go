@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/menu/domain"
@@ -62,7 +63,10 @@ func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.C
 
 func (repo *Repository)Read(id string,ctx context.Context)(domain.CreateStruct, error){
 	q, err := repo.query(ctx,buildViewRequest(id))
+	fmt.Println(q)
+
 	result := InToStruct(q)
+	fmt.Println(result[0])
 	return result[0], err
 }
 

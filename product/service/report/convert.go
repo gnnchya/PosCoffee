@@ -17,9 +17,11 @@ func contains(s [][]string, str string) bool {
 }
 
 func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
-	temp := InitTemp()
-	res = append(res,temp)
+	var temp []string
+	temp = InitTemp()
+	res = append(res, temp)
 	for _,i := range transaction{
+		temp = []string{}
 		for _,x := range i.Cart.Menu{
 			if contains(res,i.ID){
 				for q:=0; q < 10; q++{
@@ -48,10 +50,12 @@ func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
 	return res
 }
 
-func StockToArray(stock []domain.CreateStockStruct)( res [][]string){
-	temp := InitStock()
-	res = append(res,temp)
+func StockToArray(stock []domain.CreateStockStruct)(res [][]string){
+	var temp []string
+	temp = InitStock()
+	res = append(res, temp)
 	for _, i := range stock{
+		temp = []string{}
 		temp = append(temp, i.ID)
 		temp = append(temp, i.ItemName)
 		temp = append(temp, i.Category)
@@ -72,6 +76,7 @@ func StockToArray(stock []domain.CreateStockStruct)( res [][]string){
 func CalToArray(income int64, cost int64, profit int64) (res [][]string){
 	temp := InitCal()
 	res = append(res,temp)
+	temp = []string{}
 	temp = append(temp, strconv.Itoa(int(income)))
 	temp = append(temp, strconv.Itoa(int(cost)))
 	temp = append(temp, strconv.Itoa(int(profit)))

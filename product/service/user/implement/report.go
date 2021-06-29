@@ -7,10 +7,9 @@ import (
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
 	"github.com/gnnchya/PosCoffee/product/service/report"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
-	"os"
 )
 
-func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange) (*os.File, error){
+func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange) ([][]string, error){
 	transaction,_ := impl.repo.ReadByTimeRange(ctx, input.From,input.Until)
 	//stock := //proud
 	out := &pb.ReportRequest{Request: "stock"}
