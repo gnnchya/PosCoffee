@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"time"
+
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
 	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
@@ -24,5 +26,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 		return "", err
 	}
 
+	// TODO message broker to redis
+	_ = impl.redisRepo.Set(ctx, user.ID, user, 24*time.Hour)
 	return user.ID, nil
 }

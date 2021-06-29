@@ -24,7 +24,8 @@ type RepositoryElas interface {
 }
 
 type RepositoryRedis interface {
-	Set(ctx context.Context, key string, value interface{}, expire time.Duration) (err error)
-	Get(ctx context.Context, key string) (result string, err error)
+	Set(ctx context.Context, key string, value interface{}) (err error)
+	Get(ctx context.Context, key string, dest interface{}) (err error)
 	GetExpire(ctx context.Context, key string) (result time.Duration, err error)
+	Del(ctx context.Context, key string) (err error)
 }
