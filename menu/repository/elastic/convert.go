@@ -12,7 +12,7 @@ func InToStruct(r map[string]interface{}) []domain.CreateStruct{
 	for _, hit := range r["hits"].(map[string]interface{})["hits"].([]interface{}) {
 		s := hit.(map[string]interface{})["_source"]
 		temp.ID = fmt.Sprintf("%v", s.(map[string]interface{})["id"])
-		if temp.ID == ""{
+		if fmt.Sprintf("%v", s.(map[string]interface{})["id"]) == ""{
 			temp.ID = fmt.Sprintf("%v", s.(map[string]interface{})["_id"])
 			fmt.Println("if------------------------ id ", temp.ID)
 		}
