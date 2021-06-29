@@ -1,7 +1,11 @@
 syntax="proto3";
 option go_package=  "/report";
 
-message reportRequest{
+
+message ReportReply{
+  repeated ReportReplyStruct Report = 1;
+}
+message ReportReplyStruct{
   string ID = 1;
   string ItemName = 2;
   string Category = 3;
@@ -16,3 +20,11 @@ message reportRequest{
   string Status = 12;
 }
 
+
+message ReportRequest{
+  string Request = 1;
+}
+
+service SendReportToStock{
+  rpc SendReportToStock (ReportRequest) returns (ReportReply);
+}
