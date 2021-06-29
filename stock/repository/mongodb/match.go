@@ -20,7 +20,7 @@ func (repo *Repository) ReadByStatus(ctx context.Context) ([]domain.CreateStruct
 	return AddToArray(cursor, err, ctx)
 }
 
-func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateStruct) (res []domain.CreateStruct) {
+func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateStruct) (res []domain.CreateStruct, err error) {
 	for _,i := range st{
 		cursor, err := repo.Coll.Find(ctx,
 			bson.M{
@@ -28,23 +28,31 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 					bson.M{"status" : "not-used"},
 					bson.M{"item_name" : i.ItemName},
 				}})
-		arr,_ := AddToArray(cursor, err, ctx)
+		arr, err := AddToArray(cursor, err, ctx)
 		for _,x := range arr{
 			res = append(res,x)
 		}
 	}
-	return res
+	return res, err
 }
 
-func (repo *Repository) match(ctx context.Context) []domain.CreateStruct{
-	arr, _ := repo.ReadByStatus(ctx)
-	result := repo.ReadTotalAmount(ctx,arr)
-	return result
+func (repo *Repository) match(ctx context.Context)(result []domain.CreateStruct, err error){
+	arr, err := repo.ReadByStatus(ctx)
+	if err != nil{
+		return result, err
+	}
+	result, err = repo.ReadTotalAmount(ctx,arr)
+	if err != nil{
+		return result, err
+	}
+	return result, err
 }
 
-func (repo *Repository) Report(ctx context.Context) []domain.CreateStruct {
-	arr := repo.match(ctx)
-	var result []domain.CreateStruct
+func (repo *Repository) Report(ctx context.Context) (result []domain.CreateStruct, err error) {
+	arr, err := repo.match(ctx)
+	if err != nil{
+		return result, err
+	}
 	for _, i := range arr {
 		val, err := contains(result, i.ItemName)
 		if err {
@@ -53,5 +61,5 @@ func (repo *Repository) Report(ctx context.Context) []domain.CreateStruct {
 			result = append(result, i)
 		}
 	}
-	return result
+	return result, err
 }

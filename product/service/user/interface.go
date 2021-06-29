@@ -21,5 +21,5 @@ type Service interface {
 	Search(ctx context.Context, input *userin.Search) (string, error)
 	MsgReceiver(ctx context.Context, msg []byte) (err error)
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)
-	Report(ctx context.Context, input *userin.ReportRange) *os.File
+	Report(ctx context.Context, input *userin.ReportRange) (*os.File, error)
 }

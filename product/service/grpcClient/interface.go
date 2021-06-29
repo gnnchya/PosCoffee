@@ -1,10 +1,12 @@
 package grpcClient
 
-import "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
+import (
+	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
+	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
+)
 
 type Service interface {
-	//CheckRefCode(input *protobuf.CheckRefCodeRequest) (res *protobuf.CheckRefCodeReply, err error)
-	//RevokeToken(input *pbOAuth.RevokeRequest) (res *pbOAuth.RevokeReply, err error)
 	SendIngredients(input *protobuf.RequestToStock) (*protobuf.ReplyFromStock, error)
+	SendReportToStock(input *pb.ReportRequest) (*pb.ReportReply, error)
 }
 

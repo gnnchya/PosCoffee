@@ -13,6 +13,7 @@ type Repository interface {
 	Create(ctx context.Context, ent interface{}, id string) (err error)
 	Update(ctx context.Context, ent interface{}, id string) (err error)
 	Delete(ctx context.Context, id string) (err error)
+	Report(ctx context.Context) (result []domain.CreateStruct, err error)
 	//Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a domain.CreateStruct, err error)
 	ReadNameAll(ctx context.Context, user *domain.ReadNameByPageStruct) (a []domain.CreateStruct, err error)
