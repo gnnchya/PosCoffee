@@ -6,7 +6,7 @@ type Ingredient struct{
 }
 
 type CreateStruct struct {
-	ID         		string   `bson:"_id" json:"_id"`
+	ID         		string   `bson:"_id" json:"id"`
 	Category       	[]string   `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
@@ -21,7 +21,7 @@ type DeleteStruct struct {
 }
 
 type UpdateStruct struct {
-	ID         		string   `bson:"_id" json:"_id"`
+	ID         		string   `bson:"_id" json:"id"`
 	Category       	[]string   `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required" validate:"required"`
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
