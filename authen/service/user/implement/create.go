@@ -15,8 +15,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//user := userin.CreateInputToUserDomain(input)
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
-
-	err = impl.elasRepo.Create(ctx, input)
 	//send := &pb.Request{
 
 	//}

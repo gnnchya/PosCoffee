@@ -2,41 +2,51 @@ package userin
 
 import (
 	"github.com/gnnchya/PosCoffee/authen/domain"
+	"github.com/modern-go/reflect2"
+
+	"github.com/uniplaces/carbon"
 )
 
 
 type CreateInput struct {
-	ID         		string   `bson:"_id" json:"id"`
-	Category       	[]string   `bson:"category" json:"category"`
-	Name 			string   `bson:"name" json:"name" validate:"required"`
-	//Ingredient 		[]domain.Ingredient `bson:"ingredient" json:"ingredient"`
-	Price      		int64    `bson:"price" json:"price"`
-	Available 		bool	 `bson:"available" json:"available"`
-	Code int `json:"code"`
-	Err error `json:"err"`
+	ID             string       `json:"id"`
+	Prefix         *Lang 		`json:"prefix"`
+	FirstName      *Lang 		`json:"first_name" validate:"required"`
+	LastName       *Lang 		`json:"last_name" validate:"required"`
+	SignUpChannel  string       `json:"sign_up_channel"`
+	Email          string       `json:"email"`
+	MobileNumber   string       `json:"mobile_number" validate:"required"`
+	IdentifyType   string       `json:"identify_type" validate:"required"`
+	IdentifyNumber string       `json:"identify_number" validate:"required"`
+	Password       string       `json:"password" validate:"required"`
+	PassCode       string       `json:"passcode"`
+	RoleID         []string     `json:"role_id"`
+	MemberGroup    *MemberGroup `json:"member_group"`
+	*MetaData      				`validate:"required"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
-	return &domain.CreateStruct{
+func (input *CreateInput)CreateInputToUserDomain() (user *domain.Users) {
+	if reflect2.IsNil(input) {
+		return &domain.Users{}
+	}
+
+	return &domain.Users{
 		ID:             input.ID,
-		Category: input.Category,
-		Name:           input.Name,
-		//Ingredient: input.Ingredient,
-		Price: input.Price,
-		Available: input.Available,
+		Prefix:         input.Prefix.ToDomain(),
+		FirstName:      input.FirstName.ToDomain(),
+		LastName:       input.LastName.ToDomain(),
+		SignUpChannel:  input.SignUpChannel,
+		Email:          input.Email,
+		MobileNumber:   input.MobileNumber,
+		IdentifyType:   input.IdentifyType,
+		IdentifyNumber: input.IdentifyNumber,
+		Password:       input.Password,
+		PassCode:       input.PassCode,
+		RoleID:         input.RoleID,
+		MemberGroup:    input.MemberGroup.ToDomain(),
+		MetaData:       input.MetaData.ToDomain(),
+		CreatedAt:      carbon.Now().Unix(),
+		UpdatedAt:      carbon.Now().Unix(),
 	}
 }
 
-//func ToDomain(input *CreateInput) (user *domain.InsertQ) {
-//
-//	return &domain.InsertQ{
-//		ID:         input.ID,
-//		Name:       input.Name,
-//		ActualName: input.ActualName,
-//		Gender:     input.Gender,
-//		BirthDate:  input.BirthDate,
-//		Height:     input.Height,
-//		SuperPower: input.SuperPower,
-//		Alive:      input.Alive,
-//	}
-//}

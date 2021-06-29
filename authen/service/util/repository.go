@@ -3,29 +3,27 @@ package util
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/domain"
-	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
-	"time"
+	"google.golang.org/grpc"
 )
 
 //go:generate mockery --name=Repository
 
-type RepositoryElas interface {
-	SearchCategory(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
-	SearchIngredient(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
-	SearchMenu(keyword string, ctx context.Context) ([]domain.CreateStruct, error)
-	Read(id string, ctx context.Context) (domain.CreateStruct, error)
-	ReadAll(page int, size int, ctx context.Context) ([]domain.CreateStruct, error)
-	Create(ctx context.Context, ent *userin.CreateInput) (err error)
-	Update(ctx context.Context, ent *domain.UpdateStruct) (err error)
+type Repository interface {
+	Create(ctx context.Context, ent interface{}) (err error)
+	Update(ctx context.Context, ent interface{}, ID string) (err error)
 	Delete(ctx context.Context, id string) (err error)
+	SearchName(ctx context.Context, s *domain.SearchValue) (result []domain.Users, err error)
+	Read(ctx context.Context, id string) (a domain.Users, err error)
+	ReadAll(ctx context.Context, perPage int, page int) ([]domain.Users, error)
 	CheckExistID(ctx context.Context, id string) (bool, error)
-	CheckExistName(ctx context.Context, name string) (bool, error)
-	CheckExistIndex(ctx context.Context, Index string) (bool, error)
+	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
+	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
 }
 
-type RepositoryRedis interface {
-	Set(ctx context.Context, key string, value interface{}) (err error)
-	Get(ctx context.Context, key string, dest interface{}) (err error)
-	GetExpire(ctx context.Context, key string) (result time.Duration, err error)
-	Del(ctx context.Context, key string) (err error)
+type RepositoryUsers interface {
+	Repository
+}
+
+type RepositoryGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
 }

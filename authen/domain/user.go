@@ -58,3 +58,7 @@ type ForgotPassword struct {
 	Password  string `bson:"password"`
 	UpdatedAt int64  `bson:"updatedAt"`
 }
+
+type SearchValue struct {
+	Value string `bson:"value"`
+}
