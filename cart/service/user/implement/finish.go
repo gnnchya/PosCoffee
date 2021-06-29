@@ -9,7 +9,7 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
-func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (ID string, err error) {
+func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (message interface{}, err error) {
 	input, err := impl.repo.Read(ctx, id)
 	fmt.Println("read input", input)
 	menu := toMenuArr(input.Menu)
@@ -31,10 +31,11 @@ func (impl *implementation) Finish(ctx context.Context, id string, finishInput *
 	}
 	fmt.Println("inputProto", inputProtobuf)
 	res, err := impl.client.SendCart(inputProtobuf)
-	if err != nil {
-		return input.ID, err
-	}
-	if res.Stock == false{
+	fmt.Println("response from product", res)
+	fmt.Println("error", err)
+	if res.Stock == true {
+		return res.Changes, err
+	}else{
 		return input.ID, errors.New(res.Err)
 	}
 

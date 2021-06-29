@@ -39,11 +39,9 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Paid:          request.Paid,
 	}
 	fmt.Println("cart", input.Cart)
-	change, err := impl.userService.Create(ctx, input)
-	var stock bool
-	if err != nil{
-		stock = false
-	}
+	res, change, err := impl.userService.Create(ctx, input)
+	fmt.Println("---------------------------------------------")
+	fmt.Println("change", change)
 	var changes []*protobuf.Changes
 	for _, v := range change{
 		cha := &protobuf.Changes{
@@ -52,10 +50,14 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		}
 		changes = append(changes, cha)
 	}
+	var e string
+	if err != nil{
+		e = err.Error()
+	}
 	output := &protobuf.Reply2{
-		Stock:   stock,
+		Stock:   res,
 		Changes: changes,
-		//Err: err.Error(),
+		Err: e,
 	}
 	fmt.Println("output to cart", output)
 	return output, nil
