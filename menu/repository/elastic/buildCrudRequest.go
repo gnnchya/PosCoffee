@@ -15,7 +15,6 @@ func BuildUpdateRequest(t *domain.UpdateStruct) (buf bytes.Buffer, err error) {
 			"price" : t.Price,
 			"available" : t.Available,
 		},
-
 	}
 	if err := json.NewEncoder(&buf).Encode(query); err != nil {
 		return buf , err
