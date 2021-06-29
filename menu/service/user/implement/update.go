@@ -23,7 +23,7 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 	if err != nil {
 		return "", err
 	}
-	
+
 	_ = impl.redisRepo.Del(ctx, user.ID)
 	return user.ID, nil
 }
