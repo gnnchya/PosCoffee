@@ -11,4 +11,8 @@ message reportRequest{
   int64 EXPDate = 7;
   int64 ImportDate = 8;
   string Supplier = 9;
+  int64  TotalCost = 10;
+  int64 TotalAmount = 11;
+  string Status = 12;
 }
+

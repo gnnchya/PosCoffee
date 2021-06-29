@@ -18,21 +18,15 @@ func (repo *Repository) checkExistID(ctx context.Context, id string) (bool, erro
 
 func (repo *Repository) checkStockLeft(ctx context.Context, ingredient string) (state bool, result domain.CalculateCost, err error) {
 	var totalCost, count int64 = 0, 0
-	cursor, err := repo.Coll.Find(ctx,
-		bson.M{
-			"$and": bson.A{
-				//bson.M{"item_name": ingredient},
-				//bson.M{"amount": bson.M{"$gt": 0}},
-				bson.M{"status": "in-use"},
-			}})
+	cursor, err := repo.Coll.Find(ctx, bson.M{"item_name": "Milk"}})
 
-	//var resultStruct domain.CalculateCost
-	//if err = cursor.Decode(&resultStruct); err != nil {
-	//	//err = errors.New("error : there is no ingredient left to make this menu")
-	//	return false, result, err
-	//}
-	//totalCost += resultStruct.CostPerUnit
-	//count += 1
+	var resultStruct domain.CreateStruct
+	if err = cursor.Decode(&resultStruct); err != nil {
+		//err = errors.New("error : there is no ingredient left to make this menu")
+		return false, result, err
+	}
+	totalCost += resultStruct.CostPerUnit
+	count += 1
 
 	for cursor.Next(ctx) {
 		var resultStruct domain.CalculateCost

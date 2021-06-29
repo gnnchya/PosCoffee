@@ -2,24 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../product/app/user/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/app/user/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/app/user/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/domain/stock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/updateStock.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../product/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/userin/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/userin/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/userin/msgbroker.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/userin/msgbroker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/msgbroker/implement/private.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/msgbroker/implement/private.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/implement/msgreceiver.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/msgreceiver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/service/grpcClient/protobuf/report/report.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/grpcClient/protobuf/report/report.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/service/user/implement/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/implement/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/mongodb/validation.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/mongodb/validation.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
