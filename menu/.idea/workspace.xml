@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../cart/service/grpcClient/protobuf/menu/menu.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/user/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/grpc/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/grpc/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpc/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpc/protobuf/menu/menu.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpc/protobuf/menu/menu.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpcClient/implement/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpcClient/implement/sendMenu.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpcClient/interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/grpcClient/protobuf/cart/cart.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/implement/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/implement/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/util/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/util/repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../product/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
