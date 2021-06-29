@@ -1,7 +1,7 @@
 package domain
 
 type CreateMoneyStruct struct {
-	ID 			string		`bson:"_id" json:"-id"`
+	ID 			string		`bson:"_id" json:"_id"`
 	Value   	int64   	`bson:"value" json:"value"`
 	Amount 		int64  		`bson:"amount" json:"amount"`
 	Currency	string   	`bson:"currency" json:"currency"`

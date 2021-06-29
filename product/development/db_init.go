@@ -18,7 +18,7 @@ type Money struct {
 }
 
 type Ingredient struct{
-	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName    string   `bson:"item_name" json:"item-name"`
 	Amount      	 int64    `bson:"amount" json:"amount"`
 }
 
