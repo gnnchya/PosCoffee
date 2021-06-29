@@ -14,13 +14,15 @@ func InToStruct(r map[string]interface{}) []domain.CreateStruct{
 		temp.ID = fmt.Sprintf("%v", s.(map[string]interface{})["id"])
 		if temp.ID == ""{
 			temp.ID = fmt.Sprintf("%v", s.(map[string]interface{})["_id"])
+			fmt.Println("if------------------------ id ", temp.ID)
 		}
+		fmt.Println("id------------------",temp.ID)
 		temp.ID = fmt.Sprintf("%v", s.(map[string]interface{})["id"])
 		temp.Name = fmt.Sprintf("%v", s.(map[string]interface{})["name"])
 		temp.Category= strings.Split(fmt.Sprintf("%v", s.(map[string]interface{})["category"]),",")
 		temp.Ingredient = make([]domain.Ingredient, len(s.(map[string]interface{})["ingredient"].([]interface{})))
 		for i, in := range s.(map[string]interface{})["ingredient"].([]interface{}){
-			fmt.Println("asdfasfdasfd",i,fmt.Sprintf("%v", in.(map[string]interface{})["item_name"]),int64(in.(map[string]interface{})["amount"].(float64)))
+			//fmt.Println("asdfasfdasfd",i,fmt.Sprintf("%v", in.(map[string]interface{})["item_name"]),int64(in.(map[string]interface{})["amount"].(float64)))
 			temp.Ingredient[i].Amount = int64(in.(map[string]interface{})["amount"].(float64))
 			temp.Ingredient[i].IngredientName = fmt.Sprintf("%v", in.(map[string]interface{})["item_name"])
 		}
