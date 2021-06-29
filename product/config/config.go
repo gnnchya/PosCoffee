@@ -10,7 +10,12 @@ type Config struct {
 	// MongoDB config
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27018"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"product"`
-	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"product"`
+	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"transactions"`
+
+	MongoDBEndpointMoney    string `env:"MONGODB_MONEY_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27018"`
+	MongoDBNameMoney        string `env:"MONGODB_MONEY_NAME" envDefault:"product"`
+	MongoDBTableNameMoney  	string `env:"MONGODB_MONEY_TABLE_NAME" envDefault:"money"`
+
 
 	// Jaeger config
 	JaegerAgentHost string `env:"JAEGER_AGENT_HOST" envDefault:"localhost"`
