@@ -24,6 +24,7 @@ type Config struct {
 	MessageBrokerVersion      string   `env:"MESSAGE_BROKER_VERSION" envDefault:"2.6.1"`
 
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50051"`
+	GRPCSenderReportHost string `env:"GRPC_SENDER_REPORT_HOST" envDefault:"localhost:50053"`
 }
 
 func Get() *Config {
