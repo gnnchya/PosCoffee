@@ -25,12 +25,10 @@ func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
 		for _,x := range i.Cart.Menu{
 			temp = []string{}
 			if contains(res,i.ID){
-				temp = []string{}
 				for q:=0; q < 10; q++{
 					temp = append(temp, " ")
 				}
 			} else {
-				temp = []string{}
 				temp = append(temp, i.ID)
 				temp = append(temp, i.Cart.ID)
 				temp = append(temp, i.Cart.CustomerID)
