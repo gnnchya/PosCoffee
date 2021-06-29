@@ -3,12 +3,14 @@ package mongodb
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 func (repo *Repository) CheckExistID(ctx context.Context, id string) (bool, error) {
 	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"_id", id}})
+	fmt.Println("count", count)
 	if count < 1 {
 		err = errors.New("ID does not exist")
 		return false, err
