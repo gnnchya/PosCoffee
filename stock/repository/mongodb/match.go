@@ -35,7 +35,6 @@ func (repo *Repository) ReadTotalAmount(ctx context.Context, st []domain.CreateS
 				res = append(res,x)
 			}
 		}
-
 	}
 	return res, err
 }

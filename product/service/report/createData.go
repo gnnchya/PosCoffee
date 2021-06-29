@@ -1,17 +1,27 @@
 package report
 
-import "github.com/gnnchya/PosCoffee/product/domain"
+import (
+	"fmt"
+	"github.com/gnnchya/PosCoffee/product/domain"
+)
 
 func CreateData(transaction []domain.CreateOrderStruct,stock []domain.CreateStockStruct) (data [][]string){
-	for _,i := range TranToArray(transaction){
+	tran := TranToArray(transaction)
+	for _,i := range tran{
 		data = append(data, i)
 	}
+	fmt.Println("tran-----------------------------")
+	fmt.Println(tran)
 	data = append(data, []string{" "})
-	for _, x := range StockToArray(stock){
+	st := StockToArray(stock)
+	for _, x := range st{
 		data = append(data, x)
 	}
+	fmt.Println("stock=============================")
+	fmt.Println(st)
 	data = append(data, []string{" "})
-	for _, y := range CalToArray(CalculateProfit(transaction)){
+	cal :=  CalToArray(CalculateProfit(transaction))
+	for _, y := range cal{
 		data = append(data, y)
 	}
 	return data
