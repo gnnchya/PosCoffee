@@ -28,7 +28,7 @@ func newApp(appConfig *config.Config) *app.App {
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
 
 
-	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)))
+	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), repoGrpc.New(configGrpc2(appConfig)))
 	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
 
 	msgService := msgBrokerService.New(kRepo, user)
