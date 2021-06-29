@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -45,6 +46,7 @@ func (repo *Repository) match(ctx context.Context)(result []domain.CreateStruct,
 	if err != nil{
 		return result, err
 	}
+	fmt.Println("match in repo", result)
 	return result, err
 }
 
@@ -61,5 +63,6 @@ func (repo *Repository) Report(ctx context.Context) (result []domain.CreateStruc
 			result = append(result, i)
 		}
 	}
+	fmt.Println("report in repo", result)
 	return result, err
 }

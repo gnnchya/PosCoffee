@@ -22,6 +22,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.Cr
 		fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
+	fmt.Println("add to array", result)
 	return result,err
 }
 

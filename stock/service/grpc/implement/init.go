@@ -1,10 +1,11 @@
 package implement
 
 import (
-	"github.com/gnnchya/PosCoffee/stock/service/grpc/protobuf"
-	"github.com/gnnchya/PosCoffee/stock/service/util"
-	"github.com/gnnchya/PosCoffee/stock/service/user"
 	grpcService "github.com/gnnchya/PosCoffee/stock/service/grpc"
+	"github.com/gnnchya/PosCoffee/stock/service/grpc/protobuf"
+	pb "github.com/gnnchya/PosCoffee/stock/service/grpc/protobuf/report"
+	"github.com/gnnchya/PosCoffee/stock/service/user"
+	"github.com/gnnchya/PosCoffee/stock/service/util"
 	"google.golang.org/grpc"
 	"log"
 )
@@ -26,6 +27,7 @@ func New(grpcRepo util.RepositoryGRPC, userService user.Service) (service grpcSe
 	grpcServer := grpc.NewServer()
 	lis, err := grpcRepo.NetListener()
 	protobuf.RegisterSendIngredientsServer(grpcServer, &impl)
+	pb.RegisterSendReportToStockServer(grpcServer, &impl)
 	if err = grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

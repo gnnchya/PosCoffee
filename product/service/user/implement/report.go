@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
 	"github.com/gnnchya/PosCoffee/product/service/report"
@@ -14,6 +15,7 @@ func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange)
 	//stock := //proud
 	out := &pb.ReportRequest{Request: "stock"}
 	reply, err := impl.client.SendReportToStock(out)
+	fmt.Println("reply", reply)
 	if err != nil{
 		return nil, err
 	}

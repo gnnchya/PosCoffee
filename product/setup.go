@@ -26,9 +26,10 @@ func newApp(appConfig *config.Config) *app.App {
 	validator := validatorService.New(uRepo)
 
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
+	grpcRepoReport := repoGrpc.New(configGrpcReport(appConfig))
 
 
-	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), repoGrpc.New(configGrpc2(appConfig)))
+	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), grpcRepoReport)
 	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
 
 	msgService := msgBrokerService.New(kRepo, user)
@@ -76,5 +77,12 @@ func configGrpc2(appConfig *config.Config) *repoGrpc.Config {
 	return &repoGrpc.Config{
 		Network: NETWORK,
 		Port:    appConfig.GRPCHost,
+	}
+}
+
+func configGrpcReport(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCSenderReportHost,
 	}
 }

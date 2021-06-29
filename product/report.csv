@@ -1,0 +1,6 @@
+ID,Cart,CustomerID,Finished,TotalCost,TotalPrice,PaymentMethod,TypeOfOrder,Destination.Coordinates,Time,MenuID,MenuName,MenuPrice,MenuAmount,MenuOption
+" "
+ID,Cart,CustomerID,Finished,TotalCost,TotalPrice,PaymentMethod,TypeOfOrder,Destination.Coordinates,Time,MenuID,MenuName,MenuPrice,MenuAmount,MenuOption
+" "
+Total Income,Total Cost,Total Profit
+Total Income,Total Cost,Total Profit,0,0,0
