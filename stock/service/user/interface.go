@@ -19,4 +19,5 @@ type Service interface {
 	MsgReceiver(ctx context.Context, msg []byte) (err error)
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)
 	CheckStock(ctx context.Context, input []string) (state bool, expenses []domain.CalculateCost, err string)
+	Report(ctx context.Context) (result []domain.CreateStruct, err error)
 }
