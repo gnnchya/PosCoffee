@@ -47,7 +47,7 @@ func buildViewRequest(id string) bytes.Buffer{
 	query := map[string]interface{}{
 		"query" : map[string]interface{}{
 			"match": map[string]interface{}{
-				"_id": id,
+				"id": id,
 			},
 		},
 	}

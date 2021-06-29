@@ -11,7 +11,7 @@ import (
 )
 
 type Ingredient struct{
-	IngredientName    string   `bson:"item_name" json:"item_name"`
+	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
 	Amount      	 int64    `bson:"amount" json:"amount"`
 }
 

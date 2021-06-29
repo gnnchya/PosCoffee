@@ -3,7 +3,7 @@ package elastic
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/gnnchya/PosCoffee/menu/domain"
+	"github.com/gnnchya/PosCoffee/authen/domain"
 )
 
 func BuildUpdateRequest(t *domain.UpdateStruct) (buf bytes.Buffer, err error) {
@@ -15,6 +15,7 @@ func BuildUpdateRequest(t *domain.UpdateStruct) (buf bytes.Buffer, err error) {
 			"price" : t.Price,
 			"available" : t.Available,
 		},
+
 	}
 	if err := json.NewEncoder(&buf).Encode(query); err != nil {
 		return buf , err
