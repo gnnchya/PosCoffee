@@ -60,6 +60,6 @@ func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct 
 }
 
 func (repo *RepositoryMoney) ReadMoneyAll(ctx context.Context) ([]domain.CreateMoneyStruct, error) {
-	cursor, err := repo.Coll.Find(nil, bson.M{"currency" : repo.Currency})
+	cursor, err := repo.Coll.Find(ctx, bson.M{})
 	return AddToArray(cursor, err, ctx)
 }
