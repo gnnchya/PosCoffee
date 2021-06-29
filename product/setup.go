@@ -19,7 +19,7 @@ import (
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
-	uRepoMoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName, "THB")
+	uRepoMoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpointMoney, appConfig.MongoDBNameMoney, appConfig.MongoDBTableNameMoney, "THB")
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)

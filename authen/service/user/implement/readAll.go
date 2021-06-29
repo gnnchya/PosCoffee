@@ -8,11 +8,11 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 )
 
-func (impl *implementation) ReadAll(ctx context.Context, input *userin.ViewAllInput)([]domain.CreateStruct, error) {
+func (impl *implementation) ReadAll(ctx context.Context, input *userin.ViewAllInput)([]domain.Users, error) {
 
 	user := userin.ViewAllInputToUserDomain(input)
 	fmt.Println("user in read all:", user)
-	a, err := impl.elasRepo.ReadAll(user.Page, user.PerPage,ctx)
+	a, err := impl.userRepo.ReadAll(ctx, user.Page, user.PerPage)
 	if err != nil {
 		return a, err
 	}

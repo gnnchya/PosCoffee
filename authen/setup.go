@@ -4,26 +4,26 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/app"
 	"github.com/gnnchya/PosCoffee/authen/config"
-	elasRepo "github.com/gnnchya/PosCoffee/authen/repository/elastic"
-	redisRepo "github.com/gnnchya/PosCoffee/authen/repository/redis"
+	userRepo "github.com/gnnchya/PosCoffee/authen/repository/mongodb"
 	userService "github.com/gnnchya/PosCoffee/authen/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/authen/service/validator"
+
+	repoGrpc "github.com/gnnchya/PosCoffee/authen/repository/grpc"
+	grpcService "github.com/gnnchya/PosCoffee/authen/service/grpcClient/implement"
 	"log"
-	"time"
 )
 const (
 	NETWORK = "tcp"
 )
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
-
-	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
+	//TODO initiateDB in docker-compose
+	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
+	grpcRepo := repoGrpc.New(configGrpc(appConfig))
+	gService := grpcService.New(grpcRepo)
 	panicIfErr(err)
-	redisRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword, 24 * time.Hour)
-	panicIfErr(err)
-
-	validator := validatorService.New(elasRepo)
-	user := userService.New(validator, elasRepo, redisRepo)
+	validator := validatorService.New(uRepo)
+	user := userService.New(validator, uRepo, gService)
 	return app.New(user)
 }
 
@@ -32,3 +32,11 @@ func panicIfErr(err error) {
 		log.Panic(err)
 	}
 }
+
+func configGrpc(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCSenderHost,
+	}
+}
+

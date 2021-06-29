@@ -7,10 +7,9 @@ import (
 )
 
 func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error) {
-	user := userin.DeleteInputToUserDomain(input)
-	fmt.Println("user input delete:", user)
+	fmt.Println("user input delete:", input)
 
-	err = impl.elasRepo.Delete(ctx, user.ID)
+	//TODO DElete duay
 	//fmt.Println("output del:", user)
 	//fmt.Println("err del:", err)
 	//if err == impl.sendMsgDelete(input){
@@ -21,9 +20,7 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 	if err != nil {
 		return "", err
 	}
-
-	_ = impl.redisRepo.Del(ctx, user.ID)
-	return user.ID, err
+	return input.ID, err
 }
 
 //func (impl *implementation) sendMsgDelete(input *userin.DeleteInput) (err error) {

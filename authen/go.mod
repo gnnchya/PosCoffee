@@ -15,6 +15,8 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/touchtechnologies-product/xid v0.0.0-20200602111826-04f58074f910
 	github.com/ugorji/go v1.1.13 // indirect
+	github.com/uniplaces/carbon v0.1.6 // indirect
+	go.mongodb.org/mongo-driver v1.5.3 // indirect
 	golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0 // indirect
 	golang.org/x/text v0.3.5 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect

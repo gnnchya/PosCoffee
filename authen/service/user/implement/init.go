@@ -8,10 +8,10 @@ import (
 
 type implementation struct {
 	validator validator.Validator
-	elasRepo  util.RepositoryElas
-	redisRepo util.RepositoryRedis
+	userRepo  util.RepositoryUsers
+	grpcRepo  util.RepositoryGRPC
 }
 
-func New(validator validator.Validator, elasRepo util.RepositoryElas, redisRepo util.RepositoryRedis) (service user.Service) {
-	return &implementation{validator, elasRepo, redisRepo}
+func New(validator validator.Validator, userRepo util.RepositoryUsers, grpcRepo util.RepositoryGRPC) (service user.Service) {
+	return &implementation{validator, userRepo, grpcRepo}
 }

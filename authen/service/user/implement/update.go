@@ -19,11 +19,10 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 
 	user := input.UpdateInputToUserDomain()
 	fmt.Println("user in service update", user)
-	err = impl.elasRepo.Update(ctx, user)
+	err = impl.userRepo.Update(ctx, user, user.ID)
 	if err != nil {
 		return "", err
 	}
 
-	_ = impl.redisRepo.Del(ctx, user.ID)
 	return user.ID, nil
 }
