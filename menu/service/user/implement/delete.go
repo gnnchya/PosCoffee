@@ -22,7 +22,6 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 		return "", err
 	}
 
-	// TODO send to message broker
 	_ = impl.redisRepo.Del(ctx, user.ID)
 	return user.ID, err
 }
