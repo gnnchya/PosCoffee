@@ -6,6 +6,7 @@ import (
 
 
 type CreateInput struct {
+	ID         		string   `bson:"_id" json:"id"`
 	Category       	[]string   `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
 	Ingredient 		[]domain.Ingredient `bson:"ingredient" json:"ingredient"`
@@ -17,6 +18,7 @@ type CreateInput struct {
 
 func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 	return &domain.CreateStruct{
+		ID:             input.ID,
 		Category: input.Category,
 		Name:           input.Name,
 		Ingredient: input.Ingredient,
