@@ -17,14 +17,12 @@ type UpdateInput struct {
 
 func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateStruct) {
 	return &domain.UpdateStruct{
-		ID:             input.ID,
-		Category: input.Category,
-		Name:           input.Name,
+		ID:         input.ID,
+		Category:   input.Category,
+		Name:       input.Name,
 		Ingredient: input.Ingredient,
-		Price: input.Price,
-		Available: input.Available,
-		Code: input.Code,
-		Err: input.Err,
+		Price:      input.Price,
+		Available:  input.Available,
 	}
 }
 
@@ -36,7 +34,5 @@ func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateStruct) {
 		Ingredient: input.Ingredient,
 		Price: input.Price,
 		Available: input.Available,
-		Code: input.Code,
-		Err: input.Err,
 	}
 }

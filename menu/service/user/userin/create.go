@@ -24,8 +24,6 @@ func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
 		//Ingredient: input.Ingredient,
 		Price: input.Price,
 		Available: input.Available,
-		Code: input.Code,
-		Err: input.Err,
 	}
 }
 
