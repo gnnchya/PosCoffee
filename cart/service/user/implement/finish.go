@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
+	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
-func (impl *implementation) Finish(ctx context.Context, id string) (ID string, err error) {
+func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (ID string, err error) {
 	input, err := impl.repo.Read(ctx, id)
 	fmt.Println("read input", input)
 	menu := toMenuArr(input.Menu)
@@ -19,13 +20,13 @@ func (impl *implementation) Finish(ctx context.Context, id string) (ID string, e
 			Menu:      menu,
 			Price:      input.TotalPrice,
 		},
-		Paid: 123,
-		PaymentMethod: "credit",
-		Type: "here",
+		Paid: finishInput.Paid,
+		PaymentMethod: finishInput.PaymentMethod,
+		Type: finishInput.TypeOfOrder,
 		Geo: &protobuf.GeoJson{
 			Type: "point",
-			Long: 0,
-			Lat:  0,
+			Long: finishInput.Longitude,
+			Lat:  finishInput.Latitude,
 		},
 	}
 	fmt.Println("inputProto", inputProtobuf)
