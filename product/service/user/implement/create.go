@@ -32,11 +32,14 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	var remainMoney []domain.CreateMoneyStruct
 	if res.Stock == true{
 		if input.PaymentMethod == "Cash"{
+			fmt.Println("hererhehrehrehrherhehre")
 			temp, err := impl.repom.ReadMoneyAll(ctx)
+			fmt.Println("temp", temp)
 			if err != nil{
 				return res.Stock,nil , err
 			}
 			remainMoney, change, err = calculation.Calculation(input.Paid, input.Price, temp)
+			fmt.Println("change", change)
 			for _,i := range remainMoney{
 				err = impl.repom.UpdateByVal(ctx, i, i.Value)
 			}
