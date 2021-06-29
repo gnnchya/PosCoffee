@@ -44,8 +44,8 @@ func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
 			temp = append(temp, strconv.Itoa(int(x.Price)))
 			temp = append(temp, strconv.Itoa(int(x.Amount)))
 			temp = append(temp, x.Option)
+			res = append(res, temp)
 		}
-		res = append(res, temp)
 	}
 	return res
 }
