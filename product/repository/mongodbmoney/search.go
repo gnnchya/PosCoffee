@@ -11,7 +11,7 @@ import (
 	"strconv"
 )
 
-func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) (result []domain.CreateMoneyStruct, eir error) {
+func AddToArray(cursor *mongo.Cursor, err error, ctx context.Context) (result []domain.CreateMoneyStruct, eir error) {
 	for cursor.Next(ctx) {
 		var resultStruct domain.CreateMoneyStruct
 		if err = cursor.Decode(&resultStruct); err != nil {
@@ -23,6 +23,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) (result []do
 		fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
+	fmt.Println("result add to array", result)
 	return result,err
 }
 

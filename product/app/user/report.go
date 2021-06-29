@@ -10,8 +10,8 @@ import (
 
 func (ctrl *Controller) Report(c *gin.Context) {
 	input := &userin.ReportRange{
-		From:  1111111111,
-		Until: 1122334455,
+		From:  1624955331,
+		Until: 1624957013,
 	}
 	data, err := ctrl.service.Report(c, input)
 	if err != nil {
