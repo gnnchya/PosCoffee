@@ -39,6 +39,7 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Paid:          request.Paid,
 	}
 	fmt.Println("cart", input.Cart)
+	fmt.Println("paid", input.Paid)
 	res, change, err := impl.userService.Create(ctx, input)
 	fmt.Println("---------------------------------------------")
 	fmt.Println("change", change)

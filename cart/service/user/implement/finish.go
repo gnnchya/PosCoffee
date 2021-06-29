@@ -11,7 +11,9 @@ import (
 
 func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (message interface{}, err error) {
 	input, err := impl.repo.Read(ctx, id)
-	fmt.Println("read input", input)
+	if err != nil{
+		return "", err
+	}
 	menu := toMenuArr(input.Menu)
 	inputProtobuf := &protobuf.Request2{
 		Cart: &protobuf.Cart2{
@@ -33,6 +35,9 @@ func (impl *implementation) Finish(ctx context.Context, id string, finishInput *
 	res, err := impl.client.SendCart(inputProtobuf)
 	fmt.Println("response from product", res)
 	fmt.Println("error", err)
+	if err != nil {
+		return "", err
+	}
 	if res.Stock == true {
 		return res.Changes, err
 	}else{

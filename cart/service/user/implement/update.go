@@ -21,7 +21,6 @@ func (impl *implementation) Update(ctx context.Context, input *userin.Input) (ID
 	user := input.UpdateInputToUserDomain()
 	fmt.Println("user update input", user)
 
-	//TODO receive menu grpc
 	err = impl.repo.Update(ctx, user, user.ID)
 	//time.Sleep(5 * time.Second)
 	//_, err = impl.repo.Read(ctx, input.ID)

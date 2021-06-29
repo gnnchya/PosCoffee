@@ -18,11 +18,11 @@ type Money struct {
 }
 
 type Ingredient struct{
-	IngredientName    string   `bson:"ingredient_name" json:"ingredient-name"`
+	IngredientName    string   `bson:"item_name" json:"item-name"`
 	Amount      	 int64    `bson:"amount" json:"amount"`
 }
 
-var MoneyList =  []Money{
+var MoneyList = []Money{
 	{100000,20,"THB"},
 	{50000,10,"THB"},
 	{10000,30,"THB"},
