@@ -11,6 +11,8 @@ func (impl *implementation) CheckStock(ctx context.Context, input []string) (sta
 	state, expenses, e := impl.repo.CheckMenuAvailability(ctx, input)
 	fmt.Println("state", state)
 	fmt.Println("exp", expenses)
-	err = e.Error()
+	if e != nil{
+		err = e.Error()
+	}
 	return state, expenses, err
 }

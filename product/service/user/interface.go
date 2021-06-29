@@ -9,7 +9,7 @@ import (
 
 
 type Service interface {
-	Create(ctx context.Context, input *userin.CreateInput) (change []domain.ChangeStruct, err error)
+	Create(ctx context.Context, input *userin.CreateInput) (stock bool, change []domain.ChangeStruct, err error)
 	CreateStock(ctx context.Context, input *userin.CreateStockInput) (ID string, err error)
 	Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error)
 	DeleteStock(ctx context.Context, input *userin.DeleteStockInput) (ID string, err error)

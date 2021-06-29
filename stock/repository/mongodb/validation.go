@@ -61,5 +61,6 @@ func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients [
 		}
 		expenses = append(expenses, cost)
 	}
+	fmt.Println("err", err)
 	return true, expenses, err
 }

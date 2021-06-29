@@ -2,17 +2,19 @@ package implement
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/calculation"
 	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (change []domain.ChangeStruct, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (stock bool, change []domain.ChangeStruct, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return  change, err
+		return  false, change, err
 	}
 	fmt.Println("input cart", input.Cart)
 	var ingredientList []string
@@ -26,30 +28,30 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	inputIngre := &protobuf.RequestToStock{Ingredient: ingredientList}
 	res, err := impl.client.SendIngredients(inputIngre)
 	fmt.Println("response from stock", res)
-	//var cost []domain.CalculateCost
-	//var remainMoney []domain.CreateMoneyStruct
-	//if res.Stock == true{
-	//	if input.PaymentMethod == "Cash"{
-	//		temp, err := impl.repom.ReadMoneyAll(ctx)
-	//		if err != nil{
-	//			return nil , err
-	//		}
-	//		remainMoney, change, err = calculation.Calculation(input.Paid, input.Price, temp)
-	//		for _,i := range remainMoney{
-	//			err = impl.repom.UpdateByVal(ctx, i, i.Value)
-	//		}
-	//	}
-	//	user := input.CreateInputToUserDomain(cost)
-	//	fmt.Println("user input create:", user)
-	//	err = impl.repo.Create(ctx, user, user.ID)
-	//	if err != nil {
-	//		return change,  err
-	//	}
-	//}else{
-	//	return change, errors.New(res.Err)
-	//}
+	var cost []domain.CalculateCost
+	var remainMoney []domain.CreateMoneyStruct
+	if res.Stock == true{
+		if input.PaymentMethod == "Cash"{
+			temp, err := impl.repom.ReadMoneyAll(ctx)
+			if err != nil{
+				return res.Stock,nil , err
+			}
+			remainMoney, change, err = calculation.Calculation(input.Paid, input.Price, temp)
+			for _,i := range remainMoney{
+				err = impl.repom.UpdateByVal(ctx, i, i.Value)
+			}
+		}
+		user := input.CreateInputToUserDomain(cost)
+		fmt.Println("user input create:", user)
+		err = impl.repo.Create(ctx, user, user.ID)
+		if err != nil {
+			return res.Stock, change,  err
+		}
+	}else{
+		return res.Stock, change, errors.New(res.Err)
+	}
 
-	return change, nil
+	return res.Stock, change, nil
 }
 
 func Find(slice []string, val string) bool{
