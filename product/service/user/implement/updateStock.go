@@ -16,13 +16,10 @@ func (impl *implementation) UpdateStock(ctx context.Context, input *userin.Updat
 		fmt.Println("validate", err)
 		return "validate error", err
 	}
-
-	//user := userin.UpdateInputToUserDomain(input)
 	user := input.UpdateStockInputToUserDomain()
 	if err == impl.sendMsgUpdate(user){
 		log.Println(err)
 	}
-	//time.Sleep(5 * time.Second)
 	if err != nil {
 		return "", err
 	}

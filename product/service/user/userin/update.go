@@ -13,14 +13,6 @@ type UpdateInput struct {
 	Destination		domain.GeoJson  `bson:"destination" json:"destination"`
 }
 
-//func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateOrderStruct) {
-//	return &domain.UpdateOrderStruct{
-//		ID:             input.ID,
-//		Cart:
-//		Code:			input.Code,
-//		Err: input.Err,
-//	}
-//}
 
 func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateOrderStruct) {
 	return &domain.UpdateOrderStruct{

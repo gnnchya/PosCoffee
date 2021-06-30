@@ -15,13 +15,13 @@ func (impl *implementation) DeleteStock(ctx context.Context, input *userin.Delet
 
 	if err == impl.sendMsgDelete(input){
 		log.Println(err)
+		//return "", err
 	}
-	//time.Sleep(5 * time.Second)
-	//_, err = impl.repo.Read(ctx, input.ID)
+
 	if err != nil {
 		return "", err
 	}
-	return ID, err
+	return ID, nil
 }
 
 func (impl *implementation) sendMsgDelete(input *userin.DeleteStockInput) (err error) {
