@@ -189,6 +189,188 @@ func (x *RequestToStock) GetIngredient() []string {
 	return nil
 }
 
+type RequestRead struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *RequestRead) Reset() {
+	*x = RequestRead{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protobuf_product_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RequestRead) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequestRead) ProtoMessage() {}
+
+func (x *RequestRead) ProtoReflect() protoreflect.Message {
+	mi := &file_protobuf_product_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequestRead.ProtoReflect.Descriptor instead.
+func (*RequestRead) Descriptor() ([]byte, []int) {
+	return file_protobuf_product_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *RequestRead) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ReplyRead struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ID          string `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	ItemName    string `protobuf:"bytes,2,opt,name=ItemName,proto3" json:"ItemName,omitempty"`
+	Category    string `protobuf:"bytes,3,opt,name=Category,proto3" json:"Category,omitempty"`
+	Amount      int64  `protobuf:"varint,4,opt,name=Amount,proto3" json:"Amount,omitempty"`
+	Unit        string `protobuf:"bytes,5,opt,name=Unit,proto3" json:"Unit,omitempty"`
+	CostPerUnit int64  `protobuf:"varint,6,opt,name=CostPerUnit,proto3" json:"CostPerUnit,omitempty"`
+	EXPDate     int64  `protobuf:"varint,7,opt,name=EXPDate,proto3" json:"EXPDate,omitempty"`
+	ImportDate  int64  `protobuf:"varint,8,opt,name=ImportDate,proto3" json:"ImportDate,omitempty"`
+	Supplier    string `protobuf:"bytes,9,opt,name=Supplier,proto3" json:"Supplier,omitempty"`
+	TotalCost   int64  `protobuf:"varint,10,opt,name=TotalCost,proto3" json:"TotalCost,omitempty"`
+	TotalAmount int64  `protobuf:"varint,11,opt,name=TotalAmount,proto3" json:"TotalAmount,omitempty"`
+	Status      string `protobuf:"bytes,12,opt,name=Status,proto3" json:"Status,omitempty"`
+}
+
+func (x *ReplyRead) Reset() {
+	*x = ReplyRead{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protobuf_product_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReplyRead) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplyRead) ProtoMessage() {}
+
+func (x *ReplyRead) ProtoReflect() protoreflect.Message {
+	mi := &file_protobuf_product_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplyRead.ProtoReflect.Descriptor instead.
+func (*ReplyRead) Descriptor() ([]byte, []int) {
+	return file_protobuf_product_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ReplyRead) GetID() string {
+	if x != nil {
+		return x.ID
+	}
+	return ""
+}
+
+func (x *ReplyRead) GetItemName() string {
+	if x != nil {
+		return x.ItemName
+	}
+	return ""
+}
+
+func (x *ReplyRead) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *ReplyRead) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetUnit() string {
+	if x != nil {
+		return x.Unit
+	}
+	return ""
+}
+
+func (x *ReplyRead) GetCostPerUnit() int64 {
+	if x != nil {
+		return x.CostPerUnit
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetEXPDate() int64 {
+	if x != nil {
+		return x.EXPDate
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetImportDate() int64 {
+	if x != nil {
+		return x.ImportDate
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetSupplier() string {
+	if x != nil {
+		return x.Supplier
+	}
+	return ""
+}
+
+func (x *ReplyRead) GetTotalCost() int64 {
+	if x != nil {
+		return x.TotalCost
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetTotalAmount() int64 {
+	if x != nil {
+		return x.TotalAmount
+	}
+	return 0
+}
+
+func (x *ReplyRead) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_protobuf_product_proto protoreflect.FileDescriptor
 
 var file_protobuf_product_proto_rawDesc = []byte{
@@ -209,13 +391,40 @@ var file_protobuf_product_proto_rawDesc = []byte{
 	0x69, 0x74, 0x22, 0x30, 0x0a, 0x0e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x6f, 0x53,
 	0x74, 0x6f, 0x63, 0x6b, 0x12, 0x1e, 0x0a, 0x0a, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65,
 	0x6e, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x64,
-	0x69, 0x65, 0x6e, 0x74, 0x32, 0x50, 0x0a, 0x0f, 0x53, 0x65, 0x6e, 0x64, 0x49, 0x6e, 0x67, 0x72,
-	0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x3d, 0x0a, 0x0f, 0x53, 0x65, 0x6e, 0x64, 0x49,
-	0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x72,
-	0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x6f, 0x53, 0x74, 0x6f, 0x63, 0x6b,
-	0x1a, 0x14, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x46, 0x72, 0x6f,
-	0x6d, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x65, 0x6e, 0x74, 0x22, 0x1d, 0x0a, 0x0b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
+	0x65, 0x61, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x02, 0x69, 0x64, 0x22, 0xcf, 0x02, 0x0a, 0x09, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x52, 0x65, 0x61,
+	0x64, 0x12, 0x0e, 0x0a, 0x02, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x49,
+	0x44, 0x12, 0x1a, 0x0a, 0x08, 0x49, 0x74, 0x65, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x49, 0x74, 0x65, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a,
+	0x08, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x41, 0x6d, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x41, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x55, 0x6e, 0x69, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x55, 0x6e, 0x69, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x43, 0x6f, 0x73, 0x74, 0x50, 0x65, 0x72,
+	0x55, 0x6e, 0x69, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x43, 0x6f, 0x73, 0x74,
+	0x50, 0x65, 0x72, 0x55, 0x6e, 0x69, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x45, 0x58, 0x50, 0x44, 0x61,
+	0x74, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x45, 0x58, 0x50, 0x44, 0x61, 0x74,
+	0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x44, 0x61, 0x74, 0x65, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x44, 0x61, 0x74,
+	0x65, 0x12, 0x1a, 0x0a, 0x08, 0x53, 0x75, 0x70, 0x70, 0x6c, 0x69, 0x65, 0x72, 0x18, 0x09, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x53, 0x75, 0x70, 0x70, 0x6c, 0x69, 0x65, 0x72, 0x12, 0x1c, 0x0a,
+	0x09, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x73, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x09, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x54,
+	0x6f, 0x74, 0x61, 0x6c, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0b, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x16, 0x0a,
+	0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x32, 0x50, 0x0a, 0x0f, 0x53, 0x65, 0x6e, 0x64, 0x49, 0x6e, 0x67,
+	0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x3d, 0x0a, 0x0f, 0x53, 0x65, 0x6e, 0x64,
+	0x49, 0x6e, 0x67, 0x72, 0x65, 0x64, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x14, 0x2e, 0x63, 0x61,
+	0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x6f, 0x53, 0x74, 0x6f, 0x63,
+	0x6b, 0x1a, 0x14, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x46, 0x72,
+	0x6f, 0x6d, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x32, 0x3c, 0x0a, 0x09, 0x52, 0x65, 0x61, 0x64, 0x53,
+	0x74, 0x6f, 0x63, 0x6b, 0x12, 0x2f, 0x0a, 0x09, 0x52, 0x65, 0x61, 0x64, 0x53, 0x74, 0x6f, 0x63,
+	0x6b, 0x12, 0x11, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x52, 0x65, 0x61, 0x64, 0x1a, 0x0f, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x2e, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x52, 0x65, 0x61, 0x64, 0x42, 0x07, 0x5a, 0x05, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -230,18 +439,22 @@ func file_protobuf_product_proto_rawDescGZIP() []byte {
 	return file_protobuf_product_proto_rawDescData
 }
 
-var file_protobuf_product_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_protobuf_product_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_protobuf_product_proto_goTypes = []interface{}{
 	(*ReplyFromStock)(nil), // 0: cart.ReplyFromStock
 	(*CalculateCost)(nil),  // 1: cart.CalculateCost
 	(*RequestToStock)(nil), // 2: cart.RequestToStock
+	(*RequestRead)(nil),    // 3: cart.RequestRead
+	(*ReplyRead)(nil),      // 4: cart.ReplyRead
 }
 var file_protobuf_product_proto_depIdxs = []int32{
 	1, // 0: cart.ReplyFromStock.calculateCost:type_name -> cart.CalculateCost
 	2, // 1: cart.SendIngredients.SendIngredients:input_type -> cart.RequestToStock
-	0, // 2: cart.SendIngredients.SendIngredients:output_type -> cart.ReplyFromStock
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 2: cart.ReadStock.ReadStock:input_type -> cart.RequestRead
+	0, // 3: cart.SendIngredients.SendIngredients:output_type -> cart.ReplyFromStock
+	4, // 4: cart.ReadStock.ReadStock:output_type -> cart.ReplyRead
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -289,6 +502,30 @@ func file_protobuf_product_proto_init() {
 				return nil
 			}
 		}
+		file_protobuf_product_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RequestRead); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_protobuf_product_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReplyRead); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -296,9 +533,9 @@ func file_protobuf_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protobuf_product_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_protobuf_product_proto_goTypes,
 		DependencyIndexes: file_protobuf_product_proto_depIdxs,
@@ -384,6 +621,78 @@ var _SendIngredients_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendIngredients",
 			Handler:    _SendIngredients_SendIngredients_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "protobuf/product.proto",
+}
+
+// ReadStockClient is the client API for ReadStock service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ReadStockClient interface {
+	ReadStock(ctx context.Context, in *RequestRead, opts ...grpc.CallOption) (*ReplyRead, error)
+}
+
+type readStockClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewReadStockClient(cc grpc.ClientConnInterface) ReadStockClient {
+	return &readStockClient{cc}
+}
+
+func (c *readStockClient) ReadStock(ctx context.Context, in *RequestRead, opts ...grpc.CallOption) (*ReplyRead, error) {
+	out := new(ReplyRead)
+	err := c.cc.Invoke(ctx, "/cart.ReadStock/ReadStock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ReadStockServer is the server API for ReadStock service.
+type ReadStockServer interface {
+	ReadStock(context.Context, *RequestRead) (*ReplyRead, error)
+}
+
+// UnimplementedReadStockServer can be embedded to have forward compatible implementations.
+type UnimplementedReadStockServer struct {
+}
+
+func (*UnimplementedReadStockServer) ReadStock(context.Context, *RequestRead) (*ReplyRead, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadStock not implemented")
+}
+
+func RegisterReadStockServer(s *grpc.Server, srv ReadStockServer) {
+	s.RegisterService(&_ReadStock_serviceDesc, srv)
+}
+
+func _ReadStock_ReadStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestRead)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReadStockServer).ReadStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cart.ReadStock/ReadStock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReadStockServer).ReadStock(ctx, req.(*RequestRead))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ReadStock_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "cart.ReadStock",
+	HandlerType: (*ReadStockServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ReadStock",
+			Handler:    _ReadStock_ReadStock_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

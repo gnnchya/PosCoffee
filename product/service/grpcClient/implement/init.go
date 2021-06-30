@@ -11,6 +11,7 @@ import (
 type implementation struct {
 	conn      *grpc.ClientConn
 	client 	  protobuf.SendIngredientsClient
+	clientRead protobuf.ReadStockClient
 	connReport *grpc.ClientConn
 	clientReport pb.SendReportToStockClient
 }
@@ -29,6 +30,7 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC)
 	impl := &implementation{
 		conn:      conn,
 		client: protobuf.NewSendIngredientsClient(conn),
+		clientRead: protobuf.NewReadStockClient(conn),
 		connReport: connReport,
 		clientReport: pb.NewSendReportToStockClient(connReport),
 	}
