@@ -11,6 +11,7 @@ func (impl implementation) SendMenu(ctx context.Context, request *protobuf.Reque
 	//TODO read all
 	fmt.Println("enter send menu grpc", request)
 	input, err := impl.userService.Report(ctx)
+	fmt.Println("menu from repo", input)
 	if err != nil{
 		return nil, err
 	}
@@ -36,6 +37,6 @@ func (impl implementation) SendMenu(ctx context.Context, request *protobuf.Reque
 	}
 
 	result := &protobuf.ReplyMenu{Menu: output}
-
+	fmt.Println("send to product", result)
 	return result, nil
 }
