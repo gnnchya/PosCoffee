@@ -30,14 +30,21 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 }
 
 func (repo *Repository) ReadMenu(ctx context.Context, id string, from int64, until int64) (result []domain.Menu, err error){
-	matchStage := bson.D{{"$match", bson.M{
-		"$and": bson.A{
-			bson.M{"time": bson.M{"$gt": from}},
-			bson.M{"time": bson.M{"$lt": until}},
-		}}}}
-	groupStage := bson.D{{"$group", bson.D{{"cart.menu._id", id},{"total",bson.D{{"$sum",bson.D{{
-		"$multiply", []string{"$price", "$quantity"}}}}}}}}}
+	//matchStage := bson.D{{"$match", bson.M{
+	//	"$and": bson.A{
+	//		bson.M{"time": bson.M{"$gt": from}},
+	//		bson.M{"time": bson.M{"$lt": until}},
+	//	}}}}
+	//groupStage := bson.D{{"$group", bson.D{{"cart.menu._id", id},{"total",bson.D{{"$sum",bson.D{{
+	//	"$multiply", bson.D{{"price", "amount"}}}}}}}}}}
+	matchStage := bson.D{{"$match", bson.D{{"cart.menu._id", id}}}}
+	groupStage := bson.D{{"$group", bson.D{{"cart.menu._id", id}, {"total", bson.D{{"$sum", "$amount"}}}}}}
 	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,groupStage})
+	fmt.Println("-----------------------------------result only menu for report-----------------------------------****************************")
+	if err != nil{
+		return result, err
+	}
+	fmt.Println("-----------------------------------result only menu for report-----------------------------------****************************")
 	fmt.Println(AddToArray(cursor,err,ctx))
 	return result, err
 }
