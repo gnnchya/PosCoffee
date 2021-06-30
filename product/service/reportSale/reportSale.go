@@ -1,6 +1,7 @@
 package reportSale
 
 import (
+	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"strconv"
 )
@@ -8,10 +9,11 @@ import (
 func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 	temp := initSale()
 	res = append(res,temp)
-	temp = []string{}
-	var totalSale int64
-	var totalAmount int64
+	//temp = []string{}
+	var totalSale int64 = 0
+	var totalAmount int64 = 0
 	for _, i := range sale{
+		fmt.Println("test:", i)
 		for _, x := range all{
 			if i.ID == x.ID{
 				temp = []string{}
@@ -22,6 +24,7 @@ func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 				temp = append(temp, strconv.Itoa(int(i.Total/x.Price)))
 				temp = append(temp, strconv.Itoa(int(i.Total)))
 				res = append(res,temp)
+				fmt.Println("temp" , temp)
 				totalSale = totalSale + i.Total
 				totalAmount = totalAmount + (i.Total/x.Price)
 			}

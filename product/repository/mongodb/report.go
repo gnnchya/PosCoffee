@@ -42,14 +42,12 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 	if err != nil{
 		return result, err
 	}
-	i, _ := AddToArray(cursor,err,ctx)
-	//x = [{_id jrfofenerfjrlug} {total_sales 167000}]
-	fmt.Println("**************************************************************************************")
-	fmt.Println(i)
-	fmt.Println("**************************************************************************************")
-	for _,x := range i{
-		fmt.Println(fmt.Sprintf("%v",x))
+	result, err = AddToArrayTotalSale(cursor,err,ctx)
+	if err != nil{
+		return result, err
 	}
+	fmt.Println("**************************************************************************************")
+	fmt.Println(result)
 	fmt.Println("**************************************************************************************")
 	return result, err
 }

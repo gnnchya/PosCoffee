@@ -269,7 +269,7 @@ func main(){
 		for j:=0; j<=orderAmount; j++{
 			var order Menu
 			randTemp := rand.Intn(30)
-			order.ID 		= initID.Gen()
+			order.ID 		= MenuList[randTemp].ID
 			order.Category 	= MenuList[randTemp].Category
 			order.Name 		= MenuList[randTemp].Name
 			order.Ingredient = MenuList[randTemp].Ingredient

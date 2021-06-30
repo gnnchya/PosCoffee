@@ -30,6 +30,17 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]interface
 	return result,err
 }
 
+func AddToArrayTotalSale(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.TotalSale, error) {
+	var result []domain.TotalSale
+	for cursor.Next(ctx) {
+		var resultStruct domain.TotalSale
+		if err = cursor.Decode(&resultStruct); err != nil {
+			return result,err
+		}
+		result = append(result, resultStruct)
+	}
+	return result,err
+}
 
 func toString(resultArray []interface{}, err error) (string, error){
 	var result string
