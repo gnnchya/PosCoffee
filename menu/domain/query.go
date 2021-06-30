@@ -6,8 +6,8 @@ type Ingredient struct{
 }
 
 type CreateStruct struct {
-	ID         		string   `bson:"_id" json:"_id"`
-	Category       	[]string   `bson:"category" json:"category" validate:"required"`
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	[]string  `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
@@ -16,13 +16,13 @@ type CreateStruct struct {
 
 type DeleteStruct struct {
 	ID string `bson:"_id" json:"_id"`
-	Code int `json:"code"`
+	Code int  `json:"code"`
 	Err error `json:"err"`
 }
 
 type UpdateStruct struct {
-	ID         		string   `bson:"_id" json:"_id"`
-	Category       	[]string   `bson:"category" json:"category" validate:"required"`
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	[]string `bson:"category" json:"category" validate:"required"`
 	Name 			string   `bson:"name" json:"name" validate:"required" validate:"required"`
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient" validate:"required"`
 	Price      		int64    `bson:"price" json:"price" validate:"required"`
