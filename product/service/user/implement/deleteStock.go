@@ -28,8 +28,6 @@ func (impl *implementation) sendMsgDelete(input *userin.DeleteStockInput) (err e
 	return impl.MsgSender("delete", userin.MsgBrokerDelete{
 		Action:     msgbrokerin.ActionDelete,
 		ID:             input.ID,
-		Code: 			input.Code,
-		Err:  			input.Err,
 	})
 }
 

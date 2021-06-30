@@ -103,6 +103,7 @@ type GeoJson struct {
 }
 
 type Transaction struct {
+	ID				string			`bson:"_id" json:"_id"`
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
@@ -193,7 +194,7 @@ func main(){
 		orderAmount := rand.Intn(4)+1
 		var menuList []Menu
 		var totalPrice int64 = 0
-		for j:=1; j<=orderAmount; j++{
+		for j:=0; j<=orderAmount; j++{
 			var order Menu
 			randTemp := rand.Intn(30)
 			order.ID 		= initID.Gen()
@@ -205,12 +206,15 @@ func main(){
 			order.Amount 	= MenuList[randTemp].Amount
 			order.Option 	= MenuList[randTemp].Option
 			totalPrice += MenuList[randTemp].Price
+			menuList = append(menuList, order)
 		}
 		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 
 	for i:=0; i<10; i++ {
 		var SingleTransaction Transaction
+		initID := goxid.New()
+		SingleTransaction.ID = initID.Gen()
 		SingleTransaction.Cart = CartList[i]
 		SingleTransaction.Finished = randBool()
 		SingleTransaction.Price = CartList[i].TotalPrice

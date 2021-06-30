@@ -35,7 +35,6 @@ func (impl *implementation) sendMsgUpdate(input *domain.UpdateStockStruct) (err 
 		Action:     msgbrokerin.ActionUpdate,
 		ID:        	input.ID,
 		Amount:   	input.Amount,
-		Code: 		input.Code,
-		Err: 		input.Err,
+
 	})
 }

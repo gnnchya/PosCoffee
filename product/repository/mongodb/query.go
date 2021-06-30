@@ -9,10 +9,6 @@ import (
 )
 
 func (repo *Repository) Create(ctx context.Context, figure interface{}, id string) (err error) {
-	//_, err = repo.checkExistID(ctx, id)
-	//if err != nil {
-	//	return  err
-	//}
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }

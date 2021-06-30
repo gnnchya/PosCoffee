@@ -16,13 +16,13 @@ type CreateStockStruct struct {
 }
 
 type DeleteStockStruct struct {
-	ID 		string	`bson:"_id" json:"id"`
+	ID 		string	`bson:"_id" json:"_id"`
 	Code 	int 	`json:"code"`
 	Err 	error 	`json:"err"`
 }
 
 type UpdateStockStruct struct {
-	ID      string  `bson:"_id" json:"id" validate:"required"`
+	ID      string  `bson:"_id" json:"_id" validate:"required"`
 	Amount	int64   `bson:"amount" json:"amount" validate:"required"`
 	Code 	int 	`json:"code"`
 	Err 	error   `json:"err"`

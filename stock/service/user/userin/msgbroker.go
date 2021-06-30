@@ -15,8 +15,7 @@ type MsgBrokerCreate struct{
 	Supplier 		string 		`bson:"supplier" json:"supplier"`
 	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
-	Code 			int 		`json:"code"`
-	Err 			error 		`json:"err"`
+
 }
 
 func (msg MsgBrokerCreate) ToCreateInput()(createInput *CreateInput){
@@ -32,8 +31,7 @@ func (msg MsgBrokerCreate) ToCreateInput()(createInput *CreateInput){
 		Supplier:       msg.Supplier,
 		TotalCost:      msg.TotalCost,
 		TotalAmount:    msg.TotalAmount,
-		Code: 			msg.Code,
-		Err: 			msg.Err,
+
 	}
 	return createInput
 }
@@ -42,16 +40,12 @@ type MsgBrokerUpdate struct {
 	Action msgbrokerin.ActionMsgBroker `json:"action"`
 	Amount	int64   `bson:"amount" json:"amount"`
 	ID 		string	`bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 func (msg MsgBrokerCreate) ToUpdateInput()(input *UpdateInput) {
 	input = &UpdateInput{
 		ID:         msg.ID,
 		Amount:     msg.Amount,
-		Code: 		msg.Code,
-		Err:		msg.Err,
 	}
 	return input
 }
@@ -59,15 +53,11 @@ func (msg MsgBrokerCreate) ToUpdateInput()(input *UpdateInput) {
 type MsgBrokerDelete struct {
 	Action msgbrokerin.ActionMsgBroker `json:"action"`
 	ID 		string `json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 func (msg MsgBrokerCreate) ToDeleteInput()(input *DeleteInput) {
 	input = &DeleteInput{
 		ID: 		msg.ID,
-		Code: 		msg.Code,
-		Err:		msg.Err,
 	}
 	return input
 }
