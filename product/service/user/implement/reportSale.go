@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/product/service/reportSale"
@@ -13,6 +14,7 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 	//menu := //proud
 	request := &protobuf.RequestMenu{Err: "nil"}
 	reply, err := impl.client.SendMenu(request)
+	fmt.Println("menu from menu:", reply)
 	var menu []domain.OldMenu
 	for _, k := range reply.Menu{
 		var ingre []domain.Ingredient
