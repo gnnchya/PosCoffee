@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../cart/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../product/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../product/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../product/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.sum" afterDir="false" />
@@ -61,17 +64,16 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="go build github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="newApp" />
+    <configuration name="go build github.com/gnnchya/PosCoffee/menu" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" />
+      <package value="github.com/gnnchya/PosCoffee/menu" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" />
+        <item itemvalue="Go Build.go build github.com/gnnchya/PosCoffee/menu" />
       </list>
     </recent_temporary>
   </component>

@@ -14,6 +14,8 @@ type implementation struct {
 	clientRead protobuf.ReadStockClient
 	connReport *grpc.ClientConn
 	clientReport pb.SendReportToStockClient
+	connMenu *grpc.ClientConn
+	clientMenu protobuf.SendMenuClient
 }
 
 func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC) (service grpcClient.Service) {
@@ -27,12 +29,20 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC)
 		return nil
 	}
 
+	connMenu, err := grpcRepo.NewClient()
+	if err != nil {
+		return nil
+	}
+
+
 	impl := &implementation{
 		conn:      conn,
 		client: protobuf.NewSendIngredientsClient(conn),
 		clientRead: protobuf.NewReadStockClient(conn),
 		connReport: connReport,
 		clientReport: pb.NewSendReportToStockClient(connReport),
+		connMenu: connMenu,
+		clientMenu: protobuf.NewSendMenuClient(connMenu),
 	}
 	return impl
 }

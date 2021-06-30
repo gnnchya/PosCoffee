@@ -7,7 +7,6 @@ require (
 	github.com/elastic/go-elasticsearch/v8 v8.0.0-20210608143047-aa1301e7ba9d
 	github.com/gin-gonic/gin v1.7.2
 	github.com/go-playground/validator/v10 v10.6.1
-	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-redis/redis/v8 v8.10.0
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/kr/pretty v0.2.0 // indirect

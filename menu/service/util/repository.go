@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"net"
 	"time"
 )
 
@@ -28,4 +29,9 @@ type RepositoryRedis interface {
 	Get(ctx context.Context, key string, dest interface{}) (err error)
 	GetExpire(ctx context.Context, key string) (result time.Duration, err error)
 	Del(ctx context.Context, key string) (err error)
+}
+
+type RepositoryReportGRPC interface {
+	NetListener() (lis net.Listener, err error)
+	//NewClient() (*grpc.ClientConn, error)
 }
