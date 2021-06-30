@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	goxid "github.com/touchtechnologies-product/xid"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -53,6 +55,21 @@ type Menu2 struct {
 	Available 		bool	 `bson:"available" json:"available"`
 	Amount 			int64    `bson:"amount" json:"amount"`
 	Option 			string   `bson:"option" json:"option"`
+}
+
+type Stock struct {
+	ID         		string   	`bson:"_id" json:"_id"`
+	ItemName       	string   	`bson:"item_name" json:"item_name"`
+	Category 		string  	`bson:"category" json:"category"`
+	Amount			int64   	`bson:"amount" json:"amount"`
+	Unit     		string   	`bson:"unit" json:"unit"`
+	CostPerUnit		int64      	`bson:"cost_per_unit" json:"cost_per_unit"`
+	EXPDate     	int64   	`bson:"exp_date" json:"exp_date"`
+	ImportDate      int64   	`bson:"import_date" json:"import_date"`
+	Supplier 		string 		`bson:"supplier" json:"supplier"`
+	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
+	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
+	Status 			string		`bson:"status" json:"status"`
 }
 
 var MenuList =  []Menu2{
@@ -110,6 +127,12 @@ type Transaction struct {
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
 	Time			int64      		`bson:"time" json:"time"`
+	TotalCost 		int64			`bson:"total" json:"total"`
+}
+
+type CalculateCost struct{
+	ItemName         	string   `bson:"item_name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit"`
 }
 
 func randomTime(minTime time.Duration , maxTime time.Duration) int64{
@@ -155,14 +178,67 @@ func randGeoJson() GeoJson {
 	return destination
 }
 
+func checkStockLeft(ctx context.Context, ingredient Ingredient, Coll *mongo.Collection) (state bool, result CalculateCost, err error) {
+	var totalCost, count int64 = 0, 0
+	cursor, err := Coll.Find(ctx,
+		bson.M{
+			"$and": bson.A{
+				bson.M{"item_name" : ingredient.IngredientName},
+				bson.M{"amount" : bson.M{"$gt": 0}},
+				bson.M{"status" : "in-use"},
+			}})
+
+	if cursor == nil{
+		return false, result, fmt.Errorf("error : error querying ingredient")
+	}
+
+	for cursor.Next(ctx) {
+		var resultStruct Stock
+		if err = cursor.Decode(&resultStruct); err != nil {
+			return false, result, err
+		}
+		totalCost += resultStruct.CostPerUnit
+		count += 1
+	}
+	if count == 0 {
+		err = errors.New("error : there is no ingredient left to make this menu")
+		return false, result,  err
+	}
+
+	result = CalculateCost{
+		ItemName: ingredient.IngredientName,
+		CostPerUnit: totalCost/count,
+	}
+
+	return true, result, err
+}
+
+func  CheckCost(ctx context.Context, ingredients []Ingredient, Coll *mongo.Collection) (totalCost int64) {
+	for _, entity := range ingredients {
+		state ,cost, _ := checkStockLeft(ctx, entity, Coll)
+		if state == false{
+			return  0
+		}
+		totalCost += cost.CostPerUnit * entity.Amount
+	}
+
+	return  totalCost
+}
+
+
+
 var CartList []Cart
 var TransactionList []Transaction
+var CostList []int64
 
 func main(){
 	uri := "mongodb://touch:touchja@localhost:27018"
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 	moneyCollection := client.Database("product").Collection("money")
 	transactionCollection := client.Database("product").Collection("transactions")
+	stockClient, err := mongo.NewClient(options.Client().ApplyURI("mongodb://touch:touchja@localhost:27018"))
+	stockCollection := stockClient.Database("stock").Collection("stock")
+
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
@@ -194,6 +270,7 @@ func main(){
 		orderAmount := rand.Intn(4)+1
 		var menuList []Menu
 		var totalPrice int64 = 0
+		var totalCost int64 = 0
 		for j:=0; j<=orderAmount; j++{
 			var order Menu
 			randTemp := rand.Intn(30)
@@ -206,8 +283,10 @@ func main(){
 			order.Amount 	= MenuList[randTemp].Amount
 			order.Option 	= MenuList[randTemp].Option
 			totalPrice += MenuList[randTemp].Price
+			totalCost += CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
 			menuList = append(menuList, order)
 		}
+		CostList = append(CostList , totalCost)
 		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 
@@ -221,6 +300,7 @@ func main(){
 		SingleTransaction.TypeOfOrder = randTypeofOrder()
 		SingleTransaction.Destination = randGeoJson()
 		SingleTransaction.Time = randomTime(time.Duration(i*2), time.Duration(i*2 + 1))
+		SingleTransaction.TotalCost = CostList[i]
 
 		TransactionList = append(TransactionList, SingleTransaction)
 	}
