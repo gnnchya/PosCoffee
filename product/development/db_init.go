@@ -245,8 +245,14 @@ func main(){
 		log.Fatal(err)
 	}
 
+	err = stockClient.Connect(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 
 	defer client.Disconnect(ctx)
+	defer stockClient.Disconnect(ctx)
 	for _ ,v := range MoneyList{
 		initID := goxid.New()
 		idGen := initID.Gen()
@@ -284,6 +290,7 @@ func main(){
 			order.Option 	= MenuList[randTemp].Option
 			totalPrice += MenuList[randTemp].Price
 			totalCost += CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
+
 			menuList = append(menuList, order)
 		}
 		CostList = append(CostList , totalCost)
