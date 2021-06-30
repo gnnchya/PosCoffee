@@ -40,8 +40,6 @@ type MsgBrokerUpdate struct {
 	Action msgbrokerin.ActionMsgBroker `json:"action"`
 	Amount	int64   `bson:"amount" json:"amount"`
 	ID 		string	`bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 func (msg MsgBrokerCreate) ToUpdateInput()(input *UpdateInput) {
@@ -55,8 +53,6 @@ func (msg MsgBrokerCreate) ToUpdateInput()(input *UpdateInput) {
 type MsgBrokerDelete struct {
 	Action msgbrokerin.ActionMsgBroker `json:"action"`
 	ID 		string `json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 func (msg MsgBrokerCreate) ToDeleteInput()(input *DeleteInput) {
