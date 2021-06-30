@@ -65,9 +65,11 @@ func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients [
 	return true, expenses, err
 }
 
-func (repo *Repository) CheckSortOrder(order string)bool{
-	if order == "descending" || order == "ascending"{
-		return true
+func (repo *Repository) CheckSortOrder(order string)(int, bool){
+	if order == "ascending"{
+		return	1,true
+	}else if order == "descending"{
+		return -1,true
 	}
-	return false
+	return 1,false
 }
