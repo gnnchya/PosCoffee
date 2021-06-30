@@ -4,16 +4,11 @@ import (
 	"encoding/csv"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/product/app/view"
-	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 	"os"
 )
 
 func (ctrl *Controller) ReportStock(c *gin.Context) {
-	input := &userin.ReportRange{
-		From:  1111111111,
-		Until: 2222222222,
-	}
-	data, err := ctrl.service.ReportStock(c, input)
+	data, err := ctrl.service.ReportStock(c)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error report")
 		return
