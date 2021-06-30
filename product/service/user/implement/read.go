@@ -12,9 +12,12 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 		fmt.Println("validate", err)
 		return nil, err
 	}
+
 	user := userin.ReadInputToUserDomain(input)
 
 	a, err = impl.repo.Read(ctx, user.ID)
+	//out := &protobuf.RequestRead{Id: input.ID}
+	//result, err := impl.client.ReadStock(out)
 	fmt.Println("err:", err)
 	if err != nil {
 		return a, err

@@ -9,4 +9,5 @@ import (
 type Service interface{
 	SendIngredients(context.Context, *protobuf.RequestToStock) (*protobuf.ReplyFromStock, error)
 	SendReportToStock(ctx context.Context, input *pb.ReportRequest) (*pb.ReportReply, error)
+	ReadStock(ctx context.Context, input *protobuf.RequestRead) (*protobuf.ReplyRead, error)
 }
