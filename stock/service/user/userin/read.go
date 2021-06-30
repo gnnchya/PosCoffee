@@ -7,14 +7,10 @@ import (
 
 type ReadInput struct {
 	ID 		string  `bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 func ReadInputToUserDomain(input *ReadInput) (user *domain.ReadIDStruct) {
 	return &domain.ReadIDStruct{
 		ID: 			input.ID,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	}
 }
