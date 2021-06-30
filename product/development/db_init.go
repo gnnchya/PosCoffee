@@ -35,7 +35,7 @@ var MoneyList = []Money{
 }
 
 type Menu struct {
-	ID				string	 `bson:"_id" json:"_id"`
+	ID				string	 `bson:"_id" json:"id"`
 	Category       	[]string `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
 	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`

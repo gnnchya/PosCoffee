@@ -29,7 +29,7 @@ type GeoJson struct {
 }
 
 type CreateOrderStruct struct {
-	ID         		string   		`bson:"_id" json:"id"`
+	ID         		string   		`bson:"_id" json:"_id"`
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
@@ -41,13 +41,13 @@ type CreateOrderStruct struct {
 }
 
 type DeleteOrderStruct struct {
-	ID 		string	`bson:"_id" json:"id"`
+	ID 		string	`bson:"_id" json:"_id"`
 	Code 	int 	`json:"code"`
 	Err 	error 	`json:"err"`
 }
 
 type UpdateOrderStruct struct {
-	ID         		string   		`bson:"_id" json:"id"`
+	ID         		string   		`bson:"_id" json:"_id"`
 	Cart			Cart		  	`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
@@ -60,7 +60,7 @@ type UpdateOrderStruct struct {
 
 
 type ReadOrderStruct struct {
-	ID string `bson:"_id" json:"id"`
+	ID string `bson:"_id" json:"_id"`
 
 }
 
