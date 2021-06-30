@@ -2,12 +2,14 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/menu/service/grpc/protobuf"
 	//repo "github.com/gnnchya/PosCoffee/menu/repository/elastic"
 )
 
 func (impl implementation) SendMenu(ctx context.Context, request *protobuf.RequestMenu) (*protobuf.ReplyMenu, error){
 	//TODO read all
+	fmt.Println("enter send menu grpc", request)
 	input, err := impl.userService.Report(ctx)
 	if err != nil{
 		return nil, err
