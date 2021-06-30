@@ -35,6 +35,8 @@ type Config struct {
 	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
 	GRPCSenderReportHost string `env:"GRPC_SENDER_REPORT_HOST" envDefault:"localhost:50053"`
+	GRPCMenu string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50054"`
+
 }
 
 func Get() *Config {

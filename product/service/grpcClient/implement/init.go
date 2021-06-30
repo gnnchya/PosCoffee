@@ -18,7 +18,7 @@ type implementation struct {
 	clientMenu protobuf.SendMenuClient
 }
 
-func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC) (service grpcClient.Service) {
+func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC, grpcMenu util.RepositoryGRPC) (service grpcClient.Service) {
 	conn, err := grpcRepo.NewClient()
 	if err != nil {
 		return nil
@@ -29,7 +29,7 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC)
 		return nil
 	}
 
-	connMenu, err := grpcRepo.NewClient()
+	connMenu, err := grpcMenu.NewClient()
 	if err != nil {
 		return nil
 	}
