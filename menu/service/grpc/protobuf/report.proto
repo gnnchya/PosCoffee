@@ -8,6 +8,10 @@ message RequestMenu{
 }
 
 message ReplyMenu{
+  repeated Menu menu = 1;
+}
+
+message Menu{
   string ID = 1;
   repeated string Category = 2;
   string Name = 3;

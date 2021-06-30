@@ -2,18 +2,35 @@ package implement
 
 import (
 	"context"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/grpc/protobuf"
 )
 
 func (impl implementation) SendMenu(ctx context.Context, request *protobuf.RequestMenu) (*protobuf.ReplyMenu, error){
 	//TODO read all
-	out := &protobuf.ReplyMenu{
-		ID:         "",
-		Category:   nil,
-		Name:       "",
-		Ingredient: nil,
-		Price:      0,
-		Available:  false,
+	var input []*domain.CreateStruct
+	var output []*protobuf.Menu
+	for _, k := range input{
+		var ingredient []*protobuf.MenuIngredient
+		for _, in := range k.Ingredient{
+			ingre := &protobuf.MenuIngredient{
+				IngredientName: in.IngredientName,
+				Amount:         in.Amount,
+			}
+			ingredient = append(ingredient, ingre)
+		}
+		out := &protobuf.Menu{
+			ID:         k.ID,
+			Category:   k.Category,
+			Name:       k.Name,
+			Ingredient: ingredient,
+			Price:      k.Price,
+			Available:  k.Available,
+		}
+		output = append(output, out)
 	}
-	return out, nil
+
+	result := &protobuf.ReplyMenu{Menu: output}
+
+	return result, nil
 }
