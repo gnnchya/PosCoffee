@@ -11,7 +11,7 @@ func (repo *Repository)ReadAllSorted(ctx context.Context, field string, order st
 		return result, fmt.Errorf("error: wrong order")
 	}
 	switch field{
-
+rew
 	}
 	return result, err
 }
