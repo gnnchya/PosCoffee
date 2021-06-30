@@ -18,6 +18,7 @@ type Repository interface {
 	Read(ctx context.Context, id string) (a interface{}, err error)
 	ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct)([]interface{}, error)
 	ReadByTimeRange(ctx context.Context, from int64, until int64) (result []domain.CreateOrderStruct, err error)
+	ReadMenu(ctx context.Context, id string) (result []domain.Menu, err error)
 }
 
 type RepositoryMoney interface {
