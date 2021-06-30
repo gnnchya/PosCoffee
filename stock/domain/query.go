@@ -17,40 +17,28 @@ type CreateStruct struct {
 
 type DeleteStruct struct {
 	ID 		string	`bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 type Updatestruct struct {
 	ID      string  `bson:"_id" json:"id" validate:"required"`
 	Amount	int64   `bson:"amount" json:"amount" validate:"required"`
 	Status 	string	`bson:"status" json:"status" validate:"required"`
-	Code 	int 	`json:"code"`
-	Err 	error   `json:"err"`
 }
 
 type ReadIDStruct struct {
 	ID 		string  `bson:"_id" json:"id"`
-	Code 	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 type ReadCategoryByPageStruct struct {
 	Category 	string 	`bson:"category" json:"category"`
 	PerPage 	int		`bson:"per_page" json:"per_page"`
 	Page    	int		`bson:"page" json:"page"`
-	Code 		int 	`json:"code"`
-	Err 		error 	`json:"err"`
-
 }
 
 type ReadNameByPageStruct struct {
 	ItemName 	string 	`bson:"item_name" json:"item_name"`
 	PerPage 	int		`bson:"per_page" json:"per_page"`
 	Page    	int		`bson:"page" json:"page"`
-	Code 		int 	`json:"code"`
-	Err 		error 	`json:"err"`
-
 }
 
 type FilterStruct struct {
