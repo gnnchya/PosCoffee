@@ -24,11 +24,12 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]interface
 		if err1 != nil{
 			return result,err
 		}
-		fmt.Println(resultStruct)
+		//fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
 	return result,err
 }
+
 
 func toString(resultArray []interface{}, err error) (string, error){
 	var result string

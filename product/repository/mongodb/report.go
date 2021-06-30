@@ -30,21 +30,29 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 }
 
 func (repo *Repository) ReadMenu(ctx context.Context, id string, from int64, until int64) (result []domain.Menu, err error){
-	//matchStage := bson.D{{"$match", bson.M{
-	//	"$and": bson.A{
-	//		bson.M{"time": bson.M{"$gt": from}},
-	//		bson.M{"time": bson.M{"$lt": until}},
-	//	}}}}
-	//groupStage := bson.D{{"$group", bson.D{{"cart.menu._id", id},{"total",bson.D{{"$sum",bson.D{{
-	//	"$multiply", bson.D{{"price", "amount"}}}}}}}}}}
-	matchStage := bson.D{{"$match", bson.D{{"cart.menu._id", id}}}}
-	groupStage := bson.D{{"$group", bson.D{{"cart.menu._id", id}, {"total", bson.D{{"$sum", "$amount"}}}}}}
-	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,groupStage})
-	fmt.Println("-----------------------------------result only menu for report-----------------------------------****************************")
+	matchStage := bson.D{{"$match", bson.D{
+		{"$and", bson.A{
+			bson.D{{"time", bson.D{{"$gt", from}}}},
+			bson.D{{"time", bson.D{{"$lt", until}}}},
+		}}}}}
+	groupStage := bson.D{{"$group", bson.D{{"_id", "$cart.menu._id"},{"total_sales",bson.D{{"$sum",bson.D{{
+		"$multiply", []string{"$cart.menu.price", "$cart.menu.amount"}}}}}}}}}
+	unwind := bson.D{{"$unwind", "$cart.menu"}}
+	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,unwind,groupStage})
 	if err != nil{
 		return result, err
 	}
-	fmt.Println("-----------------------------------result only menu for report-----------------------------------****************************")
-	fmt.Println(AddToArray(cursor,err,ctx))
+	i, _ := AddToArray(cursor,err,ctx)
+	fmt.Println("**************************************************************************************")
+	fmt.Println(i)
+	fmt.Println("**************************************************************************************")
+	for _,x := range i{
+		fmt.Println(fmt.Sprintf("%v",x))
+	}
+	fmt.Println("**************************************************************************************")
+
 	return result, err
 }
+
+
+
