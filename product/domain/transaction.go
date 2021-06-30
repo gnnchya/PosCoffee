@@ -48,14 +48,9 @@ type DeleteOrderStruct struct {
 
 type UpdateOrderStruct struct {
 	ID         		string   		`bson:"_id" json:"_id"`
-	Cart			Cart		  	`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
-	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
-	Time			int64      		`bson:"time" json:"time"`
-	Code 			int 			`json:"code"`
-	Err 			error 			`json:"err"`
 }
 
 
