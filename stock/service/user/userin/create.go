@@ -17,8 +17,6 @@ type CreateInput struct {
 	Supplier 		string 		`bson:"supplier" json:"supplier"`
 	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
-	Code 			int 		`json:"code"`
-	Err 			error 		`json:"err"`
 }
 
 func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
