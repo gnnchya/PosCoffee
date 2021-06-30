@@ -18,6 +18,7 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 	fmt.Println("user.ID: ", user.ID)
 
 	if err := impl.redisRepo.Get(ctx, user.ID, a); err == nil{
+		fmt.Println("Getting data from Redis:" , a)
 		return a , nil
 	}
 
@@ -28,5 +29,8 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 	}
 
 	_ = impl.redisRepo.Set(ctx, user.ID, a)
+	if err := impl.redisRepo.Get(ctx, user.ID, a); err == nil{
+		fmt.Println("Cache miss, store in cache successfully:" , a)
+	}
 	return a, nil
 }
