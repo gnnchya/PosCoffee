@@ -21,3 +21,26 @@ message RequestToStock{
 service SendIngredients{
   rpc SendIngredients (RequestToStock) returns (ReplyFromStock);
 }
+
+message RequestRead{
+  string id = 1;
+}
+
+message ReplyRead{
+  string ID = 1;
+  string ItemName = 2;
+  string Category = 3;
+  int64 Amount = 4;
+  string Unit = 5;
+  int64 CostPerUnit = 6;
+  int64 EXPDate = 7;
+  int64 ImportDate = 8;
+  string Supplier = 9;
+  int64  TotalCost = 10;
+  int64 TotalAmount = 11;
+  string Status = 12;
+}
+
+service ReadStock{
+  rpc ReadStock (RequestRead) returns (ReplyRead);
+}

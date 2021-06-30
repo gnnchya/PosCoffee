@@ -44,7 +44,7 @@ var StockList =  []Stock{
 	//{"Large hot cup",  "Cup", 100000, " Cup(s)" ,230, randomExpDate(1, 0, 0), randomImportDate(0,1,0), "CupDee", 230000, 100000, "in-use"},
 
 	{"Milk",  "Dairy", 3000, "litre" ,4600, randomExpDate(0,0,15), randomImportDate(0,0,5), "Meji", 276000, 6000, "in-use"},
-	{"Coffee beans",  "Coffee", 875000, "gram" ,1000, randomExpDate(0, 1, 15), randomImportDate(0,0,10), "Doi Chang", 125000000000, 1250000000, "in-use"},
+	{"Coffee beans",  "Coffee", 875000, "gram" ,100, randomExpDate(0, 1, 15), randomImportDate(0,0,10), "Doi Chang", 125000000000, 1250000000, "in-use"},
 	{"Water",  "Water", 1500, "litre" ,1100, randomExpDate(1, 0, 0), randomImportDate(0,3,0), "Mont Fleur", 27500000, 25000, "in-use"},
 	{"Ice",  "Ice", 1000, "kilogram" ,120, randomExpDate(0, 0, 1), randomImportDate(0,0,1), "TMice", 24000000, 2000, "in-use"},
 	{"Earl Grey tea",  "Tea", 1000, "bag" ,980, randomExpDate(1, 0, 0), randomImportDate(0,6,0), "Twinings", 98000, 10000, "in-use"},

@@ -16,7 +16,7 @@ func (repoRedis *Redis) Get(ctx context.Context, key string, dest interface{}) (
 	} else if err != nil {
 		return  err
 	}
-	return json.Unmarshal(val, dest)
+	return json.Unmarshal(val, &dest)
 }
 
 func (repoRedis *Redis) GetExpire(ctx context.Context, key string) (result time.Duration, err error) {

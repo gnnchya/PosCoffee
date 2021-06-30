@@ -3,10 +3,8 @@ package implement
 import (
 	"context"
 	"fmt"
+	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
 func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error) {
@@ -25,5 +23,9 @@ func (impl *implementation) Update(ctx context.Context, input *userin.UpdateInpu
 	}
 
 	_ = impl.redisRepo.Del(ctx, user.ID)
+	var a domain.CreateStruct
+	if err := impl.redisRepo.Get(ctx, user.ID, &a); err != nil{
+		fmt.Println("delete successfully Redis: or error" , err)
+	}
 	return user.ID, nil
 }

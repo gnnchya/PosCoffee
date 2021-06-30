@@ -21,7 +21,6 @@ func (impl *implementation) CreateStock(ctx context.Context, input *userin.Creat
 
 	if err == impl.sendMsgCreate(user) {
 		log.Println(err)
-		return "", err
 	}
 
 	//time.Sleep(5 * time.Second)
