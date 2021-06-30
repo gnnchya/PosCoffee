@@ -22,6 +22,7 @@ type RepositoryElas interface {
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistName(ctx context.Context, name string) (bool, error)
 	CheckExistIndex(ctx context.Context, Index string) (bool, error)
+	ReadReport(ctx context.Context)([]domain.CreateStruct, error)
 }
 
 type RepositoryRedis interface {

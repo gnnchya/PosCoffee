@@ -92,3 +92,18 @@ func buildIngredientRequest(keyword string) bytes.Buffer {
 	}
 	return buf
 }
+
+func (repo *Repository)buildReportRequest() bytes.Buffer {
+	var buf bytes.Buffer
+	query := map[string]interface{}{
+		"query": map[string]interface{}{
+			"match": map[string]interface{}{
+				"_index": repo.Index,
+			},
+		},
+	}
+	if err := json.NewEncoder(&buf).Encode(query); err != nil {
+		log.Fatalf("Error encoding query: %s", err)
+	}
+	return buf
+}

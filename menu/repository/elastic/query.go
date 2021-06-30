@@ -79,3 +79,9 @@ func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.
 	result := InToStruct(q)
 	return result, err
 }
+
+func (repo *Repository)ReadReport(ctx context.Context)([]domain.CreateStruct, error){
+	q, err := repo.query(ctx,repo.buildReportRequest())
+	result := InToStruct(q)
+	return result, err
+}
