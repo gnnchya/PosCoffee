@@ -20,6 +20,7 @@ type Repository interface {
 	ReadCategoryAll(ctx context.Context, user *domain.ReadCategoryByPageStruct) (a []domain.CreateStruct, err error)
 	CheckMenuAvailability(ctx context.Context, ingredients []string) (state bool, expenses []domain.CalculateCost, err error)
 	Search(ctx context.Context,search *domain.SearchValue) /*(result []domain.InsertQ,err error)*/ (result string, err error)
+	ReadAllSorted(ctx context.Context, field string, order string)(result []domain.CreateStruct, err error)
 }
 
 type RepositoryUsers interface{
@@ -30,7 +31,6 @@ type RepositoryMsgBroker interface{
 	Producer(topic msgbrokerin.TopicMsgBroker, msg []byte) (err error)
 	RegisterHandler(topics msgbrokerin.TopicMsgBroker, handler common.Handler)
 }
-
 
 type RepositoryGRPC interface {
 	NetListener() (lis net.Listener, err error)

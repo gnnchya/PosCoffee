@@ -22,4 +22,6 @@ type Service interface {
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)
 	Report(ctx context.Context, input *userin.ReportRange) ([][]string, error)
 	ReadStock(ctx context.Context, input *userin.ReadInput) (a interface{}, err error)
+	ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string)
+	ReportStock(stock []domain.CreateStockStruct)(res [][]string)
 }

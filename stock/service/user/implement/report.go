@@ -2,15 +2,14 @@ package implement
 
 import (
 	"context"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 )
 
-func (impl *implementation) Report(ctx context.Context) (result []domain.CreateStruct, err error) {
-	result, err = impl.repo.Report(ctx)
-	if err != nil {
-		fmt.Println("err in report", err)
-		return result, err
-	}
-	return result, err
+func (impl *implementation) Report(ctx context.Context) ([]domain.CreateStruct, error) {
+	return 	impl.repo.Report(ctx)
+
+}
+
+func (impl *implementation) ReportStock(ctx context.Context, field string, order string) ([]domain.CreateStruct, error) {
+	return impl.repo.ReadAllSorted(ctx, field, order)
 }
