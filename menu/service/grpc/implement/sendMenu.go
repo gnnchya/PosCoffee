@@ -2,13 +2,16 @@ package implement
 
 import (
 	"context"
-	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/grpc/protobuf"
+	//repo "github.com/gnnchya/PosCoffee/menu/repository/elastic"
 )
 
 func (impl implementation) SendMenu(ctx context.Context, request *protobuf.RequestMenu) (*protobuf.ReplyMenu, error){
 	//TODO read all
-	var input []*domain.CreateStruct
+	input, err := impl.userService.Report(ctx)
+	if err != nil{
+		return nil, err
+	}
 	var output []*protobuf.Menu
 	for _, k := range input{
 		var ingredient []*protobuf.MenuIngredient
