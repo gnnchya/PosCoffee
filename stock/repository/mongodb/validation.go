@@ -64,3 +64,10 @@ func (repo *Repository) CheckMenuAvailability(ctx context.Context, ingredients [
 	fmt.Println("err", err)
 	return true, expenses, err
 }
+
+func (repo *Repository) CheckSortOrder(order string)bool{
+	if order == "descending" || order == "ascending"{
+		return true
+	}
+	return false
+}

@@ -68,3 +68,17 @@ type CalculateCost struct{
 	ItemName         	string   `bson:"item_name"`
 	CostPerUnit      	int64    `bson:"cost_per_unit"`
 }
+
+type TotalSale struct{
+	ID string
+	Total int64
+}
+
+type OldMenu struct {
+ID         		string   `bson:"_id" json:"id"`
+Category       	[]string  `bson:"category" json:"category"`
+Name 			string   `bson:"name" json:"name" validate:"required"`
+Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
+Price      		int64    `bson:"price" json:"price"`
+Available 		bool	 `bson:"available" json:"available"`
+}
