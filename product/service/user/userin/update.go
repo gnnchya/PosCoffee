@@ -14,9 +14,6 @@ type UpdateInput struct {
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		domain.GeoJson  `bson:"destination" json:"destination"`
 	Time			int64      		`bson:"date_time" json:"date_time"`
-	Code 			int 			`json:"code"`
-	Err 			error 			`json:"err"`
-
 }
 
 //func UpdateInputToUserDomain(input *UpdateInput) (user *domain.UpdateOrderStruct) {
@@ -37,7 +34,5 @@ func (input *UpdateInput)UpdateInputToUserDomain() (user *domain.UpdateOrderStru
 		TypeOfOrder: 	input.TypeOfOrder,
 		Destination: 	input.Destination,
 		Time:			input.Time,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	}
 }
