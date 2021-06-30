@@ -76,23 +76,23 @@ var MenuList =  []Menu2{
 	{[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
 	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true, 2, ""},
 	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []Ingredient{{"Coffee beans", 1750}, {"Water", 020}, {"Large hot cup", 100}}, 4500, true,1, ""},
-	{[]string{"Coffee", "Iced"},  "Iced Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 0005},{"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
-	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 0005},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1, ""},
+	{[]string{"Coffee", "Iced"},  "Iced Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
+	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1, ""},
 	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true,1, ""},
-	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 0005},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1,""},
-	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 0005},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true, 2, ""},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 0005}, {"Small hot cup", 100}}, 4500, true,1,""},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []Ingredient{{"Coffee beans", 1750}, {"Water", 010}, {"Milk", 001}, {"Large hot cup", 100}}, 5500, true,2,""},
-	{[]string{"Coffee", "Iced"},  "Iced Latte", []Ingredient{{"Coffee beans", 1000}, {"Water", 003}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true,1,""},
-	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 003}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 7000, true,2,""},
+	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1,""},
+	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true, 2, ""},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002}, {"Small hot cup", 100}}, 4500, true,1,""},
+	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []Ingredient{{"Coffee beans", 1500}, {"Water", 002}, {"Milk", 002}, {"Large hot cup", 100}}, 5500, true,2,""},
+	{[]string{"Coffee", "Iced"},  "Iced Latte", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 004},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true,1,""},
+	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 004},{"Ice", 005}, {"Plastic cup", 100}}, 7000, true,2,""},
 	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []Ingredient{{"Earl Grey tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
 	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []Ingredient{{"English Breakfast tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
 	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []Ingredient{{"Camomile tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,2,""},
 	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []Ingredient{{"Jasmine Green tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
-	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 002}, {"Small hot cup", 100}}, 4500, true,2,""},
+	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Small hot cup", 100}}, 4500, true,2,""},
 	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []Ingredient{{"Green tea", 200}, {"Water", 020}, {"Milk", 004}, {"Large hot cup", 100}}, 4500, true,1,""},
-	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 002}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
-	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 002}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
 	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []Ingredient{{"Milk", 004}, {"Small hot cup", 100}}, 3500, true,1,""},
 	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []Ingredient{{"Milk", 007}, {"Large hot cup", 100}}, 4500, true,2,""},
 	{[]string{"Milk", "Iced"},  "Iced Fresh Milk", []Ingredient{{"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 4500, true,1,""},
@@ -219,9 +219,8 @@ func  CheckCost(ctx context.Context, ingredients []Ingredient, Coll *mongo.Colle
 		if state == false{
 			return  0
 		}
-		totalCost += cost.CostPerUnit * entity.Amount
+		totalCost += (cost.CostPerUnit * entity.Amount)/100
 	}
-
 	return  totalCost
 }
 
@@ -289,11 +288,16 @@ func main(){
 			order.Amount 	= MenuList[randTemp].Amount
 			order.Option 	= MenuList[randTemp].Option
 			totalPrice += MenuList[randTemp].Price
-			totalCost += CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
+			fmt.Println("Cart no:", i, "Menu no:", j, "Ingredient:", MenuList[randTemp].Ingredient)
+			costTemp := CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
+			totalCost += costTemp
+			fmt.Println("Name: ",MenuList[randTemp].Name ,"total cost:", totalCost, "cost Temp:", costTemp)
+			fmt.Println("Name: ",MenuList[randTemp].Name ,"total Price:", totalPrice, "cost Temp:", MenuList[randTemp].Price)
 
 			menuList = append(menuList, order)
 		}
 		CostList = append(CostList , totalCost)
+		fmt.Println("cost list:", CostList)
 		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 
