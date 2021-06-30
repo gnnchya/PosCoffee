@@ -97,7 +97,6 @@ var MenuList =  []Menu{
 	{"c3e2obiciaeng9b27pgg",[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []Ingredient{{"Strawberry Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true,1,""},
 	{"c3e2obiciaeng9b27ph0",[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []Ingredient{{"Kiwi Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 4500, true,1,""},
 }
-s
 type Cart struct{
 	ID			string	`bson:"_id" json:"_id"`
 	CustomerID 	string  `bson:"customer_id" json:"customer_id"`
