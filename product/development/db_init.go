@@ -236,7 +236,7 @@ func main(){
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 	moneyCollection := client.Database("product").Collection("money")
 	transactionCollection := client.Database("product").Collection("transactions")
-	stockClient, err := mongo.NewClient(options.Client().ApplyURI("mongodb://touch:touchja@localhost:27018"))
+	stockClient, err := mongo.NewClient(options.Client().ApplyURI("mongodb://touch:touchja@localhost:27019"))
 	stockCollection := stockClient.Database("stock").Collection("stock")
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
