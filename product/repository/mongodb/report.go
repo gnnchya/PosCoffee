@@ -29,7 +29,7 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 	return result,err
 }
 
-func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until int64) (result []domain.Menu, err error){
+func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until int64) (result []domain.TotalSale, err error){
 	matchStage := bson.D{{"$match", bson.D{
 		{"$and", bson.A{
 			bson.D{{"time", bson.D{{"$gt", from}}}},

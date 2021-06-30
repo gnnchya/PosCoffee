@@ -14,5 +14,5 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 	total, err := impl.repo.ReadMenuTotalSale(ctx,input.From,input.Until)
 	//menu := //proud
 	rangeReport := reportSale.ReportSale(total,menu)
-	return rangeReport, nil
+	return rangeReport, err
 }
