@@ -6,7 +6,7 @@ import (
 )
 
 func (repoRedis *Redis) Set(ctx context.Context, key string, value interface{})(err error) {
-	str, err := json.Marshal(value)
+	str, err := json.Marshal(&value)
 	if err != nil {
 		return err
 	}

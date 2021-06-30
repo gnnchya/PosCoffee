@@ -25,7 +25,7 @@ func (impl *implementation) Delete(ctx context.Context, input *userin.DeleteInpu
 
 	_ = impl.redisRepo.Del(ctx, user.ID)
 	var a domain.CreateStruct
-	if err := impl.redisRepo.Get(ctx, user.ID, a); err != nil{
+	if err := impl.redisRepo.Get(ctx, user.ID, &a); err != nil{
 		fmt.Println("delete successfully Redis: or error" , err)
 	}
 	return user.ID, err
