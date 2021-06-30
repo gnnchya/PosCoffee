@@ -12,7 +12,7 @@ import (
 func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange) ([][]string, error){
 	transaction,_ := impl.repo.ReadByTimeRange(ctx, input.From,input.Until)
 	//stock := //proud
-	_,_ = impl.repo.ReadMenu(ctx, "")
+	_,_ = impl.repo.ReadMenu(ctx, "c3dul2jcjpl0otp93ncg",1624955331,1624957013 )
 	out := &pb.ReportRequest{Request: "stock"}
 	reply, err := impl.client.SendReportToStock(out)
 	fmt.Println("reply", reply)
