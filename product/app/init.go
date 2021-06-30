@@ -34,6 +34,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.DELETE("/product/stock/:id", app.user.DeleteStock)
 		apiRoutes.GET("/product/report", app.user.Report)
 		apiRoutes.GET("/product/stock/:id", app.user.ReadStock)
+		apiRoutes.GET("/product/reportSale", app.user.ReportSale)
 	}
 
 	return app
