@@ -64,9 +64,9 @@ type Stock struct {
 }
 
 var MenuList =  []Menu{
-	{"c3e2obiciaeng9b27p1g",[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
+	{"c3e2obiciaeng9b27p1k",[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
 	{"c3e2obiciaeng9b27p1g",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true, 2, ""},
-	{"c3e2obiciaeng9b27p2g",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []Ingredient{{"Coffee beans", 1750}, {"Water", 020}, {"Large hot cup", 100}}, 4500, true,1, ""},
+	{"c3e2obiciaeng9b27p2k",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []Ingredient{{"Coffee beans", 1750}, {"Water", 020}, {"Large hot cup", 100}}, 4500, true,1, ""},
 	{"c3e2obiciaeng9b27p2g",[]string{"Coffee", "Iced"},  "Iced Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
 	{"c3e2obiciaeng9b27p3g",[]string{"Coffee", "Frappe"},  "Espresso Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1, ""},
 	{"c3e2obiciaeng9b27p40",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true,1, ""},

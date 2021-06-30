@@ -43,6 +43,7 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 		return result, err
 	}
 	i, _ := AddToArray(cursor,err,ctx)
+	//x = [{_id jrfofenerfjrlug} {total_sales 167000}]
 	fmt.Println("**************************************************************************************")
 	fmt.Println(i)
 	fmt.Println("**************************************************************************************")

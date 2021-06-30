@@ -3,6 +3,7 @@ package elastic
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 )
 
@@ -102,6 +103,7 @@ func (repo *Repository)buildReportRequest() bytes.Buffer {
 			},
 		},
 	}
+	fmt.Println("build report request" + repo.Index)
 	if err := json.NewEncoder(&buf).Encode(query); err != nil {
 		log.Fatalf("Error encoding query: %s", err)
 	}
