@@ -3,7 +3,6 @@ package mongodb
 import (
 	"context"
 	"errors"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -59,25 +58,4 @@ func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrder
 	}
 	cursor, err := repo.Coll.Find(ctx, bson.M{}, &opts)
 	return AddToArray(cursor, err, ctx)
-}
-
-func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until int64) (result []domain.CreateOrderStruct, err error){
-	var resultStruct domain.CreateOrderStruct
-	cursor, err := repo.Coll.Find(ctx,
-		bson.M{
-			"$and": bson.A{
-				bson.M{"time": bson.M{"$gt": from}},
-				bson.M{"time": bson.M{"$lt": until}},
-			}})
-	if err != nil{
-		return result, err
-	}
-	for cursor.Next(ctx) {
-		if err = cursor.Decode(&resultStruct); err != nil {
-			return result,err
-		}
-		fmt.Println(resultStruct)
-		result = append(result, resultStruct)
-	}
-	return result,err
 }

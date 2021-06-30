@@ -12,6 +12,7 @@ import (
 func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange) ([][]string, error){
 	transaction,_ := impl.repo.ReadByTimeRange(ctx, input.From,input.Until)
 	//stock := //proud
+	_,_ = impl.repo.ReadMenu(ctx, "")
 	out := &pb.ReportRequest{Request: "stock"}
 	reply, err := impl.client.SendReportToStock(out)
 	fmt.Println("reply", reply)
@@ -36,6 +37,6 @@ func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange)
 		}
 		stock = append(stock, temp)
 	}
-	report := report.Report(transaction, stock)
-	return report, nil
+	rangeReport := report.Report(transaction, stock)
+	return rangeReport, nil
 }
