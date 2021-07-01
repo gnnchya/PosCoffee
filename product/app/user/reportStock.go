@@ -4,11 +4,16 @@ import (
 	"encoding/csv"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/product/app/view"
+	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 	"os"
 )
 
 func (ctrl *Controller) ReportStock(c *gin.Context) {
-	data, err := ctrl.service.ReportStock(c)
+	input := &userin.ReportFilter{
+		Field:  "exp_date",
+		Order: "ascending",
+	}
+	data, err := ctrl.service.ReportStock(c, input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error report")
 		return

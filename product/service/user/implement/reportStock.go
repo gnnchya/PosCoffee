@@ -1,6 +1,7 @@
 package implement
 
 import (
+	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
@@ -8,7 +9,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func(impl *implementation)ReportStock(input *userin.ReportFilter) ([][]string, error){
+func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportFilter) ([][]string, error){
 	//user := input.ReportStockInputToUserDomain()
 	out := &pb.ReportRequest{
 		Request: "reportStock",
