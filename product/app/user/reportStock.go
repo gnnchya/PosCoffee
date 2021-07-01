@@ -2,6 +2,7 @@ package user
 
 import (
 	"encoding/csv"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/product/app/view"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
@@ -9,9 +10,12 @@ import (
 )
 
 func (ctrl *Controller) ReportStock(c *gin.Context) {
-	input := &userin.ReportFilter{
-		Field:  "exp_date",
-		Order: "ascending",
+
+	input := &userin.ReportFilter{}
+	if err := c.ShouldBindJSON(input); err != nil {
+		view.MakeErrResp(c, 400, "can't bind")
+		fmt.Println("error", err)
+		return
 	}
 	data, err := ctrl.service.ReportStock(c, input)
 	if err != nil {
