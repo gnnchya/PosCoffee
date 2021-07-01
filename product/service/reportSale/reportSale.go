@@ -35,7 +35,6 @@ func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 		temp = append(temp, " ")
 	}
 	temp = append(temp, strconv.Itoa(int(totalAmount)))
-	temp = append(temp, " ")
 	temp = append(temp, strconv.Itoa(int(totalSale)))
 	res = append(res,temp)
 	fmt.Println(res)
