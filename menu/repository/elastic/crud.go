@@ -35,6 +35,11 @@ func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) e
 }
 
 func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) error{
+	if state ,err := repo.CheckExistID(ctx, title.ID); err != nil{
+		return err
+	} else if state == false{
+		return fmt.Errorf("this ID does not exist")
+	}
 	buf, err := BuildUpdateRequest(title)
 	if err != nil {
 		return err
@@ -65,6 +70,11 @@ func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) e
 }
 
 func (repo *Repository)Delete(ctx context.Context, id string) error{
+	if state ,err := repo.CheckExistID(ctx, id); err != nil{
+		return err
+	} else if state == false{
+		return fmt.Errorf("this ID does not exist")
+	}
 	req := esapi.DeleteRequest{
 		Index:      repo.Index,
 		DocumentID: id,
