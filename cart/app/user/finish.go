@@ -18,7 +18,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
 	var filename = "bill.pdf"
-	b, err := bill.GeneratePdf(filename, order)
+	_, err = bill.GeneratePdf(filename, order)
 	fmt.Println("error bill", err)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error finish")
