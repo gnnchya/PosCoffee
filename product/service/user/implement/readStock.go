@@ -14,9 +14,6 @@ func (impl *implementation) ReadStock(ctx context.Context, input *userin.ReadInp
 		fmt.Println("validate", err)
 		return nil, err
 	}
-	//user := userin.ReadInputToUserDomain(input)
-
-	//a, err = impl.repo.Read(ctx, user.ID)
 	out := &protobuf.RequestRead{Id: input.ID}
 	result, err := impl.client.ReadStock(out)
 	fmt.Println("err:", err)
@@ -27,3 +24,42 @@ func (impl *implementation) ReadStock(ctx context.Context, input *userin.ReadInp
 	return result, nil
 }
 
+func (impl *implementation) ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error) {
+	err = impl.validator.Validate(input)
+	if err != nil {
+		fmt.Println("validate", err)
+		return nil, err
+	}
+	out := &protobuf.RequestName{
+		ItemName: input.ItemName,
+		PerPage:  int64(input.PerPage),
+		Page: int64(input.Page),
+	}
+	result, err := impl.client.ReadNameStock(out)
+	fmt.Println("err:", err)
+	if err != nil {
+		return a, err
+	}
+
+	return result, nil
+}
+
+func (impl *implementation) ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error) {
+	err = impl.validator.Validate(input)
+	if err != nil {
+		fmt.Println("validate", err)
+		return nil, err
+	}
+	out := &protobuf.RequestCategory{
+		Category: input.Category,
+		PerPage: int64(input.PerPage),
+		Page:     int64(input.Page),
+	}
+	result, err := impl.client.ReadCategoryStock(out)
+	fmt.Println("err:", err)
+	if err != nil {
+		return a, err
+	}
+
+	return result, nil
+}

@@ -10,5 +10,8 @@ type Service interface {
 	SendReportToStock(input *pb.ReportRequest) (*pb.ReportReply, error)
 	ReadStock(input *protobuf.RequestRead) (*protobuf.ReplyRead, error)
 	SendMenu(input *protobuf.RequestMenu) (*protobuf.ReplyMenu, error)
+	ReadNameStock(input *protobuf.RequestName)(*protobuf.ReplyArrRead, error)
+	ReadCategoryStock(input *protobuf.RequestCategory)(*protobuf.ReplyArrRead, error)
 }
 
+s
