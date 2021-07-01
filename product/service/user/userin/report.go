@@ -14,3 +14,15 @@ func (input *ReportRange)ReportInputToUserDomain() (user *domain.ReportValue) {
 	}
 }
 
+type ReportFilter struct{
+	Field string
+	Order string
+}
+
+func (input *ReportFilter)ReportStockInputToUserDomain() (user *domain.ReportOrder) {
+	return &domain.ReportOrder{
+		Field:  input.Field,
+		Order: input.Order,
+	}
+}
+

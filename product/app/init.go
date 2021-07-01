@@ -33,8 +33,9 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.PUT("/product/stock", app.user.UpdateStock)
 		apiRoutes.DELETE("/product/stock/:id", app.user.DeleteStock)
 		apiRoutes.GET("/product/report", app.user.Report)
-		apiRoutes.GET("/product/stock/:id", app.user.ReadStock)
+		apiRoutes.GET("/product/stocsk/:id", app.user.ReadStock)
 		apiRoutes.GET("/product/reportSale", app.user.ReportSale)
+		apiRoutes.GET("/product/reportStock", app.user.ReportStock)
 	}
 
 	return app

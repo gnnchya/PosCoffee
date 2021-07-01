@@ -23,8 +23,11 @@ message ReportReplyStruct{
 
 message ReportRequest{
   string Request = 1;
+  string field = 2;
+  string order = 3;
 }
 
 service SendReportToStock{
   rpc SendReportToStock (ReportRequest) returns (ReportReply);
 }
+
