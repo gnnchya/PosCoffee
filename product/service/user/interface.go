@@ -5,6 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
+	"github.com/jung-kurt/gofpdf"
 )
 
 
@@ -26,4 +27,5 @@ type Service interface {
 	ReportStock(ctx context.Context,input *userin.ReportFilter) ([][]string, error)
 	ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error)
 	ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error)
+	Bill(ctx context.Context, id string) (pdf *gofpdf.Fpdf,err error)
 }
