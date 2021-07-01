@@ -14,4 +14,3 @@ type Service interface {
 	ReadCategoryStock(input *protobuf.RequestCategory)(*protobuf.ReplyArrRead, error)
 }
 
-s
