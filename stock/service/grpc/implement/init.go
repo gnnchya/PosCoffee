@@ -29,6 +29,8 @@ func New(grpcRepo util.RepositoryGRPC, userService user.Service) (service grpcSe
 	protobuf.RegisterSendIngredientsServer(grpcServer, &impl)
 	protobuf.RegisterReadStockServer(grpcServer, &impl)
 	pb.RegisterSendReportToStockServer(grpcServer, &impl)
+	protobuf.RegisterReadCategoryStockServer(grpcServer, &impl)
+	protobuf.RegisterReadNameStockServer(grpcServer, &impl)
 	if err = grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

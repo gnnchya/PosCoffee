@@ -41,6 +41,30 @@ message ReplyRead{
   string Status = 12;
 }
 
+message ReplyArrRead{
+  repeated ReplyRead Reply = 1;
+}
+
+message RequestName{
+  string itemName = 1;
+  int64 perPage = 2;
+  int64 page = 3;
+}
+
+message RequestCategory{
+  string category = 1;
+  int64 perPage = 2;
+  int64 page = 3;
+}
+
 service ReadStock{
   rpc ReadStock (RequestRead) returns (ReplyRead);
+}
+
+service ReadNameStock{
+  rpc ReadNameStock(RequestName) returns (ReplyArrRead);
+}
+
+service ReadCategoryStock{
+  rpc ReadCategoryStock(RequestCategory) returns (ReplyArrRead);
 }
