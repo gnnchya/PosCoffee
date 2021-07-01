@@ -4,12 +4,15 @@ import (
 	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/createFile"
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
 	"github.com/gnnchya/PosCoffee/product/service/reportStock"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
+	"strconv"
+	"time"
 )
 
-func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportFilter) ([][]string, error){
+func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportFilter){
 	//user := input.ReportStockInputToUserDomain()
 	out := &pb.ReportRequest{
 		Request: "reportStock",
@@ -19,7 +22,7 @@ func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportF
 	reply, err := impl.client.SendReportToStock(out)
 	fmt.Println("reply", reply)
 	if err != nil{
-		return nil, err
+		return
 	}
 	var stock []domain.CreateStockStruct
 	for _, v := range reply.Report{
@@ -39,6 +42,12 @@ func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportF
 		}
 		stock = append(stock, temp)
 	}
-	rangeReport := reportStock.ReportStock(stock)
-	return rangeReport, nil
+	fromYear, fromMonth , fromDate:= time.Now().Date()
+	filename := "report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)
+	switch input.Format{
+	case "excel":
+		createFile.CreateExcel(filename+".xlsx",reportStock.ReportStock(stock))
+	case "csv":
+		createFile.CreateCSV(filename+".csv",reportStock.ReportStock(stock))
+	}
 }

@@ -12,11 +12,13 @@ type SearchValue struct {
 type ReportValue struct{
 	From int64
 	Until int64
+	Format string
 }
 
 type ReportOrder struct{
 	Field string
 	Order string
+	Format string
 }
 
 type ReadCategoryByPageStruct struct {
