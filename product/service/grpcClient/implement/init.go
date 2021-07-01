@@ -12,6 +12,8 @@ type implementation struct {
 	conn      *grpc.ClientConn
 	client 	  protobuf.SendIngredientsClient
 	clientRead protobuf.ReadStockClient
+	clientReadName protobuf.ReadNameStockClient
+	clientReadCategory protobuf.ReadCategoryStockClient
 	connReport *grpc.ClientConn
 	clientReport pb.SendReportToStockClient
 	connMenu *grpc.ClientConn
@@ -39,6 +41,8 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC,
 		conn:      conn,
 		client: protobuf.NewSendIngredientsClient(conn),
 		clientRead: protobuf.NewReadStockClient(conn),
+		clientReadName: protobuf.NewReadNameStockClient(conn),
+		clientReadCategory: protobuf.NewReadCategoryStockClient(conn),
 		connReport: connReport,
 		clientReport: pb.NewSendReportToStockClient(connReport),
 		connMenu: connMenu,

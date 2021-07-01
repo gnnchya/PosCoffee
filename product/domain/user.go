@@ -18,3 +18,15 @@ type ReportOrder struct{
 	Field string
 	Order string
 }
+
+type ReadCategoryByPageStruct struct {
+	Category 	string 	`bson:"category" json:"category"`
+	PerPage 	int		`bson:"per_page" json:"per_page"`
+	Page    	int		`bson:"page" json:"page"`
+}
+
+type ReadNameByPageStruct struct {
+	ItemName 	string 	`bson:"item_name" json:"item_name"`
+	PerPage 	int		`bson:"per_page" json:"per_page"`
+	Page    	int		`bson:"page" json:"page"`
+}

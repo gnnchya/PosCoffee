@@ -40,5 +40,6 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 		menu = append(menu, m)
 	}
 	rangeReport := reportSale.ReportSale(total,menu)
+	fmt.Println("range report", rangeReport)
 	return rangeReport, err
 }

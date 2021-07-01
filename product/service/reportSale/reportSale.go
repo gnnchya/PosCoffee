@@ -9,6 +9,8 @@ import (
 func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 	temp := initSale()
 	res = append(res,temp)
+	fmt.Println("sale", sale)
+	fmt.Println("all", all)
 	//temp = []string{}
 	var totalSale int64 = 0
 	var totalAmount int64 = 0

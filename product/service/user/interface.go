@@ -23,4 +23,7 @@ type Service interface {
 	Report(ctx context.Context, input *userin.ReportRange) ([][]string, error)
 	ReadStock(ctx context.Context, input *userin.ReadInput) (a interface{}, err error)
 	ReportSale(ctx context.Context, input *userin.ReportRange) ([][]string, error)
-	ReportStock(ctx context.Context,input *userin.ReportFilter) ([][]string, error)}
+	ReportStock(ctx context.Context,input *userin.ReportFilter) ([][]string, error)
+	ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error)
+	ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error)
+}
