@@ -59,3 +59,14 @@ func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrder
 	cursor, err := repo.Coll.Find(ctx, bson.M{}, &opts)
 	return AddToArray(cursor, err, ctx)
 }
+
+func (repo *Repository) ReadBill(ctx context.Context, id string) (resultStruct domain.CreateOrderStruct, err error) {
+	state, err := repo.checkExistID(ctx, id)
+	if err != nil{
+		return resultStruct, err
+	} else if state == false{
+		return resultStruct, errors.New("this ID does not exist")
+	}
+	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct)
+	return resultStruct, err
+}

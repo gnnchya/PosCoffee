@@ -75,10 +75,10 @@ type TotalSale struct{
 }
 
 type OldMenu struct {
-ID         		string   `bson:"_id" json:"id"`
-Category       	[]string  `bson:"category" json:"category"`
-Name 			string   `bson:"name" json:"name" validate:"required"`
-Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
-Price      		int64    `bson:"price" json:"price"`
-Available 		bool	 `bson:"available" json:"available"`
+	ID         		string   `bson:"_id" json:"id"`
+	Category       	[]string  `bson:"category" json:"category"`
+	Name 			string   `bson:"name" json:"name" validate:"required"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
+	Price      		int64    `bson:"price" json:"price"`
+	Available 		bool	 `bson:"available" json:"available"`
 }
