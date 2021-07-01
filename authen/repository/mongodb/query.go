@@ -56,3 +56,4 @@ func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]d
 	cursor, err := repo.Coll.Find(nil, bson.M{}, &opts)
 	return AddToArray(cursor, err, ctx)
 }
+
