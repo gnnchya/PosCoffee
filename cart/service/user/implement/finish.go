@@ -9,10 +9,10 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
-func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (message interface{}, err error) {
+func (impl *implementation) Finish(ctx context.Context, id string, finishInput *userin.FinishInput) (message interface{}, res []string,err error) {
 	input, err := impl.repo.Read(ctx, id)
 	if err != nil{
-		return "", err
+		return "",res, err
 	}
 	menu := toMenuArr(input.Menu)
 	inputProtobuf := &protobuf.Request2{
@@ -36,16 +36,15 @@ func (impl *implementation) Finish(ctx context.Context, id string, finishInput *
 	fmt.Println("response from product", res)
 	fmt.Println("error", err)
 	if err != nil {
-		return "", err
+		return "", res, err
 	}
 	if res.Stock == true {
-		return res.Changes, err
+		return res.Changes, res, err
 	}else{
-		return input.ID, errors.New(res.Err)
+		return input.ID, res, errors.New(res.Err)
 	}
-
 	//fmt.Println("response", response.Change)
-	return input.ID, nil
+	return input.ID, res, nil
 }
 
 func toMenuArr(menu []domain.Menu)(a []*protobuf.Menu2){

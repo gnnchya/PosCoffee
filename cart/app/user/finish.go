@@ -3,6 +3,7 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/cart/app/view"
+	"github.com/gnnchya/PosCoffee/cart/service/bill"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
@@ -14,8 +15,14 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 		return
 	}
 	id := c.Param("id")
-	a, err := ctrl.service.Finish(c, id, cart)
-
+	a, order, err := ctrl.service.Finish(c, id, cart)
+	var filename = "bill.pdf"
+	var _, _ = bill.GeneratePdf(filename, order)
+	if err != nil {
+		view.MakeErrResp(c, 422, "error report")
+		return
+	}
+	c.File(filename)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return

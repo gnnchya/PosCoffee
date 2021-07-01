@@ -41,6 +41,7 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 	fmt.Println("cart", input.Cart)
 	fmt.Println("paid", input.Paid)
 	res, change, err := impl.userService.Create(ctx, input)
+	impl.userService.Bill(ctx, input.ID)
 	fmt.Println("---------------------------------------------")
 	fmt.Println("change", change)
 	var changes []*protobuf.Changes
