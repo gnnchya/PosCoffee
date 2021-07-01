@@ -9,8 +9,12 @@ import (
 )
 
 func(impl *implementation)ReportStock(input *userin.ReportFilter) ([][]string, error){
-	user := input.ReportStockInputToUserDomain()
-	out := &pb.ReportRequest{Request: "stock"}
+	//user := input.ReportStockInputToUserDomain()
+	out := &pb.ReportRequest{
+		Request: "reportStock",
+		Field:   input.Field,
+		Order:   input.Order,
+	}
 	reply, err := impl.client.SendReportToStock(out)
 	fmt.Println("reply", reply)
 	if err != nil{

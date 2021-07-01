@@ -13,7 +13,7 @@ func(impl implementation) SendReportToStock(ctx context.Context, input *pb.Repor
 	var report []domain.CreateStruct
 	if input.Request == "stock"{
 		report, err = impl.userService.Report(ctx)
-	}else if input.Request == "reportSale"{
+	}else if input.Request == "reportStock"{
 		report, err = impl.userService.ReportStock(ctx, input.Field, input.Order)
 	}
 	//report, err := impl.userService.Report(ctx)
