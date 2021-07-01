@@ -17,6 +17,7 @@ func main() {
 	// Register route to gin
 	_ = newApp(appConfig).RegisterRoute(router)
 
+
 	// Gin start listen
 	_ = router.Run(":8082")
 }
