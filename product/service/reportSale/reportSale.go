@@ -13,7 +13,7 @@ func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 	var totalSale int64 = 0
 	var totalAmount int64 = 0
 	for _, i := range sale{
-		fmt.Println("test:", i)
+		//fmt.Println("test:", i)
 		for _, x := range all{
 			if i.ID == x.ID{
 				temp = []string{}
@@ -38,5 +38,6 @@ func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 	temp = append(temp, " ")
 	temp = append(temp, strconv.Itoa(int(totalSale)))
 	res = append(res,temp)
+	fmt.Println(res)
 	return res
 }
