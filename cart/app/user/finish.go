@@ -16,7 +16,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 		return
 	}
 	id := c.Param("id")
-	_, order, err := ctrl.service.Finish(c, id, cart)
+	a, order, err := ctrl.service.Finish(c, id, cart)
 	var filename = "bill.pdf"
 	b, err := bill.GeneratePdf(filename, order)
 	fmt.Println("error bill", err)
@@ -30,5 +30,5 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//	return
 	//}
 
-	view.MakeSuccessResp(c, 200, b)
+	view.MakeSuccessResp(c, 200, a)
 }
