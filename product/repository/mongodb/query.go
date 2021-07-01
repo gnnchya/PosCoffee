@@ -68,7 +68,7 @@ func (repo *Repository) ReadBill(ctx context.Context, id string) (resultStruct d
 	} else if state == false{
 		return resultStruct, errors.New("this ID does not exist")
 	}
-	err = repo.Coll.FindOne(ctx, bson.D{{"cart._id", id}}).Decode(&resultStruct)
+	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct)
 	fmt.Println("bill id", resultStruct)
 	return resultStruct, err
 }
