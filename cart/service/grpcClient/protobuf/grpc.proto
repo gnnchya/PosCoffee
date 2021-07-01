@@ -6,7 +6,8 @@ package cart;
 message Reply2{
   bool Stock = 1;
   repeated Changes Changes = 2;
-  string err = 3;
+  repeated string bill = 3;
+  string err = 4;
 }
 
 message Changes{

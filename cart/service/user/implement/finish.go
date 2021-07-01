@@ -32,19 +32,17 @@ func (impl *implementation) Finish(ctx context.Context, id string, finishInput *
 		},
 	}
 	fmt.Println("inputProto", inputProtobuf)
-	res, err := impl.client.SendCart(inputProtobuf)
-	fmt.Println("response from product", res)
+	response, err := impl.client.SendCart(inputProtobuf)
+	fmt.Println("response from product", response)
 	fmt.Println("error", err)
 	if err != nil {
 		return "", res, err
 	}
-	if res.Stock == true {
-		return res.Changes, res, err
+	if response.Stock == true {
+		return response.Changes, response.Bill, nil
 	}else{
-		return input.ID, res, errors.New(res.Err)
+		return input.ID, res, errors.New(response.Err)
 	}
-	//fmt.Println("response", response.Change)
-	return input.ID, res, nil
 }
 
 func toMenuArr(menu []domain.Menu)(a []*protobuf.Menu2){
