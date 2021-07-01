@@ -24,7 +24,7 @@ func (ctrl *Controller) ReportStock(c *gin.Context) {
 	}
 	var filename = "reportStock.csv"
 	if checkFileIsExist(filename) {
-		err = os.Remove(filename)
+		err = os.Remove(filename) //Create a file
 	}
 	file, err := os.Create(filename) //Create a file
 	if err != nil {

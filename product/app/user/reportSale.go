@@ -22,17 +22,18 @@ func (ctrl *Controller) ReportSale(c *gin.Context) {
 		return
 	}
 	var filename = "reportSale.csv"
-	if !checkFileIsExist(filename) {
-		file, err := os.Create(filename) //Create a file
-		if err != nil {
-			//c.String(400, err.Error())
-			view.MakeErrResp2(c, 400, err)
-			return
-		}
-		csvWriter := csv.NewWriter(file)
-		_ = csvWriter.WriteAll(data)
-		csvWriter.Flush()
-		_ = file.Close()
+	if checkFileIsExist(filename) {
+		err = os.Remove(filename) //Create a file
 	}
+	file, err := os.Create(filename) //Create a file
+	if err != nil {
+		//c.String(400, err.Error())
+		view.MakeErrResp2(c, 400, err)
+		return
+	}
+	csvWriter := csv.NewWriter(file)
+	_ = csvWriter.WriteAll(data)
+	csvWriter.Flush()
+	_ = file.Close()
 	c.File(filename)
 }
