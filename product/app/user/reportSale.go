@@ -21,7 +21,7 @@ func (ctrl *Controller) ReportSale(c *gin.Context) {
 		view.MakeErrResp(c, 422, "error report")
 		return
 	}
-	var filename = "reportSale.csv"
+	var filename = "./report/reportSale.csv"
 	if checkFileIsExist(filename) {
 		err = os.Remove(filename) //Create a file
 	}
