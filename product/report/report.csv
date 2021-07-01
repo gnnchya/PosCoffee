@@ -1,4 +1,4 @@
-ID,Cart,CustomerID,Finished,TotalCost,TotalPrice,PaymentMethod,TypeOfOrder,Destination.Coordinates,Time,MenuID,MenuName,MenuPrice,MenuAmount,MenuOption
+ID,Cart ID,Customer ID,Finished Status,Total Cost,Total Price,Payment Method,Type of Order,Destination Coordinates,Time,Menu ID,Menu Name,Menu Price,Menu Amount,Menu Option
 c3ejddbcjpl9e0bbgr00,c3ejddbcjpl9e0bbgqm0,c3ejddbcjpl9e0bbgqmg,false,2090,20000,,Takeaway,-145.103683,2021-07-01 10:30:43 +0700 +07,c3e2obiciaeng9b27p8g,Hot Camomile Tea ,4000,2,
 " "," "," "," "," "," "," "," "," "," ",c3e2obiciaeng9b27pfg,Lychee Juice,4000,3,
 c3ejddbcjpl9e0bbgr0g,c3ejddbcjpl9e0bbgqn0,c3ejddbcjpl9e0bbgqng,false,1964,20000,,Takeaway,-145.103683,2021-07-01 10:33:30 +0700 +07,c3e2obiciaeng9b27peg,Iced Chocolate,5000,1,
@@ -38,7 +38,7 @@ c3ejddbcjpl9e0bbgr4g,c3ejddbcjpl9e0bbgqv0,c3ejddbcjpl9e0bbgqvg,false,4166,24500,
 " "," "," "," "," "," "," "," "," "," ",c3e2obiciaeng9b27p50,Cappuccino Frappe,6500,2,
 " "," "," "," "," "," "," "," "," "," ",c3e2obiciaeng9b27pag,Iced Milk Green Tea,5000,1,
 " "
-ID,ItemName,Category,Amount,Unit,CostPerUnit,EXPDate,ImportDate,Supplier,TotalCost,TotalAmount,Status
+ID,Item Name,Category,Amount,Unit,Cost per Unit,Expired Date,Import Date,Supplier,Total Cost,Total Amount,Status
 c3ej8d3cjpl8t6o3dse0,Milk,Dairy,6000,litre,4600,2021-07-04 05:56:06 +0700 +07,2021-06-28 13:51:47 +0700 +07,Meji,276000,6000,in-use
 c3ej8d3cjpl8t6o3dseg,Coffee beans,Coffee,1750000,gram,100,2021-08-15 13:29:37 +0700 +07,2021-06-28 02:53:27 +0700 +07,Doi Chang,125000000000,1250000000,in-use
 c3ej8d3cjpl8t6o3dsf0,Water,Water,3000,litre,1100,2021-09-25 20:11:33 +0700 +07,2021-06-24 09:14:36 +0700 +07,Mont Fleur,27500000,25000,in-use
