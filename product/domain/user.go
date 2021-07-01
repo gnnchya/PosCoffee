@@ -13,3 +13,8 @@ type ReportValue struct{
 	From int64
 	Until int64
 }
+
+type ReportOrder struct{
+	Field string
+	Order string
+}
