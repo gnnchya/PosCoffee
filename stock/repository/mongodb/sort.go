@@ -38,7 +38,7 @@ func (repo *Repository)ReadAllDefault(ctx context.Context)(result []domain.Creat
 	if err != nil{
 		return result, err
 	}
-	result, _ = AddToArray(cursor,err,ctx)
+	result, err = AddToArray(cursor,err,ctx)
 	fmt.Println("**************************************************************************************")
 	fmt.Println(result)
 	fmt.Println("**************************************************************************************")
@@ -46,7 +46,7 @@ func (repo *Repository)ReadAllDefault(ctx context.Context)(result []domain.Creat
 		fmt.Println(fmt.Sprintf("%v",x))
 	}
 	fmt.Println("**************************************************************************************")
-	return AddToArray(cursor,err,ctx)
+	return result ,err
 }
 
 func (repo *Repository)ReadAllFilter(ctx context.Context, field string, order int)(result []domain.CreateStruct, err error){
@@ -55,7 +55,7 @@ func (repo *Repository)ReadAllFilter(ctx context.Context, field string, order in
 	if err != nil{
 		return result, err
 	}
-	result, _ = AddToArray(cursor,err,ctx)
+	result, err = AddToArray(cursor,err,ctx)
 	fmt.Println("**************************************************************************************")
 	fmt.Println(result)
 	fmt.Println("**************************************************************************************")
@@ -63,7 +63,7 @@ func (repo *Repository)ReadAllFilter(ctx context.Context, field string, order in
 		fmt.Println(fmt.Sprintf("%v",x))
 	}
 	fmt.Println("**************************************************************************************")
-	return AddToArray(cursor,err,ctx)
+	return result, err
 }
 
 

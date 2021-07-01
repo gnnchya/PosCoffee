@@ -14,6 +14,9 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 	//menu := //proud
 	request := &protobuf.RequestMenu{Err: "nil"}
 	reply, err := impl.client.SendMenu(request)
+	if err != nil{
+		return [][]string{}, err
+	}
 	fmt.Println("menu from menu:", reply)
 	var menu []domain.OldMenu
 	for _, k := range reply.Menu{
