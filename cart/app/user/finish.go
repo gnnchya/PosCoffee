@@ -18,7 +18,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
 	if err != nil {
-		view.MakeErrResp(c, 422, "error finish")
+		view.MakeErrResp2(c, 422, err)
 		return
 	}
 	del := &userin.DeleteInput{
@@ -26,7 +26,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	}
 	_, err = ctrl.service.Delete(c, del)
 	if err != nil {
-		view.MakeErrResp(c, 422, "error delete")
+		view.MakeErrResp2(c, 422, err)
 		return
 	}
 	//ctrl.service.Finish(c, id, cart)
