@@ -16,11 +16,14 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	fmt.Println("user input create:", user)
 
 	err = impl.repo.Create(ctx, user, user.ID)
+	//input.Err = err
 	fmt.Println("err in create", err)
+	//if err == impl.sendMsgCreate(input){
+	//	log.Println(err)
+	//}
 	if err != nil {
 		return "error create in stock", err
 	}
-
 	return user.ID, nil
 }
 
@@ -38,5 +41,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 //		Supplier:       input.Supplier,
 //		TotalCost:      input.TotalCost,
 //		TotalAmount:    input.TotalAmount,
+//		Err: 			input.Err,
 //	})
 //}
