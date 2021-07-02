@@ -35,6 +35,7 @@ func (impl *implementation) Finish(ctx context.Context, id string, finishInput *
 	response, err := impl.client.SendCart(inputProtobuf)
 	fmt.Println("response from product", response)
 	fmt.Println("error", err)
+	fmt.Println("res for pond", response.Bill)
 	if err != nil {
 		return "", res, err
 	}
