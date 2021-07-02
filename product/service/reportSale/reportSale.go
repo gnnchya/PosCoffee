@@ -17,9 +17,9 @@ func ReportSale(sale []domain.TotalSale)(res [][]string){
 		temp = []string{}
 		temp = append(temp, i.ID.ID)
 		temp = append(temp, i.ID.Name)
-		temp = append(temp, strconv.Itoa(int(i.ID.Price)))
+		temp = append(temp, fmt.Sprintf("%.2f", float64(i.ID.Price/100)))
 		temp = append(temp, strconv.Itoa(int(i.TotalAmount)))
-		temp = append(temp, strconv.Itoa(int(i.TotalSales)))
+		temp = append(temp, fmt.Sprintf("%.2f", float64(i.TotalSales/100)))
 		res = append(res,temp)
 		fmt.Println("temp" , temp)
 		totalSale = totalSale + i.TotalSales
@@ -30,7 +30,7 @@ func ReportSale(sale []domain.TotalSale)(res [][]string){
 		temp = append(temp, " ")
 	}
 	temp = append(temp, strconv.Itoa(int(totalAmount)))
-	temp = append(temp, strconv.Itoa(int(totalSale)))
+	temp = append(temp, fmt.Sprintf("%.2f", float64(totalSale/100)))
 	res = append(res,temp)
 	return res
 }
