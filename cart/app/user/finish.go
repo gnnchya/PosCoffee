@@ -50,4 +50,3 @@ func FileDownload(c *gin.Context, filename string,filepath string){
 	c.Writer.Header().Add("Content-Type", "application/octet-stream")
 	c.File(filepath)
 }
-
