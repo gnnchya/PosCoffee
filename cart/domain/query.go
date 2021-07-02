@@ -25,8 +25,6 @@ type CreateStruct struct {
 
 type DeleteStruct struct {
 	ID 		string 	`bson:"_id" json:"id"`
-	Code	int 	`json:"code"`
-	Err 	error 	`json:"err"`
 }
 
 type UpdateStruct struct {
