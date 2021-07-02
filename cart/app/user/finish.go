@@ -17,6 +17,14 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	}
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
+	if err != nil {
+		view.MakeErrResp(c, 422, "error finish")
+		return
+	}
+	delete := &userin.DeleteInput{
+		ID:   id,
+	}
+	_, err = ctrl.service.Delete(c, delete)
 	//ctrl.service.Finish(c, id, cart)
 	fmt.Println("interface from finish function",a)
 	var filename = "./bill-"+id+".pdf"
@@ -24,10 +32,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//filename := "./bills/bill"+.pdf"
 	bill.GeneratePdf(filepath, order)
 	fmt.Println("error bill", err)
-	if err != nil {
-		view.MakeErrResp(c, 422, "error finish")
-		return
-	}
+
 	//FileDownload(c)
 	//c.File(filename)
 	FileDownload(c, filename, filepath)
