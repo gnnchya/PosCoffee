@@ -44,7 +44,7 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 	}
 	fromYear, fromMonth , fromDate:= time.Unix(input.From,0).Date()
 	untilYear, untilMonth , untilDate:= time.Unix(input.From,0).Date()
-	filename := "report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)
+	filename := "./report/reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)
 	switch input.Format{
 	case "excel":
 		createFile.CreateExcel(filename+".xlsx",reportSale.ReportSale(total, menu))

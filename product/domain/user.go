@@ -10,15 +10,15 @@ type SearchValue struct {
 }
 
 type ReportValue struct{
-	From int64
-	Until int64
-	Format string
+	From 	int64	`bson:"from" json:"from"`
+	Until 	int64	`bson:"until" json:"until"`
+	Format 	string	`bson:"format" json:"format"`
 }
 
 type ReportOrder struct{
-	Field string
-	Order string
-	Format string
+	Field 	string	`bson:"field" json:"field"`
+	Order 	string	`bson:"order" json:"order"`
+	Format 	string	`bson:"format" json:"format"`
 }
 
 type ReadCategoryByPageStruct struct {

@@ -82,6 +82,19 @@ func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.
 
 func (repo *Repository)ReadReport(ctx context.Context)([]domain.CreateStruct, error){
 	q, err := repo.query(ctx,repo.buildReportRequest())
-	result := InToStruct(q)
+	value := int(q["hits"].(map[string]interface{})["total"].(map[string]interface{})["value"].(float64))
+	fmt.Println("total value elas", value)
+	page := (value+9)/ 10
+	size := 10
+	var result []domain.CreateStruct
+	for i := 1; i < page; i++{
+		res, _ := repo.ReadAll(i,size,ctx)
+		for _,x := range res{
+			result = append(result,x)
+		}
+	}
+	fmt.Println("page",page)
+	fmt.Println("size",size)
+	fmt.Println(result)
 	return result, err
 }
