@@ -52,5 +52,5 @@ func (repo *Repository) CheckPagination(ctx context.Context, buf bytes.Buffer) (
 	if value > 10 {
 		return value+9/10, 10, nil
 	}
-	return 0,10,nil
+	return 1,10,nil
 }
