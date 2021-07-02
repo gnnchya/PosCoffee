@@ -10,12 +10,20 @@ import (
 
 func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until int64) (result []domain.CreateOrderStruct, err error){
 	var resultStruct domain.CreateOrderStruct
-	cursor, err := repo.Coll.Find(ctx,
-		bson.M{
-			"$and": bson.A{
-				bson.M{"time": bson.M{"$gt": from}},
-				bson.M{"time": bson.M{"$lt": until}},
-			}})
+	//cursor, err := repo.Coll.Find(ctx,
+	//	bson.M{
+	//		"$and": bson.A{
+	//			bson.M{"time": bson.M{"$gt": from}},
+	//			bson.M{"time": bson.M{"$lt": until}},
+	//		}})
+	matchStage := bson.D{{"$match", bson.D{
+		{"$and", bson.A{
+			bson.D{{"time", bson.D{{"$gt", from}}}},
+			bson.D{{"time", bson.D{{"$lt", until}}}},
+		}}}}}
+
+	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage})
+
 	if err != nil{
 		return result, err
 	}
