@@ -1,6 +1,7 @@
 package createFile
 
 import (
+	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	"log"
 	"strconv"
@@ -11,6 +12,8 @@ func CreateExcel(filename string, report [][]string){
 	f := excelize.NewFile()
 	style, _ := f.NewStyle(`{"alignment":{"horizontal":"center"}, 
         "font":{"bold":true,"italic":true}}`)
+	fmt.Println("len report",len(report))
+	fmt.Println("len report",len(report[0]))
 	_ = f.SetColWidth("Sheet1", alphabetArray[0], alphabetArray[len(report[0])], 20)
 	for a,b := range report{
 		for x,y := range b{
