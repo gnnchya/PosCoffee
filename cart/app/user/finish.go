@@ -10,19 +10,25 @@ import (
 
 func (ctrl *Controller) Finish(c *gin.Context) {
 	//TODO input from user
-	cart := &userin.FinishInput{
-		Paid:          154300,
-		PaymentMethod: "Cash",
-		TypeOfOrder:   "Dine-in",
-		Latitude:      12,
-		Longitude:     12,
+	cart := &userin.FinishInput{}
+	if err := c.ShouldBindJSON(cart); err != nil {
+		view.MakeErrResp2(c, 422, err)
+		return
 	}
-	//if err := c.ShouldBindJSON(cart); err != nil {
-	//	view.MakeErrResp2(c, 422, err)
-	//	return
-	//}
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
+	if err != nil {
+		view.MakeErrResp(c, 422, "error finish")
+		return
+	}
+	delete := &userin.DeleteInput{
+		ID:   id,
+	}
+	_, err = ctrl.service.Delete(c, delete)
+	if err != nil {
+		view.MakeErrResp(c, 422, "error delete")
+		return
+	}
 	//ctrl.service.Finish(c, id, cart)
 	fmt.Println("interface from finish function",a)
 	var filename = "./bill-"+id+".pdf"
@@ -30,10 +36,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//filename := "./bills/bill"+.pdf"
 	bill.GeneratePdf(filepath, order)
 	fmt.Println("error bill", err)
-	if err != nil {
-		view.MakeErrResp(c, 422, "error finish")
-		return
-	}
+
 	//FileDownload(c)
 	//c.File(filename)
 	FileDownload(c, filename, filepath)
