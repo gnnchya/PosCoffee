@@ -25,6 +25,10 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 		ID:   id,
 	}
 	_, err = ctrl.service.Delete(c, delete)
+	if err != nil {
+		view.MakeErrResp(c, 422, "error delete")
+		return
+	}
 	//ctrl.service.Finish(c, id, cart)
 	fmt.Println("interface from finish function",a)
 	var filename = "./bill-"+id+".pdf"
