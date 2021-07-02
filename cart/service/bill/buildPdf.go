@@ -2,17 +2,17 @@ package bill
 
 import (
 	"fmt"
-	"github.com/jung-kurt/gofpdf"
+	"github.com/pondnarawich/gofpdf"
 )
 
 func GeneratePdf(filename string, order []string){
-	pdf := gofpdf.New("", "", "A4", "")
+	pdf := gofpdf.New("", "", "proud", "")
 	pdf.AddPage()
-	pdf.SetFont("Arial", "B", 9)
+	pdf.SetFont("Arial", "B", 2)
 	//pdf.ImageOptions(
 	//	"Untitled_Artwork.jpg",
-	//	35, 10,
-	//	30, 30,
+	//	0, 0,
+	//	50, 50,
 	//	false,
 	//	gofpdf.ImageOptions{ImageType: "JPG", ReadDpi: true},
 	//	0,
@@ -20,8 +20,8 @@ func GeneratePdf(filename string, order []string){
 	//)
 	fmt.Println("bill information",order)
 	for z,i := range order{
-		//pdf.CellFormat(0, float64(z)*2, i, "0", 0, "CM", false, 0, "")
-		pdf.Write(float64(z)*2, i)
+		pdf.CellFormat(0, float64(z)*2, i, "", 0, "L", false, 0, "")
+		//pdf.Write(float64(z)*2, i)
 	}
 	pdf.Close()
 	_ = pdf.OutputFileAndClose(filename)
