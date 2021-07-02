@@ -25,9 +25,10 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	a, order, err := ctrl.service.Finish(c, id, cart)
 	//ctrl.service.Finish(c, id, cart)
 	fmt.Println("interface from finish function",a)
-	var filename = "./bills/bill-"+id+".pdf"
+	var filename = "./bill-"+id+".pdf"
+	var filepath = "./bills/bill-"+id+".pdf"
 	//filename := "./bills/bill"+.pdf"
-	bill.GeneratePdf(filename, order)
+	bill.GeneratePdf(filepath, order)
 	fmt.Println("error bill", err)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error finish")
@@ -35,7 +36,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	}
 	//FileDownload(c)
 	//c.File(filename)
-	FileDownload(c, filename)
+	FileDownload(c, filename, filepath)
 	//if err != nil {
 	//	view.MakeErrResp2(c, 422, err)
 	//	return
@@ -44,9 +45,9 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//view.MakeSuccessResp(c, 200, "no error")
 }
 
-func FileDownload(c *gin.Context, filename string){
+func FileDownload(c *gin.Context, filename string,filepath string){
 	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
 	c.Writer.Header().Add("Content-Type", "application/octet-stream")
-	c.File("bill.pdf")
+	c.File(filepath)
 }
 
