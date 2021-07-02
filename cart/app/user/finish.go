@@ -17,19 +17,30 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	}
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
-	//fmt.Println("interface from finish function",a)
-	var filename = "./bills/bill-"+id+".pdf"
+	//ctrl.service.Finish(c, id, cart)
+	fmt.Println("interface from finish function",a)
+	//var filename = "./bills/bill-"+id+".pdf"
+	filename := "bill.pdf"
 	bill.GeneratePdf(filename, order)
 	fmt.Println("error bill", err)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error finish")
 		return
 	}
-	//c.File(filename)
+	//FileDownload(c)
+	c.File(filename)
 	//if err != nil {
 	//	view.MakeErrResp2(c, 422, err)
 	//	return
 	//}
 
-	view.MakeSuccessResp(c, 200, a)
+	//view.MakeSuccessResp(c, 200, "no error")
 }
+
+func FileDownload(c *gin.Context){
+	filename := "bill.pdf"
+	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
+	c.Writer.Header().Add("Content-Type", "application/octet-stream")
+	c.File("bill.pdf")
+}
+

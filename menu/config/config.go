@@ -22,8 +22,6 @@ type Config struct {
 	ElasticDBUsername     string `env:"ELASTIC_USERNAME" envDefault:"touch"`
 	ElasticDBPassword	  string `env:"ELASTIC_PASSWORD" envDefault:"touchja"`
 
-	GRPCMenu string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50054"`
-
 	RedisEndpoint string `env:"REDIS_ENDPOINT" envDefault:"localhost:6379"`
 	RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
 
