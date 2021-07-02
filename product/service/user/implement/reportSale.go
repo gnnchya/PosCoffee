@@ -16,7 +16,7 @@ func(impl *implementation)ReportSale(ctx context.Context, input *userin.ReportRa
 	filename := "./report/reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)
 	switch input.Format{
 	case "excel":
-		createFile.CreateExcel(filename+".xlsx",reportSale.ReportSale(total))
+		createFile.CreateExcel(filename+".xls",reportSale.ReportSale(total))
 	case "csv":
 		createFile.CreateCSV(filename+".csv",reportSale.ReportSale(total))
 	}
