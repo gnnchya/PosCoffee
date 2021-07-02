@@ -26,5 +26,5 @@ type Service interface {
 	ReportStock(ctx context.Context,input *userin.ReportFilter)
 	ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error)
 	ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error)
-	Bill(ctx context.Context, id string)
+	Bill(ctx context.Context, id string)[]string
 }
