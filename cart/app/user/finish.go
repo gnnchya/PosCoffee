@@ -45,7 +45,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//	return
 	//}
 
-	//view.MakeSuccessResp(c, 200, "no error")
+	view.MakeSuccessResp(c, 200, a)
 }
 
 func FileDownload(c *gin.Context, filename string,filepath string){
