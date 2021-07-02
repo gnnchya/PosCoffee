@@ -44,42 +44,21 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 }
 
 func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildCategoryRequest(1,10,keyword))
-	var result []domain.CreateStruct
-	for i := 1; i < page; i++{
-		q, _ := repo.query(ctx,buildCategoryRequest(i,size,keyword))
-		res := InToStruct(q)
-		for _,x := range res{
-			result = append(result,x)
-		}
-	}
+		q, err := repo.query(ctx,buildCategoryRequest(1,10000,keyword))
+		result := InToStruct(q)
 	return result, err
 }
 
 func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildIngredientRequest(1,10,keyword))
-	var result []domain.CreateStruct
-	for i := 1; i < page; i++{
-		q, _ := repo.query(ctx,buildIngredientRequest(i,size,keyword))
-		res := InToStruct(q)
-		for _,x := range res{
-			result = append(result,x)
-		}
-	}
+		q, err := repo.query(ctx,buildIngredientRequest(1,10000,keyword))
+		result := InToStruct(q)
 	return result, err
 }
 
 func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildMenuRequest(1,10,keyword))
-	var result []domain.CreateStruct
-	for i := 1; i < page; i++{
-		q, _ := repo.query(ctx,buildMenuRequest(i,size,keyword))
-		fmt.Println("q")
-		res := InToStruct(q)
-		for _,x := range res{
-			result = append(result,x)
-		}
-	}
+		q, err := repo.query(ctx,buildMenuRequest(1,10000,keyword))
+		fmt.Println(q)
+		result := InToStruct(q)
 	return result, err
 }
 
