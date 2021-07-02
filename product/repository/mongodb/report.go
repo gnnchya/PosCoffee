@@ -23,7 +23,7 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
-		fmt.Println(resultStruct)
+		//fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
 	return result,err
@@ -35,13 +35,22 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 			bson.D{{"time", bson.D{{"$gt", from}}}},
 			bson.D{{"time", bson.D{{"$lt", until}}}},
 		}}}}}
-	groupStage := bson.D{{"$group", bson.D{{"_id", "$cart.menu._id"},{"total_sales",bson.D{{"$sum",bson.D{{
+	groupStage := bson.D{{"$group", bson.D{{"_id", bson.D{{"_id","$cart.menu._id"},{"name","$cart.menu.name"},{"price","$cart.menu.price"}}},{"total_amount",bson.D{{"$sum", "$cart.menu.amount"}}},{"total_sales",bson.D{{"$sum",bson.D{{
 		"$multiply", []string{"$cart.menu.price", "$cart.menu.amount"}}}}}}}}}
+	groupStage1 := bson.D{{"$addFields", bson.D{{"name", "$cart.menu.name"}}}}
+	groupStage2 := bson.D{{"$addFields", bson.D{{"price", "$cart.menu.price"}}}}
 	unwind := bson.D{{"$unwind", "$cart.menu"}}
-	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,unwind,groupStage})
-	if err != nil{
-		return result, err
-	}
+	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,unwind,groupStage,groupStage1,groupStage2})
+	//if cursor == nil{
+	//	fmt.Println("qweqwe")
+	//}
+	//if err != nil{
+	//	return result, err
+	//}
+	//arr, err := AddToArray(cursor,err,ctx)
+	//for _,x := range arr{
+	//	fmt.Println("arr",x)
+	//}
 	result, err = AddToArrayTotalSale(cursor,err,ctx)
 	if err != nil{
 		return result, err

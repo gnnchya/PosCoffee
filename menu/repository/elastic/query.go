@@ -44,20 +44,41 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 }
 
 func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildCategoryRequest(keyword))
-	result := InToStruct(q)
+	page,size,err := repo.CheckPagination(ctx , buildCategoryRequest(0,10,keyword))
+	var result []domain.CreateStruct
+	for i := 1; i < page; i++{
+		q, _ := repo.query(ctx,buildCategoryRequest(i,size,keyword))
+		res := InToStruct(q)
+		for _,x := range res{
+			result = append(result,x)
+		}
+	}
 	return result, err
 }
 
 func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildIngredientRequest(keyword))
-	result := InToStruct(q)
+	page,size,err := repo.CheckPagination(ctx , buildIngredientRequest(0,10,keyword))
+	var result []domain.CreateStruct
+	for i := 1; i < page; i++{
+		q, _ := repo.query(ctx,buildIngredientRequest(i,size,keyword))
+		res := InToStruct(q)
+		for _,x := range res{
+			result = append(result,x)
+		}
+	}
 	return result, err
 }
 
 func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildMenuRequest(keyword))
-	result := InToStruct(q)
+	page,size,err := repo.CheckPagination(ctx , buildMenuRequest(0,10,keyword))
+	var result []domain.CreateStruct
+	for i := 1; i < page; i++{
+		q, _ := repo.query(ctx,buildMenuRequest(i,size,keyword))
+		res := InToStruct(q)
+		for _,x := range res{
+			result = append(result,x)
+		}
+	}
 	return result, err
 }
 
@@ -81,11 +102,7 @@ func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.
 }
 
 func (repo *Repository)ReadReport(ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,repo.buildReportRequest())
-	value := int(q["hits"].(map[string]interface{})["total"].(map[string]interface{})["value"].(float64))
-	fmt.Println("total value elas", value)
-	page := (value+9)/ 10
-	size := 10
+	page,size,err := repo.CheckPagination(ctx , buildViewAllRequest(0,10,repo.Index))
 	var result []domain.CreateStruct
 	for i := 1; i < page; i++{
 		res, _ := repo.ReadAll(i,size,ctx)

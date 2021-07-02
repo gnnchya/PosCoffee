@@ -1,6 +1,7 @@
 package elastic
 
 import (
+	"bytes"
 	"context"
 )
 
@@ -43,4 +44,11 @@ func (repo *Repository) CheckExistIndex(ctx context.Context, Index string) (bool
 	return true, err
 }
 
-func
+func (repo *Repository) CheckPagination(ctx context.Context, buf bytes.Buffer) (page int,size int, err error) {
+	result, err := repo.query(ctx,buf)
+	value := int((result["hits"].(map[string]interface{})["total"].(map[string]interface{})["value"]).(float64))
+	if value > 10 {
+		return value+9/10, 10, nil
+	}
+	return 0,10,nil
+}

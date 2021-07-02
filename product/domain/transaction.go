@@ -70,8 +70,13 @@ type CalculateCost struct{
 }
 
 type TotalSale struct{
-	ID 		string		`bson:"_id" json:"id"`
-	Total 	int64		`bson:"total_sales" json:"total_sales"`
+	ID struct{
+		ID 		string		`bson:"_id" json:"_id"`
+		Name 	string		`bson:"name" json:"name"`
+		Price 	int64		`bson:"price" json:"price"`
+	}	`bson:"_id" json:"_id"`
+	TotalAmount int64		`bson:"total_amount" json:"total_amount"`
+	TotalSales 	int64		`bson:"total_sales" json:"total_sales"`
 }
 
 type OldMenu struct {

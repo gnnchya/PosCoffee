@@ -3,13 +3,15 @@ package elastic
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
-func buildMenuRequest(keyword string) bytes.Buffer {
+func buildMenuRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
@@ -58,9 +60,12 @@ func buildViewRequest(id string) bytes.Buffer{
 	return buf
 }
 
-func buildCategoryRequest(keyword string) bytes.Buffer {
+func buildCategoryRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
@@ -76,9 +81,12 @@ func buildCategoryRequest(keyword string) bytes.Buffer {
 	return buf
 }
 
-func buildIngredientRequest(keyword string) bytes.Buffer {
+func buildIngredientRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
@@ -88,20 +96,6 @@ func buildIngredientRequest(keyword string) bytes.Buffer {
 			},
 		},
 	}
-	if err := json.NewEncoder(&buf).Encode(query); err != nil {
-		log.Fatalf("Error encoding query: %s", err)
-	}
-	return buf
-}
-
-func (repo *Repository)buildReportRequest() bytes.Buffer {
-	var buf bytes.Buffer
-	query := map[string]interface{}{
-		"query": map[string]interface{}{
-			"match_all": map[string]interface{}{},
-		},
-	}
-	fmt.Println("build report request" + repo.Index)
 	if err := json.NewEncoder(&buf).Encode(query); err != nil {
 		log.Fatalf("Error encoding query: %s", err)
 	}

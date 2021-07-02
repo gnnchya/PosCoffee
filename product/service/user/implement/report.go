@@ -14,7 +14,6 @@ import (
 
 func(impl *implementation)Report(ctx context.Context, input *userin.ReportRange){
 	transaction,_ := impl.repo.ReadByTimeRange(ctx, input.From,input.Until)
-	_,_ = impl.repo.ReadMenuTotalSale(ctx,input.From,input.Until)
 	out := &pb.ReportRequest{Request: "stock"}
 	reply, err := impl.client.SendReportToStock(out)
 	fmt.Println("reply", reply)
