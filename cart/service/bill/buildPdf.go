@@ -1,10 +1,11 @@
 package bill
 
 import (
+	"fmt"
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GeneratePdf(filename string, order []string) (*gofpdf.Fpdf,error) {
+func GeneratePdf(filename string, order []string){
 	pdf := gofpdf.New("P", "mm", "A6", "")
 	pdf.AddPage()
 	pdf.SetFont("Arial", "B", 11)
@@ -17,9 +18,10 @@ func GeneratePdf(filename string, order []string) (*gofpdf.Fpdf,error) {
 	//	0,
 	//	"",
 	//)
-	for _,i := range order{
-		pdf.CellFormat(0, 70, i, "0", 0, "CM", false, 0, "")
+	fmt.Println("bill information",order)
+	for z,i := range order{
+		pdf.CellFormat(0, float64(z*20), i, "0", 0, "CM", false, 0, "")
 	}
 	pdf.Close()
-	return pdf,pdf.OutputFileAndClose(filename)
+	_ = pdf.OutputFileAndClose(filename)
 }

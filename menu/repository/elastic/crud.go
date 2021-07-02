@@ -48,7 +48,6 @@ func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) e
 		repo.Index, title.ID, &buf,
 		repo.Client.Update.WithContext(ctx),
 		repo.Client.Update.WithPretty())
-
 	if err != nil {
 		return err
 	}

@@ -17,14 +17,15 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	}
 	id := c.Param("id")
 	a, order, err := ctrl.service.Finish(c, id, cart)
-	var filename = "bill.pdf"
-	_, err = bill.GeneratePdf(filename, order)
+	//fmt.Println("interface from finish function",a)
+	var filename = "./bills/bill-"+id+".pdf"
+	bill.GeneratePdf(filename, order)
 	fmt.Println("error bill", err)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error finish")
 		return
 	}
-	c.File(filename)
+	//c.File(filename)
 	//if err != nil {
 	//	view.MakeErrResp2(c, 422, err)
 	//	return
