@@ -9,8 +9,10 @@ import (
 
 func contains(s [][]string, str string) bool {
 	for _, v := range s {
-		if v[0] == str {
-			return true
+		for _,x := range v{
+			if x == str {
+				return true
+			}
 		}
 	}
 	return false
@@ -22,25 +24,21 @@ func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
 	res = append(res, temp)
 	for _,i := range transaction{
 		temp = []string{}
+		temp = append(temp, i.ID)
+		temp = append(temp, i.Cart.ID)
+		temp = append(temp, i.Cart.CustomerID)
+		temp = append(temp, strconv.FormatBool(i.Finished))
+		temp = append(temp, fmt.Sprintf("%.2f", float64(i.TotalCost/100)))
+		temp = append(temp, fmt.Sprintf("%.2f", float64(i.Price/100)))
+		temp = append(temp, i.PaymentMethod)
+		temp = append(temp, i.TypeOfOrder)
+		temp = append(temp, fmt.Sprintf("%f", i.Destination.Coordinates[0]))
+		year,month,date :=time.Unix(i.Time, 0).Date()
+		temp = append(temp, strconv.Itoa(date)+" "+month.String()+" "+strconv.Itoa(year))
 		for _,x := range i.Cart.Menu{
-			temp = []string{}
-			if contains(res,i.ID){
-				for q:=0; q < 10; q++{
+				for q:=0; q < 11; q++{
 					temp = append(temp, " ")
 				}
-			} else {
-				temp = append(temp, i.ID)
-				temp = append(temp, i.Cart.ID)
-				temp = append(temp, i.Cart.CustomerID)
-				temp = append(temp, strconv.FormatBool(i.Finished))
-				temp = append(temp, fmt.Sprintf("%.2f", float64(i.TotalCost/100)))
-				temp = append(temp, fmt.Sprintf("%.2f", float64(i.Price/100)))
-				temp = append(temp, i.PaymentMethod)
-				temp = append(temp, i.TypeOfOrder)
-				temp = append(temp, fmt.Sprintf("%f", i.Destination.Coordinates[0]))
-				year,month,date :=time.Unix(i.Time, 0).Date()
-				temp = append(temp, strconv.Itoa(date)+" "+month.String()+" "+strconv.Itoa(year))
-			}
 			temp = append(temp, x.ID)
 			temp = append(temp, x.Name)
 			temp = append(temp, fmt.Sprintf("%.2f", float64(x.Price/100)))

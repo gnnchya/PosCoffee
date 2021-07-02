@@ -23,7 +23,6 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
-		//fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
 	return result,err
