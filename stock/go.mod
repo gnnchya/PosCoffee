@@ -9,7 +9,6 @@ require (
 	github.com/go-playground/validator/v10 v10.6.1
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
-	github.com/jung-kurt/gofpdf v1.16.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1
 	github.com/touchtechnologies-product/message-broker v0.0.0-20200721081750-84510f1b3a6d

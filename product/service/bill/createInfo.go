@@ -19,7 +19,7 @@ func BillInfo(order domain.CreateOrderStruct)(temp []string){
 	for _,i := range order.Cart.Menu{
 		temp = append(temp, "Menu Name: " + strings.Repeat("	",30-len(i.Name)) + i.Name)
 		temp = append(temp, "Amount: " + strconv.Itoa(int(i.Amount)) + strings.Repeat("	",30-len(strconv.Itoa(int(i.Amount)))-len(fmt.Sprintf("%.2f", float64(i.Price/100)))) + "Price: " + fmt.Sprintf("%.2f", float64(i.Price/100)))
-		temp = append(temp, "Option:" + strings.Repeat("	",30-len(i.Name)) + i.Option)
+		temp = append(temp, "Option:" + strings.Repeat("	",30-len(i.Option)) + i.Option)
 	}
 	temp = append(temp, "Total Price: " + fmt.Sprintf("%.2f", float64(order.Cart.TotalPrice/100)))
 	temp = append(temp, strings.Repeat("-", 50))
