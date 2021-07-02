@@ -44,7 +44,7 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 }
 
 func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildCategoryRequest(0,10,keyword))
+	page,size,err := repo.CheckPagination(ctx , buildCategoryRequest(1,10,keyword))
 	var result []domain.CreateStruct
 	for i := 1; i < page; i++{
 		q, _ := repo.query(ctx,buildCategoryRequest(i,size,keyword))
@@ -57,7 +57,7 @@ func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]doma
 }
 
 func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildIngredientRequest(0,10,keyword))
+	page,size,err := repo.CheckPagination(ctx , buildIngredientRequest(1,10,keyword))
 	var result []domain.CreateStruct
 	for i := 1; i < page; i++{
 		q, _ := repo.query(ctx,buildIngredientRequest(i,size,keyword))
@@ -70,10 +70,11 @@ func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]do
 }
 
 func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildMenuRequest(0,10,keyword))
+	page,size,err := repo.CheckPagination(ctx , buildMenuRequest(1,10,keyword))
 	var result []domain.CreateStruct
 	for i := 1; i < page; i++{
 		q, _ := repo.query(ctx,buildMenuRequest(i,size,keyword))
+		fmt.Println("q")
 		res := InToStruct(q)
 		for _,x := range res{
 			result = append(result,x)
@@ -98,20 +99,5 @@ func (repo *Repository)Read(id string,ctx context.Context)(result domain.CreateS
 func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.CreateStruct, error){
 	q, err := repo.query(ctx,buildViewAllRequest(page, size,repo.Index))
 	result := InToStruct(q)
-	return result, err
-}
-
-func (repo *Repository)ReadReport(ctx context.Context)([]domain.CreateStruct, error){
-	page,size,err := repo.CheckPagination(ctx , buildViewAllRequest(0,10,repo.Index))
-	var result []domain.CreateStruct
-	for i := 1; i < page; i++{
-		res, _ := repo.ReadAll(i,size,ctx)
-		for _,x := range res{
-			result = append(result,x)
-		}
-	}
-	fmt.Println("page",page)
-	fmt.Println("size",size)
-	fmt.Println(result)
 	return result, err
 }
