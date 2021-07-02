@@ -39,17 +39,18 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 
 	//FileDownload(c)
 	//c.File(filename)
-	FileDownload(c, filename, filepath)
+	FileDownload(c, filename, filepath, a)
 	//if err != nil {
 	//	view.MakeErrResp2(c, 422, err)
 	//	return
 	//}
 
-	view.MakeSuccessResp(c, 200, a)
+	//view.MakeSuccessResp(c, 200, a)
 }
 
-func FileDownload(c *gin.Context, filename string,filepath string){
+func FileDownload(c *gin.Context, filename string,filepath string, changes interface{}){
 	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
-	c.Writer.Header().Add("Content-Type", "application/octet-stream")
+	c.Writer.Header().Add("Content-Type", "application/pdf")
+	c.Writer.Header().Add("Changes", fmt.Sprintf("changes: %v", changes))
 	c.File(filepath)
 }
