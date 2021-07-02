@@ -21,10 +21,10 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 		view.MakeErrResp(c, 422, "error finish")
 		return
 	}
-	delete := &userin.DeleteInput{
+	del := &userin.DeleteInput{
 		ID:   id,
 	}
-	_, err = ctrl.service.Delete(c, delete)
+	_, err = ctrl.service.Delete(c, del)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error delete")
 		return
