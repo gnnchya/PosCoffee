@@ -15,7 +15,6 @@ type MsgBrokerCreate struct{
 	Supplier 		string 		`bson:"supplier" json:"supplier"`
 	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
-
 }
 
 func (msg MsgBrokerCreate) ToCreateInput()(createInput *CreateInput){
@@ -31,7 +30,6 @@ func (msg MsgBrokerCreate) ToCreateInput()(createInput *CreateInput){
 		Supplier:       msg.Supplier,
 		TotalCost:      msg.TotalCost,
 		TotalAmount:    msg.TotalAmount,
-
 	}
 	return createInput
 }

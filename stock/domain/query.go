@@ -13,16 +13,19 @@ type CreateStruct struct {
 	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
 	Status 			string		`bson:"status" json:"status"`
+	Err 	error   `json:"err"`
 }
 
 type DeleteStruct struct {
 	ID 		string	`bson:"_id" json:"id"`
+	Err 	error   `json:"err"`
 }
 
 type Updatestruct struct {
 	ID      string  `bson:"_id" json:"id" validate:"required"`
 	Amount	int64   `bson:"amount" json:"amount" validate:"required"`
 	Status 	string	`bson:"status" json:"status" validate:"required"`
+	Err 	error   `json:"err"`
 }
 
 type ReadIDStruct struct {
