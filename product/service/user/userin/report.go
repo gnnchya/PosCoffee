@@ -3,9 +3,9 @@ package userin
 import "github.com/gnnchya/PosCoffee/product/domain"
 
 type ReportRange struct{
-	From int64
-	Until int64
-	Format string
+	From 	int64	`bson:"from" json:"from"`
+	Until 	int64	`bson:"until" json:"until"`
+	Format 	string	`bson:"format" json:"format"`
 }
 
 func (input *ReportRange)ReportInputToUserDomain() (user *domain.ReportValue) {
@@ -17,9 +17,9 @@ func (input *ReportRange)ReportInputToUserDomain() (user *domain.ReportValue) {
 }
 
 type ReportFilter struct{
-	Field string
-	Order string
-	Format string
+	Field 	string	`bson:"field" json:"field"`
+	Order 	string	`bson:"order" json:"order"`
+	Format 	string	`bson:"format" json:"format"`
 }
 
 func (input *ReportFilter)ReportStockInputToUserDomain() (user *domain.ReportOrder) {
@@ -29,4 +29,3 @@ func (input *ReportFilter)ReportStockInputToUserDomain() (user *domain.ReportOrd
 		Format: input.Format,
 	}
 }
-

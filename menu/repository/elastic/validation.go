@@ -42,3 +42,5 @@ func (repo *Repository) CheckExistIndex(ctx context.Context, Index string) (bool
 	}
 	return true, err
 }
+
+func

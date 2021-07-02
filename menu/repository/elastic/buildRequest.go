@@ -98,9 +98,7 @@ func (repo *Repository)buildReportRequest() bytes.Buffer {
 	var buf bytes.Buffer
 	query := map[string]interface{}{
 		"query": map[string]interface{}{
-			"match": map[string]interface{}{
-				"_index": repo.Index,
-			},
+			"match_all": map[string]interface{}{},
 		},
 	}
 	fmt.Println("build report request" + repo.Index)

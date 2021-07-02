@@ -47,7 +47,9 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 		return result, err
 	}
 	fmt.Println("**************************************************************************************")
-	fmt.Println(result)
+	for _, i := range result{
+		fmt.Println("result total in repo",i)
+	}
 	fmt.Println("**************************************************************************************")
 	return result, err
 }

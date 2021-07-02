@@ -43,7 +43,7 @@ func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportF
 		stock = append(stock, temp)
 	}
 	fromYear, fromMonth , fromDate:= time.Now().Date()
-	filename := "report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)
+	filename := "./report/reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)
 	switch input.Format{
 	case "excel":
 		createFile.CreateExcel(filename+".xlsx",reportStock.ReportStock(stock))

@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
+func ReportSale(sale []domain.TotalSale, all []domain.CreateOrderStruct)(res [][]string){
 	temp := initSale()
 	res = append(res,temp)
 	fmt.Println("sale", sale)
@@ -15,21 +15,23 @@ func ReportSale(sale []domain.TotalSale, all []domain.OldMenu)(res [][]string){
 	var totalSale int64 = 0
 	var totalAmount int64 = 0
 	for _, i := range sale{
-		//fmt.Println("test:", i)
-		for _, x := range all{
-			if i.ID == x.ID{
-				temp = []string{}
-				temp = append(temp, x.ID)
-				temp = append(temp, x.Name)
-				temp = append(temp, strconv.FormatBool(x.Available))
-				temp = append(temp, strconv.Itoa(int(x.Price)))
-				temp = append(temp, strconv.Itoa(int(i.Total/x.Price)))
-				temp = append(temp, strconv.Itoa(int(i.Total)))
-				res = append(res,temp)
-				fmt.Println("temp" , temp)
-				totalSale = totalSale + i.Total
-				totalAmount = totalAmount + (i.Total/x.Price)
+		for _, y := range all{
+			for _,x := range y.Cart.Menu{
+				if i.ID == x.ID{
+					temp = []string{}
+					temp = append(temp, x.ID)
+					temp = append(temp, x.Name)
+					temp = append(temp, strconv.FormatBool(x.Available))
+					temp = append(temp, strconv.Itoa(int(x.Price)))
+					temp = append(temp, strconv.Itoa(int(i.Total/x.Price)))
+					temp = append(temp, strconv.Itoa(int(i.Total)))
+					res = append(res,temp)
+					fmt.Println("temp" , temp)
+					totalSale = totalSale + i.Total
+					totalAmount = totalAmount + (i.Total/x.Price)
+				}
 			}
+
 		}
 	}
 	temp = []string{}
