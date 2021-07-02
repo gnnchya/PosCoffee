@@ -23,6 +23,7 @@ func (repo *Repository) ReadByTimeRange(ctx context.Context, from int64, until i
 		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
+		fmt.Println("fuck you gun ******",resultStruct)
 		result = append(result, resultStruct)
 	}
 	return result,err
