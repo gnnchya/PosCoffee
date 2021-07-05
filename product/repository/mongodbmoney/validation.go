@@ -15,7 +15,7 @@ func (repo *RepositoryMoney) checkExistID(ctx context.Context, id string) (bool,
 	return true, err
 }
 
-func (repo *RepositoryMoney) checkExistVal(ctx context.Context, val int64) (bool, error) {
+func (repo *RepositoryMoney) CheckExistVal(ctx context.Context, val int64) (bool, error) {
 	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"value", val}})
 	if count < 1 {
 		err = errors.New("error: Value does not exist")

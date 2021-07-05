@@ -30,6 +30,7 @@ type RepositoryMoney interface {
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a interface{}, err error)
 	ReadMoneyAll(ctx context.Context) (a []domain.CreateMoneyStruct, err error)
+	CheckExistVal(ctx context.Context, val int64) (bool, error)
 }
 
 type RepositoryUsers interface{
