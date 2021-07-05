@@ -12,7 +12,7 @@ func (impl *implementation) CreateMoney(ctx context.Context, input *userin.Creat
 	}
 	user := input.CreateMoneyInputToUserDomain()
 
-	err = impl.repoMoney.Create(ctx, user)
+	err = impl.repoMoney.Create(ctx, user, user.Value)
 	if err != nil {
 		return "error create in money", err
 	}
