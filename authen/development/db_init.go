@@ -78,9 +78,6 @@ func main(){
 	}
 
 	for _ ,v := range MenuList{
-		if err != nil {
-			log.Fatal(err)
-		}
 		initID := goxid.New()
 		idGen := initID.Gen()
 
@@ -105,6 +102,9 @@ func main(){
 		if err != nil {
 			log.Fatalf("Error getting response: %s", err)
 		}
-		res.Body.Close()
+		err = res.Body.Close()
+		if err != nil {
+			return
+		}
 	}
 }

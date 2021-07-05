@@ -3,6 +3,7 @@ package implement
 import (
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -31,7 +32,12 @@ func (impl *implementation) revokeToken(accessToken string) (token bool, err err
 	if err != nil {
 		return false, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(resp.Body)
 
 	if resp.Status != "200 OK" {
 		return false, errors.New("error delete token")

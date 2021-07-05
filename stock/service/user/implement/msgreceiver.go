@@ -44,7 +44,7 @@ func (impl *implementation) MsgReceiver(ctx context.Context, msg []byte) (err er
 func (impl *implementation) receiveCreateAction(ctx context.Context, msgBrokerInput *userin.MsgBrokerCreate) (err error) {
 	input := msgBrokerInput.ToCreateInput()
 	domainUser := input.CreateInputToUserDomain()
-	err = impl.repo.Create(ctx, domainUser, domainUser.ID)
+	err = impl.repo.Create(ctx, domainUser)
 	fmt.Println("receive create action, after create", err)
 	if err != nil {
 		return err

@@ -27,6 +27,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	res, err := impl.client.SendIngredients(inputIngredient)
 	var cost []domain.CalculateCost
 	var remainMoney []domain.CreateMoneyStruct
+
 	if res.Stock == true{
 		if input.PaymentMethod == "Cash"{
 			temp, err := impl.repoMoney.ReadMoneyAll(ctx)

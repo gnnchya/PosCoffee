@@ -133,6 +133,9 @@ func main(){
 		if err != nil {
 			log.Fatalf("Error getting response: %s", err)
 		}
-		res.Body.Close()
+		err = res.Body.Close()
+		if err != nil {
+			return
+		}
 	}
 }

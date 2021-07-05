@@ -37,7 +37,12 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 
 	FileDownload(c, filename, filepath, a)
 
-	defer os.Remove(filepath)
+	defer func(name string) {
+		err := os.Remove(name)
+		if err != nil {
+
+		}
+	}(filepath)
 }
 
 func FileDownload(c *gin.Context, filename string,filepath string, changes interface{}){

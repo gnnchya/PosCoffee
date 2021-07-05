@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
+	"io"
 	"io/ioutil"
 	"net/http"
 )
@@ -26,7 +27,12 @@ func (impl *implementation) VerifyToken(accessToken string) (userID *string, err
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(resp.Body)
 
 	body, _ := ioutil.ReadAll(resp.Body)
 	if resp.Status != "200 OK" {
