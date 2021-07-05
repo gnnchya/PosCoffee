@@ -7,6 +7,6 @@ import (
 
 func (impl *implementation) Bill(ctx context.Context, id string, paid int64)[]string{
 	res,_ := impl.repo.ReadBill(ctx, id)
-	result := bill.BillInfo(res,paid)
+	result := bill.InfoBill(res,paid)
 	return result
 }

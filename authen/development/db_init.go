@@ -105,7 +105,6 @@ func main(){
 		if err != nil {
 			log.Fatalf("Error getting response: %s", err)
 		}
-		defer res.Body.Close()
-
+		res.Body.Close()
 	}
 }

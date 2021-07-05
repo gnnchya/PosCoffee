@@ -15,7 +15,7 @@ type CreateInput struct {
 	Time			int64      		`bson:"time" json:"time"`
 	Paid 			int64			`bson:"paid" json:"paid"`
 }
-//TODO receive input from total cost
+
 func CalculateTotalCost(order *CreateInput, cost []domain.CalculateCost)(TotalCost int64){
 	for _,i := range order.Cart.Menu {
 		for _, y := range i.Ingredient {

@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func BillInfo(order domain.CreateOrderStruct, paid int64)(temp []string){
+func InfoBill(order domain.CreateOrderStruct, paid int64)(temp []string){
 	temp = append(temp, "Proud Suay's Cafe")
 	temp = append(temp,"Bill")
 	temp = append(temp, strings.Repeat("-", 50))

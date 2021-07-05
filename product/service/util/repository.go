@@ -48,6 +48,5 @@ type RepositoryGRPC interface {
 }
 
 type RepositoryReportGRPC interface {
-	//NetListener() (lis net.Listener, err error)
 	NewClient() (*grpc.ClientConn, error)
 }

@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/service/user"
 	"github.com/gnnchya/PosCoffee/cart/service/grpcClient"
+	"github.com/gnnchya/PosCoffee/cart/service/user"
 )
 
 type Controller struct {
