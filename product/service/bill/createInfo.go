@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func BillInfo(order domain.CreateOrderStruct)(temp []string){
+func BillInfo(order domain.CreateOrderStruct, paid int64)(temp []string){
 	temp = append(temp, "Proud Suay's Cafe")
 	temp = append(temp,"Bill")
 	temp = append(temp, strings.Repeat("-", 50))
@@ -26,6 +26,8 @@ func BillInfo(order domain.CreateOrderStruct)(temp []string){
 	temp = append(temp, "Total Price: " + fmt.Sprintf("%.2f", float64(order.Cart.TotalPrice/100))+ strings.Repeat(" ",27-len(fmt.Sprintf("%.2f", float64(order.Cart.TotalPrice/100)))))
 	temp = append(temp, strings.Repeat("-", 50))
 	temp = append(temp, "Net Price: " + fmt.Sprintf("%.2f", float64(order.Cart.TotalPrice/100)))
+	temp = append(temp, "Paid: " + fmt.Sprintf("%.2f", float64(paid/100)))
+	temp = append(temp, "Change: " + fmt.Sprintf("%.2f", float64((paid-order.Cart.TotalPrice)/100)))
 	temp = append(temp, "Payment Method: " + order.PaymentMethod)
 	return temp
 }

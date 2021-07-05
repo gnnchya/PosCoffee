@@ -21,14 +21,13 @@ func (ctrl *Controller) Create(c *gin.Context) {
 
 	initID := goxid.New()
 	input.ID = initID.Gen()
-	res, change,  err := ctrl.service.Create(c, input)
+	res, changeAmount, _,  err := ctrl.service.Create(c, input)
 	if res == true{
-		view.MakeSuccessResp(c, 200, change)
+		view.MakeSuccessResp(c, 200, changeAmount)
 	}
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
-
-	view.MakeSuccessResp(c, 200, change)
+	view.MakeSuccessResp(c, 200, changeAmount)
 }

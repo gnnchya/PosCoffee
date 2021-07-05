@@ -9,7 +9,7 @@ import (
 
 
 type Service interface {
-	Create(ctx context.Context, input *userin.CreateInput) (stock bool, change []domain.ChangeStruct, err error)
+	Create(ctx context.Context, input *userin.CreateInput) (stock bool, changeAmount []domain.ChangeStruct,changeValue int64, err error)
 	CreateStock(ctx context.Context, input *userin.CreateStockInput) (ID string, err error)
 	Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error)
 	DeleteStock(ctx context.Context, input *userin.DeleteStockInput) (ID string, err error)
@@ -26,5 +26,5 @@ type Service interface {
 	ReportStock(ctx context.Context,input *userin.ReportFilter)
 	ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error)
 	ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error)
-	Bill(ctx context.Context, id string)[]string
+	Bill(ctx context.Context, id string, paid int64)[]string
 }

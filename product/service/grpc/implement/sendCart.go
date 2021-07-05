@@ -40,13 +40,13 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 	}
 	fmt.Println("cart", input.Cart)
 	fmt.Println("paid", input.Paid)
-	res, change, err := impl.userService.Create(ctx, input)
+	res, changeAmount, _, err := impl.userService.Create(ctx, input)
 
-	bill := impl.userService.Bill(ctx, input.ID)
+	bill := impl.userService.Bill(ctx, input.ID,input.Paid)
 	fmt.Println("---------------------------------------------")
-	fmt.Println("change", change)
+	fmt.Println("change", changeAmount)
 	var changes []*protobuf.Changes
-	for _, v := range change{
+	for _, v := range changeAmount{
 		cha := &protobuf.Changes{
 			Value: v.Value,
 			Amount: v.Amount,

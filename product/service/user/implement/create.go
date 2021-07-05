@@ -10,11 +10,11 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (stock bool, change []domain.ChangeStruct, err error) {
+func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (stock bool, changeAmount []domain.ChangeStruct, changeValue int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
-		return  false, change, err
+		return  false, changeAmount,changeValue, err
 	}
 	fmt.Println("input cart", input.Cart)
 	fmt.Println("input paid", input.Paid)
@@ -37,10 +37,9 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			temp, err := impl.repom.ReadMoneyAll(ctx)
 			fmt.Println("temp", temp)
 			if err != nil{
-				return res.Stock,nil , err
+				return res.Stock,nil ,changeValue, err
 			}
-			remainMoney, change, err = calculation.Calculation(input.Paid, input.Price, temp)
-			fmt.Println("change", change)
+			remainMoney, changeAmount,changeValue, err = calculation.Calculation(input.Paid, input.Price, temp)
 
 			for _,i := range remainMoney{
 				err = impl.repom.UpdateByVal(ctx, i, i.Value)
@@ -50,13 +49,13 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("user input create:", user)
 		err = impl.repo.Create(ctx, user, user.ID)
 		if err != nil {
-			return res.Stock, change,  err
+			return res.Stock, changeAmount,changeValue,  err
 		}
 	}else{
-		return res.Stock, change, errors.New(res.Err)
+		return res.Stock, changeAmount,changeValue, errors.New(res.Err)
 	}
 
-	return res.Stock, change, nil
+	return res.Stock, changeAmount,changeValue, nil
 }
 
 func Find(slice []string, val string) bool{
