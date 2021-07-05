@@ -1,8 +1,6 @@
 package user
 
 import (
-	"fmt"
-
 	"github.com/gnnchya/PosCoffee/cart/app/view"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 
@@ -15,7 +13,7 @@ func (ctrl *Controller) Delete(c *gin.Context) {
 	input.ID = id
 
 	id, err := ctrl.service.Delete(c, input)
-	fmt.Println("id", err)
+
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
