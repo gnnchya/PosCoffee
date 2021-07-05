@@ -18,7 +18,7 @@ func (ctrl *Controller) ReportStock(c *gin.Context) {
 		fmt.Println("error", err)
 		return
 	}
-	ctrl.service.ReportStock(c, input)
+	ctrl.service.ReportStock(input)
 	fromYear, fromMonth , fromDate:= time.Now().Date()
 	switch input.Format{
 	case "excel":

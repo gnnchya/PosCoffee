@@ -38,13 +38,9 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Time:          time.Now().Unix(),
 		Paid:          request.Paid,
 	}
-	fmt.Println("cart", input.Cart)
-	fmt.Println("paid", input.Paid)
 	res, changeAmount, _, err := impl.userService.Create(ctx, input)
 
 	bill := impl.userService.Bill(ctx, input.ID,input.Paid)
-	fmt.Println("---------------------------------------------")
-	fmt.Println("change", changeAmount)
 	var changes []*protobuf.Changes
 	for _, v := range changeAmount{
 		cha := &protobuf.Changes{
@@ -63,7 +59,6 @@ func (impl implementation) SendCart(ctx context.Context, request *protobuf.Reque
 		Bill: bill,
 		Err: e,
 	}
-	fmt.Println("output to cart", output)
 	return output, nil
 }
 
@@ -71,11 +66,11 @@ func toMenu(input []*protobuf.Menu2)(menu []domain.Menu){
 	var in []domain.Ingredient
 	for _, v := range input{
 		for _, v2 := range v.Ingredient{
-			ingre := domain.Ingredient{
+			ingredient := domain.Ingredient{
 				IngredientName: v2.IngredientName,
 				Amount:         v2.Amount,
 			}
-			in = append(in, ingre)
+			in = append(in, ingredient)
 		}
 
 		m := domain.Menu{

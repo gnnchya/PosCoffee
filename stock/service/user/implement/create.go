@@ -15,7 +15,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
-	err = impl.repo.Create(ctx, user, user.ID)
+	err = impl.repo.Create(ctx, user)
 	fmt.Println("err in create", err)
 	if err != nil {
 		return "error create in stock", err

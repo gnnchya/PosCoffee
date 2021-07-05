@@ -25,7 +25,7 @@ func (repo *Repository) CheckExistCustomerID(ctx context.Context, id string) (bo
 	return true, err
 }
 
-func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option string) (bool, error) {
+func (repo *Repository) CheckExistInCart(ctx context.Context, id string) (bool, error) {
 	var resultStruct domain.Users
 	var resultBson bson.D
 	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
