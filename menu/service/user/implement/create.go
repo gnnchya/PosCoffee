@@ -12,20 +12,10 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		fmt.Println("validate", err)
 		return "validate error", err
 	}
-	//user := userin.CreateInputToUserDomain(input)
 	user := input.CreateInputToUserDomain()
 	fmt.Println("user input create:", user)
 
 	err = impl.elasRepo.Create(ctx, input)
-	//send := &pb.Request{
-
-	//}
-	//checked, err := impl.client.GetMenu(send)
-	//if err != nil{
-	//	fmt.Println("grpc error: ", err)
-	//	return "", err
-	//}
-	//fmt.Println("checked grpc:", checked)
 	if err != nil {
 		return "", err
 	}
