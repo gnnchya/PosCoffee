@@ -10,7 +10,7 @@ import (
 
 //go:generate mockery --name=Repository
 type Repository interface {
-	Create(ctx context.Context, ent interface{}, id string) (err error)
+	Create(ctx context.Context, ent interface{}) (err error)
 	Update(ctx context.Context, ent interface{}, id string) (err error)
 	Delete(ctx context.Context, id string) (err error)
 	Report(ctx context.Context) (result []domain.CreateStruct, err error)

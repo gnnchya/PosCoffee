@@ -1,8 +1,6 @@
 package implement
 
 import (
-	"context"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/createFile"
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
@@ -12,15 +10,13 @@ import (
 	"time"
 )
 
-func(impl *implementation)ReportStock(ctx context.Context, input *userin.ReportFilter){
-	//user := input.ReportStockInputToUserDomain()
+func(impl *implementation)ReportStock(input *userin.ReportFilter){
 	out := &pb.ReportRequest{
 		Request: "reportStock",
 		Field:   input.Field,
 		Order:   input.Order,
 	}
 	reply, err := impl.client.SendReportToStock(out)
-	fmt.Println("reply", reply)
 	if err != nil{
 		return
 	}

@@ -25,7 +25,7 @@ func (ctrl *Controller) ReadNameStock(c *gin.Context) {
 	input.Page = page
 	input.PerPage = limit
 	input.ItemName = name
-	a, err := ctrl.service.ReadNameStock(c, input)
+	a, err := ctrl.service.ReadNameStock(input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error read name")
 		return

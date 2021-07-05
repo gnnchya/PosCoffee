@@ -1,14 +1,13 @@
 package implement
 
 import (
-	"context"
 	"fmt"
 	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
 
 
-func (impl *implementation) ReadStock(ctx context.Context, input *userin.ReadInput) (a interface{}, err error) {
+func (impl *implementation) ReadStock(input *userin.ReadInput) (a interface{}, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -24,7 +23,7 @@ func (impl *implementation) ReadStock(ctx context.Context, input *userin.ReadInp
 	return result, nil
 }
 
-func (impl *implementation) ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error) {
+func (impl *implementation) ReadNameStock(input *userin.ReadNameAllInput) (a interface{}, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)
@@ -44,7 +43,7 @@ func (impl *implementation) ReadNameStock(ctx context.Context, input *userin.Rea
 	return result, nil
 }
 
-func (impl *implementation) ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error) {
+func (impl *implementation) ReadCategoryStock(input *userin.ReadCategoryAllInput) (a interface{}, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		fmt.Println("validate", err)

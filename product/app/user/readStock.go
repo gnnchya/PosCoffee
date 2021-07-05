@@ -12,7 +12,7 @@ func (ctrl *Controller) ReadStock(c *gin.Context) {
 	input := &userin.ReadInput{}
 
 	input.ID = id
-	a, err := ctrl.service.ReadStock(c, input)
+	a, err := ctrl.service.ReadStock(input)
 	if err != nil {
 		view.MakeErrResp2(c, 400, err)
 		return

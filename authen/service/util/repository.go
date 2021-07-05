@@ -19,7 +19,7 @@ type Repository interface {
 	ReadAll(ctx context.Context, perPage int, page int) ([]domain.Users, error)
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
-	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
+	CheckExistInCart(ctx context.Context, id string) (bool, error)
 }
 
 type RepositoryUsers interface {

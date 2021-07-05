@@ -27,7 +27,7 @@ func (ctrl *Controller) ReadCategoryStock(c *gin.Context) {
 	input.PerPage = limit
 	input.Category = category
 	fmt.Println("input for read category:", input)
-	a, err := ctrl.service.ReadCategoryStock(c, input)
+	a, err := ctrl.service.ReadCategoryStock(input)
 	if err != nil {
 		view.MakeErrResp(c, 422, "error read category")
 		return
