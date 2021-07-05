@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func (repo *Repository) Create(ctx context.Context, figure interface{}, id string) (err error) {
+func (repo *Repository) Create(ctx context.Context, figure interface{}) (err error) {
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }

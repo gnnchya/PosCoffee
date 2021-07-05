@@ -13,7 +13,7 @@ func (ctrl *Controller) DeleteStock(c *gin.Context) {
 	id := c.Param("id")
 	input := &userin.DeleteStockInput{}
 	input.ID = id
-	id, err := ctrl.service.DeleteStock(c, input)
+	id, err := ctrl.service.DeleteStock(input)
 	fmt.Println("id", err)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)

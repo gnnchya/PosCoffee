@@ -7,7 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func (repo *RepositoryMoney) Create(ctx context.Context, figure interface{}, id string) (err error) {
+func (repo *RepositoryMoney) Create(ctx context.Context, figure interface{}) (err error) {
 	_, err = repo.Coll.InsertOne(ctx, figure)
 	return err
 }

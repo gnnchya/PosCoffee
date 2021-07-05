@@ -13,11 +13,8 @@ import (
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (stock bool, changeAmount []domain.ChangeStruct, changeValue int64, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
-		fmt.Println("validate", err)
 		return  false, changeAmount,changeValue, err
 	}
-	fmt.Println("input cart", input.Cart)
-	fmt.Println("input paid", input.Paid)
 	var ingredientList []string
 	for _, menu := range input.Cart.Menu{
 		for _, ingredient := range menu.Ingredient{
@@ -26,15 +23,13 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			}
 		}
 	}
-	inputIngre := &protobuf.RequestToStock{Ingredient: ingredientList}
-	res, err := impl.client.SendIngredients(inputIngre)
-	fmt.Println("response from stock", res)
+	inputIngredient := &protobuf.RequestToStock{Ingredient: ingredientList}
+	res, err := impl.client.SendIngredients(inputIngredient)
 	var cost []domain.CalculateCost
 	var remainMoney []domain.CreateMoneyStruct
 	if res.Stock == true{
 		if input.PaymentMethod == "Cash"{
-			fmt.Println("hererhehrehrehrherhehre")
-			temp, err := impl.repom.ReadMoneyAll(ctx)
+			temp, err := impl.repoMoney.ReadMoneyAll(ctx)
 			fmt.Println("temp", temp)
 			if err != nil{
 				return res.Stock,nil ,changeValue, err
@@ -42,12 +37,11 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 			remainMoney, changeAmount,changeValue, err = calculation.Calculation(input.Paid, input.Price, temp)
 
 			for _,i := range remainMoney{
-				err = impl.repom.UpdateByVal(ctx, i, i.Value)
+				err = impl.repoMoney.UpdateByVal(ctx, i, i.Value)
 			}
 		}
 		user := input.CreateInputToUserDomain(cost)
-		fmt.Println("user input create:", user)
-		err = impl.repo.Create(ctx, user, user.ID)
+		err = impl.repo.Create(ctx, user)
 		if err != nil {
 			return res.Stock, changeAmount,changeValue,  err
 		}

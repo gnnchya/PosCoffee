@@ -10,11 +10,11 @@ import (
 type implementation struct {
 	validator validator.Validator
 	repo      util.Repository
-	repom     util.RepositoryMoney
+	repoMoney     util.RepositoryMoney
 	mBroker   util.RepositoryMsgBroker
 	client    grpcClient.Service
 }
 
-func New(validator validator.Validator, repo util.Repository,repom util.RepositoryMoney, mBroker util.RepositoryMsgBroker, client grpcClient.Service) (service user.Service) {
-	return &implementation{validator, repo, repom, mBroker, client}
+func New(validator validator.Validator, repo util.Repository,repoMoney util.RepositoryMoney, mBroker util.RepositoryMsgBroker, client grpcClient.Service) (service user.Service) {
+	return &implementation{validator, repo, repoMoney, mBroker, client}
 }

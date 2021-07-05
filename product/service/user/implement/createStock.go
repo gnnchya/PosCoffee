@@ -1,30 +1,24 @@
 package implement
 
 import (
-	"context"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 	"log"
 )
 
-func (impl *implementation) CreateStock(ctx context.Context, input *userin.CreateStockInput) (ID string, err error) {
+func (impl *implementation) CreateStock(input *userin.CreateStockInput) (ID string, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
-		fmt.Println("validate", err)
 		return "validate error", err
 	}
 
 	user := input.CreateStockInputToUserDomain()
-	fmt.Println("user input create:", user)
 
 	if err == impl.sendMsgCreate(user) {
 		log.Println(err)
 	}
 
-	//time.Sleep(5 * time.Second)
-	//_, err = impl.repo.Read(ctx, input.ID)
 	if err != nil {
 		return "", err
 	}

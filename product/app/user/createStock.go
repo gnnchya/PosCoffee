@@ -20,7 +20,7 @@ func (ctrl *Controller) CreateStock(c *gin.Context) {
 	initID := goxid.New()
 	input.ID = initID.Gen()
 	// _, err := ctrl.service.Create(c, input)
-	_, err := ctrl.service.CreateStock(c, input)
+	_, err := ctrl.service.CreateStock(input)
 
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
