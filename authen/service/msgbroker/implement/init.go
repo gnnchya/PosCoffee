@@ -5,7 +5,6 @@ import (
 	userService "github.com/gnnchya/PosCoffee/authen/service/user"
 	"github.com/gnnchya/PosCoffee/authen/service/util"
 
-	//"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
 )
 
 type implementation struct{

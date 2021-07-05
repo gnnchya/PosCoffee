@@ -13,17 +13,11 @@ type implementation struct {
 	userService user.Service
 }
 
-
-const(
-	NETWORK = "tcp"
-)
-
 func New(grpcRepo util.RepositoryGRPC, userService user.Service) (service grpcService.Service){
 	impl := implementation{
 		userService: userService,
 	}
 
-	//lis, err := net.Listen(NETWORK, conf.GRPCHost)
 	grpcServer := grpc.NewServer()
 	lis, err := grpcRepo.NetListener()
 	protobuf.RegisterSendCartServer(grpcServer, &impl)

@@ -6,8 +6,6 @@ import (
 
 const (
 	okStatus       = "OK"
-	xContentLength = "X-Content-Length"
-	location       = "Content-Location"
 )
 
 type SuccessResp struct {

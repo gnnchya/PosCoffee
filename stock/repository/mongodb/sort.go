@@ -8,15 +8,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func containsArray(s [][]string, str string) bool {
-	for _, v := range s {
-		if v[0] == str {
-			return true
-		}
-	}
-	return false
-}
-
 func (repo *Repository)ReadAllSorted(ctx context.Context, field string, order string)(result []domain.CreateStruct, err error){
 	sort, state := repo.CheckSortOrder(order)
 	if state == false{

@@ -11,9 +11,7 @@ import (
 	"log"
 	"time"
 )
-const (
-	NETWORK = "tcp"
-)
+
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 
