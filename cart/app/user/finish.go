@@ -34,6 +34,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	fmt.Println("interface from finish function",a)
 	var filename = "./bill-"+id+".pdf"
 	var filepath = "./bills/bill-"+id+".pdf"
+	//filename := "./bills/bill"+.pdf"
 	bill.GeneratePdf(filepath, order)
 	fmt.Println("error bill", err)
 
