@@ -7,7 +7,7 @@ import (
 )
 
 func (impl *implementation) CheckStock(ctx context.Context, input []string) (state bool, expenses []domain.CalculateCost, err string) {
-	fmt.Println("input in checkstock service", input)
+	fmt.Println("input in check stock service", input)
 	state, expenses, e := impl.repo.CheckMenuAvailability(ctx, input)
 	fmt.Println("state", state)
 	fmt.Println("exp", expenses)
