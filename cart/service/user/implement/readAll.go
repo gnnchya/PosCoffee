@@ -11,17 +11,17 @@ import (
 )
 
 func (impl *implementation) ReadAll(ctx context.Context, input *userin.ViewAllInput)(a []domain.CreateStruct, err error) {
-	// err = impl.validator.Validate(input)
-	// if err != nil {
-	// 	return "", err
-	// }
+	err = impl.validator.Validate(input)
+	if err != nil {
+		return nil , err
+	}
 
-	//user := userin.ViewAllInputToUserDomain(input)
+	user := userin.ViewAllInputToUserDomain(input)
 
-	//a, err := impl.repo.ReadAll(ctx, user.PerPage,user.Page)
-	//if err != nil {
-	//	return a, err
-	//}
+	a, err = impl.repo.ReadAll(ctx, user.PerPage,user.Page)
+	if err != nil {
+		return a, err
+	}
 
 	return a, nil
 }

@@ -13,7 +13,7 @@ type Repository interface {
 	Delete(ctx context.Context, id string) (err error)
 	Search(ctx context.Context, s *domain.SearchValue) (result []domain.CreateStruct, err error)
 	Read(ctx context.Context, id string) (a domain.CreateStruct, err error)
-	//ReadAll(ctx context.Context, perPage int, page int) (a []domain.CreateStruct, err error)
+	ReadAll(ctx context.Context, perPage int, page int) (a []domain.CreateStruct, err error)
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
 	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
