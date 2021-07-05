@@ -10,14 +10,13 @@ type GoPlayGroundValidator struct {
 	validate *validator.Validate
 	userRepo util.Repository
 }
-//
+
 func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
 		userRepo: userRepo,
 	}
 	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.Input{})
-	//v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
 	return v
 }
 

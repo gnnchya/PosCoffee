@@ -27,7 +27,6 @@ func newApp(appConfig *config.Config) *app.App {
 	validator := validatorService.New(uRepo)
 
 	user := userService.New(validator, uRepo, gService)
-	//go grpc.NewServer(appConfig, user)
 	time.Sleep(1 * time.Second)
 	return app.New(user, gService)
 }

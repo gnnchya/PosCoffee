@@ -11,9 +11,6 @@ func main() {
 	// Load config
 	appConfig := config.Get()
 
-	// Init log format
-	// log := setupLog()
-
 	// Gin setup
 	router := gin.New()
 

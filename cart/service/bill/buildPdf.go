@@ -1,7 +1,6 @@
 package bill
 
 import (
-	"fmt"
 	"github.com/pondnarawich/gofpdf"
 )
 
@@ -19,10 +18,8 @@ func GeneratePdf(filename string, order []string){
 		"",
 	)
 	pdf.CellFormat(0, 15, "", "", 1, "CM", false, 0, "")
-	fmt.Println("bill information",order)
 	for _,i := range order{
 		pdf.CellFormat(0, 3, i, "", 1, "CM", false, 0, "")
-		//pdf.Write(float64(z)*2, i)
 	}
 	pdf.Close()
 	_ = pdf.OutputFileAndClose(filename)

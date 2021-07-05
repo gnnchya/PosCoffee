@@ -17,7 +17,6 @@ type Repository interface {
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
 	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
-	//CheckAmountForDelete(ctx context.Context, id string, amount int64) (int64, bool, error)
 }
 
 type RepositoryUsers interface {

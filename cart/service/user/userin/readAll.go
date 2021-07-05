@@ -10,15 +10,6 @@ type ViewAllInput struct {
 	Page    int
 } // @Name StaffCreateInput
 
-//func MakeTestViewAllInput() (input *UpdateInput) {
-//	return &UpdateInput{
-//		ID: "test",
-//		// ID:        "test",
-//		//Name: "test",
-//		// Tel:       "test",
-//	}
-//}
-
 func ViewAllInputToUserDomain(input *ViewAllInput) (user *domain.ReadAllStruct) {
 	return &domain.ReadAllStruct{
 		PerPage: input.PerPage,

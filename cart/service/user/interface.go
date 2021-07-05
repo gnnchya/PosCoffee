@@ -6,9 +6,6 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
 )
 
-// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/staff/out"
-// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/staff/staffin"
-
 type Service interface {
 	Create(ctx context.Context, input *userin.Input) (ID string, err error)
 	Delete(ctx context.Context, input *userin.DeleteInput) (ID string, err error)
