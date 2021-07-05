@@ -36,12 +36,12 @@ func (ctrl *Controller) Report(c *gin.Context) {
 
 func FileDownloadExcel(c *gin.Context, filename string,filepath string){
 	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
-	c.Writer.Header().Add("Content-Type", "application/pdf")
+	c.Writer.Header().Add("Content-Type", "application/xls")
 	c.File(filepath)
 }
 
 func FileDownloadCSV(c *gin.Context, filename string,filepath string){
 	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
-	c.Writer.Header().Add("Content-Type", "application/pdf")
+	c.Writer.Header().Add("Content-Type", "application/csv")
 	c.File(filepath)
 }
