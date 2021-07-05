@@ -27,4 +27,8 @@ type Service interface {
 	ReadNameStock(ctx context.Context, input *userin.ReadNameAllInput) (a interface{}, err error)
 	ReadCategoryStock(ctx context.Context, input *userin.ReadCategoryAllInput) (a interface{}, err error)
 	Bill(ctx context.Context, id string, paid int64)[]string
+	ReadMoneyAll(ctx context.Context)([]domain.CreateMoneyStruct, error)
+	ReadMoney(ctx context.Context, input *userin.ReadMoneyInput) (a interface{}, err error)
+	UpdateMoney(ctx context.Context, input *userin.UpdateMoneyInput) (ID string, err error)
+	CreateMoney(ctx context.Context, input *userin.CreateMoneyInput) (ID string, err error)
 }
