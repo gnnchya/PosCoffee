@@ -23,7 +23,7 @@ type Repository interface {
 }
 
 type RepositoryMoney interface {
-	Create(ctx context.Context, ent interface{}) (err error)
+	Create(ctx context.Context, ent interface{}, val int64) (err error)
 	Update(ctx context.Context, ent interface{}, id string) (err error)
 	UpdateByVal(ctx context.Context, ent interface{}, val int64) (err error)
 	Delete(ctx context.Context, id string) (err error)
