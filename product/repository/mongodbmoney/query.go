@@ -31,7 +31,7 @@ func (repo *RepositoryMoney) Update(ctx context.Context, figure interface{}, id 
 }
 
 func (repo *RepositoryMoney) UpdateByVal(ctx context.Context, figure interface{}, val int64) (err error) {
-	state, err := repo.checkExistVal(ctx, val)
+	state, err := repo.CheckExistVal(ctx, val)
 	if err != nil{
 		return err
 	} else if state == false{
