@@ -2,9 +2,9 @@ package mongodb
 
 import (
 	"context"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func contains(s []domain.CreateStruct, val string) (int, bool) {
@@ -16,24 +16,20 @@ func contains(s []domain.CreateStruct, val string) (int, bool) {
 	return 0, false
 }
 
-func (repo *Repository) ReadByStatus(ctx context.Context) ([]domain.CreateStruct, error) {
-	cursor, err := repo.Coll.Find(ctx, bson.M{"status" : "in-use"})
+func (repo *Repository) Report(ctx context.Context) ([]domain.CreateStruct, error) {
+	groupStage := bson.D{{"$group", bson.D{{"_id",
+		bson.D{{"_id","$_id"},
+			{"name","$item_name"},
+			{"price","$category"},
+			{"unit","$unit"},
+			{"cost_per_unit","cost_per_unit"},
+			{"exp_date", "$exp_date"},
+			{"import_date", "$import_date"},
+			{"supplier", "$supplier"},
+			{"total_cost","$total_cost"},
+			{"total_amount","$total_amount"},
+			{"status", "$status"},
+	}},{"amount",bson.D{{"$sum", "$amount"}}}}}}
+	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{groupStage})
 	return AddToArray(cursor, err, ctx)
-}
-
-func (repo *Repository) Report(ctx context.Context) (result []domain.CreateStruct, err error) {
-	arr, err := repo.ReadByStatus(ctx)
-	if err != nil{
-		return result, err
-	}
-	for _, i := range arr {
-		val, err := contains(result, i.ItemName)
-		if err {
-			result[val].Amount = result[val].Amount + i.Amount
-		} else {
-			result = append(result, i)
-		}
-	}
-	fmt.Println("report in repo", result)
-	return result, err
 }
