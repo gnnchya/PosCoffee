@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func (repo *Repository) Create(ctx context.Context, figure interface{}) (err error) {
@@ -41,17 +42,16 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	} else if state == false{
 		return resultStruct, fmt.Errorf("this ID does not exist")
 	}
-	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct) //bsonBytes, _ := bson.Marshal(resultBson)
 	return resultStruct, err
 }
 
-//func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.CreateStruct, error) {
-//	skip := int64(page * perPage)
-//	limit := int64(perPage)
-//	opts := options.FindOptions{
-//		Skip:  &skip,
-//		Limit: &limit,
-//	}
-//	cursor, err := repo.Coll.Find(nil, bson.M{}, &opts)
-//	return AddToArray(cursor, err, ctx)
-//}
+func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.CreateStruct, error) {
+	skip := int64(page * perPage)
+	limit := int64(perPage)
+	opts := options.FindOptions{
+		Skip:  &skip,
+		Limit: &limit,
+	}
+	cursor, err := repo.Coll.Find(nil, bson.M{}, &opts)
+	return AddToArray(cursor, err, ctx)
+}

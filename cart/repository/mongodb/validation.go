@@ -3,14 +3,12 @@ package mongodb
 import (
 	"context"
 	"errors"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 func (repo *Repository) CheckExistID(ctx context.Context, id string) (bool, error) {
 	count, err := repo.Coll.CountDocuments(ctx, bson.D{{"_id", id}})
-	fmt.Println("count", count)
 	if count < 1 {
 		err = errors.New("ID does not exist")
 		return false, err
@@ -29,10 +27,7 @@ func (repo *Repository) CheckExistCustomerID(ctx context.Context, id string) (bo
 
 func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option string) (bool, error) {
 	var resultStruct domain.CreateStruct
-	var resultBson bson.D
-	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-	bsonBytes, _ := bson.Marshal(resultBson)
-	_ = bson.Unmarshal(bsonBytes, &resultStruct)
+	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct)
 	for _, temp := range resultStruct.Menu{
 		if temp.ID == id{
 			if temp.Option == option{

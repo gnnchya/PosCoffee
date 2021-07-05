@@ -10,7 +10,6 @@ import (
 )
 
 func (ctrl *Controller) Finish(c *gin.Context) {
-	//TODO input from user
 	cart := &userin.FinishInput{}
 	if err := c.ShouldBindJSON(cart); err != nil {
 		view.MakeErrResp2(c, 422, err)
@@ -30,23 +29,14 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
-	//ctrl.service.Finish(c, id, cart)
-	fmt.Println("interface from finish function",a)
+
 	var filename = "./bill-"+id+".pdf"
 	var filepath = "./bills/bill-"+id+".pdf"
 	//filename := "./bills/bill"+.pdf"
 	bill.GeneratePdf(filepath, order)
-	fmt.Println("error bill", err)
 
-	//FileDownload(c)
-	//c.File(filename)
 	FileDownload(c, filename, filepath, a)
-	//if err != nil {
-	//	view.MakeErrResp2(c, 422, err)
-	//	return
-	//}
 
-	//view.MakeSuccessResp(c, 200, a)
 	defer os.Remove(filepath)
 }
 

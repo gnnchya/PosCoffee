@@ -1,14 +1,11 @@
 package mongodb
-//
+
 import (
 	"context"
-	"fmt"
-	domain "github.com/gnnchya/PosCoffee/cart/domain"
+	"github.com/gnnchya/PosCoffee/cart/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	//"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	//"strconv"
 )
 
 func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateStruct, error) {
@@ -23,20 +20,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.Cr
 	return result,err
 }
 
-//func toString(resultArray []domain.CreateStruct, err error) (string, error){
-//	var result string
-//	for _, temp := range resultArray{
-//		out, err := json.Marshal(temp)
-//		if err != nil {
-//			return result, err
-//		}
-//		result = result + string(out)
-//	}
-//	return result, err
-//}
-
 func (repo *Repository)Search(ctx context.Context,search *domain.SearchValue) (result []domain.CreateStruct,err error) /*(result string, err error)*/{
-	fmt.Println("Searching for ",search.Value)
 	cursor, err := repo.Coll.Find(ctx,
 		bson.M{
 			"$or": bson.A{
