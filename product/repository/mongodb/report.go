@@ -49,10 +49,6 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 	groupStage2 := bson.D{{"$addFields", bson.D{{"price", "$cart.menu.price"}}}}
 	unwind := bson.D{{"$unwind", "$cart.menu"}}
 	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,unwind,groupStage,groupStage1,groupStage2})
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	result, err = AddToArrayTotalSale(cursor,err,ctx)
 	if err != nil{
 		return result, err

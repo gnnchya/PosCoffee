@@ -2,34 +2,44 @@ package mongodb
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func contains(s []domain.CreateStruct, val string) (int, bool) {
-	for i, v := range s {
-		if v.ItemName == val {
-			return i,true
+func AddToReportArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.Report, error) {
+	var result []domain.Report
+	for cursor.Next(ctx) {
+		var resultStruct domain.Report
+		if err = cursor.Decode(&resultStruct); err != nil {
+			return result,err
 		}
+		fmt.Println(resultStruct)
+		result = append(result, resultStruct)
 	}
-	return 0, false
+	fmt.Println("add to array", result)
+	return result,err
 }
 
-func (repo *Repository) Report(ctx context.Context) ([]domain.CreateStruct, error) {
+func (repo *Repository) Report(ctx context.Context) ([]domain.Report, error) {
 	groupStage := bson.D{{"$group", bson.D{{"_id",
-		bson.D{{"_id","$_id"},
-			{"name","$item_name"},
-			{"price","$category"},
+		bson.D{
+			{"item_name","$item_name"},
+			{"category","$category"},
 			{"unit","$unit"},
-			{"cost_per_unit","cost_per_unit"},
-			{"exp_date", "$exp_date"},
-			{"import_date", "$import_date"},
-			{"supplier", "$supplier"},
-			{"total_cost","$total_cost"},
-			{"total_amount","$total_amount"},
-			{"status", "$status"},
-	}},{"amount",bson.D{{"$sum", "$amount"}}}}}}
+	}},{"amount",bson.D{{"$sum", "$amount"}}},
+		{"total_cost",bson.D{{"$sum", "$total_cost"}}},
+	{"total_amount",bson.D{{"$sum", "$total_amount"}}}}}}
 	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{groupStage})
-	return AddToArray(cursor, err, ctx)
+	//var r []bson.M
+	//_ = cursor.All(ctx, &r)
+	//for _,i := range r{
+	//	fmt.Println("stock", i)
+	//}
+	a,b := AddToReportArray(cursor, err, ctx)
+	for _,i := range a{
+		fmt.Println("stock", i)
+	}
+	return a,b
 }

@@ -1,21 +1,31 @@
 package domain
 
-type DeleteStruct struct {
-	ID 		string 	`bson:"_id" json:"id"`
+type User struct{
+	Username		string
+	Password 		string
+	UID  			string
+	MetaData		metadata
+	RoleID			[]string
+	CreateAt 		int64
+	UpdateAt 		int64
+	DeleteAt 		int64
 }
 
-type UpdateStruct struct {
-	ID 				string  `bson:"_id" json:"-"`
-	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
-	TotalPrice		int64	`bson:"total_price" json:"total_price"`
+type metadata struct{
+	Prefix 			Language
+	Name 			Language
+	Lastname 		Language
+	Email 			string
+	MobileNumber	string
+	LineID			string
+	Facebook 		string
+	BankAccount		string
+	Gender 			string
+	BirthDay		int64
 }
 
-type ReadStruct struct {
-	ID string `bson:"_id" json:"id"`
-}
-
-type ReadAllStruct struct {
-	PerPage int
-	Page    int
+type Language struct{
+	TH			string
+	EN 			string
 }
 

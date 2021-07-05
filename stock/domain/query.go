@@ -56,3 +56,14 @@ type CalculateCost struct{
 	ItemName         	string   `bson:"item_name"`
 	CostPerUnit      	int64    `bson:"cost_per_unit"`
 }
+
+type Report struct{
+	ID struct{
+		ItemName       	string   	`bson:"item_name" json:"item_name"`
+		Category 		string  	`bson:"category" json:"category"`
+		Unit     		string   	`bson:"unit" json:"unit"`
+	}`bson:"_id" json:"_id"`
+	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
+	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
+	Amount			int64   	`bson:"amount" json:"amount"`
+}

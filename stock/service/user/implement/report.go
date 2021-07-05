@@ -5,7 +5,7 @@ import (
 	"github.com/gnnchya/PosCoffee/stock/domain"
 )
 
-func (impl *implementation) Report(ctx context.Context) ([]domain.CreateStruct, error) {
+func (impl *implementation) Report(ctx context.Context) ([]domain.Report, error) {
 	return 	impl.repo.Report(ctx)
 
 }
