@@ -78,9 +78,6 @@ func main(){
 	}
 
 	for _ ,v := range MenuList{
-		if err != nil {
-			log.Fatal(err)
-		}
 		initID := goxid.New()
 		idGen := initID.Gen()
 

@@ -17,9 +17,6 @@ func AddToArray(cursor *mongo.Cursor, err error, ctx context.Context) (result []
 		if err = cursor.Decode(&resultStruct); err != nil {
 			return result,err
 		}
-		if err != nil{
-			return result,err
-		}
 		fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
