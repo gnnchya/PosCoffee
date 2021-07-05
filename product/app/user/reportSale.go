@@ -24,12 +24,12 @@ func (ctrl *Controller) ReportSale(c *gin.Context) {
 	case "excel":
 		filename := "./reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".xls"
 		filepath := "./report/reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".xls"
-		FileDownload(c, filename, filepath)
+		FileDownloadExcel(c, filename, filepath)
 		_ = os.Remove(filepath)
 	case "csv":
 		filename := "./reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".csv"
 		filepath := "./report/reportSale-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".csv"
-		FileDownload(c, filename, filepath)
+		FileDownloadCSV(c, filename, filepath)
 		_ = os.Remove(filepath)
 	}
 }

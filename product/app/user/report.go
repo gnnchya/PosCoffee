@@ -24,18 +24,24 @@ func (ctrl *Controller) Report(c *gin.Context) {
 	case "excel":
 		filename := "./report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".xls"
 		filepath := "./report/report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".xls"
-		FileDownload(c, filename, filepath)
+		FileDownloadExcel(c, filename, filepath)
 		_ = os.Remove(filepath)
 	case "csv":
 		filename := "./report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".csv"
 		filepath := "./report/report-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+"-"+strconv.Itoa(untilDate)+"."+strconv.Itoa(int(untilMonth))+"."+strconv.Itoa(untilYear)+".csv"
-		FileDownload(c, filename, filepath)
+		FileDownloadCSV(c, filename, filepath)
 		_ = os.Remove(filepath)
 	}
 }
 
-func FileDownload(c *gin.Context, filename string,filepath string){
+func FileDownloadExcel(c *gin.Context, filename string,filepath string){
 	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
-	c.Writer.Header().Add("Content-Type", "application/pdf")
+	c.Writer.Header().Add("Content-Type", "application/xls")
+	c.File(filepath)
+}
+
+func FileDownloadCSV(c *gin.Context, filename string,filepath string){
+	c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", filename))//fmt.Sprintf("attachment; filename=%s", filename) Downloaded file renamed
+	c.Writer.Header().Add("Content-Type", "application/csv")
 	c.File(filepath)
 }

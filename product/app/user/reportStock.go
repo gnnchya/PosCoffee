@@ -24,12 +24,12 @@ func (ctrl *Controller) ReportStock(c *gin.Context) {
 	case "excel":
 		filename := "./reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".xls"
 		filepath := "./report/reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".xls"
-		FileDownload(c, filename, filepath)
+		FileDownloadExcel(c, filename, filepath)
 		_ = os.Remove(filepath)
 	case "csv":
 		filename := "./reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".csv"
 		filepath := "./report/reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".csv"
-		FileDownload(c, filename, filepath)
+		FileDownloadCSV(c, filename, filepath)
 		_ = os.Remove(filepath)
 	}
 }
