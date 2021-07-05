@@ -23,7 +23,7 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)
-	validator := validatorService.New(uRepo)
+	validator := validatorService.New(uRepo, urepoMoneyoney)
 
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
 	grpcRepoReport := repoGrpc.New(configGrpcReport(appConfig))
