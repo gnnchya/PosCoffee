@@ -4,13 +4,11 @@ go 1.16
 
 require (
 	github.com/caarlos0/env/v6 v6.6.2
-	github.com/elastic/go-elasticsearch/v8 v8.0.0-20210608143047-aa1301e7ba9d
 	github.com/gin-gonic/gin v1.7.2
 	github.com/go-playground/validator/v10 v10.6.1
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.1
 	github.com/touchtechnologies-product/message-broker v0.0.0-20200721081750-84510f1b3a6d
 	github.com/touchtechnologies-product/xid v0.0.0-20200602111826-04f58074f910
 	github.com/ugorji/go v1.1.13 // indirect
