@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/service/grpc/protobuf"
 	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
-
-	//pb "github.com/gnnchya/PosCoffee/stock/service/grpc/protobuf/report"
-)
+	)
 
 func(impl implementation) ReadStock(ctx context.Context, input *protobuf.RequestRead) (*protobuf.ReplyRead, error){
 	fmt.Println("from product ask for report", input)

@@ -5,8 +5,6 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/domain"
 
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
 func (impl *implementation) Read(ctx context.Context, input *userin.ViewInput) (domain.CreateStruct, error) {

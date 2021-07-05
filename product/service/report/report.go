@@ -6,12 +6,8 @@ import (
 )
 
 func Report(transaction []domain.CreateOrderStruct,stock []domain.CreateStockStruct) [][]string{
-	//TODO need readbytimerange from repo product = transaction
-
-	//TODO stock from repo report in stock (gRPC)
-	fmt.Println("------------------pond report result------------------")
-	pond := CreateData(transaction,stock)
-	for _,i := range pond{
+	temp := CreateData(transaction,stock)
+	for _,i := range temp{
 		fmt.Println(i)
 	}
 	return CreateData(transaction,stock)

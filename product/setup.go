@@ -19,7 +19,7 @@ import (
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
-	urepoMoneyoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpointMoney, appConfig.MongoDBNameMoney, appConfig.MongoDBTableNameMoney, "THB")
+	uRepoMoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpointMoney, appConfig.MongoDBNameMoney, appConfig.MongoDBTableNameMoney, "THB")
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)
@@ -31,7 +31,7 @@ func newApp(appConfig *config.Config) *app.App {
 
 
 	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), grpcRepoReport, grpcMenu)
-	user := userService.New(validator, uRepo, urepoMoneyoney, kRepo, gService)
+	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
 
 	msgService := msgBrokerService.New(kRepo, user)
 

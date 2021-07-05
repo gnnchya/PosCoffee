@@ -17,8 +17,6 @@ func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
 		userRepo: userRepo,
 	}
 	v.validate.RegisterStructValidation(v.UserCreateStockStructLevelValidation, &userin.CreateStockInput{})
-	//v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
-
 	return v
 }
 

@@ -19,7 +19,7 @@ type DeleteStruct struct {
 	ID 		string	`bson:"_id" json:"id"`
 }
 
-type Updatestruct struct {
+type UpdateStruct struct {
 	ID      string  `bson:"_id" json:"id" validate:"required"`
 	Amount	int64   `bson:"amount" json:"amount" validate:"required"`
 	Status 	string	`bson:"status" json:"status" validate:"required"`

@@ -1,7 +1,6 @@
 package userin
 
 import (
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/domain"
 	"github.com/gnnchya/PosCoffee/cart/domain"
 )
 

@@ -49,25 +49,11 @@ func (repo *Repository) ReadMenuTotalSale(ctx context.Context, from int64, until
 	groupStage2 := bson.D{{"$addFields", bson.D{{"price", "$cart.menu.price"}}}}
 	unwind := bson.D{{"$unwind", "$cart.menu"}}
 	cursor, err := repo.Coll.Aggregate(ctx, mongo.Pipeline{matchStage,unwind,groupStage,groupStage1,groupStage2})
-	//if cursor == nil{
-	//	fmt.Println("qweqwe")
-	//}
-	//if err != nil{
-	//	return result, err
-	//}
-	//arr, err := AddToArray(cursor,err,ctx)
-	//for _,x := range arr{
-	//	fmt.Println("arr",x)
-	//}
+
 	result, err = AddToArrayTotalSale(cursor,err,ctx)
 	if err != nil{
 		return result, err
 	}
-	fmt.Println("**************************************************************************************")
-	for _, i := range result{
-		fmt.Println("result total in repo",i)
-	}
-	fmt.Println("**************************************************************************************")
 	return result, err
 }
 

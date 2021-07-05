@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"github.com/gnnchya/PosCoffee/stock/domain"
 	"github.com/gnnchya/PosCoffee/stock/service/user/userin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
-	// "github.com/touchtechnologies-product/go-blueprint-clean	-architecture/service/company/companyin"
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/service/util"
 )
 
 func (impl *implementation) ReadCategoryAll(ctx context.Context, input *userin.ReadCategoryAllInput)([]domain.CreateStruct, error) {

@@ -24,9 +24,9 @@ func New(ctx context.Context, uri string, dbName string, collName string) (repo 
 
 
 func New2(ctx context.Context, uri string, dbName string, collName string, currency string) (repo *RepositoryMoney, err error) {
-	mongoDBmoney, err := mongodbmoney.New(ctx, uri, dbName, collName, currency)
+	mongoDBMoney, err := mongodbmoney.New(ctx, uri, dbName, collName, currency)
 	if err != nil {
 		return nil, err
 	}
-	return &RepositoryMoney{mongoDBmoney}, nil
+	return &RepositoryMoney{mongoDBMoney}, nil
 }

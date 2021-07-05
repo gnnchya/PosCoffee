@@ -4,8 +4,6 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker"
 	userService "github.com/gnnchya/PosCoffee/product/service/user"
 	"github.com/gnnchya/PosCoffee/product/service/util"
-
-	//"github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp/service/user"
 )
 
 type implementation struct{
