@@ -15,13 +15,13 @@ import (
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 
-	elasRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
+	eRepo, err := elasRepo.New(appConfig.ElasticDBEndpoint, appConfig.ElasticDBUsername, appConfig.ElasticDBPassword, "menu")
 	panicIfErr(err)
-	redisRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword, 24 * time.Hour)
+	rRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword, 24 * time.Hour)
 	panicIfErr(err)
 
-	validator := validatorService.New(elasRepo)
-	user := userService.New(validator, elasRepo, redisRepo)
+	validator := validatorService.New(eRepo)
+	user := userService.New(validator, eRepo, rRepo)
 	return app.New(user)
 }
 

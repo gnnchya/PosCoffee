@@ -48,8 +48,14 @@ func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct 
 	}
 	var resultBson bson.D
 	err = repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
+	if err != nil{
+		return resultStruct, err
+	}
 	bsonBytes, _ := bson.Marshal(resultBson)
-	bson.Unmarshal(bsonBytes, &resultStruct)
+	err = bson.Unmarshal(bsonBytes, &resultStruct)
+	if err != nil{
+		return resultStruct, err
+	}
 	return resultStruct, err
 }
 

@@ -240,8 +240,18 @@ func main(){
 	}
 
 
-	defer client.Disconnect(ctx)
-	defer stockClient.Disconnect(ctx)
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+
+		}
+	}(client, ctx)
+	defer func(stockClient *mongo.Client, ctx context.Context) {
+		err := stockClient.Disconnect(ctx)
+		if err != nil {
+
+		}
+	}(stockClient, ctx)
 	for _ ,v := range MoneyList{
 		initID := goxid.New()
 		idGen := initID.Gen()
@@ -278,16 +288,11 @@ func main(){
 			order.Amount 	= MenuList[randTemp].Amount
 			order.Option 	= MenuList[randTemp].Option
 			totalPrice += MenuList[randTemp].Price * order.Amount
-			//fmt.Println("Cart no:", i, "Menu no:", j, "Ingredient:", MenuList[randTemp].Ingredient)
 			costTemp := CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
 			totalCost += costTemp
-			//fmt.Println("Name: ",MenuList[randTemp].Name ,"total cost:", totalCost, "cost Temp:", costTemp)
-			//fmt.Println("Name: ",MenuList[randTemp].Name ,"total Price:", totalPrice, "price Temp:", MenuList[randTemp].Price * MenuList[randTemp].Amount)
-
 			menuList = append(menuList, order)
 		}
 		CostList = append(CostList , totalCost)
-		//fmt.Println("cost list:", CostList)
 		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 

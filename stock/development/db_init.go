@@ -96,7 +96,12 @@ func main(){
 	}
 
 
-	defer client.Disconnect(ctx)
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+
+		}
+	}(client, ctx)
 	for _ ,v := range StockList{
 		if err != nil {
 			log.Fatal(err)
