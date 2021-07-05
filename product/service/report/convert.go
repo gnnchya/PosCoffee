@@ -35,17 +35,24 @@ func TranToArray(transaction []domain.CreateOrderStruct) (res [][]string){
 		temp = append(temp, fmt.Sprintf("%f", i.Destination.Coordinates[0]))
 		year,month,date :=time.Unix(i.Time, 0).Date()
 		temp = append(temp, strconv.Itoa(date)+" "+month.String()+" "+strconv.Itoa(year))
-		for _,x := range i.Cart.Menu{
-				for q:=0; q < 11; q++{
+		r := i
+		for _,x := range r.Cart.Menu{
+			if contains(res,i.ID){
+				temp = []string{}
+				for q:=0; q < 10; q++{
 					temp = append(temp, " ")
 				}
-			temp = append(temp, x.ID)
-			temp = append(temp, x.Name)
-			temp = append(temp, fmt.Sprintf("%.2f", float64(x.Price/100)))
-			temp = append(temp, strconv.Itoa(int(x.Amount)))
-			temp = append(temp, x.Option)
-			res = append(res, temp)
+			}
+				temp = append(temp, x.ID)
+				temp = append(temp, x.Name)
+				temp = append(temp, fmt.Sprintf("%.2f", float64(x.Price/100)))
+				temp = append(temp, strconv.Itoa(int(x.Amount)))
+				temp = append(temp, x.Option)
+				res = append(res, temp)
 		}
+	}
+	for _,a := range res{
+			fmt.Println(a)
 	}
 	return res
 }

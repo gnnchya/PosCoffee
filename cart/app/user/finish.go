@@ -6,6 +6,7 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/app/view"
 	"github.com/gnnchya/PosCoffee/cart/service/bill"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"os"
 )
 
 func (ctrl *Controller) Finish(c *gin.Context) {
@@ -46,6 +47,7 @@ func (ctrl *Controller) Finish(c *gin.Context) {
 	//}
 
 	//view.MakeSuccessResp(c, 200, a)
+	defer os.Remove(filepath)
 }
 
 func FileDownload(c *gin.Context, filename string,filepath string, changes interface{}){
