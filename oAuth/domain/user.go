@@ -1,12 +1,12 @@
 package domain
 
-type Consumer struct {
+type ConsumerStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	ClientID		string 	`bson:"client_id" json:"client_id"`
 	ClientSecret	string 	`bson:"client_secret" json:"client_secret"`
 }
 
-type Tokens struct {
+type TokenStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	UID 			string	`bson:"uid" json:"uid"`
 	Token 			string	`bson:"token" json:"token"`
