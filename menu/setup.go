@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/menu/app"
 	"github.com/gnnchya/PosCoffee/menu/config"
+	"github.com/gnnchya/PosCoffee/menu/middleware"
 	elasRepo "github.com/gnnchya/PosCoffee/menu/repository/elastic"
 	redisRepo "github.com/gnnchya/PosCoffee/menu/repository/redis"
 	userService "github.com/gnnchya/PosCoffee/menu/service/user/implement"
@@ -22,7 +23,8 @@ func newApp(appConfig *config.Config) *app.App {
 
 	validator := validatorService.New(eRepo)
 	user := userService.New(validator, eRepo, rRepo)
-	return app.New(user)
+	midService := middleware.New(user)
+	return app.New(user, midService)
 }
 
 func panicIfErr(err error) {

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/gnnchya/PosCoffee/authen/domain"
-	"github.com/gnnchya/PosCoffee/authen/service/authentication/autenitcationin"
+	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
 	"github.com/gnnchya/PosCoffee/authen/service/util"
 	"github.com/modern-go/reflect2"
@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-func (impl *implementation) GenerateToken(input *authenitcationin.LoginInput) (token *out.Token, err error) {
+func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (token *out.Token, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		return nil, util.ValidationCreateErr(err)

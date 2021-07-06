@@ -75,3 +75,42 @@ type ForgotPasswordStruct struct {
 type SearchValueStruct struct {
 	Value string `bson:"value" json:"value"`
 }
+
+type Users struct {
+	ID             string       `bson:"_id,omitempty"`
+	Prefix         *Lang        `bson:"prefix"`
+	FirstName      *Lang        `bson:"firstName"`
+	LastName       *Lang        `bson:"lastName"`
+	SignUpChannel  string       `bson:"signUpChannel"`
+	Email          string       `bson:"email"`
+	MobileNumber   string       `bson:"mobileNumber"`
+	IdentifyType   string       `bson:"identifyType"`
+	IdentifyNumber string       `bson:"identifyNumber"`
+	Password       string       `bson:"password"`
+	PassCode       string       `bson:"passCode"`
+	MetaData       *MetaData    `bson:"metaData"`
+	RoleID         []string     `bson:"roleID"`
+	MemberGroup    *MemberGroup `bson:"memberGroup"`
+	CreatedAt      int64        `bson:"createdAt"`
+	UpdatedAt      int64        `bson:"updatedAt"`
+	DeletedAt      *int64       `bson:"deletedAt"`
+}
+
+type Lang struct {
+	Th string `bson:"th"`
+	En string `bson:"en"`
+}
+
+type MetaData struct {
+	Gender    string  `bson:"gender"`
+	BirthDate int     `bson:"birthDate"`
+	YearOnly  bool    `bson:"yearOnly"`
+	Weight    float64 `bson:"weight"`
+	Height    float64 `bson:"height"`
+}
+
+
+type MemberGroup struct {
+	Name    string   `bson:"name"`
+	Members []string `bson:"members"`
+}
