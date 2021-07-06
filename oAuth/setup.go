@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/oAuth/config"
+	"github.com/gnnchya/PosCoffee/oAuth/service/util"
+	"github.com/go-oauth2/oauth2/v4/manage"
 	"log"
 	"time"
 
@@ -14,7 +16,7 @@ import (
 	tokenService "github.com/gnnchya/PosCoffee/oAuth/service/token/implement"
 
 	oauthRepo "github.com/gnnchya/PosCoffee/oAuth/repository/oauth"
-	grpcService "github.com/gnnchya/PosCoffee/oAuth/service/grpcClient/implement"
+	grpcService "github.com/gnnchya/PosCoffee/oAuth/service/grpc"
 
 	validatorService "github.com/gnnchya/PosCoffee/oAuth/service/validator"
 )
@@ -24,21 +26,29 @@ const (
 )
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
+	filter := util.NewFilters()
 
 	cRepo, err := consumerRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBConsumerTableName)
 	panicIfErr(err)
 	tRepo, err := tokenRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTokenTableName)
-
-	validator := validatorService.New(cRepo, tRepo)
-
-	grpcRepo := oauthRepo.New()
-	gService := grpcService.New(grpcRepo)
 	panicIfErr(err)
 
+	validator := validatorService.New(cRepo, tRepo)
+	generateID, err := util.NewUUID()
+	panicIfErr(err)
+	uuid4 := util.NewUUID4()
+	manager := manage.NewDefaultManager()
 
-	user := consumerService.New(validator, cRepo, gService)
+	oauthRepo := oauthRepo.New()
+
+	consumer := consumerService.New(validator, cRepo, generateID, uuid4)
+
+	token := tokenService.New(validator, manager, oauthRepo, tRepo, cRepo, filter, generateID)
+
+	go grpcService.NewServer(appConfig, token, filter, tRepo)
 	time.Sleep(1 * time.Second)
-	return app.New(user, gService)
+
+	return app.New(consumer, token)
 }
 
 func panicIfErr(err error) {
@@ -47,9 +57,3 @@ func panicIfErr(err error) {
 	}
 }
 
-func configGrpc(appConfig *config.Config) *repoGrpc.Config {
-	return &repoGrpc.Config{
-		Network: NETWORK,
-		Port:    appConfig.GRPCSenderHost,
-	}
-}

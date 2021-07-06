@@ -2,33 +2,34 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/oAuth/app/user"
-	grpcService "github.com/gnnchya/PosCoffee/oAuth/service/grpcClient"
-	userService "github.com/gnnchya/PosCoffee/oAuth/service/consumer"
+	"github.com/gnnchya/PosCoffee/oAuth/app/consumer"
+	"github.com/gnnchya/PosCoffee/oAuth/app/token"
+	consumerService "github.com/gnnchya/PosCoffee/oAuth/service/consumer"
+	tokenService "github.com/gnnchya/PosCoffee/oAuth/service/token"
 )
 
 type App struct {
-	user *user.Controller
-	grpcService grpcService.Service
+	consumer *consumer.Controller
+	token *token.Controller
 }
 
-func New(userService userService.Service, grpcService grpcService.Service) *App {
+func New(consumerService consumerService.Service, tokenService tokenService.Service) *App {
 	return &App{
-		user: user.New(userService, grpcService),
-		grpcService: grpcService,
+		consumer: consumer.New(consumerService),
+		token: token.New(tokenService),
 	}
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/cart", app.user.Create)
-		apiRoutes.GET("/cart/:id", app.user.Read)
-		apiRoutes.GET("/cart", app.user.ReadAll)
-		apiRoutes.PUT("/cart", app.user.Update)
-		apiRoutes.DELETE("/cart/:id", app.user.Delete)
-		apiRoutes.GET("/cart/search", app.user.Search)
-		apiRoutes.POST("/cart/:id/finish", app.user.Finish)
+		apiRoutes.POST("/consumer", app.consumer.Create)
+
+		apiRoutes.POST("/request", app.token.Request)
+		apiRoutes.DELETE("/revoke", app.token.RevokeToken)
+
+		apiRoutes.POST("/validate", app.token.ValidateToken)
+		apiRoutes.POST("/refresh", app.token.Refresh)
 	}
 
 	return app

@@ -6,7 +6,7 @@ import (
 )
 
 func (v *GoPlayGroundValidator) UserUpdateStructLevelValidation(structLV validator.StructLevel) {
-	input := structLV.Current().Interface().(userin.Input)
+	input := structLV.Current().Interface().(consumerin.CreateInput)
 	v.checkAmountStruct(structLV, input)
 }
 

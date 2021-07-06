@@ -13,10 +13,6 @@ type Config struct {
 	MongoDBConsumerTableName 		string `env:"MONGODB_CONSUMER_TABLE_NAME" envDefault:"consumer"`
 	MongoDBTokenTableName 			string `env:"MONGODB_TOKEN_TABLE_NAME" envDefault:"token"`
 
-	// Jaeger config
-	JaegerAgentHost string `env:"JAEGER_AGENT_HOST" envDefault:"localhost"`
-	JaegerAgentPort string `env:"JAEGER_AGENT_PORT" envDefault:"6831"`
-
 	//MessageBroker config
 	MessageBrokerBackOffTime  int      `env:"MESSAGE_BROKER_BACKOFF_TIME" envDefault:"2"`
 	MessageBrokerMaximumRetry int      `env:"MESSAGE_BROKER_MAXIMUM_RETRY" envDefault:"3"`
