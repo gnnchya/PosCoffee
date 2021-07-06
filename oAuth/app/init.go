@@ -2,9 +2,9 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/cart/app/user"
-	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient"
-	userService "github.com/gnnchya/PosCoffee/cart/service/user"
+	"github.com/gnnchya/PosCoffee/oAuth/app/user"
+	grpcService "github.com/gnnchya/PosCoffee/oAuth/service/grpcClient"
+	userService "github.com/gnnchya/PosCoffee/oAuth/service/consumer"
 )
 
 type App struct {

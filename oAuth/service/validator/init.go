@@ -1,22 +1,24 @@
 package validator
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
-	"github.com/gnnchya/PosCoffee/cart/service/util"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
+	"github.com/gnnchya/PosCoffee/oAuth/service/util"
 	"github.com/go-playground/validator/v10"
 )
 
 type GoPlayGroundValidator struct {
 	validate *validator.Validate
-	userRepo util.Repository
+	consumerRepo util.Repository
+	tokenRepo util.Repository
 }
 
-func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
+func New(consumerRepo util.Repository, tokenRepo util.Repository ) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
-		userRepo: userRepo,
+		consumerRepo: consumerRepo,
+		tokenRepo: tokenRepo,
 	}
-	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.Input{})
+	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &consumerin.CreateInput{})
 	return v
 }
 

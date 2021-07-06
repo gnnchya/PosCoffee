@@ -2,8 +2,8 @@ package validator
 
 import (
 	"fmt"
-	"github.com/gnnchya/PosCoffee/cart/domain"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/oAuth/domain"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 	"github.com/go-playground/validator/v10"
 	"regexp"
 	"strconv"

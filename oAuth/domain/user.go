@@ -11,9 +11,9 @@ type ConsumerStruct struct {
 type TokenStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	UID 			string	`bson:"uid" json:"uid"`
-	Token 			string	`bson:"token" json:"token"`
-	Expire 			string	`bson:"expire" json:"expire"`
+	AccessToken 	string	`bson:"access_token" json:"access_token"`
+	Expire 			int64	`bson:"expire" json:"expire"`
 	RefreshToken	string	`bson:"refresh_token" json:"refresh_token"`
-	RefreshExpire	string	`bson:"refresh_expire" json:"refresh_expire"`
+	RefreshExpire	int64	`bson:"refresh_expire" json:"refresh_expire"`
 }
 

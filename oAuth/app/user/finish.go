@@ -3,9 +3,8 @@ package user
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/cart/app/view"
-	"github.com/gnnchya/PosCoffee/cart/service/bill"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/oAuth/app/view"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 	"os"
 )
 

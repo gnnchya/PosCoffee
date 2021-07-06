@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/app/view"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/oAuth/app/view"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 
 	"github.com/gin-gonic/gin"
 )

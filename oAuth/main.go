@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/cart/config"
+	"github.com/gnnchya/PosCoffee/oAuth/config"
 )
 
 func main() {

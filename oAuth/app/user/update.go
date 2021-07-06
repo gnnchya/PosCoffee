@@ -2,8 +2,8 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/cart/app/view"
-	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
+	"github.com/gnnchya/PosCoffee/oAuth/app/view"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 )
 
 func (ctrl *Controller) Update(c *gin.Context) {

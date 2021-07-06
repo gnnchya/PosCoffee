@@ -1,15 +1,15 @@
 package user
 
 import (
-	"github.com/gnnchya/PosCoffee/cart/service/grpcClient"
-	"github.com/gnnchya/PosCoffee/cart/service/user"
+	"github.com/gnnchya/PosCoffee/oAuth/service/grpcClient"
+	"github.com/gnnchya/PosCoffee/oAuth/service/consumer"
 )
 
 type Controller struct {
-	service user.Service
+	service consumer.Service
 	grpcClient grpcClient.Service
 }
 
-func New(service user.Service, grpcClient grpcClient.Service) (ctrl *Controller) {
+func New(service consumerz.Service, grpcClient grpcClient.Service) (ctrl *Controller) {
 	return &Controller{service, grpcClient}
 }
