@@ -13,7 +13,7 @@ type Service interface {
 	Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error)
 	Read(ctx context.Context, input *userin.ReadInput) (domain.Users, error)
 	ReadAll(ctx context.Context, input *userin.ViewAllInput) ([]domain.Users, error)
-	SearchMenu(ctx context.Context, input *userin.Search) ([]domain.Users, error)
-	SearchCategory(ctx context.Context, input *userin.Search) ([]domain.Users, error)
-	SearchIngredient(ctx context.Context, input *userin.Search) ([]domain.Users, error)
+	//MsgReceiver(ctx context.Context, msg []byte) (err error)
+	//SoftDelete(ctx context.Context, input *usersin.DeleteInput) (err error)
+	//ForgotPassword(ctx context.Context, input *usersin.ForgotPasswordUpdateInput) (err error)
 }
