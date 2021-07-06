@@ -48,11 +48,11 @@ func (v *GoPlayGroundValidator) checkImportDate(structLV validator.StructLevel, 
 }
 
 func (v *GoPlayGroundValidator) checkExistVal(structLV validator.StructLevel, val int64) {
-	exist, err := v.moneyRepo.CheckExistVal(context.Background(), val)
-	if err != nil{
-		structLV.ReportError(val, "err validation check exist value", "err validation check exist value", "unique", "")
-	}
+	exist, _ := v.moneyRepo.CheckExistVal(context.Background(), val)
+	//if err != nil{
+	//	structLV.ReportError(val, "err1 validation check exist value", "err validation check exist value", "unique", "")
+	//}else
 	if exist{
-		structLV.ReportError(val, "err validation check exist value", "err validation check exist value", "unique", "")
+		structLV.ReportError(val, "err2 validation check exist value", "err validation check exist value", "unique", "")
 	}
 }

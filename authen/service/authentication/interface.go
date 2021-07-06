@@ -7,7 +7,7 @@ import (
 
 //go:generate mockery --name=Service
 type Service interface {
-	GenerateToken(input *autenitcationin.LoginInput) (token *out.Token, err error)
+	GenerateToken(input *authenitcationin.LoginInput) (token *out.Token, err error)
 	VerifyToken(accessToken string) (userID *string, err error)
 	Logout(input string) (err error)
 }

@@ -1,4 +1,4 @@
-package autenitcationin
+package authenticationin
 
 import "github.com/gnnchya/PosCoffee/authen/service/msgbroker/msgbrokerin"
 

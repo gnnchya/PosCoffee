@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-func (impl *implementation) GenerateToken(input *autenitcationin.LoginInput) (token *out.Token, err error) {
+func (impl *implementation) GenerateToken(input *authenitcationin.LoginInput) (token *out.Token, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
 		return nil, util.ValidationCreateErr(err)

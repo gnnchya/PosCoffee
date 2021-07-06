@@ -4,7 +4,9 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/app"
 	"github.com/gnnchya/PosCoffee/authen/config"
+	"github.com/gnnchya/PosCoffee/authen/middleware"
 	userRepo "github.com/gnnchya/PosCoffee/authen/repository/mongodb"
+	authenService "github.com/gnnchya/PosCoffee/authen/service/authentication/implement"
 	userService "github.com/gnnchya/PosCoffee/authen/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/authen/service/validator"
 
@@ -24,7 +26,9 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 	user := userService.New(validator, uRepo, gService)
-	return app.New(user)
+	auth := authenService.New(validator, appConfig, userRepo)
+	midService := middleware.New(auth, user)
+	return app.New(user, midService, gService)
 }
 
 func panicIfErr(err error) {
