@@ -4,6 +4,8 @@ type ConsumerStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	ClientID		string 	`bson:"client_id" json:"client_id"`
 	ClientSecret	string 	`bson:"client_secret" json:"client_secret"`
+	Scope           string 	`bson:"scope" json:"scope"`
+	CreatedAt       int64  	`bson:"createdAt" json:"createdAt"`
 }
 
 type TokenStruct struct {
