@@ -2,20 +2,26 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gnnchya/PosCoffee/authen/middleware"
+
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/authen/app/user"
+	grpcService "github.com/gnnchya/PosCoffee/authen/service/grpcClient"
 	userService "github.com/gnnchya/PosCoffee/authen/service/user"
 )
 
 type App struct {
 	user *user.Controller
-	// company *company.Controller
+	middle middleware.Service
+	grpcService grpcService.Service
+
 }
 
-func New(userService userService.Service) *App {
+func New(userService userService.Service, middle middleware.Service, grpcService grpcService.Service) *App {
 	return &App{
 		user: user.New(userService),
-		// company: company.New(companyService),
+		middle: middle,
+		grpcService: grpcService,
 	}
 }
 

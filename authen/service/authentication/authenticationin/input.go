@@ -1,4 +1,4 @@
-package autenitcationin
+package authenticationin
 
 type LoginInput struct {
 	Username string `json:"username"  validate:"required"`

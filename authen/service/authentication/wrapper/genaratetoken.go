@@ -7,7 +7,7 @@ import (
 	"github.com/opentracing/opentracing-go"
 )
 
-func (wrp wrapper) GenerateToken(input *autenitcationin.LoginInput) (token *out.Token, err error) {
+func (wrp wrapper) GenerateToken(input *authenitcationin.LoginInput) (token *out.Token, err error) {
 	var ctx context.Context
 	sp, ctx := opentracing.StartSpanFromContext(ctx, "service.auth.GenerateToken")
 	defer sp.Finish()
