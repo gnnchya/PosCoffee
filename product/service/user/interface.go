@@ -31,4 +31,5 @@ type Service interface {
 	ReadMoney(ctx context.Context, input *userin.ReadMoneyInput) (a interface{}, err error)
 	UpdateMoney(ctx context.Context, input *userin.UpdateMoneyInput) (ID string, err error)
 	CreateMoney(ctx context.Context, input *userin.CreateMoneyInput) (ID string, err error)
+	DeleteMoney(ctx context.Context, input *userin.DeleteMoneyInput) (ID string, err error)
 }

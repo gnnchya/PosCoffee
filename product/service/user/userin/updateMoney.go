@@ -3,7 +3,7 @@ package userin
 import "github.com/gnnchya/PosCoffee/product/domain"
 
 type UpdateMoneyInput struct {
-	ID 		string	`bson:"_id" json:"_id"`
+	ID 		string	`bson:"_id" json:"id"`
 	Value   int64   `bson:"value" json:"value"`
 	Amount 	int64  	`bson:"amount" json:"amount"`
 }
