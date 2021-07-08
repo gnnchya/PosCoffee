@@ -18,7 +18,7 @@ func New(consumerRepo util.Repository, tokenRepo util.Repository ) (v *GoPlayGro
 		consumerRepo: consumerRepo,
 		tokenRepo: tokenRepo,
 	}
-	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &consumerin.CreateInput{})
+	v.validate.RegisterStructValidation(v.ConsumerCreateStructLevelValidation, &consumerin.CreateConsumerInput{})
 	return v
 }
 

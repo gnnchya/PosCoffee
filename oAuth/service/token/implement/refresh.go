@@ -10,19 +10,18 @@ import (
 	"github.com/gnnchya/PosCoffee/oAuth/domain"
 	"github.com/gnnchya/PosCoffee/oAuth/service/token/out"
 	"github.com/gnnchya/PosCoffee/oAuth/service/token/tokenin"
-	"github.com/gnnchya/PosCoffee/oAuth/service/util"
 )
 
 func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshInput, r *http.Request) (view *out.TokenView, err error) {
-	consumer := &domain.Consumer{}
+	consumer := &domain.ConsumerStruct{}
 	filters := makeClientFilters(impl.filter, input.ClientID, input.ClientSecret)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
 	if err != nil {
-		return nil, util.RepoReadErr(err)
+		return nil, err
 	}
 
-	impl.oauthRepository.ClientStore(consumer.ClientId, consumer.ClientSecret, consumer.RedirectUri)
+	impl.oauthRepository.ClientStore(consumer.ClientID, consumer.ClientSecret, consumer.RedirectUri)
 
 	srv := impl.oauthRepository.NewServer()
 	srv.SetAllowGetAccessRequest(true)
@@ -44,19 +43,19 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	ti.SetAccessExpiresIn(accessExpiresIn)
 	ti.SetRefreshExpiresIn(refreshExpiresIn)
 
-	token := &domain.OauthToken{
+	token := &domain.TokenStruct{
 		ID:               impl.uuid.Generate(),
-		UserId:           input.UserId,
+		UID:           	  input.UID,
 		AccessToken:      ti.GetAccess(),
 		RefreshToken:     ti.GetRefresh(),
-		Expired:          ti.GetAccessCreateAt().Unix(),
-		ExpiryDate:       int64(accessExpiresIn.Seconds()),
-		RefreshExpiresIn: int64(refreshExpiresIn.Seconds()),
+		AccessExpire:     int64(accessExpiresIn.Seconds()),
+		RefreshExpire: 	  int64(refreshExpiresIn.Seconds()),
+		CreatedAt:		  ti.GetAccessCreateAt().Unix(),
 	}
 
-	_, err = impl.tokenRepository.Create(ctx, token)
+	err = impl.tokenRepository.Create(ctx, token)
 	if err != nil {
-		return nil, util.RepoCreateErr(err)
+		return nil, err
 	}
 
 	return out.TokenToView(token), err

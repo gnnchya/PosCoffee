@@ -8,33 +8,31 @@ import (
 
 type RequestInput struct {
 	ID               string `json:"id"`
-	UserId           string `json:"user_id" form:"user_id"`
+	UID          	 string `json:"uid" form:"uid"`
 	ClientID         string `json:"client_id" form:"client_id" binding:"required"`
 	ClientSecret     string `json:"client_secret" form:"client_secret" binding:"required"`
 	GrantType        string `json:"grant_type" form:"grant_type" binding:"required"`
 	Scope            string `json:"scope" form:"scope"`
 	RedirectUri      string `json:"redirect_uri" form:"redirect_uri"`
-	OauthProvider    string `json:"oauth_provider" form:"oauth_provider"`
-	Expired          int64  `json:"expired"`
 	AccessToken      string `json:"access_token"`
 	RefreshToken     string `json:"refresh_token"`
-	ExpiryDate       int64  `json:"expiry_date"`
-	RefreshExpiresIn int64  `json:"refresh_expires_in"`
+	AccessExpire     int64  `json:"access_expire"`
+	RefreshExpire 	 int64  `json:"refresh_expires_in"`
+	CreatedAt 		 int64	`bson:"created_at" json:"created_at"`
 }
 
-func (input *RequestInput) ToDomain() (token *domain.OauthToken) {
+func (input *RequestInput) ToDomain() (token *domain.TokenStruct) {
 	if reflect2.IsNil(input) {
-		return &domain.OauthToken{}
+		return &domain.TokenStruct{}
 	}
 
-	return &domain.OauthToken{
+	return &domain.TokenStruct{
 		ID:               input.ID,
-		UserId:           input.UserId,
-		Expired:          input.Expired,
-		OauthProvider:    input.OauthProvider,
+		UID:              input.UID,
 		AccessToken:      input.AccessToken,
 		RefreshToken:     input.RefreshToken,
-		ExpiryDate:       input.ExpiryDate,
-		RefreshExpiresIn: input.RefreshExpiresIn,
+		AccessExpire:     input.AccessExpire,
+		RefreshExpire: 	  input.RefreshExpire,
+		CreatedAt: 		  input.CreatedAt,
 	}
 }

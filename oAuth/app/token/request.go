@@ -20,13 +20,13 @@ func (ctrl *Controller) Request(c *gin.Context) {
 
 	input := &tokenin.RequestInput{}
 	if err := c.ShouldBind(input); err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c,422 ,err)
 		return
 	}
 
 	token, err := ctrl.service.Request(ctx, input, c.Request)
 	if err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422,err)
 		return
 	}
 

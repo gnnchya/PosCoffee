@@ -2,6 +2,8 @@ package util
 
 import (
 	"context"
+	"github.com/go-oauth2/oauth2/v4"
+	"github.com/go-oauth2/oauth2/v4/server"
 )
 
 //go:generate mockery --name=Repository
@@ -17,3 +19,7 @@ type Repository interface {
 }
 
 
+type RepositoryOauth interface {
+	ClientStore(clientID, clientSecret, domain string) oauth2.ClientStore
+	NewServer() *server.Server
+}

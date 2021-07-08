@@ -3,33 +3,32 @@ package implement
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
-	"github.com/gnnchya/PosCoffee/oAuth/service/util"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *consumerin.CreateInput) (ID string, err error) {
+func (impl *implementation) Create(ctx context.Context, input *consumerin.CreateConsumerInput) (ID string, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
-		return "", util.ValidationCreateErr(err)
+		return "", err
 	}
 
 	clientId, err := impl.uuid4.NewRandom()
 	if err != nil {
-		return "", util.RepoCreateErr(err)
+		return "", err
 	}
 	clientSecret, err := impl.uuid4.NewRandom()
 	if err != nil {
-		return "", util.RepoCreateErr(err)
+		return "", err
 	}
 
 	input.ID = impl.uuid.Generate()
-	input.ClientId = clientId
+	input.ClientID = clientId
 	input.ClientSecret = clientSecret
 
 	consumer := input.ToDomain()
 
-	_, err = impl.repo.Create(ctx, consumer)
+	err = impl.repo.Create(ctx, consumer)
 	if err != nil {
-		return "", util.RepoCreateErr(err)
+		return "", err
 	}
 
 	return consumer.ID, nil

@@ -21,7 +21,7 @@ func (ctrl *Controller) ValidateToken(c *gin.Context) {
 
 	token, err := ctrl.service.ValidateToken(ctx, &auth)
 	if err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422,err)
 		return
 	}
 

@@ -20,13 +20,13 @@ func (ctrl *Controller) Refresh(c *gin.Context) {
 
 	input := &tokenin.RefreshInput{}
 	if err := c.ShouldBind(input); err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422, err)
 		return
 	}
 
 	resToken, err := ctrl.service.Refresh(ctx, input, c.Request)
 	if err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422,err)
 		return
 	}
 

@@ -16,15 +16,17 @@ func (ctrl *Controller) Create(c *gin.Context) {
 	)
 	defer span.Finish()
 
-	input := &consumerin.CreateInput{}
+	input := &consumerin.CreateConsumerInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
-		view.MakeErrResp2(c, , err)
+		// TODO match HTTP code
+		view.MakeErrResp2(c, 422, err)
 		return
 	}
 
 	ID, err := ctrl.service.Create(ctx, input)
 	if err != nil {
-		view.MakeErrResp2(c,  , err)
+		// TODO match HTTP code
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 

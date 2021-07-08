@@ -7,9 +7,9 @@ type ValidateTokenView struct {
 	Expired int64  `json:"expired"`
 }
 
-func ValidateTokenToView(token *domain.OauthToken) (view *ValidateTokenView) {
+func ValidateTokenToView(token *domain.TokenStruct) (view *ValidateTokenView) {
 	return &ValidateTokenView{
-		UserId:  token.UserId,
-		Expired: token.Expired,
+		UserId:  token.UID,
+		Expired: token.CreatedAt,
 	}
 }

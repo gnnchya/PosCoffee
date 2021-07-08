@@ -10,20 +10,19 @@ import (
 	"github.com/gnnchya/PosCoffee/oAuth/domain"
 	"github.com/gnnchya/PosCoffee/oAuth/service/token/out"
 	"github.com/gnnchya/PosCoffee/oAuth/service/token/tokenin"
-	"github.com/gnnchya/PosCoffee/oAuth/service/util"
 )
 
 func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestInput, r *http.Request) (view *out.TokenView, err error) {
 
-	consumer := &domain.Consumer{}
+	consumer := &domain.ConsumerStruct{}
 	filters := makeConsumerFilters(impl.filter, input.ClientID, input.ClientSecret, input.RedirectUri)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
 	if err != nil {
-		return nil, util.RepoReadErr(err)
+		return nil, err
 	}
 
-	impl.oauthRepository.ClientStore(consumer.ClientId, consumer.ClientSecret, consumer.RedirectUri)
+	impl.oauthRepository.ClientStore(consumer.ClientID, consumer.ClientSecret, consumer.RedirectUri)
 
 	srv := impl.oauthRepository.NewServer()
 	srv.SetAllowGetAccessRequest(true)
@@ -50,23 +49,23 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 	ti.SetRefreshExpiresIn(refreshExpiresIn / time.Second)
 
 	input.ID = impl.uuid.Generate()
-	input.Expired = ti.GetAccessCreateAt().Unix()
+	input.CreatedAt = ti.GetAccessCreateAt().Unix()
 	input.AccessToken = ti.GetAccess()
 	input.RefreshToken = ti.GetRefresh()
-	input.ExpiryDate = int64(accessExpiresIn.Seconds())
-	input.RefreshExpiresIn = int64(refreshExpiresIn.Seconds())
+	input.AccessExpire = int64(accessExpiresIn.Seconds())
+	input.RefreshExpire = int64(refreshExpiresIn.Seconds())
 
 	token := input.ToDomain()
 
-	_, err = impl.tokenRepository.Create(ctx, token)
+	err = impl.tokenRepository.Create(ctx, token)
 	if err != nil {
-		return nil, util.RepoCreateErr(err)
+		return nil, err
 	}
 
-	tokenView := &domain.OauthToken{
+	tokenView := &domain.TokenStruct{
 		AccessToken:  input.AccessToken,
 		RefreshToken: input.RefreshToken,
-		Expired:      int64(ti.GetAccessExpiresIn()),
+		AccessExpire: int64(ti.GetAccessExpiresIn()),
 	}
 
 	return out.TokenToView(tokenView), err

@@ -5,8 +5,9 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validator.StructLevel) {
-	input := structLV.Current().Interface().(consumerin.CreateInput)
-	v.checkAmountStruct(structLV, input)
+func (v *GoPlayGroundValidator) ConsumerCreateStructLevelValidation(structLV validator.StructLevel) {
+	input := structLV.Current().Interface().(consumerin.CreateConsumerInput)
+
+	v.checkConsumerExistID(structLV, input.ID)
 }
 

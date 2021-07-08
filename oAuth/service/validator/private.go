@@ -1,16 +1,12 @@
 package validator
 
 import (
-	"fmt"
-	"github.com/gnnchya/PosCoffee/oAuth/domain"
-	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
+	"context"
 	"github.com/go-playground/validator/v10"
 	"regexp"
-	"strconv"
 )
 
 func (v *GoPlayGroundValidator) checkName(structLV validator.StructLevel, name string) {
-	fmt.Println("here")
 	if name != "Proud" {
 		structLV.ReportError("not Proud", "name", "name", "unique", "")
 	}
@@ -24,20 +20,16 @@ func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name str
 	}
 }
 
-
-func (v *GoPlayGroundValidator) checkAmountStruct(structLV validator.StructLevel, menu userin.Input){
-	if len(menu.Menu) < 0{
-		structLV.ReportError(len(menu.Menu), "err validation for menu", "err validation for menu", "zero", "")
+func (v *GoPlayGroundValidator) checkConsumerExistID(structLV validator.StructLevel, ID string) {
+	exist, _ := v.consumerRepo.CheckExistID(context.Background(), ID)
+	if exist{
+		structLV.ReportError(ID, "err2 validation check exist ID", "err validation check exist ID", "unique", "")
 	}
 }
 
-func (v *GoPlayGroundValidator) checkUpdateStruct(structLV validator.StructLevel, cart domain.CreateStruct){
-	if len(cart.Menu) == 0{
-		structLV.ReportError(cart, "err validation cart is 0", "err validation cart is 0", "zero", "")
-	}
-	for i, j := range cart.Menu{
-		if j.Amount <= 0{
-			structLV.ReportError(cart, "err validation for cart #"+strconv.Itoa(i), "err validation for cart #"+strconv.Itoa(i), "zero", "")
-		}
+func (v *GoPlayGroundValidator) checkTokenExistID(structLV validator.StructLevel, ID string) {
+	exist, _ := v.tokenRepo.CheckExistID(context.Background(), ID)
+	if exist{
+		structLV.ReportError(ID, "err2 validation check exist ID", "err validation check exist ID", "unique", "")
 	}
 }

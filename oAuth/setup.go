@@ -16,7 +16,6 @@ import (
 	tokenService "github.com/gnnchya/PosCoffee/oAuth/service/token/implement"
 
 	oauthRepo "github.com/gnnchya/PosCoffee/oAuth/repository/oauth"
-	grpcService "github.com/gnnchya/PosCoffee/oAuth/service/grpc"
 
 	validatorService "github.com/gnnchya/PosCoffee/oAuth/service/validator"
 )
@@ -45,7 +44,6 @@ func newApp(appConfig *config.Config) *app.App {
 
 	token := tokenService.New(validator, manager, oauthRepo, tRepo, cRepo, filter, generateID)
 
-	go grpcService.NewServer(appConfig, token, filter, tRepo)
 	time.Sleep(1 * time.Second)
 
 	return app.New(consumer, token)

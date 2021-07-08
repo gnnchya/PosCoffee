@@ -20,7 +20,7 @@ func (ctrl *Controller) RevokeToken(c *gin.Context) {
 	auth := c.Request.Header.Get("Authorization")
 	err := ctrl.service.RevokeToken(ctx, &auth)
 	if err != nil {
-		view.MakeErrResp(c, err)
+		view.MakeErrResp2(c, 422,err)
 		return
 	}
 

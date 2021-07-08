@@ -8,6 +8,7 @@ type Filters interface {
 	MakeAccessTokenFilter(access string) (filters []string)
 	MakeClientIdString(clientID string) (filters string)
 	MakeClientSecretString(clientSecret string) (filters string)
+	MakeRedirectUriString(redirectUri string) (filters string)
 	MakeUserIDString(userID string) (filters []string)
 }
 
@@ -35,6 +36,10 @@ func (f *Filter) MakeClientIdString(clientID string) (filters string) {
 
 func (f *Filter) MakeClientSecretString(clientSecret string) (filters string) {
 	return fmt.Sprintf("clientSecret:eq:%s", clientSecret)
+}
+
+func (f *Filter) MakeRedirectUriString(redirectUri string) (filters string) {
+	return fmt.Sprintf("redirectUri:eq:%s", redirectUri)
 }
 
 func (f *Filter) MakeUserIDString(userID string) (filters []string) {
