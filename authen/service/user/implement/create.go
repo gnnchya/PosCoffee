@@ -3,12 +3,7 @@ package implement
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
-	"github.com/gnnchya/PosCoffee/authen/service/util"
-	"log"
-
-	"github.com/modern-go/reflect2"
 	"golang.org/x/crypto/bcrypt"
-
 )
 
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
@@ -24,7 +19,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 
 	err = impl.validator.Validate(input)
 	if err != nil {
-		return "", util.ValidationCreateErr(err)
+		return "", err
 	}
 
 	//encodeIdentifyNumber, err := util.Encrypt([]byte(input.IdentifyNumber), impl.cryptPassPhrase)
