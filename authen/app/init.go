@@ -8,22 +8,19 @@ import (
 
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/authen/app/user"
-	grpcService "github.com/gnnchya/PosCoffee/authen/service/grpcClient"
 	userService "github.com/gnnchya/PosCoffee/authen/service/user"
 )
 
 type App struct {
 	user *user.Controller
 	middle middleware.Service
-	grpcService grpcService.Service
 	authService authentication.Service
 }
 
-func New(userService userService.Service, authService authentication.Service, middle middleware.Service, grpcService grpcService.Service) *App {
+func New(userService userService.Service, authService authentication.Service, middle middleware.Service) *App {
 	return &App{
-		user: user.New(userService, authService, grpcService),
+		user: user.New(userService, authService),
 		middle: middle,
-		grpcService: grpcService,
 		authService: authService,
 	}
 }
@@ -31,7 +28,7 @@ func New(userService userService.Service, authService authentication.Service, mi
 func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/menu", app.user.Create)
+		apiRoutes.POST("/authen", app.user.Create)
 		//apiRoutes.GET("/menu/:id", app.user.Read)
 		//apiRoutes.PUT("/menu", app.user.Update)
 		//apiRoutes.DELETE("/menu/:id", app.user.Delete)

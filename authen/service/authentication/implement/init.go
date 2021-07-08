@@ -17,9 +17,9 @@ type implementation struct {
 	config    *config.Config
 	usersRepo util.RepositoryUsers
 	filter    util.Filters
-	mBroker   util.RepositoryMsgBroker
+	//mBroker   util.RepositoryMsgBroker
 }
 
-func New(validator validator.Validator, config *config.Config, usersRepo util.RepositoryUsers, filter util.Filters, mBroker util.RepositoryMsgBroker) (service authentication.Service) {
-	return &implementation{validator, config, usersRepo, filter, mBroker}
+func New(validator validator.Validator, config *config.Config, usersRepo util.RepositoryUsers, filter util.Filters) (service authentication.Service) {
+	return &implementation{validator, config, usersRepo, filter}
 }

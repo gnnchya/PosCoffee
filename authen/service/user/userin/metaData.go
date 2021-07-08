@@ -20,12 +20,12 @@ type MetaDataStruct struct {
 	RequiredBirthDate bool
 }
 
-func (input *MetaDataStruct) ToDomain() (metadata *domain.MetadataStruct) {
+func (input *MetaDataStruct) ToDomain() (metadata *domain.MetaDataStruct) {
 	if reflect2.IsNil(input) {
-		return &domain.MetadataStruct{}
+		return &domain.MetaDataStruct{}
 	}
 
-	return &domain.MetadataStruct{
+	return &domain.MetaDataStruct{
 		Prefix: input.Prefix.ToDomain(),
 		Name: input.Name.ToDomain(),
 		Lastname: input.Lastname.ToDomain(),

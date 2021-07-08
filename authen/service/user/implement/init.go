@@ -11,11 +11,9 @@ type implementation struct {
 	repo            util.RepositoryUsers
 	//uuid            util.UUID
 	filter          util.Filters
-	mBroker         util.RepositoryMsgBroker
-	cryptPassPhrase string
 	//client          grpcClient.Service
 }
 
-func New(validator validator.Validator, repo util.RepositoryUsers, filter util.Filters, mBroker util.RepositoryMsgBroker, cryptPassPhrase string) (service user.Service) {
-	return &implementation{validator, repo, filter, mBroker, cryptPassPhrase}
+func New(validator validator.Validator, repo util.RepositoryUsers, filter util.Filters) (service user.Service) {
+	return &implementation{validator, repo, filter}
 }

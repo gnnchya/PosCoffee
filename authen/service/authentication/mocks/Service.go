@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	autenitcationin "github.com/gnnchya/PosCoffee/authen/service/authentication/autenitcationin"
+	autenitcationin "github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 
 	mock "github.com/stretchr/testify/mock"
 
