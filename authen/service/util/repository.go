@@ -3,7 +3,6 @@ package util
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/service/msgbroker/msgbrokerin"
-	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 	"github.com/touchtechnologies-product/message-broker/common"
 	"google.golang.org/grpc"
 )
@@ -11,7 +10,7 @@ import (
 //go:generate mockery --name=Repository
 
 type Repository interface {
-	Create(ctx context.Context, input userin.CreateInput) (err error)
+	Create(ctx context.Context, ent interface{}) (ID string, err error)
 }
 
 type RepositoryUsers interface {

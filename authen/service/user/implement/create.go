@@ -12,15 +12,15 @@ import (
 )
 
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
-	defer func() {
-		if !reflect2.IsNil(err) {
-			return
-		}
-
-		if err = impl.sendMsgCreate(input); err != nil {
-			log.Println(err)
-		}
-	}()
+	//defer func() {
+	//	if !reflect2.IsNil(err) {
+	//		return
+	//	}
+	//
+	//	if err = impl.sendMsgCreate(input); err != nil {
+	//		log.Println(err)
+	//	}
+	//}()
 
 	err = impl.validator.Validate(input)
 	if err != nil {
@@ -51,7 +51,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 
 	_, err = impl.repo.Create(ctx, user)
 	if err != nil {
-		return "", util.RepoCreateErr(err)
+		return "", err
 	}
 
 	return user.ID, nil

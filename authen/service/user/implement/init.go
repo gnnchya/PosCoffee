@@ -1,20 +1,17 @@
 package implement
 
 import (
-	grpcClient "git.touchdevops.com/touchtechnologies/authentication-service/service/grpcClient"
-	"git.touchdevops.com/touchtechnologies/authentication-service/service/users"
-	"git.touchdevops.com/touchtechnologies/authentication-service/service/util"
-	"git.touchdevops.com/touchtechnologies/authentication-service/service/validator"
+	"github.com/gnnchya/PosCoffee/authen/service/util"
 )
 
 type implementation struct {
-	validator       validator.Validator
+	//validator       validator.Validator
 	repo            util.RepositoryUsers
-	uuid            util.UUID
+	//uuid            util.UUID
 	filter          util.Filters
 	mBroker         util.RepositoryMsgBroker
 	cryptPassPhrase string
-	client          grpcClient.Service
+	//client          grpcClient.Service
 }
 
 func New(validator validator.Validator, repo util.RepositoryUsers, uuid util.UUID, filter util.Filters, mBroker util.RepositoryMsgBroker, cryptPassPhrase string, client grpcClient.Service) (service users.Service) {
