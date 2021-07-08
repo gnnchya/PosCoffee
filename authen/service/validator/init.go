@@ -8,16 +8,16 @@ import (
 
 type GoPlayGroundValidator struct {
 	validate *validator.Validate
-	elasRepo util.RepositoryElas
+	repo util.Repository
 }
 
-func New(elasRepo util.RepositoryElas) (v *GoPlayGroundValidator) {
+func New(repo util.Repository) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
-		elasRepo: elasRepo,
+		repo: repo,
 	}
 	v.validate.RegisterStructValidation(v.UserCreateStructLevelValidation, &userin.CreateInput{})
-	v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
+	//v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
 	return v
 }
 
