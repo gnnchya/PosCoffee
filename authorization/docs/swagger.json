@@ -1,0 +1,1039 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/permissions": {
+          "get": {
+            "description": "Return a list of permissions filtered by a given filters if any",
+            "produces": [
+              "application/json"
+            ],
+            "tags": [
+              "Permissions"
+            ],
+            "summary": "Get a list of permissions",
+            "parameters": [
+              {
+                "type": "string",
+                "default": "Bearer \u003cAdd access token here\u003e",
+                "description": "Insert your access token",
+                "name": "Authorization",
+                "in": "header",
+                "required": true
+              },
+              {
+                "type": "string",
+                "description": "A page number",
+                "name": "page",
+                "in": "query"
+              },
+              {
+                "type": "string",
+                "description": "A total number of items per page",
+                "name": "per_page",
+                "in": "query"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Condition for permission retrieval, ex. 'method:eq:GET'",
+                "name": "filters",
+                "in": "query"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/SuccessResponse"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/PermissionsView"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "204": {
+                "description": "No Content",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "400": {
+                "description": "Bad Request",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "401": {
+                "description": "Unauthorized",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "403": {
+                "description": "Forbidden",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "500": {
+                "description": "Internal Server Error",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "503": {
+                "description": "Service Unavailable",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          },
+          "post": {
+            "description": "A newly created permissions ID will be given in a Content-Location response header",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "tags": [
+              "Permissions"
+            ],
+            "summary": "Create a new permissions",
+            "parameters": [
+              {
+                "type": "string",
+                "default": "Bearer \u003cAdd access token here\u003e",
+                "description": "Insert your access token",
+                "name": "Authorization",
+                "in": "header",
+                "required": true
+              },
+              {
+                "description": "Input",
+                "name": "input",
+                "in": "body",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/PermissionsCreateInput"
+                }
+              }
+            ],
+            "responses": {
+              "201": {
+                "description": "Created",
+                "schema": {
+                  "$ref": "#/definitions/SuccessResponse"
+                }
+              },
+              "400": {
+                "description": "Bad Request",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "401": {
+                "description": "Unauthorized",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "403": {
+                "description": "Forbidden",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "422": {
+                "description": "Unprocessable Entity",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "500": {
+                "description": "Internal Server Error",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              },
+              "503": {
+                "description": "Service Unavailable",
+                "schema": {
+                  "$ref": "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+      "/permissions/{id}": {
+        "get": {
+          "description": "Response a permission data with a given permission ID",
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Permissions"
+          ],
+          "summary": "Get a permission by permission ID",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "permission ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/SuccessResponse"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "$ref": "#/definitions/PermissionsView"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "204": {
+              "description": "No Content",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Update permission with a given permission ID according to a given data",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Permissions"
+          ],
+          "summary": "Update contents of a permission",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "permission ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            },
+            {
+              "description": "Input",
+              "name": "input",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PermissionsUpdateInput"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete permission with a given permission ID",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Permissions"
+          ],
+          "summary": "Delete contents of a permission",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "permission ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/roles": {
+        "get": {
+          "description": "Return a list of roles filtered by a given filters if any",
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Roles"
+          ],
+          "summary": "Get a list of roles",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "A page number",
+              "name": "page",
+              "in": "query"
+            },
+            {
+              "type": "string",
+              "description": "A total number of items per page",
+              "name": "per_page",
+              "in": "query"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Condition for role retrieval, ex. 'name:eq:some name'",
+              "name": "filters",
+              "in": "query"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/SuccessResponse"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/definitions/RolesView"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "204": {
+              "description": "No Content",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "A newly created roles ID will be given in a Content-Location response header",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Roles"
+          ],
+          "summary": "Create a new roles",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "description": "Input",
+              "name": "input",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/RolesCreateInput"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      },
+      "/roles/{id}": {
+        "get": {
+          "description": "Response a role data with a given role ID",
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Roles"
+          ],
+          "summary": "Get a role by role ID",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "role ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/SuccessResponse"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "$ref": "#/definitions/RolesView"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "204": {
+              "description": "No Content",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Update role with a given role ID according to a given data",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Roles"
+          ],
+          "summary": "Update contents of a role",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "role ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            },
+            {
+              "description": "Input",
+              "name": "input",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/RolesUpdateInput"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete role with a given role ID",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "tags": [
+            "Roles"
+          ],
+          "summary": "Delete contents of a role",
+          "parameters": [
+            {
+              "type": "string",
+              "default": "Bearer \u003cAdd access token here\u003e",
+              "description": "Insert your access token",
+              "name": "Authorization",
+              "in": "header",
+              "required": true
+            },
+            {
+              "type": "string",
+              "description": "role ID",
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/SuccessResponse"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            },
+            "503": {
+              "description": "Service Unavailable",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+        "ErrorItemResponse": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "subCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ErrorItemResponse"
+                }
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+        },
+      "PermissionsCreateInput": {
+        "type": "object",
+        "required": [
+          "endpoint",
+          "method"
+        ],
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "PermissionsUpdateInput": {
+        "type": "object",
+        "required": [
+          "endpoint",
+          "method"
+        ],
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "PermissionsView": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "integer"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "integer"
+          }
+        }
+      },
+      "RolesCreateInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "permissions"
+        ],
+        "properties": {
+          "name": {
+            "type": "object",
+            "$ref": "#/definitions/RolesLangInput"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RolesLangInput": {
+        "type": "object",
+        "required": [
+          "en",
+          "th"
+        ],
+        "properties": {
+          "en": {
+            "type": "string"
+          },
+          "th": {
+            "type": "string"
+          }
+        }
+      },
+      "RolesLangView": {
+        "type": "object",
+        "properties": {
+          "en": {
+            "type": "string"
+          },
+          "th": {
+            "type": "string"
+          }
+        }
+      },
+      "RolesUpdateInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "permissions"
+        ],
+        "properties": {
+          "name": {
+            "type": "object",
+            "$ref": "#/definitions/RolesLangInput"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RolesView": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object",
+            "$ref": "#/definitions/RolesLangView"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/out.Permission"
+            }
+          },
+          "updated_at": {
+            "type": "integer"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "object"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "out.Permission": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      }
+    }
+}

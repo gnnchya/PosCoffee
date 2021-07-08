@@ -1,0 +1,24 @@
+package migrations
+
+// import (
+// 	migrate "github.com/xakep666/mongo-migrate"
+// 	"go.mongodb.org/mongo-driver/mongo"
+// )
+
+func init() {
+	/*
+	 * up = migrate function
+	 * down = rollback function
+	 */
+	// var coll = "collection_name"
+	// var up migrate.MigrationFunc = func(db *mongo.Database) error {
+	// 	return nil
+	// }
+	// var down migrate.MigrationFunc = func(db *mongo.Database) error {
+	// 	return nil
+	// }
+	//
+	// if err := migrate.Register(up, down); err != nil {
+	// 	log.Fatal(err)
+	// }
+}
