@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"context"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -114,12 +115,17 @@ func (v *GoPlayGroundValidator) checkBankAccount(structLV validator.StructLevel,
 	}
 }
 
-//func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, structLV validator.StructLevel, mobileNumber string) {
-//	filters := []string{fmt.Sprintf("mobileNumber:eq:%s", mobileNumber), deleteAt}
-//	if err := v.usersRepo.Read(ctx, filters, &domain.Users{}); err == nil {
-//		structLV.ReportError(mobileNumber, "mobileNumber", "mobileNumber", "unique", "")
-//	}
-//}
+func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, structLV validator.StructLevel, mobileNumber string) {
+	//filters := []string{fmt.Sprintf("mobileNumber:eq:%s", mobileNumber), deleteAt}
+	//if err := v.usersRepo.Read(ctx, filters, &domain.Users{}); err == nil {
+	//	structLV.ReportError(mobileNumber, "mobileNumber", "mobileNumber", "unique", "")
+	//}
+	re := regexp.MustCompile("^[0-9]*$")
+	ok := re.MatchString(mobileNumber)
+	if !ok {
+		structLV.ReportError(mobileNumber, "mobile number", "mobile number", "match", "")
+	}
+}
 
 func (v *GoPlayGroundValidator) checkFormatEmail(structLV validator.StructLevel, email string) {
 	re := regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")

@@ -1,13 +1,14 @@
 package validator
 
 import (
+	"context"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 	"github.com/go-playground/validator/v10"
 )
 
 
 func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validator.StructLevel) {
-	//ctx := context.Background()
+	ctx := context.Background()
 	input := structLV.Current().Interface().(userin.CreateInput)
 	v.checkUsername(structLV, input.Username)
 	v.checkBankAccount(structLV, input.MetaData.BankAccount)
@@ -19,9 +20,8 @@ func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validat
 	v.checkLastNameTH(structLV, input.MetaData.Lastname.TH)
 	v.checkFormatEmail(structLV, input.MetaData.Email)
 	v.checkFormatBirthOfDate(structLV, int(input.MetaData.BirthDate))
-	//v.checkTH(structLV, input.Name)
-	// v.checkName(structLV, input.Name)
-	//v.checkNameUnique(ctx, structLV, input.Name)
-	//v.checkUserActualNameUnique(ctx, structLV, input.ActualName)
+	v.checkFormatGender(structLV, input.MetaData.Gender)
+	v.checkMobileNumberUnique(ctx, structLV, input.MetaData.MobileNumber)
+
 }
 
