@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
@@ -16,7 +17,7 @@ func (ctrl *Controller) Create(c *gin.Context) {
 
 	initID := goxid.New()
 	input.ID = initID.Gen()
-
+	fmt.Println("Register", input)
 	_, err := ctrl.service.Create(c, input)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)

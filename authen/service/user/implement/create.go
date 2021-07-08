@@ -44,7 +44,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 
 	user := input.ToDomain()
 
-	_, err = impl.repo.Create(ctx, user)
+	//_, err = impl.repo.Create(ctx, user)
 	if err != nil {
 		return "", err
 	}

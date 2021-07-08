@@ -32,7 +32,7 @@ func (v *GoPlayGroundValidator) checkValidUsername(structLV validator.StructLeve
 }
 
 func (v *GoPlayGroundValidator) checkFirstNameTH(structLV validator.StructLevel, firstNameTH string) {
-	re := regexp.MustCompile("[ก-๛]+")
+	re := regexp.MustCompile("^6[ก-๛]+$")
 	ok := re.MatchString(firstNameTH)
 	if !ok {
 		structLV.ReportError(firstNameTH, "firstNameTH", "firstNameTH", "match", "")
@@ -40,7 +40,7 @@ func (v *GoPlayGroundValidator) checkFirstNameTH(structLV validator.StructLevel,
 }
 
 func (v *GoPlayGroundValidator) checkLastNameTH(structLV validator.StructLevel, lastNameTH string) {
-	re := regexp.MustCompile("[ก-๛]+")
+	re := regexp.MustCompile("^[ก-๛]+$")
 	ok := re.MatchString(lastNameTH)
 	if !ok {
 		structLV.ReportError(lastNameTH, "lastNameTH", "lastNameTH", "match", "")
@@ -48,15 +48,16 @@ func (v *GoPlayGroundValidator) checkLastNameTH(structLV validator.StructLevel, 
 }
 
 func (v *GoPlayGroundValidator) checkFirstNameEN(structLV validator.StructLevel, firstNameEN string) {
-	re := regexp.MustCompile("[A-Za-z]+")
+	re := regexp.MustCompile("^[A-Za-z]+$")
 	ok := re.MatchString(firstNameEN)
+	fmt.Println("check firstname en", ok)
 	if !ok {
 		structLV.ReportError(firstNameEN, "firstNameEN", "firstNameEN", "match", "")
 	}
 }
 
 func (v *GoPlayGroundValidator) checkLastNameEN(structLV validator.StructLevel, lastNameEN string) {
-	re := regexp.MustCompile("[A-Za-z]+")
+	re := regexp.MustCompile("^[A-Za-z]+$")
 	ok := re.MatchString(lastNameEN)
 	if !ok {
 		structLV.ReportError(lastNameEN, "lastNameEN", "lastNameEN", "match", "")
