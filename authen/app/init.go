@@ -3,6 +3,8 @@ package app
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/middleware"
+	"github.com/gnnchya/PosCoffee/authen/service/authentication"
+	//"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf/authen"
 
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/authen/app/user"
@@ -14,14 +16,15 @@ type App struct {
 	user *user.Controller
 	middle middleware.Service
 	grpcService grpcService.Service
-
+	authService authentication.Service
 }
 
-func New(userService userService.Service, middle middleware.Service, grpcService grpcService.Service) *App {
+func New(userService userService.Service, authService authentication.Service, middle middleware.Service, grpcService grpcService.Service) *App {
 	return &App{
-		user: user.New(userService),
+		user: user.New(userService, authService, grpcService),
 		middle: middle,
 		grpcService: grpcService,
+		authService: authService,
 	}
 }
 
