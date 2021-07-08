@@ -9,8 +9,8 @@ import (
 type CreateInput struct {
 	ID  			string				`bson:"_id" json:"id"`
 	UID  			string				`bson:"uid" json:"uid"`
-	Username		string				`bson:"username" json:"username"`
-	Password 		string				`bson:"password" json:"password"`
+	Username		string				`bson:"username" json:"username" validate:"required"`
+	Password 		string				`bson:"password" json:"password" validate:"required"`
 	MetaData		MetaDataStruct	`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
 	CreatedAt 		int64				`bson:"created_at" json:"created_at"`

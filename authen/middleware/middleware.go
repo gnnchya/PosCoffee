@@ -19,12 +19,10 @@ func (middleware Service) AuthorizationLogin(service authentication.Service) gin
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-
 		if userID != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-
 	}
 }
 
