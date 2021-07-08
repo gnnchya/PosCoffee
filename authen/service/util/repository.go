@@ -10,6 +10,8 @@ import (
 
 type Repository interface {
 	Create(ctx context.Context, ent interface{}) (ID string, err error)
+	Read(ctx context.Context, filters []string, out interface{}) (err error)
+	Update(ctx context.Context, filters []string, ret interface{}) (err error)
 }
 
 type RepositoryUsers interface {
