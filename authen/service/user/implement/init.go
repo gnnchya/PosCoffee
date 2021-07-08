@@ -7,11 +7,13 @@ import (
 )
 
 type implementation struct {
-	validator validator.Validator
-	userRepo  util.RepositoryUsers
-	grpcRepo  util.RepositoryGRPC
+	validator       validator.Validator
+	repo            util.RepositoryUsers
+	//uuid            util.UUID
+	filter          util.Filters
+	//client          grpcClient.Service
 }
 
-func New(validator validator.Validator, userRepo util.RepositoryUsers, grpcRepo util.RepositoryGRPC) (service user.Service) {
-	return &implementation{validator, userRepo, grpcRepo}
+func New(validator validator.Validator, repo util.RepositoryUsers, filter util.Filters) (service user.Service) {
+	return &implementation{validator, repo, filter}
 }

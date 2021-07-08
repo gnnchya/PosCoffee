@@ -5,17 +5,17 @@ type UserStruct struct{
 	UID  			string				`bson:"uid" json:"uid"`
 	Username		string				`bson:"username" json:"username"`
 	Password 		string				`bson:"password" json:"password"`
-	MetaData		metadataStruct		`bson:"meta_data" json:"meta_data"`
-	Role			[]RoleStruct		`bson:"role_id" json:"role_id"`
-	CreateAt 		int64				`bson:"create_at" json:"create_at"`
-	UpdateAt 		int64				`bson:"update_at" json:"update_at"`
-	DeleteAt 		int64				`bson:"delete_at" json:"delete_at"`
+	MetaData		*MetaDataStruct		`bson:"meta_data" json:"meta_data"`
+	RoleID			[]string		`bson:"role_id" json:"role_id"`
+	CreatedAt 		int64				`bson:"created_at" json:"created_at"`
+	UpdatedAt 		int64				`bson:"updated_at" json:"updated_at"`
+	DeletedAt 		int64				`bson:"deleted_at" json:"deleted_at"`
 }
 
-type metadataStruct struct{
-	Prefix 			LanguageStruct		`bson:"prefix" json:"prefix"`
-	Name 			LanguageStruct		`bson:"name" json:"name"`
-	Lastname 		LanguageStruct		`bson:"lastname" json:"lastname"`
+type MetaDataStruct struct{
+	Prefix 			*LanguageStruct		`bson:"prefix" json:"prefix"`
+	Name 			*LanguageStruct		`bson:"name" json:"name"`
+	Lastname 		*LanguageStruct		`bson:"lastname" json:"lastname"`
 	Email 			string				`bson:"email" json:"email"`
 	MobileNumber	string				`bson:"mobile_number" json:"mobile_number"`
 	LineID			string				`bson:"line_id" json:"line_id"`
@@ -34,16 +34,19 @@ type ConsumerStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	ClientID		string 	`bson:"client_id" json:"client_id"`
 	ClientSecret	string 	`bson:"client_secret" json:"client_secret"`
+	Scope           string 	`bson:"scope" json:"scope"`
+	CreatedAt       int64  	`bson:"createdAt" json:"createdAt"`
 }
 
 type TokenStruct struct {
 	ID 				string 	`bson:"_id" json:"id"`
 	UID 			string	`bson:"uid" json:"uid"`
-	Token 			string	`bson:"token" json:"token"`
-	Expire 			string	`bson:"expire" json:"expire"`
+	AccessToken 	string	`bson:"access_token" json:"access_token"`
+	Expire 			int64	`bson:"expire" json:"expire"`
 	RefreshToken	string	`bson:"refresh_token" json:"refresh_token"`
-	RefreshExpire	string	`bson:"refresh_expire" json:"refresh_expire"`
+	RefreshExpire	int64	`bson:"refresh_expire" json:"refresh_expire"`
 }
+
 
 type PermissionStruct struct{
 	ID			string
@@ -76,41 +79,22 @@ type SearchValueStruct struct {
 	Value string `bson:"value" json:"value"`
 }
 
-type Users struct {
-	ID             string       `bson:"_id,omitempty"`
-	Prefix         *Lang        `bson:"prefix"`
-	FirstName      *Lang        `bson:"firstName"`
-	LastName       *Lang        `bson:"lastName"`
-	SignUpChannel  string       `bson:"signUpChannel"`
-	Email          string       `bson:"email"`
-	MobileNumber   string       `bson:"mobileNumber"`
-	IdentifyType   string       `bson:"identifyType"`
-	IdentifyNumber string       `bson:"identifyNumber"`
-	Password       string       `bson:"password"`
-	PassCode       string       `bson:"passCode"`
-	MetaData       *MetaData    `bson:"metaData"`
-	RoleID         []string     `bson:"roleID"`
-	MemberGroup    *MemberGroup `bson:"memberGroup"`
-	CreatedAt      int64        `bson:"createdAt"`
-	UpdatedAt      int64        `bson:"updatedAt"`
-	DeletedAt      *int64       `bson:"deletedAt"`
+type Paginator struct {
+	Total   int
+	CurPage int
+	PerPage int
+	HasMore bool
 }
 
-type Lang struct {
-	Th string `bson:"th"`
-	En string `bson:"en"`
+type PageOption struct {
+	Page    int      `form:"page" validate:"min=0"`
+	PerPage int      `form:"per_page" validate:"min=0"`
+	Filters []string `form:"filters"`
+	Sorts   []string `form:"sorts"`
 }
 
-type MetaData struct {
-	Gender    string  `bson:"gender"`
-	BirthDate int     `bson:"birthDate"`
-	YearOnly  bool    `bson:"yearOnly"`
-	Weight    float64 `bson:"weight"`
-	Height    float64 `bson:"height"`
-}
-
-
-type MemberGroup struct {
-	Name    string   `bson:"name"`
-	Members []string `bson:"members"`
+type SetOpParam struct {
+	Filters      []string
+	SetFieldName string
+	Item         interface{}
 }
