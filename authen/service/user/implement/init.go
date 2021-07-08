@@ -1,17 +1,22 @@
 package implement
 
 import (
-	"github.com/gnnchya/PosCoffee/authen/service/user"
-	"github.com/gnnchya/PosCoffee/authen/service/util"
-	"github.com/gnnchya/PosCoffee/authen/service/validator"
+	grpcClient "git.touchdevops.com/touchtechnologies/authentication-service/service/grpcClient"
+	"git.touchdevops.com/touchtechnologies/authentication-service/service/users"
+	"git.touchdevops.com/touchtechnologies/authentication-service/service/util"
+	"git.touchdevops.com/touchtechnologies/authentication-service/service/validator"
 )
 
 type implementation struct {
-	validator validator.Validator
-	userRepo  util.RepositoryUsers
-	grpcRepo  util.RepositoryGRPC
+	validator       validator.Validator
+	repo            util.RepositoryUsers
+	uuid            util.UUID
+	filter          util.Filters
+	mBroker         util.RepositoryMsgBroker
+	cryptPassPhrase string
+	client          grpcClient.Service
 }
 
-func New(validator validator.Validator, userRepo util.RepositoryUsers, grpcRepo util.RepositoryGRPC) (service user.Service) {
-	return &implementation{validator, userRepo, grpcRepo}
+func New(validator validator.Validator, repo util.RepositoryUsers, uuid util.UUID, filter util.Filters, mBroker util.RepositoryMsgBroker, cryptPassPhrase string, client grpcClient.Service) (service users.Service) {
+	return &implementation{validator, repo, uuid, filter, mBroker, cryptPassPhrase, client}
 }

@@ -3,50 +3,35 @@ package userin
 import (
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"github.com/modern-go/reflect2"
-
 	"github.com/uniplaces/carbon"
 )
 
-
 type CreateInput struct {
-	ID             string       `json:"id"`
-	Prefix         *Lang 		`json:"prefix"`
-	FirstName      *Lang 		`json:"first_name" validate:"required"`
-	LastName       *Lang 		`json:"last_name" validate:"required"`
-	SignUpChannel  string       `json:"sign_up_channel"`
-	Email          string       `json:"email"`
-	MobileNumber   string       `json:"mobile_number" validate:"required"`
-	IdentifyType   string       `json:"identify_type" validate:"required"`
-	IdentifyNumber string       `json:"identify_number" validate:"required"`
-	Password       string       `json:"password" validate:"required"`
-	PassCode       string       `json:"passcode"`
-	RoleID         []string     `json:"role_id"`
-	MemberGroup    *MemberGroup `json:"member_group"`
-	*MetaData      				`validate:"required"`
+	ID  			string				`bson:"_id" json:"id"`
+	UID  			string				`bson:"uid" json:"uid"`
+	Username		string				`bson:"username" json:"username"`
+	Password 		string				`bson:"password" json:"password"`
+	MetaData		MetaDataStruct	`bson:"meta_data" json:"meta_data"`
+	RoleID			[]string		`bson:"role_id" json:"role_id"`
+	CreatedAt 		int64				`bson:"created_at" json:"created_at"`
+	UpdatedAt 		int64				`bson:"updated_at" json:"updated_at"`
+	DeletedAt 		int64				`bson:"deleted_at" json:"deleted_at"`
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.Users) {
+func (input *CreateInput) ToDomain() (users *domain.UserStruct) {
 	if reflect2.IsNil(input) {
-		return &domain.Users{}
+		return &domain.UserStruct{}
 	}
-
-	return &domain.Users{
+	return &domain.UserStruct{
 		ID:             input.ID,
-		Prefix:         input.Prefix.ToDomain(),
-		FirstName:      input.FirstName.ToDomain(),
-		LastName:       input.LastName.ToDomain(),
-		SignUpChannel:  input.SignUpChannel,
-		Email:          input.Email,
-		MobileNumber:   input.MobileNumber,
-		IdentifyType:   input.IdentifyType,
-		IdentifyNumber: input.IdentifyNumber,
+		UID:			input.UID,
+		Username: 		input.Username,
 		Password:       input.Password,
-		PassCode:       input.PassCode,
-		RoleID:         input.RoleID,
-		MemberGroup:    input.MemberGroup.ToDomain(),
 		MetaData:       input.MetaData.ToDomain(),
+		RoleID:         input.RoleID,
 		CreatedAt:      carbon.Now().Unix(),
 		UpdatedAt:      carbon.Now().Unix(),
+		DeletedAt: 		0,
 	}
 }
 

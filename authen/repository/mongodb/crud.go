@@ -35,7 +35,7 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 	return err
 }
 
-func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.Users, err error) {
+func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.UserStruct, err error) {
 	state, err := repo.CheckExistID(ctx, id)
 	if err != nil{
 		return resultStruct, err
@@ -46,7 +46,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	return resultStruct, err
 }
 
-func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.Users, error) {
+func (repo *Repository) ReadAll(ctx context.Context, perPage int, page int) ([]domain.UserStruct, error) {
 	skip := int64(page * perPage)
 	limit := int64(perPage)
 	opts := options.FindOptions{
