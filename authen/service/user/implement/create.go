@@ -27,25 +27,25 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 		return "", util.ValidationCreateErr(err)
 	}
 
-	encodeIdentifyNumber, err := util.Encrypt([]byte(input.IdentifyNumber), impl.cryptPassPhrase)
-	if err != nil {
-		return "", util.RepoCreateErr(err)
-	}
+	//encodeIdentifyNumber, err := util.Encrypt([]byte(input.IdentifyNumber), impl.cryptPassPhrase)
+	//if err != nil {
+	//	return "", util.RepoCreateErr(err)
+	//}
 
 	hashPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
 	if err != nil {
-		return "", util.RepoCreateErr(err)
+		return "", err
 	}
 
-	hashPassCode, err := bcrypt.GenerateFromPassword([]byte(input.PassCode), bcrypt.DefaultCost)
-	if err != nil {
-		return "", util.RepoCreateErr(err)
-	}
+	//hashPassCode, err := bcrypt.GenerateFromPassword([]byte(input.PassCode), bcrypt.DefaultCost)
+	//if err != nil {
+	//	return "", util.RepoCreateErr(err)
+	//}
 
-	input.ID = impl.uuid.Generate()
-	input.IdentifyNumber = encodeIdentifyNumber
+	//input.ID = impl.uuid.Generate()
+	//input.IdentifyNumber = encodeIdentifyNumber
 	input.Password = string(hashPassword)
-	input.PassCode = string(hashPassCode)
+	//input.PassCode = string(hashPassCode)
 
 	user := input.ToDomain()
 
