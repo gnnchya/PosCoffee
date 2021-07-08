@@ -22,6 +22,5 @@ func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validat
 	v.checkFormatBirthOfDate(structLV, int(input.MetaData.BirthDate))
 	v.checkFormatGender(structLV, input.MetaData.Gender)
 	v.checkMobileNumberUnique(ctx, structLV, input.MetaData.MobileNumber)
-
 }
 
