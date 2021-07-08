@@ -23,7 +23,7 @@ func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name str
 	}
 }
 
-func (v *GoPlayGroundValidator) checkValidUsername(structLV validator.StructLevel, name string) {
+func (v *GoPlayGroundValidator) checkUsername(structLV validator.StructLevel, name string) {
 	re := regexp.MustCompile("^[a-zA-Z][a-zA-Z0-9]{7,19}$")
 	ok := re.MatchString(name)
 	if !ok {
@@ -32,7 +32,7 @@ func (v *GoPlayGroundValidator) checkValidUsername(structLV validator.StructLeve
 }
 
 func (v *GoPlayGroundValidator) checkFirstNameTH(structLV validator.StructLevel, firstNameTH string) {
-	re := regexp.MustCompile("^6[ก-๛]+$")
+	re := regexp.MustCompile("^[ก-๛]+$")
 	ok := re.MatchString(firstNameTH)
 	if !ok {
 		structLV.ReportError(firstNameTH, "firstNameTH", "firstNameTH", "match", "")

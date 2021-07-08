@@ -9,7 +9,7 @@ import (
 func (v *GoPlayGroundValidator) UserCreateStructLevelValidation(structLV validator.StructLevel) {
 	//ctx := context.Background()
 	input := structLV.Current().Interface().(userin.CreateInput)
-	v.checkValidUsername(structLV, input.Username)
+	v.checkUsername(structLV, input.Username)
 	v.checkBankAccount(structLV, input.MetaData.BankAccount)
 	v.checkPrefixEN(structLV, input.MetaData.Prefix.EN)
 	v.checkPrefixTH(structLV, input.MetaData.Prefix.TH)
