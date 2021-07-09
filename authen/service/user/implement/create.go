@@ -31,7 +31,6 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	if err != nil {
 		return "", err
 	}
-
 	//hashPassCode, err := bcrypt.GenerateFromPassword([]byte(input.PassCode), bcrypt.DefaultCost)
 	//if err != nil {
 	//	return "", util.RepoCreateErr(err)
@@ -44,7 +43,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 
 	user := input.ToDomain()
 
-	//_, err = impl.repo.Create(ctx, user)
+	_, err = impl.repo.Create(ctx, user)
 	if err != nil {
 		return "", err
 	}
