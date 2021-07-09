@@ -29,7 +29,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		adminRoute.PUT("/menu/:role", app.user.Update)
 		adminRoute.DELETE("/menu/:id/:role", app.user.Delete)
 		adminRoute.GET("/menu/:id/:role", app.user.Read)
-		//adminRoute.GET("/menu", app.user.ReadAll)
+		adminRoute.GET("/menu", app.user.ReadAll)
 		adminRoute.GET("/menu/search/:role", app.user.SearchMenu)
 		adminRoute.GET("/menu/category/:role", app.user.SearchCategory)
 		adminRoute.GET("/menu/ingredients/:role", app.user.SearchIngredient)

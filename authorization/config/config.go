@@ -8,7 +8,7 @@ type Config struct {
 	AppName string `env:"APP_NAME" envDefault:"gogo_blueprint"`
 
 	// MongoDB config
-	MongoDBEndpoint            string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://localhost:27017"`
+	MongoDBEndpoint            string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://localhost:27015"`
 	MongoDBName                string `env:"MONGODB_NAME" envDefault:"authorization_service"`
 	MongoDBRoleTableName       string `env:"MONGODB_ROLE_TABLE_NAME" envDefault:"roles"`
 	MongoDBPermissionTableName string `env:"MONGODB_PERMISSION_TABLE_NAME" envDefault:"permissions"`
