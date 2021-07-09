@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"github.com/gnnchya/PosCoffee/oAuth/domain"
 	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 	"github.com/gnnchya/PosCoffee/oAuth/service/util"
 	"github.com/go-playground/validator/v10"
@@ -19,6 +20,8 @@ func New(consumerRepo util.Repository, tokenRepo util.Repository ) (v *GoPlayGro
 		tokenRepo: tokenRepo,
 	}
 	v.validate.RegisterStructValidation(v.ConsumerCreateStructLevelValidation, &consumerin.CreateConsumerInput{})
+	v.validate.RegisterStructValidation(v.PageOptionStructLevelValidation, &domain.PageOption{})
+
 	return v
 }
 
