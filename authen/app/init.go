@@ -35,12 +35,12 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		//apiRoutes.GET("/menu", app.user.ReadAll)
 		//apiRoutes.POST("/menu/:id/cart", app.user.ToCart)
 	}
-	//loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
-	//loginRoute := router.Group("/user", loginMiddleware)
-	//{
-	//	loginRoute.POST("/login", app.user.Create)
-	//}
-	//
+	loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
+	loginRoute := router.Group("/user", loginMiddleware)
+	{
+		loginRoute.POST("/login", app.user.Create)
+	}
+
 	//authMiddleware := app.middle.Authorization(app.middle.Auth)
 	//authRoute := router.Group("/authorization", authMiddleware)
 	//{
