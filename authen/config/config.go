@@ -20,6 +20,8 @@ type Config struct {
 
 	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
+	GRPCAuthenHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50055"`
+
 
 	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/api/v1/request"`
 	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/api/v1/revoke"`
@@ -32,6 +34,7 @@ type Config struct {
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27016"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"user"`
 	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"user"`
+
 }
 
 func Get() *Config {
