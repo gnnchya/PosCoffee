@@ -1,6 +1,7 @@
 package implement
 
 import (
+	"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf"
 	"google.golang.org/grpc"
 
 	grpcService "github.com/gnnchya/PosCoffee/authorize/service/grpc"
@@ -11,6 +12,7 @@ import (
 type implementation struct {
 	conn   *grpc.ClientConn
 	client pb.AuthenticationClient
+	clientPermission protobuf.AuthorizeClient
 }
 
 func New(grpcRepo util.RepositoryGRPC) (service grpcService.Service) {
@@ -21,6 +23,7 @@ func New(grpcRepo util.RepositoryGRPC) (service grpcService.Service) {
 	impl := &implementation{
 		conn:   conn,
 		client: pb.NewAuthenticationClient(conn),
+		clientPermission: protobuf.NewAuthorizeClient(conn),
 	}
 	return impl
 
