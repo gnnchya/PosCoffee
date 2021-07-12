@@ -6,7 +6,6 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
-	"github.com/gnnchya/PosCoffee/authorize/service/util"
 	"github.com/modern-go/reflect2"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
