@@ -9,10 +9,9 @@ func makeClientFilters(filter util.Filters, clientID string, clientSecret string
 	}
 }
 
-func makeConsumerFilters(filter util.Filters, clientID, clientSecret, redirectUri string) (filters []string) {
+func makeConsumerFilters(filter util.Filters, clientID string, clientSecret string) (filters []string) {
 	return []string{
 		filter.MakeClientIdString(clientID),
 		filter.MakeClientSecretString(clientSecret),
-		filter.MakeRedirectUriString(redirectUri),
 	}
 }

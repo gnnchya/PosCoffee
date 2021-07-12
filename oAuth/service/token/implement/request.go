@@ -15,7 +15,7 @@ import (
 func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestInput, r *http.Request) (view *out.TokenView, err error) {
 
 	consumer := &domain.ConsumerStruct{}
-	filters := makeConsumerFilters(impl.filter, input.ClientID, input.ClientSecret, input.RedirectUri)
+	filters := makeConsumerFilters(impl.filter, input.ClientID, input.ClientSecret)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
 	if err != nil {
