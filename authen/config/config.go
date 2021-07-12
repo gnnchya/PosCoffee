@@ -23,11 +23,11 @@ type Config struct {
 	GRPCAuthenHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50055"`
 
 
-	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/api/v1/request"`
-	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/api/v1/revoke"`
-	ValidateTokenURL string `env:"VALIDATE_TOKEN_URL" envDefault:"http://localhost:9090/api/v1/validate"`
-	ClientId         string `env:"CLIENT_ID" envDefault:"948cb005Jed97S4726Hbc20xc5dda3384a82"`
-	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"55ba3288J7fdaS483bH8f1fxacef36455013"`
+	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/pos/request"`
+	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/pos/revoke"`
+	ValidateTokenURL string `env:"VALIDATE_TOKEN_URL" envDefault:"http://localhost:9090/pos/validate"`
+	ClientId         string `env:"CLIENT_ID" envDefault:"c8d5a7a6J27e2S457cH9e3fx93e0f9a11314"`
+	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"94a420f8J0c80S41b6H8266x1267a30a6b56"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
 	GrantType        string `env:"GRANT_TYPE" envDefault:"password"`
 

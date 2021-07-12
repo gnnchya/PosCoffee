@@ -33,7 +33,7 @@ func (impl *implementation) VerifyToken(accessToken string) (userID *string, err
 
 		}
 	}(resp.Body)
-
+	fmt.Println("response from oAuth", resp)
 	body, _ := ioutil.ReadAll(resp.Body)
 	if resp.Status != "200 OK" {
 		return nil, errors.New("error")

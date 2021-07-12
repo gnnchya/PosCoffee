@@ -1,6 +1,7 @@
 package token
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +17,7 @@ func (ctrl *Controller) ValidateToken(c *gin.Context) {
 		"handler.token.Validate",
 	)
 	defer span.Finish()
-
+	fmt.Println("in validate token")
 	auth := c.Request.Header.Get("Authorization")
 
 	token, err := ctrl.service.ValidateToken(ctx, &auth)

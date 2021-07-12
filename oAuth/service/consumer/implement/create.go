@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 )
 
@@ -30,6 +31,7 @@ func (impl *implementation) Create(ctx context.Context, input *consumerin.Create
 	if err != nil {
 		return "", err
 	}
-
+	fmt.Println("clientID", consumer.ClientID)
+	fmt.Println("clientSecret", consumer.ClientSecret)
 	return consumer.ID, nil
 }
