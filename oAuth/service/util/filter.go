@@ -26,16 +26,16 @@ func (f *Filter) MakeIdFilters(id string) (filters []string) {
 
 func (f *Filter) MakeAccessTokenFilter(access string) (filters []string) {
 	return []string{
-		fmt.Sprintf("accessToken:eq:%s", access),
+		fmt.Sprintf("access_token:eq:%s", access),
 	}
 }
 
 func (f *Filter) MakeClientIdString(clientID string) (filters string) {
-	return fmt.Sprintf("clientId:eq:%s", clientID)
+	return fmt.Sprintf("client_id:eq:%s", clientID)
 }
 
 func (f *Filter) MakeClientSecretString(clientSecret string) (filters string) {
-	return fmt.Sprintf("clientSecret:eq:%s", clientSecret)
+	return fmt.Sprintf("client_secret:eq:%s", clientSecret)
 }
 
 func (f *Filter) MakeRedirectUriString(redirectUri string) (filters string) {
@@ -44,6 +44,6 @@ func (f *Filter) MakeRedirectUriString(redirectUri string) (filters string) {
 
 func (f *Filter) MakeUserIDString(userID string) (filters []string) {
 	return []string{
-		fmt.Sprintf("userId:eq:%s", userID),
+		fmt.Sprintf("uid:eq:%s", userID),
 	}
 }
