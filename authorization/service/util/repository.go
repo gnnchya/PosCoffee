@@ -2,11 +2,10 @@ package util
 
 import (
 	"context"
-
-	"go.mongodb.org/mongo-driver/bson"
-	"google.golang.org/grpc"
+	"net"
 
 	"github.com/gnnchya/PosCoffee/authorize/domain"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 //go:generate mockery --name=Repository
@@ -28,5 +27,5 @@ type Repository interface {
 }
 
 type RepositoryGRPC interface {
-	NewClient() (*grpc.ClientConn, error)
+	NetListener() (lis net.Listener, err error)
 }

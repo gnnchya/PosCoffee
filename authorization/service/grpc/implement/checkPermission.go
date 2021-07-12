@@ -3,20 +3,15 @@ package implement
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"time"
 )
 
-func (impl *implementation) CheckPermission(data *protobuf.RequestPermission) (res *protobuf.ReplyPermission, err error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	res, err = impl.clientPermission.CheckPermission(ctx, data)
-
-	if status.Code(err) != codes.OK {
+func (impl implementation) CheckPermission(ctx context.Context, input *protobuf.RequestPermission) (output *protobuf.ReplyPermission, err error) {
+	role, err := impl.roleService.CheckPermission(ctx, input.Roles, input.Permission)
+	if err != nil{
 		return nil, err
 	}
-	return res, nil
+	out := &protobuf.ReplyPermission{Allow: role}
+
+	return out, nil
 }
 

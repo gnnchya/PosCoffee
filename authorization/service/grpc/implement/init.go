@@ -2,29 +2,30 @@ package implement
 
 import (
 	"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf"
+	permissionsService "github.com/gnnchya/PosCoffee/authorize/service/permissions"
+	rolesService "github.com/gnnchya/PosCoffee/authorize/service/roles"
 	"google.golang.org/grpc"
+	"log"
 
 	grpcService "github.com/gnnchya/PosCoffee/authorize/service/grpc"
-	pb "github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf/authen"
 	"github.com/gnnchya/PosCoffee/authorize/service/util"
 )
 
 type implementation struct {
-	conn   *grpc.ClientConn
-	client pb.AuthenticationClient
-	clientPermission protobuf.AuthorizeClient
+	permissionService permissionsService.Service
+	roleService rolesService.Service
 }
 
-func New(grpcRepo util.RepositoryGRPC) (service grpcService.Service) {
-	conn, err := grpcRepo.NewClient()
-	if err != nil {
-		return nil
+func New(grpcRepo util.RepositoryGRPC, permission permissionsService.Service, role rolesService.Service) (service grpcService.Service) {
+	impl := implementation{
+		permissionService: permission,
+		roleService:       role,
 	}
-	impl := &implementation{
-		conn:   conn,
-		client: pb.NewAuthenticationClient(conn),
-		clientPermission: protobuf.NewAuthorizeClient(conn),
+	grpcServer := grpc.NewServer()
+	lis, err := grpcRepo.NetListener()
+	protobuf.RegisterAuthorizeServer(grpcServer, &impl)
+	if err = grpcServer.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
 	}
 	return impl
-
 }

@@ -15,4 +15,5 @@ type Service interface {
 	Read(ctx context.Context, input *rolesin.ReadInput)(role *out.RolesView, err error)
 	Update(ctx context.Context, input *rolesin.UpdateInput) (err error)
 	Delete(ctx context.Context, input *rolesin.DeleteInput) (err error)
+	CheckPermission(ctx context.Context, roles []string, permission string) (allow bool, err error)
 }
