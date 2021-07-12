@@ -17,6 +17,8 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	input.RoleID = role
 	initID := goxid.New()
 	input.ID = initID.Gen()
+	initUID := goxid.New()
+	input.UID = initUID.Gen()
 	fmt.Println("Register", input)
 	_, err := ctrl.service.Create(c, input)
 	if err != nil {
