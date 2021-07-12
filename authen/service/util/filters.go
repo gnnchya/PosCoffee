@@ -10,6 +10,7 @@ type Filters interface {
 	MakeFilterEmailString(email string) (filters string)
 	MakeIdFiltersNotEqualString(id string) (filters string)
 	MakeFilterMobileNumberString(email string) (filters string)
+	MakeFilterUserName(username string) (filters []string)
 }
 
 type Filter struct{}
@@ -40,3 +41,6 @@ func (f *Filter) MakeFilterMobileNumberString(mobileNumber string) (filters stri
 	return fmt.Sprintf("mobile_number:eq:%s", mobileNumber)
 }
 
+func (f *Filter) MakeFilterUserName(username string) (filters []string) {
+	return fmt.Sprintf("username:eq:%s", username)
+}

@@ -34,7 +34,7 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 
 func (impl *implementation) login(username, password string) (userID string, err error) {
 	users := &domain.UserStruct{}
-	filters := MakeFilterEmailORMobileNumber(impl.filter, username)
+	filters := impl.filter.MakeFilterUserName(username)
 	err = impl.usersRepo.Read(context.Background(), filters, users)
 	if err != nil {
 		return "", err
