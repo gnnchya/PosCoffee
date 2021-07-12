@@ -41,7 +41,9 @@ func New(userService userService.Service, authService authentication.Service, mi
 func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/authen", app.user.Create)
+		apiRoutes.POST("/authen/staff", app.user.CreateStaff)
+		apiRoutes.POST("/authen/owner", app.user.CreateOwner)()
+		apiRoutes.POST("/authen/admin", app.user.CreateAdmin)
 		//apiRoutes.GET("/menu/:id", app.user.Read)
 		//apiRoutes.PUT("/menu", app.user.Update)
 		//apiRoutes.DELETE("/menu/:id", app.user.Delete)
@@ -51,7 +53,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 	loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
 	loginRoute := router.Group("/user", loginMiddleware)
 	{
-		loginRoute.POST("/login", app.user.Create)
+		loginRoute.POST("/login", app.user.Login)
 	}
 
 	//authMiddleware := app.middle.Authorization(app.middle.Auth)
