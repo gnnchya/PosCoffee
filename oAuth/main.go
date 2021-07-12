@@ -16,5 +16,5 @@ func main() {
 	_ = newApp(appConfig).RegisterRoute(router)
 
 	// Gin start listen
-	_ = router.Run(":8081")
+	_ = router.Run(":9090")
 }
