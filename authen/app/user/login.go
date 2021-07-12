@@ -21,6 +21,7 @@ import (
 // @Failure 401 {object} view.ErrResp
 // @Router /login [post]
 func (ctrl *Controller) Login(c *gin.Context) {
+
 	span, _ := opentracing.StartSpanFromContextWithTracer(
 		c.Request.Context(),
 		opentracing.GlobalTracer(),

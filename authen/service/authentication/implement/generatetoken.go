@@ -1,11 +1,14 @@
 package implement
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
+	"github.com/gnnchya/PosCoffee/authorize/service/util"
 	"github.com/modern-go/reflect2"
+	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -14,9 +17,9 @@ import (
 
 func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (token *out.Token, err error) {
 	err = impl.validator.Validate(input)
-	//if err != nil {
-	//	return nil, util.ValidationCreateErr(err)
-	//}
+	if err != nil {
+		return nil, err
+	}
 
 	userID, err := impl.login(input.Username, input.Password)
 	if err != nil {
@@ -32,16 +35,16 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 
 func (impl *implementation) login(username, password string) (userID string, err error) {
 	users := &domain.UserStruct{}
-	//filters := MakeFilterEmailORMobileNumber(impl.filter, username)
-	//err = impl.usersRepo.Read(context.Background(), filters, users)
-	//if err != nil {
-	//	return "", util.Unauthorized(err)
-	//}
+	filters := MakeFilterEmailORMobileNumber(impl.filter, username)
+	err = impl.usersRepo.Read(context.Background(), filters, users)
+	if err != nil {
+		return "", err
+	}
 
-	//err = bcrypt.CompareHashAndPassword([]byte(users.Password), []byte(password))
-	//if err != nil {
-	//	return "", util.Unauthorized(err)
-	//}
+	err = bcrypt.CompareHashAndPassword([]byte(users.Password), []byte(password))
+	if err != nil {
+		return "", err
+	}
 
 	return users.ID, nil
 }
