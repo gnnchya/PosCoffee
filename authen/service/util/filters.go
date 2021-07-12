@@ -42,5 +42,7 @@ func (f *Filter) MakeFilterMobileNumberString(mobileNumber string) (filters stri
 }
 
 func (f *Filter) MakeFilterUserName(username string) (filters []string) {
-	return fmt.Sprintf("username:eq:%s", username)
+	return []string{
+		fmt.Sprintf("username:eq:%s", username),
+	}
 }
