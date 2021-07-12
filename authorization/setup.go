@@ -32,7 +32,8 @@ import (
 	rolesService "github.com/gnnchya/PosCoffee/authorize/service/roles/implement"
 
 	grpcRepo "github.com/gnnchya/PosCoffee/authorize/repository/grpc"
-	grpcService "github.com/gnnchya/PosCoffee/authorize/service/grpc/implement"
+	grpcServiceServer "github.com/gnnchya/PosCoffee/authorize/service/grpc/implement"
+	grpcService "github.com/gnnchya/PosCoffee/authorize/service/grpcClient/implement"
 )
 
 const (
@@ -67,6 +68,7 @@ func newApp(appConfig *config.Config) *app.App {
 
 	// middleware services
 	midService := middleware.New(appConfig, gService, role)
+	go grpcServiceServer.New(grpcRepo, permission, role)
 
 	return app.New(permission, role, appConfig, midService)
 }

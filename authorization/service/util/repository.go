@@ -2,6 +2,7 @@ package util
 
 import (
 	"context"
+	"google.golang.org/grpc"
 	"net"
 
 	"github.com/gnnchya/PosCoffee/authorize/domain"
@@ -28,4 +29,5 @@ type Repository interface {
 
 type RepositoryGRPC interface {
 	NetListener() (lis net.Listener, err error)
+	NewClient() (*grpc.ClientConn, error)
 }
