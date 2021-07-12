@@ -11,24 +11,11 @@ import (
 	userService "github.com/gnnchya/PosCoffee/authen/service/user"
 )
 
-type Roles struct{
-	Owner string
-	Staff string
-	Admin string
-	Report string
-	Stock string
-	Menu string
-	Money string
-	Transaction string
-}
-
 type App struct {
 	user *user.Controller
 	middle middleware.Service
 	authService authentication.Service
 }
-
-var RoleID = Roles{"0001","0002","0003","0004","0005","0006","0007","0008"}
 
 func New(userService userService.Service, authService authentication.Service, middle middleware.Service) *App {
 	return &App{
