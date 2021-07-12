@@ -26,8 +26,8 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	}
 	req.Header.Set("Accept", AppJson)
 	req.Header.Set("Content-Type", AppFrom)
-	req.Header.Set("ClientSecret", config.Get().ClientId)
-	req.Header.Set("ClientID", config.Get().ClientSecret)
+	req.Header.Set("ClientID", config.Get().ClientId)
+	req.Header.Set("ClientSecret", config.Get().ClientSecret)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
