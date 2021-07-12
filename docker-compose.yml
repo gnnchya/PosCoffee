@@ -124,29 +124,29 @@ services: # each service run simultaneously (parallel)
 #    ports:
 #      - "27018:27017"
 #
-#  authendb:
-#    image: mongo:4.4 # need to specify the version to prevent code corruption
-#    #    container_name: mongodb
-#    environment: # variable of the server or OS
-#      #      MONGO_INITDB_DATABASE: gin
-#      MONGO_INITDB_ROOT_USERNAME: touch
-#      MONGO_INITDB_ROOT_PASSWORD: touchja
-#    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
-#    #      - "$PWD/data:/data/db"
-#    ports:
-#      - "27016:27017"
+  authendb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27016:27017"
 #
-#  authorizedb:
-#    image: mongo:4.4 # need to specify the version to prevent code corruption
-#    #    container_name: mongodb
-#    environment: # variable of the server or OS
-#      #      MONGO_INITDB_DATABASE: gin
-#      MONGO_INITDB_ROOT_USERNAME: touch
-#      MONGO_INITDB_ROOT_PASSWORD: touchja
-#    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
-#    #      - "$PWD/data:/data/db"
-#    ports:
-#      - "27015:27017"
+  authorizedb:
+    image: mongo:4.4 # need to specify the version to prevent code corruption
+    #    container_name: mongodb
+    environment: # variable of the server or OS
+      #      MONGO_INITDB_DATABASE: gin
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: touchja
+    #    volumes: # need to know where the specific file of that service locate at. Search "data path {service name}"
+    #      - "$PWD/data:/data/db"
+    ports:
+      - "27015:27017"
 #
 #  oauthdb:
 #    image: mongo:4.4 # need to specify the version to prevent code corruption
