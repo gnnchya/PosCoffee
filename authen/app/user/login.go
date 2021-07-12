@@ -37,7 +37,7 @@ func (ctrl *Controller) Login(c *gin.Context) {
 
 	token, err := ctrl.authService.GenerateToken(input)
 	if err != nil {
-		view.MakeErrResp2(c,0, err)
+		view.MakeErrResp2(c,1, err)
 		return
 	}
 
