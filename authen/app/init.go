@@ -42,7 +42,7 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
 		apiRoutes.POST("/authen/staff", app.user.CreateStaff)
-		apiRoutes.POST("/authen/owner", app.user.CreateOwner)()
+		apiRoutes.POST("/authen/owner", app.user.CreateOwner)
 		apiRoutes.POST("/authen/admin", app.user.CreateAdmin)
 		//apiRoutes.GET("/menu/:id", app.user.Read)
 		//apiRoutes.PUT("/menu", app.user.Update)
