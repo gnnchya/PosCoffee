@@ -98,3 +98,9 @@ type SetOpParam struct {
 	SetFieldName string
 	Item         interface{}
 }
+
+type TokenView struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	Expired      int64  `json:"expired"`
+}
