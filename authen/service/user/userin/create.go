@@ -13,9 +13,6 @@ type CreateInput struct {
 	Password 		string				`bson:"password" json:"password" validate:"required"`
 	MetaData		MetaDataStruct	`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
-	CreatedAt 		int64				`bson:"created_at" json:"created_at"`
-	UpdatedAt 		int64				`bson:"updated_at" json:"updated_at"`
-	DeletedAt 		int64				`bson:"deleted_at" json:"deleted_at"`
 }
 
 func (input *CreateInput) ToDomain() (users *domain.UserStruct) {
