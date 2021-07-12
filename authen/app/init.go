@@ -28,14 +28,10 @@ func New(userService userService.Service, authService authentication.Service, mi
 func (app *App) RegisterRoute(router *gin.Engine) *App {
 	apiRoutes := router.Group("/pos")
 	{
-		apiRoutes.POST("/authen/staff", app.user.CreateStaff)
-		apiRoutes.POST("/authen/owner", app.user.CreateOwner)
-		apiRoutes.POST("/authen/admin", app.user.CreateAdmin)
-		//apiRoutes.GET("/menu/:id", app.user.Read)
-		//apiRoutes.PUT("/menu", app.user.Update)
-		//apiRoutes.DELETE("/menu/:id", app.user.Delete)
-		//apiRoutes.GET("/menu", app.user.ReadAll)
-		//apiRoutes.POST("/menu/:id/cart", app.user.ToCart)
+		apiRoutes.POST("/register/staff", app.user.CreateStaff)
+		apiRoutes.POST("/register/owner", app.user.CreateOwner)
+		apiRoutes.POST("/register/admin", app.user.CreateAdmin)
+
 	}
 	loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
 	loginRoute := router.Group("/user", loginMiddleware)
