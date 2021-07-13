@@ -21,11 +21,12 @@ func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
-	gService := grpcService.New(grpcRepo)
+	grpcRepoMiddleware := repoGrpc.New(configGrpcMiddleware(appConfig))
+	gService := grpcService.New(grpcRepo, grpcRepoMiddleware)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
 
-	user := userService.New(validator, uRepo, gService)
+	user := userService.New(validator, uRepo, gService, grpcRepoMiddleware)
 	time.Sleep(1 * time.Second)
 	return app.New(user, gService)
 }
@@ -40,5 +41,12 @@ func configGrpc(appConfig *config.Config) *repoGrpc.Config {
 	return &repoGrpc.Config{
 		Network: NETWORK,
 		Port:    appConfig.GRPCSenderHost,
+	}
+}
+
+func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCAuthenHost,
 	}
 }

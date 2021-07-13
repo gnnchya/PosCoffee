@@ -3,7 +3,7 @@ package middleware
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/gnnchya/PosCoffee/menu/service/user"
+	"github.com/gnnchya/PosCoffee/cart/service/user"
 	"net/http"
 )
 

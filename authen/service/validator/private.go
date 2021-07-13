@@ -9,12 +9,6 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-func (v *GoPlayGroundValidator) checkName(structLV validator.StructLevel, name string) {
-	fmt.Println("here")
-	if name != "Proud" {
-		structLV.ReportError("not Proud", "name", "name", "unique", "")
-	}
-}
 
 func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name string) {
 	re := regexp.MustCompile("[A-Za-z]+")
@@ -57,7 +51,6 @@ func (v *GoPlayGroundValidator) checkLastNameTH(structLV validator.StructLevel, 
 func (v *GoPlayGroundValidator) checkFirstNameEN(structLV validator.StructLevel, firstNameEN string) {
 	re := regexp.MustCompile("^[A-Za-z]+$")
 	ok := re.MatchString(firstNameEN)
-	fmt.Println("check firstname en", ok)
 	if !ok {
 		structLV.ReportError(firstNameEN, "firstNameEN", "firstNameEN", "match", "")
 	}
@@ -123,7 +116,7 @@ func (v *GoPlayGroundValidator) checkBankAccount(structLV validator.StructLevel,
 
 func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, structLV validator.StructLevel, mobileNumber string) {
 	filters := []string{fmt.Sprintf("mobile_number:eq:%s", mobileNumber)}
-	if found , err := v.repo.Count(context.Background(), filters); err != nil{
+	if found , err := v.repo.Count(ctx, filters); err != nil{
 		structLV.ReportError(err, "mobileNumber", "mobileNumber", "error", "")
 	} else if found >0{
 		structLV.ReportError(mobileNumber, "mobile_number", "mobile_number", "unique", "")
