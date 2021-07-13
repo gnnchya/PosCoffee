@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/domain"
+	"github.com/gnnchya/PosCoffee/authen/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 )
 
@@ -14,6 +15,7 @@ type Service interface {
 	//MsgReceiver(ctx context.Context, msg []byte) (err error)
 	SoftDelete(ctx context.Context, input *userin.DeleteInput) (err error)
 	//ForgotPassword(ctx context.Context, input *usersin.ForgotPasswordUpdateInput) (err error)
+	CheckPermission(input *protobuf.RequestPermission)(bool, error)
 }
 
 

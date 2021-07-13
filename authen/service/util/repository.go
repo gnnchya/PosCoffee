@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"google.golang.org/grpc"
+	"net"
 )
 
 //go:generate mockery --name=Repository
@@ -22,11 +23,5 @@ type RepositoryUsers interface {
 
 type RepositoryGRPC interface {
 	NewClient() (*grpc.ClientConn, error)
+	NetListener() (lis net.Listener, err error)
 }
-
-
-//type RepositoryMsgBroker interface{
-//	Consumer()
-//	Producer(topic msgbrokerin.TopicMsgBroker, msg []byte) (err error)
-//	RegisterHandler(topics msgbrokerin.TopicMsgBroker, handler common.Handler)
-//}

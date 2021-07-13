@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/config"
+	"github.com/gnnchya/PosCoffee/cart/middleware"
 	"log"
 	"time"
 
@@ -25,10 +26,10 @@ func newApp(appConfig *config.Config) *app.App {
 	gService := grpcService.New(grpcRepo, grpcRepoMiddleware)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
-
-	user := userService.New(validator, uRepo, gService, grpcRepoMiddleware)
+	user := userService.New(validator, uRepo, gService)
+	midService := middleware.New(user)
 	time.Sleep(1 * time.Second)
-	return app.New(user, gService)
+	return app.New(user, gService, midService)
 }
 
 func panicIfErr(err error) {

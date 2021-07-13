@@ -11,9 +11,8 @@ type implementation struct {
 	validator validator.Validator
 	repo      util.Repository
 	client grpcClient.Service
-	clientMiddle grpcClient.Service
 }
 
-func New(validator validator.Validator, repo util.Repository, grpcClient grpcClient.Service, clientMiddle grpcClient.Service) (service user.Service) {
-	return &implementation{validator, repo, grpcClient, clientMiddle}
+func New(validator validator.Validator, repo util.Repository, grpcClient grpcClient.Service) (service user.Service) {
+	return &implementation{validator, repo, grpcClient}
 }

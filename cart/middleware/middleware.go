@@ -1,36 +1,30 @@
 package middleware
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/cart/service/user"
 	"net/http"
+	"strings"
 )
 
 func (middleware Service) Authorization(service user.Service) gin.HandlerFunc{
 	return func(c *gin.Context){
-		role := c.Param("role")
-		fmt.Println("role:", role)
-		//if role != "Admin" {
-		//	c.AbortWithStatus(http.StatusUnauthorized)
-		//	return
-		//}
-		//var roles []string = ["Admin", "Owner"]
-		roles :=  []string{"Admin", "Owner"}
-		if !checkRole(role, roles){
+		header := c.GetHeader("Authorization")
+		token := strings.ReplaceAll(header, "Bearer ", "")
+		request := &protobuf.RequestMiddleware{
+			Token:  token,
+			Method: c.Request.Method,
+			Path:   c.Request.RequestURI,
+		}
+		result, err := service.Middleware(request)
+		if err != nil{
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-
-
-	}
-}
-
-func checkRole (role string, allRoles []string) bool{
-	for _, k := range allRoles{
-		if k == role{
-			return true
+		if !result{
+			c.AbortWithStatus(http.StatusUnauthorized)
+			return
 		}
 	}
-	return false
 }

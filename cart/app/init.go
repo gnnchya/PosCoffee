@@ -2,6 +2,8 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gnnchya/PosCoffee/cart/middleware"
+
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/cart/app/user"
 	grpcService "github.com/gnnchya/PosCoffee/cart/service/grpcClient"
@@ -10,18 +12,21 @@ import (
 
 type App struct {
 	user *user.Controller
+	middle middleware.Service
 	grpcService grpcService.Service
 }
 
-func New(userService userService.Service, grpcService grpcService.Service) *App {
+func New(userService userService.Service, grpcService grpcService.Service, middle middleware.Service) *App {
 	return &App{
 		user: user.New(userService, grpcService),
+		middle: middle,
 		grpcService: grpcService,
 	}
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
-	apiRoutes := router.Group("/pos")
+	middleware := app.middle.Authorization(app.middle.Users)
+	apiRoutes := router.Group("/pos", middleware)
 	{
 		apiRoutes.POST("/cart", app.user.Create)
 		apiRoutes.GET("/cart/:id", app.user.Read)
