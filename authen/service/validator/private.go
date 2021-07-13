@@ -25,6 +25,7 @@ func (v *GoPlayGroundValidator) checkTH(structLV validator.StructLevel, name str
 }
 
 func (v *GoPlayGroundValidator) checkUsername(structLV validator.StructLevel, name string) {
+	//TODO check if this username exist
 	re := regexp.MustCompile("^[a-zA-Z][a-zA-Z0-9]{7,19}$")
 	ok := re.MatchString(name)
 	if !ok {
@@ -120,6 +121,7 @@ func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, str
 	//if err := v.usersRepo.Read(ctx, filters, &domain.Users{}); err == nil {
 	//	structLV.ReportError(mobileNumber, "mobileNumber", "mobileNumber", "unique", "")
 	//}
+	//TODO check for unique
 	re := regexp.MustCompile("^[0-9]*$")
 	ok := re.MatchString(mobileNumber)
 	if !ok {

@@ -1,6 +1,7 @@
 package token
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -19,11 +20,12 @@ func (ctrl *Controller) Request(c *gin.Context) {
 	defer span.Finish()
 
 	input := &tokenin.RequestInput{}
+	fmt.Println("here", input)
 	if err := c.ShouldBind(input); err != nil {
 		view.MakeErrResp2(c,422 ,err)
 		return
 	}
-
+	fmt.Println("input", input)
 	token, err := ctrl.service.Request(ctx, input, c.Request)
 	if err != nil {
 		view.MakeErrResp2(c, 422,err)

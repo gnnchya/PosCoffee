@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication"
 	"net/http"
@@ -11,7 +12,7 @@ func (middleware Service) AuthorizationLogin(service authentication.Service) gin
 	return func(c *gin.Context) {
 		header := c.GetHeader("Authorization")
 		token := strings.ReplaceAll(header, "Bearer ", "")
-
+		fmt.Println("token", token)
 		userID, err := service.VerifyToken(token)
 		if err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
