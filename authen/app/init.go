@@ -12,9 +12,9 @@ import (
 )
 
 type App struct {
-	user *user.Controller
-	middle middleware.Service
-	authService authentication.Service
+	user         *user.Controller
+	middle       middleware.Service
+	authService  authentication.Service
 }
 
 func New(userService userService.Service, authService authentication.Service, middle middleware.Service) *App {
@@ -38,11 +38,11 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		loginRoute.POST("/login", app.user.Login)
 	}
 
-	//authMiddleware := app.middle.Authorization(app.middle.Auth)
-	//authRoute := router.Group("/authorization", authMiddleware)
-	//{
-	//	authRoute.GET("/users", app.user.ReadAll)
-	//}
+	authMiddleware := app.middle.Authorization(app.middle.Auth)
+	authRoute := router.Group("/authorization", authMiddleware)
+	{
+		authRoute.POST("/verify/:token", app.user.VerifyEmail)
+	}
 
 	return app
 }

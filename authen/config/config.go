@@ -29,11 +29,15 @@ type Config struct {
 	ClientId         string `env:"CLIENT_ID" envDefault:"52f35122J4625S45b9Hb8e8x65d270f9048a"`
 	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"6df38733J5791S4a52Hbe76xa278f8a36cbb"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
-	GrantType        string `env:"GRANT_TYPE" envDefault:"password"`
+	GrantType        string `env:"GRANT_TYPE" envDefault:"implement"`
 
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27016"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"user"`
 	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"user"`
+
+	VerifyUrl 		string		`env:"VERIFY_URL" envDefault:"http://localhost:8085/pos/verify"`
+	Email 		string		`env:"EMAIL" envDefault:"62011155@kmitl.ac.th"`
+	EmailPassword 		string		`env:"EMAIL_PASSWORD" envDefault:"agjxdrywfdtueorp"`
 
 }
 
