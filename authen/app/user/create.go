@@ -31,7 +31,9 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
-	inputToken := &autenitcationin.LoginInput{input.Username,input.Password}
+	inputToken := &autenitcationin.LoginInput{}
+	inputToken.Username = input.Username
+	inputToken.Password = input.Password
 	if err := c.ShouldBindJSON(inputToken); err != nil {
 		view.MakeErrResp2(c,0, err)
 		return
