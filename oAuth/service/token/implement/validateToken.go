@@ -17,7 +17,7 @@ func (impl *implementation) ValidateToken(ctx context.Context, input *string) (v
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println("validate token", token)
 	refresh := time.Unix(token.CreatedAt, 0)
 	refreshExpiresIn := time.Hour * 24 * 3
 	accessCreateAt := time.Unix(token.CreatedAt, 0)
@@ -33,6 +33,6 @@ func (impl *implementation) ValidateToken(ctx context.Context, input *string) (v
 	}
 
 	token.CreatedAt = int64(accessCreateAt.Add(accessExpiresIn).Sub(timeNow).Seconds())
-
+	fmt.Println("output token", out.ValidateTokenToView(token))
 	return out.ValidateTokenToView(token), err
 }

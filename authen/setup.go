@@ -8,6 +8,7 @@ import (
 	repoGrpc "github.com/gnnchya/PosCoffee/authen/repository/grpc"
 	userRepo "github.com/gnnchya/PosCoffee/authen/repository/mongodb"
 	authenService "github.com/gnnchya/PosCoffee/authen/service/authentication/implement"
+	grpcServerService "github.com/gnnchya/PosCoffee/authen/service/grpc/implement"
 	grpcService "github.com/gnnchya/PosCoffee/authen/service/grpcClient/implement"
 	userService "github.com/gnnchya/PosCoffee/authen/service/user/implement"
 	"github.com/gnnchya/PosCoffee/authen/service/util"
@@ -25,6 +26,7 @@ func newApp(appConfig *config.Config) *app.App {
 	//TODO initiateDB in docker-compose
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
+	grpcPermissionRepo := repoGrpc.New(configGrpcPermission(appConfig))
 	gService := grpcService.New(grpcRepo)
 	panicIfErr(err)
 	validator := validatorService.New(uRepo)
@@ -32,6 +34,7 @@ func newApp(appConfig *config.Config) *app.App {
 	user := userService.New(validator, uRepo, filter, gService)
 	auth := authenService.New(validator, appConfig, uRepo, filter)
 	midService := middleware.New(auth, user)
+	go grpcServerService.New(grpcPermissionRepo, user, auth)
 	return app.New(user, auth, midService)
 }
 
@@ -42,6 +45,13 @@ func panicIfErr(err error) {
 }
 
 func configGrpc(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCAuthenHost,
+	}
+}
+
+func configGrpcPermission(appConfig *config.Config) *repoGrpc.Config {
 	return &repoGrpc.Config{
 		Network: NETWORK,
 		Port:    appConfig.GRPCAuthenHost,
