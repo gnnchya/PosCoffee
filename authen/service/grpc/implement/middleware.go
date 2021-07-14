@@ -20,7 +20,11 @@ func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMidd
 	}
 	fmt.Println("userid from verify token", *userID)
 	readInput := impl.filter.MakeUIDFilters(*userID)
+	fmt.Println("uid filter")
 	err = impl.repo.Read(ctx, readInput, &user)
+	if err != nil {
+		return nil, err
+	}
 	fmt.Println("output from read:", user)
 
 	fmt.Println("err", err)
