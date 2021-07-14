@@ -20,7 +20,7 @@ func SendVerifyUrl(email string,token string)(err error){
 	m.SetHeader("Subject", "Please verify you Email")
 
 	// Set E-Mail body. You can set plain text or html with text/html
-	m.SetBody("text/plain", "Please click on the link below to verify your Email\n" + config.Get().VerifyUrl+token)
+	m.SetBody("text/plain", "Please click on the link below to verify your Email\n" + config.Get().VerifyUrl+"/"+token)
 
 	// Settings for SMTP server
 	d := gomail.NewDialer("smtp.gmail.com", 587, config.Get().Email, config.Get().EmailPassword)
