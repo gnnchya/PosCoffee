@@ -26,7 +26,7 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 		return nil, err
 	}
 	fmt.Println("userId", userID)
-	token, err = impl.getToken(userID, input.Username, input.Password)
+	token, err = impl.GetToken(userID, input.Username, input.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 	return users.ID, nil
 }
 
-func (impl *implementation) getToken(userID, username, password string) (token *out.Token, err error) {
+func (impl *implementation) GetToken(userID, username, password string) (token *out.Token, err error) {
 	if reflect2.IsNil(impl.config.ClientId) || reflect2.IsNil(impl.config.ClientSecret) {
 		return nil, err
 	}

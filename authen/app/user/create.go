@@ -41,7 +41,7 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	//	return
 	//}
 	fmt.Println("token input", inputToken)
-	token, err := ctrl.authService.GenerateToken(inputToken)
+	token, err := ctrl.authService.G(inputToken)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
