@@ -8,7 +8,7 @@ import (
 
 type RequestInput struct {
 	ID               string `json:"id"`
-	UID          	 string `json:"uid" form:"uid"`
+	UID          	 string `json:"uid" form:"uid" binding:"required"`
 	ClientID         string `json:"client_id" form:"client_id" binding:"required"`
 	ClientSecret     string `json:"client_secret" form:"client_secret" binding:"required"`
 	GrantType        string `json:"grant_type" form:"grant_type" binding:"required"`
