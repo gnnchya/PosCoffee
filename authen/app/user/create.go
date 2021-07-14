@@ -34,10 +34,11 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	inputToken := &autenitcationin.LoginInput{}
 	inputToken.Username = input.Username
 	inputToken.Password = input.Password
-	if err := c.ShouldBindJSON(inputToken); err != nil {
-		view.MakeErrResp2(c,0, err)
-		return
-	}
+	fmt.Println("pass", input.Password)
+	//if err := c.ShouldBindJSON(inputToken); err != nil {
+	//	view.MakeErrResp2(c,0, err)
+	//	return
+	//}
 	token, err := ctrl.authService.GenerateToken(inputToken)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
