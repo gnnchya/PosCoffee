@@ -14,14 +14,16 @@ func (middleware Service) AuthorizationLogin(service authentication.Service) gin
 		token := strings.ReplaceAll(header, "Bearer ", "")
 		fmt.Println("token", token)
 		userID, err := service.VerifyToken(token)
+		fmt.Println("err", err)
 		if err != nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-		if userID != nil {
+		if userID == nil {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
+		fmt.Println("Authorize pass")
 	}
 }
 

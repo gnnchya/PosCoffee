@@ -47,7 +47,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 		return "", err
 	}
 
-	return users.UID, nil
+	return users.ID, nil
 }
 
 func (impl *implementation) GetToken(userID, username, password string) (token *out.Token, err error) {
