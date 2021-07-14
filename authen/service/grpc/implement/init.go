@@ -13,6 +13,8 @@ import (
 type implementation struct {
 	userService user.Service
 	authService authentication.Service
+	repo util.Repository
+	filter util.Filters
 }
 
 func New(grpcRepo util.RepositoryGRPC, userService user.Service, authService authentication.Service) (service grpcService.Service){
