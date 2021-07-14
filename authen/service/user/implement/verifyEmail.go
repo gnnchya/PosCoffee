@@ -10,7 +10,7 @@ type verify struct{
 }
 
 func (impl *implementation)VerifyEmail(ctx context.Context, UID string) error{
-	input := verify{Verify:true}
+	input := &verify{Verify:true}
 	filter := impl.filter.MakeUIDFilters(UID)
 	err := impl.repo.Update(ctx, filter, input)
 	if err != nil{
