@@ -12,7 +12,7 @@ func (ctrl *Controller) VerifyEmail(c *gin.Context) {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	 _,_ = ctrl.authService.RevokeToken(token)
+	_,_ = ctrl.authService.RevokeToken(token)
 	err = ctrl.service.VerifyEmail(c,*UID)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
