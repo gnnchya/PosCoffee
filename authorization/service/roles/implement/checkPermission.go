@@ -15,12 +15,11 @@ func (impl *implementation) CheckPermission(ctx context.Context, roles []string,
 			return false, util.RepoReadErr(err)
 		}
 		for _, per := range out.Permissions{
-			if per.ID == permission{
+			if per.Method+per.Endpoint == permission{
 				return true, nil
 			}
 		}
 	}
-
 
 	return true, nil
 }

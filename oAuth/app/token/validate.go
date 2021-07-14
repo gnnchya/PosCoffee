@@ -19,7 +19,7 @@ func (ctrl *Controller) ValidateToken(c *gin.Context) {
 	defer span.Finish()
 	fmt.Println("in validate token")
 	auth := c.Request.Header.Get("Authorization")
-
+	fmt.Println("auth", auth)
 	token, err := ctrl.service.ValidateToken(ctx, &auth)
 	if err != nil {
 		view.MakeErrResp2(c, 422,err)

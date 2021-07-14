@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/cart/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/cart/service/user"
@@ -17,6 +18,7 @@ func (middleware Service) Authorization(service user.Service) gin.HandlerFunc{
 			Method: c.Request.Method,
 			Path:   c.Request.RequestURI,
 		}
+		fmt.Println("request", request)
 		result, err := service.Middleware(request)
 		if err != nil{
 			c.AbortWithStatus(http.StatusUnauthorized)

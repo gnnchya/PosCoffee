@@ -20,14 +20,14 @@ type Config struct {
 
 	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
-	GRPCAuthenHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50055"`
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
 
 
 	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/pos/request"`
 	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/pos/revoke"`
 	ValidateTokenURL string `env:"VALIDATE_TOKEN_URL" envDefault:"http://localhost:9090/pos/validate"`
-	ClientId         string `env:"CLIENT_ID" envDefault:"99d60df4J47c9S47b5Ha7ffxcd053f6c1c6b"`
-	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"a5f7a501Jc04fS4556Ha3f4x9960c10ddbf5"`
+	ClientId         string `env:"CLIENT_ID" envDefault:"49c9a79eJ2ee0S460bH94abx5ea6124231bb"`
+	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"28dc28ccJ885fS4861Ha3c0x21619025de7b"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
 	GrantType        string `env:"GRANT_TYPE" envDefault:"password"`
 
