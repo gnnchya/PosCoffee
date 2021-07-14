@@ -17,6 +17,7 @@ type Service interface {
 	//ForgotPassword(ctx context.Context, input *usersin.ForgotPasswordUpdateInput) (err error)
 	CheckPermission(input *protobuf.RequestPermission)(bool, error)
 	VerifyEmail(ctx context.Context,UID string) (err error)
+	SendVerifyEmail(Email string, Token string) error
 }
 
 

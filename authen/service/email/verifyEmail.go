@@ -1,4 +1,4 @@
-package implement
+package email
 
 import (
 	"crypto/tls"
@@ -7,7 +7,7 @@ import (
 	gomail "gopkg.in/mail.v2"
 )
 
-func SendVerifyUrl(email string,token string) error{
+func SendVerifyUrl(email string,token string)(err error){
 	m := gomail.NewMessage()
 
 	// Set E-Mail sender

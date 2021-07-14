@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/middleware"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication"
+	"github.com/gnnchya/PosCoffee/authen/service/email/implement"
+
 	//"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf/authen"
 
 	// "touch/service/user"
@@ -12,9 +14,9 @@ import (
 )
 
 type App struct {
-	user *user.Controller
-	middle middleware.Service
-	authService authentication.Service
+	user         *user.Controller
+	middle       middleware.Service
+	authService  authentication.Service
 }
 
 func New(userService userService.Service, authService authentication.Service, middle middleware.Service) *App {
