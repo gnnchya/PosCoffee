@@ -17,7 +17,7 @@ func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMidd
 	if userID == nil{
 		return nil, err
 	}
-	fmt.Println("userid from verify token", userID)
+	fmt.Println("userid from verify token", *userID)
 	readInput := &userin.ReadInput{ID: *userID}
 	user, err := impl.userService.Read(ctx, readInput)
 	fmt.Println("output from read:", user)
