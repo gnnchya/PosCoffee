@@ -18,7 +18,7 @@ func (ctrl *Controller) VerifyEmail(c *gin.Context) {
 	if UID == nil{
 		view.MakeErrResp2(c, 2, err)
 	}
-	//_,_ = ctrl.authService.RevokeToken(token)
+	_,_ = ctrl.authService.RevokeToken(token)
 	fmt.Println("uid", UID)
 	err = ctrl.service.VerifyEmail(c,*UID)
 	if err != nil {
