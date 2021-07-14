@@ -10,7 +10,7 @@ import (
 
 func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMiddleware) (*pb.ReplyMiddleware, error){
 	fmt.Println("input from other apps in middleware", input)
-	user := &domain.UserStruct{}
+	user := domain.UserStruct{}
 	userID, err := impl.authService.VerifyToken(input.Token)
 	if err != nil{
 		return nil, err
@@ -20,7 +20,7 @@ func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMidd
 	}
 	fmt.Println("userid from verify token", *userID)
 	readInput := impl.filter.MakeUIDFilters(*userID)
-	err = impl.repo.Read(ctx, readInput, user)
+	err = impl.repo.Read(ctx, readInput, &user)
 	fmt.Println("output from read:", user)
 
 	fmt.Println("err", err)
