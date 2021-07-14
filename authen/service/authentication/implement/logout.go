@@ -8,14 +8,14 @@ import (
 )
 
 func (impl *implementation) Logout(token string) (err error) {
-	_, err = impl.revokeToken(token)
+	_, err = impl.RevokeToken(token)
 	if err != nil {
 		return err
 	}
 	return
 }
 
-func (impl *implementation) revokeToken(accessToken string) (token bool, err error) {
+func (impl *implementation) RevokeToken(accessToken string) (token bool, err error) {
 	contentType := AppJson
 	application := AppJson
 	auth := fmt.Sprintf("Bearer %s", accessToken)

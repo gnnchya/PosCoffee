@@ -29,12 +29,13 @@ type Config struct {
 	ClientId         string `env:"CLIENT_ID" envDefault:"99d60df4J47c9S47b5Ha7ffxcd053f6c1c6b"`
 	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"a5f7a501Jc04fS4556Ha3f4x9960c10ddbf5"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
-	GrantType        string `env:"GRANT_TYPE" envDefault:"password"`
+	GrantType        string `env:"GRANT_TYPE" envDefault:"implement"`
 
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27016"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"user"`
 	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"user"`
 
+	VerifyUrl 		string		`env:"VERIFY_URL" envDefault:"http://localhost:8085/pos/verify"`
 }
 
 func Get() *Config {

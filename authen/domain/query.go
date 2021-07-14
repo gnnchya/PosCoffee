@@ -4,9 +4,10 @@ type UserStruct struct{
 	ID  			string				`bson:"_id" json:"id"`
 	UID  			string				`bson:"uid" json:"uid"`
 	Username		string				`bson:"username" json:"username"`
-	Password 		string				`bson:"password" json:"password"`
+	Password 		string				`bson:"implement" json:"implement"`
 	MetaData		*MetaDataStruct		`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
+	Verify 			bool 				`bson:"verify" json:"verify"`
 	CreatedAt 		int64				`bson:"created_at" json:"created_at"`
 	UpdatedAt 		int64				`bson:"updated_at" json:"updated_at"`
 	DeletedAt 		int64				`bson:"deleted_at" json:"deleted_at"`
@@ -73,7 +74,7 @@ type MemberGroupStruct struct {
 }
 
 type ForgotPasswordStruct struct {
-	Password  string `bson:"password" json:"password"`
+	Password  string `bson:"implement" json:"implement"`
 	UpdatedAt int64  `bson:"updated_at" json:"updated_at"`
 }
 

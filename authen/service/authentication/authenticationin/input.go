@@ -2,7 +2,7 @@ package authenticationin
 
 type LoginInput struct {
 	Username string `json:"username"  validate:"required"`
-	Password string `json:"password"  validate:"required"`
+	Password string `json:"implement"  validate:"required"`
 } // @Name LoginInput
 
 type VerifyInput struct {

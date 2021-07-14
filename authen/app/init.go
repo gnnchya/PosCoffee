@@ -38,11 +38,11 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		loginRoute.POST("/login", app.user.Login)
 	}
 
-	//authMiddleware := app.middle.Authorization(app.middle.Auth)
-	//authRoute := router.Group("/authorization", authMiddleware)
-	//{
-	//	authRoute.GET("/users", app.user.ReadAll)
-	//}
+	authMiddleware := app.middle.Authorization(app.middle.Auth)
+	authRoute := router.Group("/authorization", authMiddleware)
+	{
+		authRoute.GET("/verify", app.user.VerifyEmail)
+	}
 
 	return app
 }

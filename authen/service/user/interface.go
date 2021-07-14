@@ -16,6 +16,7 @@ type Service interface {
 	SoftDelete(ctx context.Context, input *userin.DeleteInput) (err error)
 	//ForgotPassword(ctx context.Context, input *usersin.ForgotPasswordUpdateInput) (err error)
 	CheckPermission(input *protobuf.RequestPermission)(bool, error)
+	VerifyEmail(ctx context.Context,UID string) (err error)
 }
 
 

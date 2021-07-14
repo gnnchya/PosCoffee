@@ -10,4 +10,5 @@ type Service interface {
 	GenerateToken(input *authenticationin.LoginInput) (token *out.Token, err error)
 	VerifyToken(accessToken string) (userID *string, err error)
 	Logout(input string) (err error)
+	RevokeToken(accessToken string) (token bool, err error)
 }
