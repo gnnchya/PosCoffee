@@ -7,13 +7,17 @@ import (
 	"net/http"
 )
 
+type password struct {
+	Password 		string				`bson:"password" json:"password"`
+}
+
 func (ctrl *Controller)VerifyPassword(c *gin.Context){
-	var password string
+	password := &password{}
 	if err := c.ShouldBindJSON(password); err != nil {
 		view.MakeErrResp2(c, 400, err)
 		return
 	}
-	id, err := ctrl.service.VerifyPassword(c,password)
+	id, err := ctrl.service.VerifyPassword(c,password.Password)
 	input := &userin.ReadInput{
 		ID: id,
 	}

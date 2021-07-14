@@ -6,17 +6,23 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 )
 
-type password struct{
-	Old string `bson:"old" json:"old"`
-	New string `bson:"new" json:"new"`
+type changePassword struct{
+	FirstAttempt string `bson:"first_attempt" json:"first_attempt"`
+	SecondAttempt string `bson:"second_attempt" json:"second_attempt"`
 }
 
 func (ctrl *Controller)ChangePassword(c *gin.Context){
-	input := &password{}
+	input := &changePassword{}
 	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp2(c, 400, err)
 		return
 	}
+
+	if input.FirstAttempt != input.SecondAttempt{
+		view.MakeErrResp(c, 400, "current password unmatched")
+		return
+	}
+
 	token := c.Param("token")
 
 	UID, err := ctrl.authService.VerifyToken(token)
@@ -29,12 +35,14 @@ func (ctrl *Controller)ChangePassword(c *gin.Context){
 		view.MakeErrResp2(c, 2, err)
 	}
 
-	_,err = ctrl.authService.RevokeToken(token)
+
+	err = ctrl.service.ChangePassword(c,*UID,input.New)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	err = ctrl.service.ChangePassword(c,*UID,input.New)
+
+	_,err = ctrl.authService.RevokeToken(token)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
