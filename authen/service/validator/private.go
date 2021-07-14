@@ -129,7 +129,7 @@ func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, str
 }
 
 func (v *GoPlayGroundValidator) checkFormatEmail(structLV validator.StructLevel, email string) {
-	filters := []string{fmt.Sprintf("email:eq:%s", email)}
+	filters := []string{fmt.Sprintf("meta_data.email:eq:%s", email)}
 	if found , err := v.repo.Count(context.Background(), filters); err != nil{
 		structLV.ReportError(err, "email", "email", "error", "")
 	} else if found > 0{
