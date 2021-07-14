@@ -47,7 +47,7 @@ func panicIfErr(err error) {
 func configGrpc(appConfig *config.Config) *repoGrpc.Config {
 	return &repoGrpc.Config{
 		Network: NETWORK,
-		Port:    appConfig.GRPCAuthenHost,
+		Port:    appConfig.GRPCAuthorizeHost,
 	}
 }
 
