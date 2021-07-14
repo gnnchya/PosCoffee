@@ -36,7 +36,7 @@ func (ctrl *Controller)ChangePassword(c *gin.Context){
 	}
 
 
-	err = ctrl.service.ChangePassword(c,*UID,input.New)
+	err = ctrl.service.ChangePassword(c,*UID,input.FirstAttempt)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
