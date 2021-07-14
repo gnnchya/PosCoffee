@@ -3,6 +3,7 @@ package implement
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
@@ -24,6 +25,7 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("userId", userID)
 	token, err = impl.getToken(userID, input.Username, input.Password)
 	if err != nil {
 		return nil, err

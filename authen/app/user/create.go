@@ -25,6 +25,7 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	input.ID = initID.Gen()
 	initUID := goxid.New()
 	input.UID = initUID.Gen()
+	password := input.Password
 	fmt.Println("Register", input)
 	_, err := ctrl.service.Create(c, input)
 	if err != nil {
@@ -33,17 +34,19 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	}
 	inputToken := &autenitcationin.LoginInput{}
 	inputToken.Username = input.Username
-	inputToken.Password = input.Password
+	inputToken.Password = password
 	fmt.Println("pass", input.Password)
 	//if err := c.ShouldBindJSON(inputToken); err != nil {
 	//	view.MakeErrResp2(c,0, err)
 	//	return
 	//}
+	fmt.Println("token input", inputToken)
 	token, err := ctrl.authService.GenerateToken(inputToken)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
+	fmt.Println("token access", token.AccessToken)
 	err = ctrl.service.SendVerifyEmail(input.MetaData.Email, token.AccessToken)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
