@@ -49,8 +49,8 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		return
 	})
 
-	authMiddleware := app.middle.Authorization()
-	authRoute := router.Group(docs.SwaggerInfo.BasePath, authMiddleware)
+	//authMiddleware := app.middle.Authorization()
+	authRoute := router.Group(docs.SwaggerInfo.BasePath)
 	{
 		authRoute.POST("/permissions", app.permissions.Create)
 		authRoute.GET("/permissions/:id", app.permissions.Read)

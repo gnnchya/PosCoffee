@@ -10,7 +10,7 @@ type CreateInput struct {
 	ID  			string				`bson:"_id" json:"id"`
 	UID  			string				`bson:"uid" json:"uid"`
 	Username		string				`bson:"username" json:"username" validate:"required"`
-	Password 		string				`bson:"implement" json:"implement" validate:"required"`
+	Password 		string				`bson:"password" json:"password" validate:"required"`
 	MetaData		MetaDataStruct	`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
 	Verify 			string 			`bson:"verify" json:"verify"`

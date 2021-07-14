@@ -1,11 +1,10 @@
 package roles
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/opentracing/opentracing-go"
-
 	"github.com/gnnchya/PosCoffee/authorize/app/view"
 	"github.com/gnnchya/PosCoffee/authorize/service/roles/rolesin"
 )
@@ -25,18 +24,19 @@ import (
 // @Success 503 {object} view.ErrResp
 // @Router /roles/{id} [get]
 func (ctrl *Controller) Read(c *gin.Context) {
-	span, ctx := opentracing.StartSpanFromContextWithTracer(
-		c.Request.Context(),
-		opentracing.GlobalTracer(),
-		"handler.roles.Read",
-	)
-	defer span.Finish()
+	//span, ctx := opentracing.StartSpanFromContextWithTracer(
+	//	c.Request.Context(),
+	//	opentracing.GlobalTracer(),
+	//	"handler.roles.Read",
+	//)
+	//defer span.Finish()
 
 	input := &rolesin.ReadInput{
 		ID: c.Param("id"),
 	}
-
-	role, err := ctrl.service.Read(ctx, input)
+	fmt.Println("input read", input)
+	role, err := ctrl.service.Read(c, input)
+	fmt.Println("output read", role)
 	if err != nil {
 		view.MakeErrResp(c, err)
 		return

@@ -12,7 +12,7 @@ import (
 func makeRoleIDFilters(roleID string) (filters []string) {
 	return []string{
 		fmt.Sprintf("_id:eq:%s", roleID),
-		"deletedAt:isNull",
+		//"deletedAt:isNull",
 	}
 }
 

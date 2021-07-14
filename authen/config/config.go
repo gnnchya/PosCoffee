@@ -26,8 +26,8 @@ type Config struct {
 	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/pos/request"`
 	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/pos/revoke"`
 	ValidateTokenURL string `env:"VALIDATE_TOKEN_URL" envDefault:"http://localhost:9090/pos/validate"`
-	ClientId         string `env:"CLIENT_ID" envDefault:"52f35122J4625S45b9Hb8e8x65d270f9048a"`
-	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"6df38733J5791S4a52Hbe76xa278f8a36cbb"`
+	ClientId         string `env:"CLIENT_ID" envDefault:"75b987daJcf85S4ed8H9594xea529b27b127"`
+	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"1d34d79bJb459S4839Hb5fbxd2687c143ca2"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
 	GrantType        string `env:"GRANT_TYPE" envDefault:"implement"`
 
