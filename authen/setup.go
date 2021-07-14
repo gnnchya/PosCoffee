@@ -34,7 +34,7 @@ func newApp(appConfig *config.Config) *app.App {
 	user := userService.New(validator, uRepo, filter, gService)
 	auth := authenService.New(validator, appConfig, uRepo, filter)
 	midService := middleware.New(auth, user)
-	go grpcServerService.New(grpcPermissionRepo, user, auth)
+	go grpcServerService.New(grpcPermissionRepo, user, auth, uRepo, filter)
 	return app.New(user, auth, midService)
 }
 
