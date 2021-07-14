@@ -31,7 +31,6 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.POST("/register/staff", app.user.CreateStaff)
 		apiRoutes.POST("/register/owner", app.user.CreateOwner)
 		apiRoutes.POST("/register/admin", app.user.CreateAdmin)
-
 	}
 	loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
 	loginRoute := router.Group("/user", loginMiddleware)
