@@ -17,10 +17,12 @@ type implementation struct {
 	filter util.Filters
 }
 
-func New(grpcRepo util.RepositoryGRPC, userService user.Service, authService authentication.Service) (service grpcService.Service){
+func New(grpcRepo util.RepositoryGRPC, userService user.Service, authService authentication.Service, repo util.Repository, filter util.Filters) (service grpcService.Service){
 	impl := implementation{
 		userService: userService,
 		authService: authService,
+		repo:	repo,
+		filter: filter,
 	}
 
 	grpcServer := grpc.NewServer()
