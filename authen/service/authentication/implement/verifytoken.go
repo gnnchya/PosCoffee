@@ -55,6 +55,6 @@ func (impl *implementation) VerifyToken(accessToken string) (userID *string, err
 	}
 
 	userID = &userId.UserId
-
+	fmt.Println("userID", userId)
 	return userID, nil
 }
