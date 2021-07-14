@@ -115,7 +115,7 @@ func (v *GoPlayGroundValidator) checkBankAccount(structLV validator.StructLevel,
 }
 
 func (v *GoPlayGroundValidator) checkMobileNumberUnique(ctx context.Context, structLV validator.StructLevel, mobileNumber string) {
-	filters := []string{fmt.Sprintf("mobile_number:eq:%s", mobileNumber)}
+	filters := []string{fmt.Sprintf("meta_data.mobile_number:eq:%s", mobileNumber)}
 	if found , err := v.repo.Count(ctx, filters); err != nil{
 		structLV.ReportError(err, "mobile_number", "mobile_number", "error", "")
 	} else if found >0{
