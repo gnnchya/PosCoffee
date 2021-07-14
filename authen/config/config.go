@@ -21,7 +21,7 @@ type Config struct {
 	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
 	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
-
+	GRPCAuthorizeHost string `env:"GRPC_AUTHORIZE_HOST" envDefault:"localhost:50055"`
 
 	OauthServerURL   string `env:"OAUTH_SERVER_URL" envDefault:"http://localhost:9090/pos/request"`
 	RevokeTokenURL   string `env:"REVOKE_TOKEN_URL" envDefault:"http://localhost:9090/pos/revoke"`

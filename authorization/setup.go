@@ -209,7 +209,7 @@ func doRollback() {
 func configGrpc(appConfig *config.Config) *grpcRepo.Config {
 	return &grpcRepo.Config{
 		Network: NETWORK,
-		Port:    appConfig.GRPCHost,
+		Port:    appConfig.GRPCAuthorizeHost,
 	}
 }
 
