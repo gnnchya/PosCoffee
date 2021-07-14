@@ -12,6 +12,7 @@ type Filters interface {
 	MakeFilterMobileNumberString(email string) (filters string)
 	MakeFilterUserName(username string) (filters []string)
 	MakeUIDFilters(uid string) (filters []string)
+	MakePasswordFilter(password string) (filter []string)
 }
 
 type Filter struct{}
@@ -38,7 +39,7 @@ func (f *Filter) MakeIdFilterString(id string) (filters string) {
 }
 
 func (f *Filter) MakeFilterEmailString(email string) (filters string) {
-	return fmt.Sprintf("email:eq:%s", email)
+	return fmt.Sprintf("meta_data.email:eq:%s", email)
 }
 
 func (f *Filter) MakeIdFiltersNotEqualString(id string) (filters string) {
@@ -46,11 +47,17 @@ func (f *Filter) MakeIdFiltersNotEqualString(id string) (filters string) {
 }
 
 func (f *Filter) MakeFilterMobileNumberString(mobileNumber string) (filters string) {
-	return fmt.Sprintf("mobile_number:eq:%s", mobileNumber)
+	return fmt.Sprintf("meta_data.mobile_number:eq:%s", mobileNumber)
 }
 
 func (f *Filter) MakeFilterUserName(username string) (filters []string) {
 	return []string{
 		fmt.Sprintf("username:eq:%s", username),
+	}
+}
+
+func (f *Filter) MakePasswordFilter(password string) (filter []string){
+	return []string{
+		fmt.Sprintf("password:eq:%s", password),
 	}
 }

@@ -29,5 +29,5 @@ func (impl *implementation)VerifyEmail(ctx context.Context, UID string) error{
 }
 
 func (impl *implementation)SendVerifyEmail(Email string, Token string) error{
-	return email.SendVerifyUrl(Email, Token)
+	return email.SendVerifyEmail(Email, Token)
 }
