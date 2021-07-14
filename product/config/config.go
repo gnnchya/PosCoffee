@@ -36,6 +36,7 @@ type Config struct {
 	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
 	GRPCSenderReportHost string `env:"GRPC_SENDER_REPORT_HOST" envDefault:"localhost:50053"`
 	GRPCMenu string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50054"`
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
 
 }
 

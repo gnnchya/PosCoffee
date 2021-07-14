@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/menu/middleware"
+	"github.com/gnnchya/PosCoffee/menu/service/grpcClient"
 
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/menu/app/user"
@@ -12,12 +13,14 @@ import (
 type App struct {
 	user *user.Controller
 	middle middleware.Service
+	client grpcClient.Service
 }
 
-func New(userService userService.Service, middle middleware.Service) *App {
+func New(userService userService.Service, middle middleware.Service, client grpcClient.Service) *App {
 	return &App{
 		user: user.New(userService),
 		middle: middle,
+		client: client,
 	}
 }
 

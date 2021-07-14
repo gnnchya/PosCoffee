@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
-	"net"
+	"google.golang.org/grpc"
 	"time"
 )
 
@@ -31,7 +31,6 @@ type RepositoryRedis interface {
 	Del(ctx context.Context, key string) (err error)
 }
 
-type RepositoryReportGRPC interface {
-	NetListener() (lis net.Listener, err error)
-	//NewClient() (*grpc.ClientConn, error)
+type RepositoryGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
 }

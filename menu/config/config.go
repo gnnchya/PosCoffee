@@ -25,6 +25,7 @@ type Config struct {
 	RedisEndpoint string `env:"REDIS_ENDPOINT" envDefault:"localhost:6379"`
 	RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
 
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
 
 }
 

@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
@@ -32,4 +33,6 @@ type Service interface {
 	UpdateMoney(ctx context.Context, input *userin.UpdateMoneyInput) (ID string, err error)
 	CreateMoney(ctx context.Context, input *userin.CreateMoneyInput) (ID string, err error)
 	DeleteMoney(ctx context.Context, input *userin.DeleteMoneyInput) (ID string, err error)
+	Middleware(input *protobuf.RequestMiddleware) (allow bool, err error)
+
 }

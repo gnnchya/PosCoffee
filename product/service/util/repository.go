@@ -51,3 +51,7 @@ type RepositoryGRPC interface {
 type RepositoryReportGRPC interface {
 	NewClient() (*grpc.ClientConn, error)
 }
+
+type RepositoryMiddlewareGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
+}

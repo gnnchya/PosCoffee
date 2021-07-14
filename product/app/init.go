@@ -3,6 +3,7 @@ package app
 import (
 	// "touch/service/user"
 	"github.com/gnnchya/PosCoffee/product/app/user"
+	"github.com/gnnchya/PosCoffee/product/middleware"
 	grpcService "github.com/gnnchya/PosCoffee/product/service/grpcClient"
 	userService "github.com/gnnchya/PosCoffee/product/service/user"
 
@@ -12,17 +13,20 @@ import (
 type App struct {
 	user *user.Controller
 	grpcService grpcService.Service
+	middle middleware.Service
 }
 
-func New(userService userService.Service, grpcService grpcService.Service) *App {
+func New(userService userService.Service, grpcService grpcService.Service, middle middleware.Service) *App {
 	return &App{
 		user: user.New(userService),
 		grpcService: grpcService,
+		middle: middle,
 	}
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
-	apiRoutes := router.Group("/pos")
+	adminMiddleware := app.middle.Authorization(app.middle.Users)
+	apiRoutes := router.Group("/pos", adminMiddleware)
 	{
 		apiRoutes.POST("/product/transaction", app.user.Create)
 		apiRoutes.GET("/product/transaction/:id", app.user.Read)
