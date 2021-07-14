@@ -19,9 +19,9 @@ func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMidd
 		return nil, err
 	}
 	fmt.Println("userid from verify token", *userID)
-	readInput := impl.filter.MakeUIDFilters(*userID)
-	fmt.Println("uid filter")
-	err = impl.repo.Read(ctx, readInput, &user)
+	filters := impl.filter.MakeUIDFilters(*userID)
+	fmt.Println("uid filter", )
+	err = impl.repo.Read(ctx, filters, &user)
 	if err != nil {
 		return nil, err
 	}
