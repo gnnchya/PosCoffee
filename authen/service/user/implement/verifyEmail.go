@@ -16,6 +16,7 @@ func (impl *implementation)VerifyEmail(ctx context.Context, UID string) error{
 	input := &domain.UserStruct{}
 	filter := impl.filter.MakeUIDFilters(UID)
 	err := impl.repo.Read(ctx, filter, input)
+	fmt.Println("err read", err)
 	if err != nil{
 		return err
 	}

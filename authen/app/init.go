@@ -38,8 +38,8 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		loginRoute.POST("/login", app.user.Login)
 	}
 
-	authMiddleware := app.middle.Authorization(app.middle.Auth)
-	authRoute := router.Group("/authorization", authMiddleware)
+	//authMiddleware := app.middle.Authorization(app.middle.Auth)
+	authRoute := router.Group("/authorization")
 	{
 		authRoute.POST("/verify/:token", app.user.VerifyEmail)
 	}

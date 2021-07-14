@@ -56,7 +56,7 @@ func (impl *implementation) GetToken(userID, username, password string) (token *
 	}
 
 	formData := url.Values{
-		"user_id":       {userID},
+		"uid":       {userID},
 		"client_id":     {impl.config.ClientId},
 		"client_secret": {impl.config.ClientSecret},
 		"redirect_uri":  {impl.config.RedirectUri},
