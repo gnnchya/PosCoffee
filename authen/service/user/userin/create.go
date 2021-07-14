@@ -13,7 +13,6 @@ type CreateInput struct {
 	Password 		string				`bson:"password" json:"password" validate:"required"`
 	MetaData		MetaDataStruct	`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
-	Verify 			string 			`bson:"verify" json:"verify"`
 }
 
 func (input *CreateInput) ToDomain() (users *domain.UserStruct) {
