@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
-	autenitcationin "github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 	goxid "github.com/touchtechnologies-product/xid"
 )
@@ -34,15 +33,10 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
-	inputToken := &autenitcationin.LoginInput{}
-	inputToken.Username = input.Username
-	inputToken.Password = password
-	fmt.Println("pass", input.Password)
 	//if err := c.ShouldBindJSON(inputToken); err != nil {
 	//	view.MakeErrResp2(c,0, err)
 	//	return
 	//}
-	fmt.Println("token input", inputToken)
 	token, err := ctrl.authService.GetToken(UID,username,password)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)

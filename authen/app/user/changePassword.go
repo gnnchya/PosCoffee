@@ -6,9 +6,19 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 )
 
-func (ctrl *Controller) VerifyEmail(c *gin.Context) {
+type password struct{
+	Old string `bson:"old" json:"old"`
+	New string `bson:"new" json:"new"`
+}
+
+func (ctrl *Controller)ChangePassword(c *gin.Context){
+	input := &password{}
+	if err := c.ShouldBindJSON(input); err != nil {
+		view.MakeErrResp2(c, 400, err)
+		return
+	}
 	token := c.Param("token")
-	fmt.Println("token", token)
+
 	UID, err := ctrl.authService.VerifyToken(token)
 	fmt.Println("err verify token in email", err)
 	if err != nil {
@@ -18,16 +28,16 @@ func (ctrl *Controller) VerifyEmail(c *gin.Context) {
 	if UID == nil{
 		view.MakeErrResp2(c, 2, err)
 	}
+
 	_,err = ctrl.authService.RevokeToken(token)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	fmt.Println("uid", UID)
-	err = ctrl.service.VerifyEmail(c,*UID)
+	err = ctrl.service.ChangePassword(c,*UID,input.New)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	view.MakeSuccessResp(c, 200, "verified")
+	view.MakeSuccessResp(c, 200, "password changed")
 }

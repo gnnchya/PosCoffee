@@ -18,6 +18,10 @@ type Service interface {
 	CheckPermission(input *protobuf.RequestPermission)(bool, error)
 	VerifyEmail(ctx context.Context,UID string) (err error)
 	SendVerifyEmail(Email string, Token string) error
+	VerifyPassword(ctx context.Context, password string) (id string, err error)
+	ForgetPassword(Email string, Token string) error
+	ChangePassword(ctx context.Context, uid string, password string) error
+	InputForgetPasswordToken(ctx context.Context,Email string) (out domain.UserStruct, err error)
 }
 
 

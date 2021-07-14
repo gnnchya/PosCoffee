@@ -35,7 +35,8 @@ type Config struct {
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"user"`
 	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"user"`
 
-	VerifyUrl 		string		`env:"VERIFY_URL" envDefault:"http://localhost:8085/authorization/verify"`
+	EmailVerifyUrl 		string		`env:"EMAIL_VERIFY_URL" envDefault:"http://localhost:8085/verify/verify_email"`
+	PasswordVerifyUrl 		string		`env:"PASSWORD_VERIFY_URL" envDefault:"http://localhost:8085/verify/change_password"`
 	Email 		string		`env:"EMAIL" envDefault:"62011155@kmitl.ac.th"`
 	EmailPassword 		string		`env:"EMAIL_PASSWORD" envDefault:"agjxdrywfdtueorp"`
 
