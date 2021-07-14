@@ -25,6 +25,8 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	input.ID = initID.Gen()
 	initUID := goxid.New()
 	input.UID = initUID.Gen()
+	UID := input.UID
+	username := input.Username
 	password := input.Password
 	fmt.Println("Register", input)
 	_, err := ctrl.service.Create(c, input)
@@ -41,7 +43,7 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	//	return
 	//}
 	fmt.Println("token input", inputToken)
-	token, err := ctrl.authService.GenerateToken(inputToken)
+	token, err := ctrl.authService.GetToken(UID,username,password)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
