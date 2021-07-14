@@ -36,6 +36,9 @@ type Config struct {
 	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"user"`
 
 	VerifyUrl 		string		`env:"VERIFY_URL" envDefault:"http://localhost:8085/pos/verify"`
+	Email 		string		`env:"EMAIL" envDefault:"62011155@kmitl.ac.th"`
+	EmailPassword 		string		`env:"EMAIL_PASSWORD" envDefault:"agjxdrywfdtueorp"`
+
 }
 
 func Get() *Config {

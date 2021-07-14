@@ -4,8 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/middleware"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication"
-	"github.com/gnnchya/PosCoffee/authen/service/email/implement"
-
 	//"github.com/gnnchya/PosCoffee/authorize/service/grpc/protobuf/authen"
 
 	// "touch/service/user"
