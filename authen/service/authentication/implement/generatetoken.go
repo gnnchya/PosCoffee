@@ -42,6 +42,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 		return "", err
 	}
 
+	if !users.Verify{return "", fmt.Errorf("error : account has not been verified yet")}
 	err = bcrypt.CompareHashAndPassword([]byte(users.Password), []byte(password))
 	if err != nil {
 		return "", err
