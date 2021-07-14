@@ -4,7 +4,7 @@ type UserStruct struct{
 	ID  			string				`bson:"_id" json:"id"`
 	UID  			string				`bson:"uid" json:"uid"`
 	Username		string				`bson:"username" json:"username"`
-	Password 		string				`bson:"implement" json:"implement"`
+	Password 		string				`bson:"password" json:"password"`
 	MetaData		*MetaDataStruct		`bson:"meta_data" json:"meta_data"`
 	RoleID			[]string		`bson:"role_id" json:"role_id"`
 	Verify 			bool 				`bson:"verify" json:"verify"`
@@ -74,7 +74,7 @@ type MemberGroupStruct struct {
 }
 
 type ForgotPasswordStruct struct {
-	Password  string `bson:"implement" json:"implement"`
+	Password  string `bson:"password" json:"password"`
 	UpdatedAt int64  `bson:"updated_at" json:"updated_at"`
 }
 

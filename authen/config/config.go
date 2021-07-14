@@ -29,7 +29,7 @@ type Config struct {
 	ClientId         string `env:"CLIENT_ID" envDefault:"75b987daJcf85S4ed8H9594xea529b27b127"`
 	ClientSecret     string `env:"CLIENT_SECRET" envDefault:"1d34d79bJb459S4839Hb5fbxd2687c143ca2"`
 	RedirectUri      string `env:"REDIRECT_URI" envDefault:"localhost"`
-	GrantType        string `env:"GRANT_TYPE" envDefault:"implement"`
+	GrantType        string `env:"GRANT_TYPE" envDefault:"grant_type"`
 
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27016"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"user"`

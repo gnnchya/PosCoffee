@@ -60,7 +60,7 @@ func (impl *implementation) getToken(userID, username, password string) (token *
 		"redirect_uri":  {impl.config.RedirectUri},
 		"grant_type":    {impl.config.GrantType},
 		"username":      {username},
-		"implement":      {password},
+		"password":      {password},
 	}
 
 	contentType := AppFrom
