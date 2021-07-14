@@ -3,7 +3,6 @@ package implement
 import (
 	"context"
 	"fmt"
-	"github.com/gnnchya/PosCoffee/authen/domain"
 	email "github.com/gnnchya/PosCoffee/authen/service/email"
 )
 
@@ -13,15 +12,16 @@ type verify struct{
 
 func (impl *implementation)VerifyEmail(ctx context.Context, UID string) error{
 	fmt.Println("uid in service verifyEmail",UID)
-	input := &domain.UserStruct{}
+	//input := &domain.UserStruct{}
 	filter := impl.filter.MakeUIDFilters(UID)
-	err := impl.repo.Read(ctx, filter, input)
-	fmt.Println("err read", err)
-	if err != nil{
-		return err
-	}
-	input.Verify = true
-	err = impl.repo.Update(ctx, filter, input)
+	//err := impl.repo.Read(ctx, filter, input)
+	//fmt.Println("err read", err)
+	//if err != nil{
+	//	return err
+	//}
+	//input.Verify = true
+	input := &verify{Verify: true}
+	err := impl.repo.Update(ctx, filter, input)
 	if err != nil{
 		return err
 	}
