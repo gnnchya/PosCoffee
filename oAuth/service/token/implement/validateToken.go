@@ -21,7 +21,7 @@ func (impl *implementation) ValidateToken(ctx context.Context, input *string) (v
 	refresh := time.Unix(token.CreatedAt, 0)
 	refreshExpiresIn := time.Hour * 24 * 3
 	accessCreateAt := time.Unix(token.CreatedAt, 0)
-	accessExpiresIn := time.Hour * 2
+	accessExpiresIn := time.Minute * 2
 	timeNow := time.Now()
 	if token.AccessToken != header {
 		return nil, fmt.Errorf("error : Unauthorized: Invalid Access Token") //Unauthorized(errors.ErrInvalidAccessToken)

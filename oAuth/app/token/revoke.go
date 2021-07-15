@@ -1,6 +1,7 @@
 package token
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,6 +19,7 @@ func (ctrl *Controller) RevokeToken(c *gin.Context) {
 	defer span.Finish()
 
 	auth := c.Request.Header.Get("Authorization")
+	fmt.Println("revoke token ", auth)
 	err := ctrl.service.RevokeToken(ctx, &auth)
 	if err != nil {
 		view.MakeErrResp2(c, 422,err)

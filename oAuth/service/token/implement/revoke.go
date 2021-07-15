@@ -2,11 +2,13 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/oAuth/domain"
 	"strings"
 )
 
 func (impl *implementation) RevokeToken(ctx context.Context, input *string) (err error) {
+	fmt.Println("input revoke token", input)
 	header := strings.ReplaceAll(*input, "Bearer ", "")
 	filters := impl.filter.MakeAccessTokenFilter(header)
 	token := &domain.TokenStruct{}
