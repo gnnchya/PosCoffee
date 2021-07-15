@@ -8,7 +8,6 @@ import (
 )
 
 func (impl *implementation) CheckPermission(ctx context.Context, roles []string, permission string) (allow bool, err error) {
-	//var out *out.RolesView
 	var out = make([]out.RolesView, 1)
 	fmt.Println("permission", permission)
 	fmt.Println("roles:", roles)
@@ -16,10 +15,6 @@ func (impl *implementation) CheckPermission(ctx context.Context, roles []string,
 		return false, nil
 	}
 
-	//filters := makeRoleIDFilters(input.ID)
-	//
-	//pipeline := makePipelineRead(&filters)
-	//err = impl.repo.Aggregate(ctx, &pipeline, &role)
 	for _, role := range roles{
 		filter := makeRoleIDFilters(role)
 		pipeline := makePipelineRead(&filter)
