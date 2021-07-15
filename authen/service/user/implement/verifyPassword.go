@@ -6,13 +6,16 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (impl * implementation)VerifyPassword(ctx context.Context, password string) (id string, err error){
-	hashPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	if err != nil {
-		return "",err
-	}
+func (impl * implementation)VerifyPassword(ctx context.Context, UID string, password string) (err error){
 	out := &domain.UserStruct{}
-	filter := impl.filter.MakePasswordFilter(string(hashPassword))
+	filter := impl.filter.MakeUIDFilters(UID)
 	err = impl.repo.Read(ctx, filter, out)
-	return out.ID, err
+	if err != nil{
+		return err
+	}
+	err = bcrypt.CompareHashAndPassword([]byte(out.Password),[]byte(password))
+	if err != nil{
+		return err
+	}
+	return  err
 }
