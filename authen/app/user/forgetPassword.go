@@ -46,5 +46,5 @@ func (ctrl *Controller)ForgetPassword(c *gin.Context){
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	view.MakeSuccessResp(c, 200, "password changed")
+	view.MakeSuccessResp(c, 200, "password has been changed")
 }
