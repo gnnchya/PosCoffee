@@ -52,7 +52,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 		return "", err
 	}
 
-	return users.ID, nil
+	return users.UID, nil
 }
 
 func (impl *implementation) GetToken(userID, username, password string) (token *out.Token, err error) {

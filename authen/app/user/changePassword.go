@@ -1,8 +1,10 @@
 package user
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
+	"strings"
 )
 
 type verifyPassword struct {
@@ -12,7 +14,8 @@ type verifyPassword struct {
 }
 
 func (ctrl *Controller)ChangePassword(c *gin.Context){
-	token := c.Param("token")
+	header := c.GetHeader("Authorization")
+	token := strings.ReplaceAll(header, "Bearer ", "")
 	UID, err := ctrl.authService.VerifyToken(token)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
@@ -32,7 +35,7 @@ func (ctrl *Controller)ChangePassword(c *gin.Context){
 		view.MakeErrResp(c, 400, "current password unmatched")
 		return
 	}
-
+	fmt.Println("password", input.Password)
 	err = ctrl.service.VerifyPassword(c,*UID,input.Password)
 	if err != nil{
 		view.MakeErrResp(c, 400, "incorrect password")

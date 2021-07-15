@@ -11,6 +11,7 @@ import (
 )
 
 func (impl *implementation) VerifyToken(accessToken string) (userID *string, err error) {
+	fmt.Println("verify token", accessToken)
 	contentType := AppJson
 	application := AppJson
 	auth := fmt.Sprintf("Bearer %s", accessToken)
