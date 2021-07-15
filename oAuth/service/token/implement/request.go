@@ -26,14 +26,15 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 	filters = makeUserIDFilters(impl.filter, input.UID)
 
 	err = impl.tokenRepository.Read(ctx, filters, checkAccessToken)
-
-	checkToken := &domain.TokenStruct{}
-	pastAccessToken := "Bearer "+checkAccessToken.AccessToken
-	fmt.Println( "past access token", pastAccessToken)
-	filters = makeUserIDFilters(impl.filter, input.UID)
-	err = impl.tokenRepository.Read(ctx, filters, checkToken)
-	if err == nil {
-		impl.RevokeToken(ctx, &pastAccessToken)
+	if err == nil{
+		checkToken := &domain.TokenStruct{}
+		pastAccessToken := "Bearer "+checkAccessToken.AccessToken
+		fmt.Println( "past access token", pastAccessToken)
+		filters = makeUserIDFilters(impl.filter, input.UID)
+		err = impl.tokenRepository.Read(ctx, filters, checkToken)
+		if err == nil {
+			impl.RevokeToken(ctx, &pastAccessToken)
+		}
 	}
 
 	impl.oauthRepository.ClientStore(consumer.ClientID, consumer.ClientSecret, consumer.RedirectUri)
