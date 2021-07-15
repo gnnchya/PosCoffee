@@ -29,6 +29,10 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	srv := impl.oauthRepository.NewServer()
 	srv.SetAllowGetAccessRequest(true)
 	srv.SetClientInfoHandler(server.ClientFormHandler)
+	srv.SetPasswordAuthorizationHandler(func(username, password string) (userID string, err error) {
+		userID = username
+		return
+	})
 
 	gt, tgr, err := srv.ValidationTokenRequest(r)
 	//srv.UserAuthorizationHandler = func(w http.ResponseWriter, r *http.Request) (string, error) {
