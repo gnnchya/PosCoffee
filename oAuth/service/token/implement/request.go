@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -23,9 +24,12 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 
 	checkToken := &domain.TokenStruct{}
 	pastAccessToken := "Bearer "+input.AccessToken
+	fmt.Println( "past access token", pastAccessToken)
 	filters = makeUserIDFilters(impl.filter, input.UID)
 	err = impl.tokenRepository.Read(ctx, filters, checkToken)
+	fmt.Println( "read err", err)
 	if err == nil {
+		fmt.Println(&pastAccessToken)
 		impl.RevokeToken(ctx, &pastAccessToken)
 	}
 
@@ -49,7 +53,7 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 		return nil, err
 	}
 
-	accessExpiresIn := time.Minute * 2
+	accessExpiresIn := time.Hour * 2
 	refreshExpiresIn := time.Hour * 24 * 3
 
 	ti.SetAccessExpiresIn(accessExpiresIn / time.Second)
