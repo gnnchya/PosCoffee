@@ -6,7 +6,9 @@ import (
 	"github.com/gnnchya/PosCoffee/menu/config"
 	"github.com/gnnchya/PosCoffee/menu/middleware"
 	elasRepo "github.com/gnnchya/PosCoffee/menu/repository/elastic"
+	repoGrpc "github.com/gnnchya/PosCoffee/menu/repository/grpc"
 	redisRepo "github.com/gnnchya/PosCoffee/menu/repository/redis"
+	grpcService "github.com/gnnchya/PosCoffee/menu/service/grpcClient/implement"
 	userService "github.com/gnnchya/PosCoffee/menu/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/menu/service/validator"
 	"log"
@@ -20,15 +22,25 @@ func newApp(appConfig *config.Config) *app.App {
 	panicIfErr(err)
 	rRepo, err := redisRepo.New(ctx, appConfig.RedisEndpoint, appConfig.RedisPassword, 24 * time.Hour)
 	panicIfErr(err)
-
+	grpcRepo := repoGrpc.New(configGrpcMiddleware(appConfig))
+	gService := grpcService.New(grpcRepo)
 	validator := validatorService.New(eRepo)
-	user := userService.New(validator, eRepo, rRepo)
+	user := userService.New(validator, eRepo, rRepo, gService)
 	midService := middleware.New(user)
-	return app.New(user, midService)
+	return app.New(user, midService, gService)
 }
 
 func panicIfErr(err error) {
 	if err != nil {
 		log.Panic(err)
+	}
+}
+const (
+	NETWORK = "tcp"
+)
+func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCAuthenHost,
 	}
 }

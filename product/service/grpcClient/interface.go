@@ -12,5 +12,7 @@ type Service interface {
 	SendMenu(input *protobuf.RequestMenu) (*protobuf.ReplyMenu, error)
 	ReadNameStock(input *protobuf.RequestName)(*protobuf.ReplyArrRead, error)
 	ReadCategoryStock(input *protobuf.RequestCategory)(*protobuf.ReplyArrRead, error)
+	Middleware(input *protobuf.RequestMiddleware) (*protobuf.ReplyMiddleware, error)
+
 }
 

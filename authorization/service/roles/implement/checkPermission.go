@@ -40,5 +40,5 @@ func (impl *implementation) CheckPermission(ctx context.Context, roles []string,
 		}
 	}
 
-	return true, nil
+	return false, nil
 }

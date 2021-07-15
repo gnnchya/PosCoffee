@@ -22,6 +22,7 @@ func (impl implementation) Middleware(ctx context.Context, input *pb.RequestMidd
 	filters := impl.filter.MakeUIDFilters(*userID)
 	fmt.Println("uid filter", filters)
 	err = impl.repo.Read(ctx, filters, &user)
+	fmt.Println("err from read", err)
 	if err != nil {
 		return nil, err
 	}

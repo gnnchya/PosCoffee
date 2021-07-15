@@ -18,9 +18,11 @@ type implementation struct {
 	clientReport pb.SendReportToStockClient
 	connMenu *grpc.ClientConn
 	clientMenu protobuf.SendMenuClient
+	connMiddleware *grpc.ClientConn
+	clientMiddleware protobuf.MiddlewareClient
 }
 
-func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC, grpcMenu util.RepositoryGRPC) (service grpcClient.Service) {
+func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC, grpcMenu util.RepositoryGRPC, grpcMiddle util.RepositoryMiddlewareGRPC) (service grpcClient.Service) {
 	conn, err := grpcRepo.NewClient()
 	if err != nil {
 		return nil
@@ -35,7 +37,10 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC,
 	if err != nil {
 		return nil
 	}
-
+	connMiddle, err := grpcMiddle.NewClient()
+	if err != nil {
+		return nil
+	}
 
 	impl := &implementation{
 		conn:      conn,
@@ -47,6 +52,8 @@ func New(grpcRepo util.RepositoryGRPC, grpcReportRepo util.RepositoryReportGRPC,
 		clientReport: pb.NewSendReportToStockClient(connReport),
 		connMenu: connMenu,
 		clientMenu: protobuf.NewSendMenuClient(connMenu),
+		connMiddleware: connMiddle,
+		clientMiddleware: protobuf.NewMiddlewareClient(connMiddle),
 	}
 	return impl
 }

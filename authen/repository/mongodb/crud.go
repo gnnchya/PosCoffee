@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -57,6 +58,7 @@ func (repo *Repository) Create(ctx context.Context, ent interface{}) (ID string,
 }
 
 func (repo *Repository) Read(ctx context.Context, filters []string, out interface{}) (err error) {
+	fmt.Println("here")
 	conditions := repo.makeFilters(filters)
 	return repo.Coll.FindOne(ctx, conditions).Decode(out)
 }

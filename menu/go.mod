@@ -16,5 +16,7 @@ require (
 	github.com/ugorji/go v1.1.13 // indirect
 	golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0 // indirect
 	golang.org/x/text v0.3.5 // indirect
+	google.golang.org/grpc v1.39.0
+	google.golang.org/protobuf v1.25.0
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )

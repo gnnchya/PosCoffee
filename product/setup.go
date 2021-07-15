@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/product/app"
 	"github.com/gnnchya/PosCoffee/product/config"
+	"github.com/gnnchya/PosCoffee/product/middleware"
 	repoGrpc "github.com/gnnchya/PosCoffee/product/repository/grpc"
 	"github.com/gnnchya/PosCoffee/product/repository/kafka"
 	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
@@ -28,9 +29,9 @@ func newApp(appConfig *config.Config) *app.App {
 	grpcRepo := repoGrpc.New(configGrpc(appConfig))
 	grpcRepoReport := repoGrpc.New(configGrpcReport(appConfig))
 	grpcMenu := repoGrpc.New(configGRPCMenu(appConfig))
+	grpcRepoMiddleware := repoGrpc.New(configGrpcMiddleware(appConfig))
 
-
-	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), grpcRepoReport, grpcMenu)
+	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), grpcRepoReport, grpcMenu, grpcRepoMiddleware)
 	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
 
 	msgService := msgBrokerService.New(kRepo, user)
@@ -38,8 +39,9 @@ func newApp(appConfig *config.Config) *app.App {
 	go grpcService.New(grpcRepo, user)
 
 	msgService.Receiver(topics)
+	midService := middleware.New(user)
 	//time.Sleep(10 * time.Second)
-	return app.New(user, gService)
+	return app.New(user, gService, midService)
 }
 
 func panicIfErr(err error) {
@@ -92,5 +94,12 @@ func configGRPCMenu(appConfig *config.Config) *repoGrpc.Config {
 	return &repoGrpc.Config{
 		Network: NETWORK,
 		Port:    appConfig.GRPCMenu,
+	}
+}
+
+func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCAuthenHost,
 	}
 }
