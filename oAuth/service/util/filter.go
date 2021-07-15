@@ -6,6 +6,7 @@ import "fmt"
 type Filters interface {
 	MakeIdFilters(id string) (filters []string)
 	MakeAccessTokenFilter(access string) (filters []string)
+	MakeRefreshTokenFilter(refresh string) (filters []string)
 	MakeClientIdString(clientID string) (filters string)
 	MakeClientSecretString(clientSecret string) (filters string)
 	MakeRedirectUriString(redirectUri string) (filters string)
@@ -27,6 +28,12 @@ func (f *Filter) MakeIdFilters(id string) (filters []string) {
 func (f *Filter) MakeAccessTokenFilter(access string) (filters []string) {
 	return []string{
 		fmt.Sprintf("access_token:eq:%s", access),
+	}
+}
+
+func (f *Filter) MakeRefreshTokenFilter(refresh string) (filters []string) {
+	return []string{
+		fmt.Sprintf("refresh_token:eq:%s", refresh),
 	}
 }
 

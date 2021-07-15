@@ -19,3 +19,7 @@ func makeConsumerFilters(filter util.Filters, clientID string, clientSecret stri
 func makeUserIDFilters(filter util.Filters, uid string) (filters []string) {
 	return filter.MakeUserIDString(uid)
 }
+
+func makeRefreshTokenFilters(filter util.Filters, refresh string) (filters []string) {
+	return filter.MakeRefreshTokenFilter(refresh)
+}

@@ -18,8 +18,6 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	filters := makeClientFilters(impl.filter, input.ClientID, input.ClientSecret)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
-	fmt.Println("err read refresh", err)
-	fmt.Println("consumer read", consumer)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +57,7 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 		return nil, err
 	}
 
-	accessExpiresIn := time.Minute * 2
+	accessExpiresIn := time.Hour * 2
 	//refreshExpiresIn := time.Hour * 24 * 3
 
 	ti.SetAccessExpiresIn(accessExpiresIn)
