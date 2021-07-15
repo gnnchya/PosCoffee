@@ -7,18 +7,6 @@ import (
 	"net/http"
 )
 
-// Login Create godoc
-// @Tags Login&Logout
-// @Security bearerAuth
-// @Summary login by user
-// @Description Response data with a given token
-// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
-// @Param input body autenitcationin.LoginInput true "Input"
-// @Accept json
-// @Produce json
-// @Success 200 {object} view.SuccessResp{data=out.Token}
-// @Failure 401 {object} view.ErrResp
-// @Router /login [post]
 func (ctrl *Controller) Login(c *gin.Context) {
 
 	input := &autenitcationin.LoginInput{}
