@@ -6,25 +6,46 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 )
 
-type email struct {
-	Email string `bson:"email" json:"email"`
+type changePassword struct{
+	NewPassword string `bson:"new_password" json:"new_password"`
+	ConfirmPassword string `bson:"confirm_password" json:"confirm_password"`
 }
 
 func (ctrl *Controller)ForgetPassword(c *gin.Context){
-	email := &email{}
-	if err := c.ShouldBindJSON(email); err != nil {
+	input := &changePassword{}
+	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp2(c, 400, err)
 		return
 	}
-	user,err := ctrl.service.InputForgetPasswordToken(c,email.Email)
-	if err != nil{
+
+	if input.NewPassword != input.ConfirmPassword{
+		view.MakeErrResp(c, 400, "current password unmatched")
 		return
 	}
-	token, err := ctrl.authService.GetToken(user.UID,user.Username,user.Password)
+
+	token := c.Param("token")
+
+	UID, err := ctrl.authService.VerifyToken(token)
+	fmt.Println("err verify token in email", err)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
-	err = ctrl.service.ForgetPassword(email.Email, token.AccessToken)
-	fmt.Println("token access", token.AccessToken)
+	if UID == nil{
+		view.MakeErrResp2(c, 2, err)
+	}
+
+
+	err = ctrl.service.ChangePassword(c,*UID,input.NewPassword)
+	if err != nil {
+		view.MakeErrResp2(c,1, err)
+		return
+	}
+
+	_,err = ctrl.authService.RevokeToken(token)
+	if err != nil {
+		view.MakeErrResp2(c,1, err)
+		return
+	}
+	view.MakeSuccessResp(c, 200, "password changed")
 }

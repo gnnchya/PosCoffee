@@ -42,9 +42,9 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 	authRoute := router.Group("/verify")
 	{
 		authRoute.GET("/verify_email/:token", app.user.VerifyEmail)
-		authRoute.POST("/forget_password", app.user.ForgetPassword)
-		authRoute.POST("/verify_password", app.user.VerifyPassword)
-		authRoute.POST("/change_password/:token", app.user.ChangePassword)
+		authRoute.POST("/forget_password", app.user.SendForgetPasswordUrl)
+		authRoute.POST("/change_password", app.user.ChangePassword)
+		authRoute.POST("/forget_password/:token", app.user.ForgetPassword)
 	}
 
 	return app
