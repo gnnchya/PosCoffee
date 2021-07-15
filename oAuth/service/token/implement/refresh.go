@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -17,6 +18,8 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	filters := makeClientFilters(impl.filter, input.ClientID, input.ClientSecret)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
+	fmt.Println("err read refresh", err)
+	fmt.Println("consumer read", consumer)
 	if err != nil {
 		return nil, err
 	}
@@ -28,6 +31,16 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	srv.SetClientInfoHandler(server.ClientFormHandler)
 
 	gt, tgr, err := srv.ValidationTokenRequest(r)
+	//srv.UserAuthorizationHandler = func(w http.ResponseWriter, r *http.Request) (string, error) {
+	//	fmt.Println("here1")
+	//	return "", errors.ErrAccessDenied
+	//}
+	//
+	//srv.PasswordAuthorizationHandler = func(username, password string) (string, error) {
+	//	fmt.Println("here2")
+	//	return "", errors.ErrAccessDenied
+	//}
+	fmt.Println("validation token request refresh", err)
 	if err != nil {
 		return nil, err
 	}
