@@ -25,7 +25,7 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 	checkAccessToken := &domain.TokenStruct{}
 	filters = makeUserIDFilters(impl.filter, input.UID)
 
-	err = impl.consumerRepository.Read(ctx, filters, checkAccessToken)
+	err = impl.tokenRepository.Read(ctx, filters, checkAccessToken)
 	if err != nil {
 		return nil, err
 	}
