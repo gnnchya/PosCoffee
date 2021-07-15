@@ -26,9 +26,6 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 	filters = makeUserIDFilters(impl.filter, input.UID)
 
 	err = impl.tokenRepository.Read(ctx, filters, checkAccessToken)
-	if err != nil {
-		return nil, err
-	}
 
 	checkToken := &domain.TokenStruct{}
 	pastAccessToken := "Bearer "+checkAccessToken.AccessToken
