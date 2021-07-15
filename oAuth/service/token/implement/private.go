@@ -15,3 +15,7 @@ func makeConsumerFilters(filter util.Filters, clientID string, clientSecret stri
 		filter.MakeClientSecretString(clientSecret),
 	}
 }
+
+func makeUserIDFilters(filter util.Filters, uid string) (filters []string) {
+	return filter.MakeUserIDString(uid)
+}

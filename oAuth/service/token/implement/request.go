@@ -13,13 +13,20 @@ import (
 )
 
 func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestInput, r *http.Request) (view *out.TokenView, err error) {
-
 	consumer := &domain.ConsumerStruct{}
 	filters := makeConsumerFilters(impl.filter, input.ClientID, input.ClientSecret)
 
 	err = impl.consumerRepository.Read(ctx, filters, consumer)
 	if err != nil {
 		return nil, err
+	}
+
+	checkToken := &domain.TokenStruct{}
+	pastAccessToken := "Bearer "+input.AccessToken
+	filters = makeUserIDFilters(impl.filter, input.UID)
+	err = impl.tokenRepository.Read(ctx, filters, checkToken)
+	if err == nil {
+		impl.RevokeToken(ctx, &pastAccessToken)
 	}
 
 	impl.oauthRepository.ClientStore(consumer.ClientID, consumer.ClientSecret, consumer.RedirectUri)
@@ -42,7 +49,7 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 		return nil, err
 	}
 
-	accessExpiresIn := time.Hour * 2
+	accessExpiresIn := time.Minute * 2
 	refreshExpiresIn := time.Hour * 24 * 3
 
 	ti.SetAccessExpiresIn(accessExpiresIn / time.Second)

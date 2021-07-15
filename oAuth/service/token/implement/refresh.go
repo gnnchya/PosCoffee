@@ -37,11 +37,11 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 		return nil, err
 	}
 
-	accessExpiresIn := time.Hour * 2
-	refreshExpiresIn := time.Hour * 24 * 3
+	accessExpiresIn := time.Minute * 2
+	//refreshExpiresIn := time.Hour * 24 * 3
 
 	ti.SetAccessExpiresIn(accessExpiresIn)
-	ti.SetRefreshExpiresIn(refreshExpiresIn)
+	//ti.SetRefreshExpiresIn(refreshExpiresIn)
 
 	token := &domain.TokenStruct{
 		ID:               impl.uuid.Generate(),
@@ -49,7 +49,7 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 		AccessToken:      ti.GetAccess(),
 		RefreshToken:     ti.GetRefresh(),
 		AccessExpire:     int64(accessExpiresIn.Seconds()),
-		RefreshExpire: 	  int64(refreshExpiresIn.Seconds()),
+		RefreshExpire: 	  int64(ti.GetRefreshExpiresIn().Seconds()),
 		CreatedAt:		  ti.GetAccessCreateAt().Unix(),
 	}
 
