@@ -16,15 +16,21 @@ func (ctrl *Controller)SendForgetPasswordUrl(c *gin.Context){
 		view.MakeErrResp2(c, 400, err)
 		return
 	}
+	fmt.Println("email",email)
 	user,err := ctrl.service.InputForgetPasswordToken(c,email.Email)
+	fmt.Println("output forget pwd token", user)
+	fmt.Println("err", err)
 	if err != nil{
+		view.MakeErrResp2(c,400, err)
 		return
 	}
 	token, err := ctrl.authService.GetToken(user.UID,user.Username,user.Password)
+
 	if err != nil {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
 	err = ctrl.service.ForgetPassword(email.Email, token.AccessToken)
 	fmt.Println("token access", token.AccessToken)
+	view.MakeSuccessResp(c, 200, "done")
 }
