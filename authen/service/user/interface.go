@@ -21,7 +21,7 @@ type Service interface {
 	VerifyPassword(ctx context.Context, UID string, password string) (err error)
 	ForgetPassword(Email string, Token string) error
 	ChangePassword(ctx context.Context, uid string, password string) error
-	InputForgetPasswordToken(ctx context.Context,Email string) (out domain.UserStruct, err error)
+	InputForgetPasswordToken(ctx context.Context,Email string) (out *domain.UserStruct, err error)
 }
 
 
