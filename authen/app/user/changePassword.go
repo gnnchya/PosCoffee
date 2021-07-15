@@ -8,8 +8,8 @@ import (
 )
 
 type verifyPassword struct {
-	Password 		string				`bson:"password" json:"password"`
-	NewPassword string `bson:"new_password" json:"new_password"`
+	Password 		string `bson:"password" json:"password"`
+	NewPassword 	string `bson:"new_password" json:"new_password"`
 	ConfirmPassword string `bson:"confirm_password" json:"confirm_password"`
 }
 

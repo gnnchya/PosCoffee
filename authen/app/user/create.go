@@ -8,11 +8,6 @@ import (
 	goxid "github.com/touchtechnologies-product/xid"
 )
 
-const (
-	AppJson = "application/json"
-	AppFrom = "application/x-www-form-urlencoded"
-)
-
 func (ctrl *Controller) Create(c *gin.Context,role []string) {
 	input := &userin.CreateInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
@@ -30,10 +25,7 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
-	//if err := c.ShouldBindJSON(inputToken); err != nil {
-	//	view.MakeErrResp2(c,0, err)
-	//	return
-	//}
+
 	token, err := ctrl.authService.GetToken(input.UID,input.Username,input.Password)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)

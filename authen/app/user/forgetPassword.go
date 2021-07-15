@@ -35,7 +35,6 @@ func (ctrl *Controller)ForgetPassword(c *gin.Context){
 		view.MakeErrResp2(c, 2, err)
 	}
 
-
 	err = ctrl.service.ChangePassword(c,*UID,input.NewPassword)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)

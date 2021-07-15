@@ -6,23 +6,7 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/domain"
 	"github.com/opentracing/opentracing-go"
 )
-// List godoc
-// @Tags Users
-// @Summary Get a list of users
-// @Description Return a list of users filtered by a given filters if any
-// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
-// @param page query string false "A page number"
-// @param per_page query string false "A total number of items per page"
-// @param filters query []string false "Condition for user retrieval, ex. 'userName:eq:some name'"
-// @Produce  json
-// @Success 200 {object} view.SuccessResp{data=[]out.UsersView}
-// @Success 204 {object} view.ErrResp
-// @Success 400 {object} view.ErrResp
-// @Success 401 {object} view.ErrResp
-// @Success 403 {object} view.ErrResp
-// @Success 500 {object} view.ErrResp
-// @Success 503 {object} view.ErrResp
-// @Router /users [get]
+
 func (ctrl *Controller) List(c *gin.Context) {
 	span, ctx := opentracing.StartSpanFromContextWithTracer(
 		c.Request.Context(),

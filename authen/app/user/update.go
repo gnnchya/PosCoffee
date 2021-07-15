@@ -5,18 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
-	"github.com/opentracing/opentracing-go"
 	"net/http"
 	"reflect"
 )
 
 func (ctrl *Controller) Update(c *gin.Context) {
-	span, ctx := opentracing.StartSpanFromContextWithTracer(
-		c.Request.Context(),
-		opentracing.GlobalTracer(),
-		"handler.users.Update",
-	)
-	defer span.Finish()
+
 
 	userID, isExist := c.Get("UserId")
 	if !isExist {
@@ -32,7 +26,7 @@ func (ctrl *Controller) Update(c *gin.Context) {
 		return
 	}
 
-	err := ctrl.service.Update(ctx, input)
+	err := ctrl.service.Update(c, input)
 	if err != nil {
 		view.MakeErrResp2(c,422, err)
 		return

@@ -10,21 +10,6 @@ import (
 	"reflect"
 )
 
-// Delete DeleteUsers godoc
-// @Tags Users
-// @Security bearerAuth
-// @Summary Soft delete a user
-// @Description Delete or remove user
-// @Accept json
-// @Produce  json
-// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
-// @Success 200 {object} view.SuccessResp
-// @Success 401 {object} view.ErrResp
-// @Success 403 {object} view.ErrResp
-// @Success 422 {object} view.ErrResp
-// @Success 500 {object} view.ErrResp
-// @Success 503 {object} view.ErrResp
-// @Router /me [delete]
 func (ctrl *Controller) Delete(c *gin.Context) {
 	span, ctx := opentracing.StartSpanFromContextWithTracer(
 		c.Request.Context(),
