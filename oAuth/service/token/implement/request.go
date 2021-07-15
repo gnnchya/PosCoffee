@@ -22,14 +22,20 @@ func (impl *implementation) Request(ctx context.Context, input *tokenin.RequestI
 		return nil, err
 	}
 
+	checkAccessToken := &domain.TokenStruct{}
+	filters = makeUserIDFilters(impl.filter, input.UID)
+
+	err = impl.consumerRepository.Read(ctx, filters, checkAccessToken)
+	if err != nil {
+		return nil, err
+	}
+
 	checkToken := &domain.TokenStruct{}
-	pastAccessToken := "Bearer "+input.AccessToken
+	pastAccessToken := "Bearer "+checkAccessToken.AccessToken
 	fmt.Println( "past access token", pastAccessToken)
 	filters = makeUserIDFilters(impl.filter, input.UID)
 	err = impl.tokenRepository.Read(ctx, filters, checkToken)
-	fmt.Println( "read err", err)
 	if err == nil {
-		fmt.Println(&pastAccessToken)
 		impl.RevokeToken(ctx, &pastAccessToken)
 	}
 
