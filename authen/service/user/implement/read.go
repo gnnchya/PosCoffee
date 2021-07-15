@@ -14,6 +14,5 @@ func (impl *implementation) Read(ctx context.Context, input *userin.ReadInput) (
 	if err != nil {
 		return nil, err
 	}
-
 	return user, nil
 }

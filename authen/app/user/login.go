@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 	autenitcationin "github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
-	"github.com/opentracing/opentracing-go"
 	"net/http"
 )
 
@@ -21,13 +20,6 @@ import (
 // @Failure 401 {object} view.ErrResp
 // @Router /login [post]
 func (ctrl *Controller) Login(c *gin.Context) {
-
-	span, _ := opentracing.StartSpanFromContextWithTracer(
-		c.Request.Context(),
-		opentracing.GlobalTracer(),
-		"handler.users.login",
-	)
-	defer span.Finish()
 
 	input := &autenitcationin.LoginInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
