@@ -2,6 +2,7 @@ package implement
 
 import (
 	"context"
+	"fmt"
 	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -42,7 +43,7 @@ func (impl *implementation) Create(ctx context.Context, input *userin.CreateInpu
 	//input.PassCode = string(hashPassCode)
 
 	user := input.ToDomain()
-
+	fmt.Println("Createstruct", user)
 	_, err = impl.repo.Create(ctx, user)
 	if err != nil {
 		return "", err

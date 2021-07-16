@@ -33,7 +33,6 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 	if err != nil {
 		return nil, err
 	}
-
 	return token, nil
 }
 
