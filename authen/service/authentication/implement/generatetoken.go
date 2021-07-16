@@ -8,6 +8,7 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
 	"github.com/modern-go/reflect2"
+	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -25,10 +26,6 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 		return nil, err
 	}
 	fmt.Println("userId", userID)
-	//hashPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
-	//if err != nil {
-	//	return nil, err
-	//}
 	token, err = impl.GetToken(userID, input.Username, input.Password)
 	if err != nil {
 		return nil, err
@@ -43,10 +40,12 @@ func (impl *implementation) login(username, password string) (userID string, err
 	if err != nil {
 		return "", err
 	}
-fmt.Println("pass in db and pass in input", users.Password,password)
 	if !users.Verify{return "", fmt.Errorf("error : account has not been verified yet")}
 	if users.DeletedAt != 0{return "", fmt.Errorf("error : account has been deleted")}
-	if users.Password != password {return "", fmt.Errorf("error : password unmatch")}
+	err = bcrypt.CompareHashAndPassword([]byte(users.Password),[]byte(password))
+	if err != nil{
+		return "", nil
+	}
 	return users.UID, nil
 }
 

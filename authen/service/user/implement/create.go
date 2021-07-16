@@ -8,39 +8,17 @@ import (
 )
 
 func (impl *implementation) Create(ctx context.Context, input *userin.CreateInput) (ID string, err error) {
-	//defer func() {
-	//	if !reflect2.IsNil(err) {
-	//		return
-	//	}
-	//
-	//	if err = impl.sendMsgCreate(input); err != nil {
-	//		log.Println(err)
-	//	}
-	//}()
 
 	err = impl.validator.Validate(input)
 	if err != nil {
 		return "", err
 	}
 
-	//encodeIdentifyNumber, err := util.Encrypt([]byte(input.IdentifyNumber), impl.cryptPassPhrase)
-	//if err != nil {
-	//	return "", util.RepoCreateErr(err)
-	//}
-
 	hashPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return "", err
 	}
-	//hashPassCode, err := bcrypt.GenerateFromPassword([]byte(input.PassCode), bcrypt.DefaultCost)
-	//if err != nil {
-	//	return "", util.RepoCreateErr(err)
-	//}
-
-	//input.ID = impl.uuid.Generate()
-	//input.IdentifyNumber = encodeIdentifyNumber
 	input.Password = string(hashPassword)
-	//input.PassCode = string(hashPassCode)
 
 	user := input.ToDomain()
 	fmt.Println("Createstruct", user)
