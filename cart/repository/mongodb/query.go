@@ -42,6 +42,10 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domai
 	} else if state == false{
 		return resultStruct, fmt.Errorf("this ID does not exist")
 	}
+	err = repo.Coll.FindOne(ctx, bson.M{"_id":id}).Decode(&resultStruct)
+	if err != nil{
+		return resultStruct, err
+	}
 	return resultStruct, err
 }
 
