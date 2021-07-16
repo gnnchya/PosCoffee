@@ -26,11 +26,11 @@ func (impl *implementation) GenerateToken(input *authenticationin.LoginInput) (t
 		return nil, err
 	}
 	fmt.Println("userId", userID)
-	hashPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
-	if err != nil {
-		return nil, err
-	}
-	token, err = impl.GetToken(userID, input.Username, string(hashPassword))
+	//hashPassword, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
+	//if err != nil {
+	//	return nil, err
+	//}
+	token, err = impl.GetToken(userID, input.Username, input.Password)
 	if err != nil {
 		return nil, err
 	}
