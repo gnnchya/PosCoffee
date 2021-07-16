@@ -23,12 +23,12 @@ func (ctrl *Controller) Create(c *gin.Context) {
 	//	return
 	//}
 
-	ID, err := ctrl.service.Create(ctx, input)
+	output , err := ctrl.service.Create(ctx, input)
 	if err != nil {
 		// TODO match HTTP code
 		view.MakeErrResp2(c,422, err)
 		return
 	}
 
-	view.MakeSuccessResp(c, http.StatusOK, ID)
+	view.MakeSuccessResp(c, http.StatusOK, output)
 }
