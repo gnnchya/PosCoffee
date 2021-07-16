@@ -32,19 +32,29 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 		apiRoutes.POST("/register/owner", app.user.CreateOwner)
 		apiRoutes.POST("/register/admin", app.user.CreateAdmin)
 	}
+	verifyRoutes := router.Group("/verify")
+	{
+		verifyRoutes.GET("/verify_email/:token", app.user.VerifyEmail)
+		verifyRoutes.POST("/forget_password", app.user.SendForgetPasswordUrl)
+		verifyRoutes.POST("/change_password", app.user.ChangePassword)
+		verifyRoutes.POST("/forget_password/:token", app.user.ForgetPassword)
+	}
+
 	loginMiddleware := app.middle.AuthorizationLogin(app.middle.Auth)
 	loginRoute := router.Group("/user", loginMiddleware)
 	{
 		loginRoute.POST("/login", app.user.Login)
 	}
 
-	//authMiddleware := app.middle.Authorization(app.middle.Auth)
-	authRoute := router.Group("/verify")
+	authMiddleware := app.middle.Authorization(app.middle.Auth)
+	authRoute := router.Group("/auth", authMiddleware)
 	{
-		authRoute.GET("/verify_email/:token", app.user.VerifyEmail)
-		authRoute.POST("/forget_password", app.user.SendForgetPasswordUrl)
-		authRoute.POST("/change_password", app.user.ChangePassword)
-		authRoute.POST("/forget_password/:token", app.user.ForgetPassword)
+		authRoute.GET("/list", app.user.List)
+		authRoute.GET("/read/:id", app.user.Read)
+		authRoute.POST("/logout", app.user.Logout)
+		authRoute.PUT("/update", app.user.Update)
+		authRoute.DELETE("/delete", app.user.Delete)
+
 	}
 
 	return app
