@@ -44,7 +44,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 	if err != nil {
 		return "", err
 	}
-
+fmt.Println("pass in db and pass in input", users.Password,password)
 	if !users.Verify{return "", fmt.Errorf("error : account has not been verified yet")}
 	if users.DeletedAt != 0{return "", fmt.Errorf("error : account has been deleted")}
 	if users.Password != password {return "", fmt.Errorf("error : password unmatch")}
