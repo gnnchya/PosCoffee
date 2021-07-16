@@ -14,7 +14,6 @@ func (impl *implementation) CheckPermission(ctx context.Context, roles []string,
 	if roles == nil{
 		return false, nil
 	}
-
 	for _, role := range roles{
 		filter := makeRoleIDFilters(role)
 		pipeline := makePipelineRead(&filter)

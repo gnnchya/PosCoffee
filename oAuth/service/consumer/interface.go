@@ -7,5 +7,5 @@ import (
 
 //go:generate mockery --name=Service
 type Service interface {
-	Create(ctx context.Context, input *consumerin.CreateConsumerInput) (ID string, err error)
+	Create(ctx context.Context, input *consumerin.CreateConsumerInput) (View *consumerin.ConsumerOutput, err error)
 }
