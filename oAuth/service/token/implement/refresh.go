@@ -2,7 +2,6 @@ package implement
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -35,33 +34,19 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	gt, tgr, err := srv.ValidationTokenRequest(r)
 	tgr.UserID = input.UID
 	tgr.Scope = "all"
-	fmt.Println("refresh tgr", tgr.Refresh)
-	//srv.UserAuthorizationHandler = func(w http.ResponseWriter, r *http.Request) (string, error) {
-	//	fmt.Println("here1")
-	//	return "", errors.ErrAccessDenied
-	//}
-	//
-	//srv.PasswordAuthorizationHandler = func(username, password string) (string, error) {
-	//	fmt.Println("here2")
-	//	return "", errors.ErrAccessDenied
-	//}
-	fmt.Println("validation token request refresh", err)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("gt", gt)
-	fmt.Println("tgr", tgr)
 	ti, err := srv.GetAccessToken(ctx, gt, tgr)
-	fmt.Println("GetAccess err", err)
 	if err != nil {
 		return nil, err
 	}
 
 	accessExpiresIn := time.Hour * 2
-	//refreshExpiresIn := time.Hour * 24 * 3
+	refreshExpiresIn := time.Hour * 24 * 3
 
 	ti.SetAccessExpiresIn(accessExpiresIn)
-	//ti.SetRefreshExpiresIn(refreshExpiresIn)
+	ti.SetRefreshExpiresIn(refreshExpiresIn)
 
 	token := &domain.TokenStruct{
 		ID:               impl.uuid.Generate(),
@@ -74,7 +59,6 @@ func (impl *implementation) Refresh(ctx context.Context, input *tokenin.RefreshI
 	}
 
 	err = impl.tokenRepository.Create(ctx, token)
-	fmt.Println("create err refresh", err)
 	if err != nil {
 		return nil, err
 	}
