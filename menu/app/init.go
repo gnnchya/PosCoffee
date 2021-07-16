@@ -28,14 +28,14 @@ func (app *App) RegisterRoute(router *gin.Engine) *App {
 	adminMiddleware := app.middle.Authorization(app.middle.Users)
 	adminRoute := router.Group("/pos", adminMiddleware)
 	{
-		adminRoute.POST("/menu/:role", app.user.Create)
-		adminRoute.PUT("/menu/:role", app.user.Update)
-		adminRoute.DELETE("/menu/:id/:role", app.user.Delete)
-		adminRoute.GET("/menu/:id/:role", app.user.Read)
+		adminRoute.POST("/menu", app.user.Create)
+		adminRoute.PUT("/menu", app.user.Update)
+		adminRoute.DELETE("/menu/:id", app.user.Delete)
+		adminRoute.GET("/menu/:id", app.user.Read)
 		adminRoute.GET("/menu", app.user.ReadAll)
-		adminRoute.GET("/menu/search/:role", app.user.SearchMenu)
-		adminRoute.GET("/menu/category/:role", app.user.SearchCategory)
-		adminRoute.GET("/menu/ingredients/:role", app.user.SearchIngredient)
+		adminRoute.GET("/menu/search", app.user.SearchMenu)
+		adminRoute.GET("/menu/category", app.user.SearchCategory)
+		adminRoute.GET("/menu/ingredients", app.user.SearchIngredient)
 	}
 
 	return app
