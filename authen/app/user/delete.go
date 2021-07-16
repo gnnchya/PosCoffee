@@ -22,7 +22,7 @@ func (ctrl *Controller) Delete(c *gin.Context) {
 	}
 	err := ctrl.service.SoftDelete(c, input)
 	if err != nil {
-		view.MakeErrResp2(c,422, err)
+		view.MakeErrResp2(c,500, err)
 		return
 	}
 
