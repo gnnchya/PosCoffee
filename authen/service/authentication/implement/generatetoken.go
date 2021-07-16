@@ -8,7 +8,6 @@ import (
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication/out"
 	"github.com/modern-go/reflect2"
-	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -48,11 +47,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 
 	if !users.Verify{return "", fmt.Errorf("error : account has not been verified yet")}
 	if users.DeletedAt != 0{return "", fmt.Errorf("error : account has been deleted")}
-	err = bcrypt.CompareHashAndPassword([]byte(users.Password), []byte(password))
-	if err != nil {
-		return "", err
-	}
-
+	if users.Password == password {return "", err}
 	return users.UID, nil
 }
 
