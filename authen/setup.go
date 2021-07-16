@@ -33,7 +33,7 @@ func newApp(appConfig *config.Config) *app.App {
 	//kafkaRepo, err := kafka.New(configKafka(appConfig))
 	user := userService.New(validator, uRepo, filter, gService)
 	auth := authenService.New(validator, appConfig, uRepo, filter)
-	midService := middleware.New(auth, user)
+	midService := middleware.New(auth, user,uRepo,filter)
 	go grpcServerService.New(grpcPermissionRepo, user, auth, uRepo, filter)
 	return app.New(user, auth, midService)
 }
