@@ -44,7 +44,7 @@ func (impl *implementation) login(username, password string) (userID string, err
 	if users.DeletedAt != 0{return "", fmt.Errorf("error : account has been deleted")}
 	err = bcrypt.CompareHashAndPassword([]byte(users.Password),[]byte(password))
 	if err != nil{
-		return "", nil
+		return "", fmt.Errorf("error : password unmatch")
 	}
 	return users.UID, nil
 }
