@@ -26,3 +26,21 @@ func (input *CreateConsumerInput) ToDomain() (consumer *domain.ConsumerStruct) {
 		CreatedAt:       carbon.Now().Unix(),
 	}
 }
+
+type ConsumerOutput struct {
+	ClientID        string `json:"client_id"`
+	ClientSecret    string `json:"client_secret"`
+	Scope           string `json:"scope"`
+}
+
+func (input *CreateConsumerInput) View() (consumer *ConsumerOutput) {
+	if reflect2.IsNil(input) {
+		return &ConsumerOutput{}
+	}
+
+	return &ConsumerOutput{
+		ClientID:        input.ClientID,
+		ClientSecret:    input.ClientSecret,
+		Scope:           input.Scope,
+	}
+}

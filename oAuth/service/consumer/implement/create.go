@@ -5,19 +5,19 @@ import (
 	"github.com/gnnchya/PosCoffee/oAuth/service/consumer/consumerin"
 )
 
-func (impl *implementation) Create(ctx context.Context, input *consumerin.CreateConsumerInput) (ID string, err error) {
+func (impl *implementation) Create(ctx context.Context, input *consumerin.CreateConsumerInput) (View *consumerin.ConsumerOutput, err error) {
 	err = impl.validator.Validate(input)
 	if err != nil {
-		return "", err
+		return View, err
 	}
 
 	clientId, err := impl.uuid4.NewRandom()
 	if err != nil {
-		return "", err
+		return View, err
 	}
 	clientSecret, err := impl.uuid4.NewRandom()
 	if err != nil {
-		return "", err
+		return View, err
 	}
 
 	input.ID = impl.uuid.Generate()
@@ -28,9 +28,7 @@ func (impl *implementation) Create(ctx context.Context, input *consumerin.Create
 
 	err = impl.repo.Create(ctx, consumer)
 	if err != nil {
-		return "", err
+		return View, err
 	}
-	//fmt.Println("clientID", consumer.ClientID)
-	//fmt.Println("clientSecret", consumer.ClientSecret)
-	return consumer.ID, nil
+	return input.View(), nil
 }
