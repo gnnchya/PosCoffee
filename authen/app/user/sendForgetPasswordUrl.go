@@ -30,6 +30,11 @@ func (ctrl *Controller)SendForgetPasswordUrl(c *gin.Context){
 		view.MakeErrResp2(c,1, err)
 		return
 	}
+
+	if token == nil {
+		view.MakeErrResp(c,1, "no token in db")
+		return
+	}
 	err = ctrl.service.ForgetPassword(email.Email, token.AccessToken)
 	fmt.Println("token access", token.AccessToken)
 	view.MakeSuccessResp(c, 200, "done")
