@@ -1,9 +1,11 @@
 package middleware
 
 import (
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/service/authentication"
+	"github.com/gnnchya/PosCoffee/authen/service/user/userin"
 	"net/http"
 	"strings"
 )
@@ -54,10 +56,10 @@ func (middleware Service) Authorization(service authentication.Service) gin.Hand
 }
 
 func (middleware Service) checkUser(userID string) (err error) {
-	//ctx := context.Background()
-	//_, err = middleware.Users.Read(ctx, &userin.ReadInput{ID: userID})
-	//if err != nil {
-	//	return err
-	//}
-	return nil
+	ctx := context.Background()
+	_, err = middleware.Users.Read(ctx, &userin.ReadInput{ID: userID})
+	if err != nil {
+		return err
+	}
+	return
 }
