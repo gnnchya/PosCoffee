@@ -16,6 +16,7 @@ func (ctrl *Controller) Login(c *gin.Context) {
 		view.MakeErrResp2(c,0, err)
 		return
 	}
+	fmt.Println("login password to gen token before hash", input.Password)
 	password, err := bcrypt.GenerateFromPassword([]byte(input.Password),bcrypt.DefaultCost)
 	if err != nil{
 		view.MakeErrResp(c,1, "cannot hash password")
