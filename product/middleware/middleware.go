@@ -11,25 +11,13 @@ import (
 
 func (middleware Service) Authorization(service user.Service) gin.HandlerFunc{
 	return func(c *gin.Context){
-		requestURI := c.Request.RequestURI
-		id := c.Param("id")
-		if id != ""{
-			requestURI = strings.ReplaceAll(requestURI, id, ":id")
-		}
-		name := c.Param("name")
-		if name != ""{
-			requestURI = strings.ReplaceAll(requestURI, name, ":name")
-		}
-		category := c.Param("category")
-		if category != ""{
-			requestURI = strings.ReplaceAll(requestURI, category, ":category")
-		}
+
 		header := c.GetHeader("Authorization")
 		token := strings.ReplaceAll(header, "Bearer ", "")
 		request := &protobuf.RequestMiddleware{
 			Token:  token,
 			Method: c.Request.Method,
-			Path:   requestURI,
+			Path:   c.FullPath(),
 		}
 		fmt.Println("request", request)
 		result, err := service.Middleware(request)
