@@ -83,11 +83,6 @@ func generateID(from int, to int)(result []*string) {
 	return result
 }
 
-
-var owner = generateID(1,34)
-var staff = append(cart,money...)
-var admin = append(cart, append(menu, append(transaction, append(stock, menu...)...)...)...)
-
 var report = generateID(27,29)
 var stock = generateID(21,26)
 var menu = generateID(8,15)
@@ -95,7 +90,9 @@ var money = generateID(30,34)
 var transaction = generateID(16,20)
 var cart = generateID(1,7)
 
-
+var owner = generateID(1,34)
+var staff = append(cart,append(money, menu...)...)
+var admin = append(cart, append(menu, append(transaction, append(stock, menu...)...)...)...)
 
 
 var RolesList =  []Roles{
