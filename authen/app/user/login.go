@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/authen/app/view"
 	autenitcationin "github.com/gnnchya/PosCoffee/authen/service/authentication/authenticationin"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
@@ -14,7 +15,12 @@ func (ctrl *Controller) Login(c *gin.Context) {
 		view.MakeErrResp2(c,0, err)
 		return
 	}
-
+	password, err := bcrypt.GenerateFromPassword([]byte(input.Password),bcrypt.DefaultCost)
+	if err != nil{
+		view.MakeErrResp(c,1, "cannot hash password")
+		return
+	}
+	input.Password = string(password)
 	token, err := ctrl.authService.GenerateToken(input)
 	if err != nil {
 		view.MakeErrResp2(c,1, err)

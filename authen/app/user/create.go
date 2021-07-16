@@ -31,6 +31,15 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 		view.MakeErrResp2(c,1, err)
 		return
 	}
+	if token == nil {
+		view.MakeErrResp(c,1, "no token in db")
+		return
+	}
+
+	if token.AccessToken == "" {
+		view.MakeErrResp(c,1, "no access token in db")
+		return
+	}
 	fmt.Println("token access", token.AccessToken)
 	err = ctrl.service.SendVerifyEmail(input.MetaData.Email, token.AccessToken)
 	if err != nil {
