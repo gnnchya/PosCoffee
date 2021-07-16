@@ -10,7 +10,7 @@ func (ctrl *Controller) List(c *gin.Context) {
 
 	input := &domain.PageOption{}
 	if err := c.ShouldBind(input); err != nil {
-		view.MakeErrResp2(c,0, err)
+		view.MakeErrResp2(c,400, err)
 		return
 	}
 
@@ -20,7 +20,7 @@ func (ctrl *Controller) List(c *gin.Context) {
 
 	total, items, err := ctrl.service.List(c, input)
 	if err != nil {
-		view.MakeErrResp2(c,0, err)
+		view.MakeErrResp2(c,500, err)
 		return
 	}
 

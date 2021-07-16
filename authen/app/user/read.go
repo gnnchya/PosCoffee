@@ -15,7 +15,7 @@ func (ctrl *Controller) Read(c *gin.Context) {
 
 	user, err := ctrl.service.Read(c, input)
 	if err != nil {
-		view.MakeErrResp2(c,422, err)
+		view.MakeErrResp2(c,400, err)
 		return
 	}
 

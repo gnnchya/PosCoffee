@@ -12,7 +12,7 @@ func (ctrl *Controller) Logout(c *gin.Context) {
 
 	err := ctrl.authService.Logout(input)
 	if err != nil {
-		view.MakeErrResp2(c,0, err)
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 

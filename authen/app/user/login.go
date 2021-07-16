@@ -12,13 +12,13 @@ func (ctrl *Controller) Login(c *gin.Context) {
 
 	input := &autenitcationin.LoginInput{}
 	if err := c.ShouldBindJSON(input); err != nil {
-		view.MakeErrResp2(c,0, err)
+		view.MakeErrResp2(c,400, err)
 		return
 	}
 	fmt.Println("login password to gen token", input.Password)
 	token, err := ctrl.authService.GenerateToken(input)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 

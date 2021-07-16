@@ -13,7 +13,7 @@ func (ctrl *Controller) Update(c *gin.Context) {
 
 	userID, isExist := c.Get("UserId")
 	if !isExist {
-		view.MakeErrResp(c,400, "cannot get userId")
+		view.MakeErrResp(c,422, "cannot get userId")
 		return
 	}
 	input := &userin.UpdateInput{
@@ -27,7 +27,7 @@ func (ctrl *Controller) Update(c *gin.Context) {
 
 	err := ctrl.service.Update(c, input)
 	if err != nil {
-		view.MakeErrResp2(c,422, err)
+		view.MakeErrResp2(c,500, err)
 		return
 	}
 

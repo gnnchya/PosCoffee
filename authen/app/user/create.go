@@ -28,22 +28,22 @@ func (ctrl *Controller) Create(c *gin.Context,role []string) {
 
 	token, err := ctrl.authService.GetToken(input.UID,input.Username,input.Password)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 	if token == nil {
-		view.MakeErrResp(c,1, "no token in db")
+		view.MakeErrResp(c,422, "error: no token in database")
 		return
 	}
 
 	if token.AccessToken == "" {
-		view.MakeErrResp(c,1, "no access token in db")
+		view.MakeErrResp(c,422, "error: no access_token in database")
 		return
 	}
 	fmt.Println("token access", token.AccessToken)
 	err = ctrl.service.SendVerifyEmail(input.MetaData.Email, token.AccessToken)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,400, err)
 		return
 	}
 	view.MakeSuccessResp(c, 200, "created")

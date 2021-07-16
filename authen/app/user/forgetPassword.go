@@ -19,7 +19,7 @@ func (ctrl *Controller)ForgetPassword(c *gin.Context){
 	}
 
 	if input.NewPassword != input.ConfirmPassword{
-		view.MakeErrResp(c, 400, "current password unmatched")
+		view.MakeErrResp(c, 422, "current password unmatched")
 		return
 	}
 
@@ -28,23 +28,23 @@ func (ctrl *Controller)ForgetPassword(c *gin.Context){
 	UID, err := ctrl.authService.VerifyToken(token)
 	fmt.Println("err verify token in email", err)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 	if UID == nil{
-		view.MakeErrResp2(c, 2, err)
+		view.MakeErrResp2(c, 422, err)
 		return
 	}
 
 	err = ctrl.service.ChangePassword(c,*UID,input.NewPassword)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,500, err)
 		return
 	}
 
 	_,err = ctrl.authService.RevokeToken(token)
 	if err != nil {
-		view.MakeErrResp2(c,1, err)
+		view.MakeErrResp2(c,422, err)
 		return
 	}
 	view.MakeSuccessResp(c, 200, "password has been changed")
