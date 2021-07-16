@@ -11,7 +11,6 @@ import (
 
 func (ctrl *Controller) Update(c *gin.Context) {
 
-
 	userID, isExist := c.Get("UserId")
 	if !isExist {
 		view.MakeErrResp(c,400, "cannot get userId")
