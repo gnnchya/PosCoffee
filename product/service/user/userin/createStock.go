@@ -14,8 +14,6 @@ type CreateStockInput struct {
 	Supplier 		string 		`bson:"supplier" json:"supplier"`
 	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
 	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
-	Code 			int 		`json:"code"`
-	Err 			error 		`json:"err"`
 }
 
 func (input *CreateStockInput)CreateStockInputToUserDomain() (user *domain.CreateStockStruct) {
@@ -31,7 +29,5 @@ func (input *CreateStockInput)CreateStockInputToUserDomain() (user *domain.Creat
 		Supplier:       input.Supplier,
 		TotalCost:      input.TotalCost,
 		TotalAmount:    input.TotalAmount,
-		Code: 			input.Code,
-		Err: 			input.Err,
 	}
 }

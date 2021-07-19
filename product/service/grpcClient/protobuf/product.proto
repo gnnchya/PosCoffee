@@ -1,0 +1,70 @@
+syntax="proto3";
+option go_package=  "/grpc";
+
+package cart;
+
+message ReplyFromStock{
+  bool Stock = 1;
+  repeated CalculateCost calculateCost = 2;
+  string err = 3;
+}
+
+message CalculateCost{
+  string ItemName = 1;
+  int64 CostPerUnit = 2;
+}
+
+message RequestToStock{
+  repeated string ingredient = 1;
+}
+
+service SendIngredients{
+  rpc SendIngredients (RequestToStock) returns (ReplyFromStock);
+}
+
+message RequestRead{
+  string id = 1;
+}
+
+message ReplyRead{
+  string ID = 1;
+  string ItemName = 2;
+  string Category = 3;
+  int64 Amount = 4;
+  string Unit = 5;
+  int64 CostPerUnit = 6;
+  int64 EXPDate = 7;
+  int64 ImportDate = 8;
+  string Supplier = 9;
+  int64  TotalCost = 10;
+  int64 TotalAmount = 11;
+  string Status = 12;
+}
+
+message ReplyArrRead{
+  repeated ReplyRead Reply = 1;
+}
+
+message RequestName{
+  string itemName = 1;
+  int64 perPage = 2;
+  int64 page = 3;
+}
+
+message RequestCategory{
+  string category = 1;
+  int64 perPage = 2;
+  int64 page = 3;
+}
+
+service ReadStock{
+  rpc ReadStock (RequestRead) returns (ReplyRead);
+}
+
+service ReadNameStock{
+  rpc ReadNameStock(RequestName) returns (ReplyArrRead);
+}
+
+service ReadCategoryStock{
+  rpc ReadCategoryStock(RequestCategory) returns (ReplyArrRead);
+}

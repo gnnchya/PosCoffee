@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	goxid "github.com/touchtechnologies-product/xid"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,7 +19,12 @@ type Money struct {
 	Currency	string   	`bson:"currency" json:"currency"`
 }
 
-var MoneyList =  []Money{
+type Ingredient struct{
+	IngredientName    string   `bson:"item_name" json:"item-name"`
+	Amount      	 int64    `bson:"amount" json:"amount"`
+}
+
+var MoneyList = []Money{
 	{100000,20,"THB"},
 	{50000,10,"THB"},
 	{10000,30,"THB"},
@@ -33,62 +40,68 @@ type Menu struct {
 	ID				string	 `bson:"_id" json:"_id"`
 	Category       	[]string `bson:"category" json:"category"`
 	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
+	Ingredient 		[]Ingredient `bson:"ingredient" json:"ingredient"`
 	Price      		int64    `bson:"price" json:"price"`
 	Available 		bool	 `bson:"available" json:"available"`
 	Amount 			int64    `bson:"amount" json:"amount"`
 	Option 			string   `bson:"option" json:"option"`
 }
 
-type Menu2 struct {
-	Category       	[]string `bson:"category" json:"category"`
-	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-	Price      		int64    `bson:"price" json:"price"`
-	Available 		bool	 `bson:"available" json:"available"`
-	Amount 			int64    `bson:"amount" json:"amount"`
-	Option 			string   `bson:"option" json:"option"`
+
+type Stock struct {
+	ID         		string   	`bson:"_id" json:"_id"`
+	ItemName       	string   	`bson:"item_name" json:"item_name"`
+	Category 		string  	`bson:"category" json:"category"`
+	Amount			int64   	`bson:"amount" json:"amount"`
+	Unit     		string   	`bson:"unit" json:"unit"`
+	CostPerUnit		int64      	`bson:"cost_per_unit" json:"cost_per_unit"`
+	EXPDate     	int64   	`bson:"exp_date" json:"exp_date"`
+	ImportDate      int64   	`bson:"import_date" json:"import_date"`
+	Supplier 		string 		`bson:"supplier" json:"supplier"`
+	TotalCost		int64      	`bson:"total_cost" json:"total_cost"`
+	TotalAmount		int64      	`bson:"total_amount" json:"total_amount"`
+	Status 			string		`bson:"status" json:"status"`
 }
 
-var MenuList =  []Menu2{
-	{[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []string{"Coffee beans", "Water", "Ice", "Plastic cup"}, 5500, true, 1, ""},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true, 2, ""},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []string{"Coffee beans", "Water", "Large hot cup"}, 4500, true,1, ""},
-	{[]string{"Coffee", "Iced"},  "Iced Espresso", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 5500, true, 1, ""},
-	{[]string{"Coffee", "Frappe"},  "Espresso Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true, 1, ""},
-	{[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []string{"Coffee beans", "Water", "Small hot cup"}, 3500, true,1, ""},
-	{[]string{"Coffee", "Iced"},  "Iced Cappuccino", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6000, true, 1,""},
-	{[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true, 2, ""},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []string{"Coffee beans", "Water", "Milk", "Small hot cup"}, 4500, true,1,""},
-	{[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []string{"Coffee beans", "Water", "Milk", "Large hot cup"}, 5500, true,2,""},
-	{[]string{"Coffee", "Iced"},  "Iced Latte", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 6500, true,1,""},
-	{[]string{"Coffee", "Frappe"},  "Latte Frappe", []string{"Coffee beans", "Water", "Milk", "Ice", "Plastic cup"}, 7000, true,2,""},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []string{"Earl Grey tea", "Water", "Small hot cup"}, 4000, true,1,""},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []string{"English Breakfast tea", "Water", "Small hot cup"}, 4000, true,1,""},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []string{"Camomile tea", "Water", "Small hot cup"}, 4000, true,2,""},
-	{[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []string{"Jasmin Green tea", "Water", "Small hot cup"}, 4000, true,1,""},
-	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []string{"Green tea", "Water", "Milk", "Small hot cup"}, 4500, true,2,""},
-	{[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []string{"Green tea", "Water", "Milk", "Large hot cup"}, 4500, true,1,""},
-	{[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true,1,""},
-	{[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []string{"Green tea", "Water", "Milk", "Ice", "Plastic cup"}, 5000, true,1,""},
-	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []string{"Milk", "Small hot cup"}, 3500, true,1,""},
-	{[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []string{"Milk", "Large hot cup"}, 4500, true,2,""},
-	{[]string{"Milk", "Iced"},  "Iced Fresh Milk", []string{"Milk", "Iced", "Plastic cup"}, 4500, true,1,""},
-	{[]string{"Milk", "Frappe"},  "Fresh Milk Frappe", []string{"Milk", "Iced", "Plastic cup"}, 5000, true,1,""},
-	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Small)", []string{"Chocolate", "Milk", "Small hot cup"}, 4000, true,2,""},
-	{[]string{"Chocolate", "Hot"},  "Hot Chocolate (Large)", []string{"Chocolate", "Milk", "Large hot cup"}, 5000, true,1,""},
-	{[]string{"Chocolate", "Iced"},  "Iced Chocolate", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5000, true,1,""},
-	{[]string{"Chocolate", "Frappe"},  "Chocolate Frappe", []string{"Chocolate", "Milk", "Iced", "Plastic cup"}, 5500, true,2,""},
-	{[]string{"Juice", "Iced"},  "Lychee Juice", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4000, true,3,""},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Lychee Frappe", []string{"Lychee Juice", "Iced", "Plastic cup"}, 4500, true,2,""},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []string{"Strawberry Juice", "Iced", "Plastic cup"}, 5500, true,1,""},
-	{[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []string{"Kiwi Juice", "Iced", "Plastic cup"}, 4500, true,1,""},
+var MenuList =  []Menu{
+	{"c3e2obiciaeng9b27p1k",[]string{"Coffee", "Iced", "Dairy-free"},  "Iced Americano", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
+	{"c3e2obiciaeng9b27p1g",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true, 2, ""},
+	{"c3e2obiciaeng9b27p2k",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Americano (Large)", []Ingredient{{"Coffee beans", 1750}, {"Water", 020}, {"Large hot cup", 100}}, 4500, true,1, ""},
+	{"c3e2obiciaeng9b27p2g",[]string{"Coffee", "Iced"},  "Iced Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 5500, true, 1, ""},
+	{"c3e2obiciaeng9b27p3g",[]string{"Coffee", "Frappe"},  "Espresso Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 005}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1, ""},
+	{"c3e2obiciaeng9b27p40",[]string{"Coffee", "Hot", "Dairy-free"},  "Hot Espresso", []Ingredient{{"Coffee beans", 1000}, {"Water", 010}, {"Small hot cup", 100}}, 3500, true,1, ""},
+	{"c3e2obiciaeng9b27p4g",[]string{"Coffee", "Iced"},  "Iced Cappuccino", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6000, true, 1,""},
+	{"c3e2obiciaeng9b27p50",[]string{"Coffee", "Frappe"},  "Cappuccino Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true, 2, ""},
+	{"c3e2obiciaeng9b27p5g",[]string{"Coffee", "Hot"},  "Hot Cappuccino (Small)", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 002}, {"Small hot cup", 100}}, 4500, true,1,""},
+	{"c3e2obiciaeng9b27p60",[]string{"Coffee", "Hot"},  "Hot Cappuccino (Large)", []Ingredient{{"Coffee beans", 1500}, {"Water", 002}, {"Milk", 002}, {"Large hot cup", 100}}, 5500, true,2,""},
+	{"c3e2obiciaeng9b27p6g",[]string{"Coffee", "Iced"},  "Iced Latte", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 004},{"Ice", 005}, {"Plastic cup", 100}}, 6500, true,1,""},
+	{"c3e2obiciaeng9b27p70",[]string{"Coffee", "Frappe"},  "Latte Frappe", []Ingredient{{"Coffee beans", 1000}, {"Water", 002}, {"Milk", 004},{"Ice", 005}, {"Plastic cup", 100}}, 7000, true,2,""},
+	{"c3e2obiciaeng9b27p7g",[]string{"Tea", "Hot", "Dairy-free"},  "Hot Earl Grey Tea ", []Ingredient{{"Earl Grey tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
+	{"c3e2obiciaeng9b27p80",[]string{"Tea", "Hot", "Dairy-free"},  "Hot English Breakfast Tea ", []Ingredient{{"English Breakfast tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
+	{"c3e2obiciaeng9b27p8g",[]string{"Tea", "Hot", "Dairy-free"},  "Hot Camomile Tea ", []Ingredient{{"Camomile tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,2,""},
+	{"c3e2obiciaeng9b27p90",[]string{"Tea", "Hot", "Dairy-free"},  "Hot Jasmin Green Tea ", []Ingredient{{"Jasmine Green tea", 100}, {"Water", 010}, {"Small hot cup", 100}}, 4000, true,1,""},
+	{"c3e2obiciaeng9b27p9g",[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Small)", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Small hot cup", 100}}, 4500, true,2,""},
+	{"c3e2obiciaeng9b27pa0",[]string{"Tea", "Hot"},  "Hot Milk Green Tea (Large)", []Ingredient{{"Green tea", 200}, {"Water", 020}, {"Milk", 004}, {"Large hot cup", 100}}, 4500, true,1,""},
+	{"c3e2obiciaeng9b27pag",[]string{"Tea", "Iced", "Dairy-free"},  "Iced Milk Green Tea", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{"c3e2obiciaeng9b27pb0",[]string{"Tea", "Frappe", "Dairy-free"},  "Milk Green Tea Frappe", []Ingredient{{"Green tea", 100}, {"Water", 010}, {"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{"c3e2obiciaeng9b27pbg",[]string{"Milk", "Hot"},  "Hot Fresh Milk (Small)", []Ingredient{{"Milk", 004}, {"Small hot cup", 100}}, 3500, true,1,""},
+	{"c3e2obiciaeng9b27pc0",[]string{"Milk", "Hot"},  "Hot Fresh Milk (Large)", []Ingredient{{"Milk", 007}, {"Large hot cup", 100}}, 4500, true,2,""},
+	{"c3e2obiciaeng9b27pcg",[]string{"Milk", "Iced"},  "Iced Fresh Milk", []Ingredient{{"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 4500, true,1,""},
+	{"c3e2obiciaeng9b27pd0",[]string{"Milk", "Frappe"},  "Fresh Milk Frappe", []Ingredient{{"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{"c3e2obiciaeng9b27pdg",[]string{"Chocolate", "Hot"},  "Hot Chocolate (Small)", []Ingredient{{"Chocolate", 001},Ingredient{"Milk", 004}, {"Small hot cup", 100}}, 4000, true,2,""},
+	{"c3e2obiciaeng9b27pe0",[]string{"Chocolate", "Hot"},  "Hot Chocolate (Large)", []Ingredient{{"Chocolate", 002},Ingredient{"Milk", 007}, {"Large hot cup", 100}}, 5000, true,1,""},
+	{"c3e2obiciaeng9b27peg",[]string{"Chocolate", "Iced"},  "Iced Chocolate", []Ingredient{{"Chocolate", 001},Ingredient{"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5000, true,1,""},
+	{"c3e2obiciaeng9b27pf0",[]string{"Chocolate", "Frappe"},  "Chocolate Frappe", []Ingredient{{"Chocolate", 001},Ingredient{"Milk", 004}, {"Ice", 005},{"Plastic cup", 100}}, 5500, true,2,""},
+	{"c3e2obiciaeng9b27pfg",[]string{"Juice", "Iced"},  "Lychee Juice", []Ingredient{{"Lychee Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 4000, true,3,""},
+	{"c3e2obiciaeng9b27pg0",[]string{"Juice", "Smoothies", "Frappe"},  "Lychee Frappe", []Ingredient{{"Lychee Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 4500, true,2,""},
+	{"c3e2obiciaeng9b27pgg",[]string{"Juice", "Smoothies", "Frappe"},  "Strawberry Frappe", []Ingredient{{"Strawberry Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 5500, true,1,""},
+	{"c3e2obiciaeng9b27ph0",[]string{"Juice", "Smoothies", "Frappe"},  "Kiwi Frappe", []Ingredient{{"Kiwi Juice", 015}, {"Ice", 005}, {"Plastic cup", 100}}, 4500, true,1,""},
 }
-
 type Cart struct{
 	ID			string	`bson:"_id" json:"_id"`
 	CustomerID 	string  `bson:"customer_id" json:"customer_id"`
 	Menu		[]Menu 	`bson:"menu" json:"menu"`
+	TotalPrice	int64	`bson:"total_price"`
 }
 
 type GeoJson struct {
@@ -97,12 +110,19 @@ type GeoJson struct {
 }
 
 type Transaction struct {
+	ID				string			`bson:"_id" json:"_id"`
 	Cart			Cart   			`bson:"cart" json:"cart"`
 	Finished		bool     		`bson:"finished" json:"finished"`
 	Price	     	int64   		`bson:"price" json:"price"`
 	TypeOfOrder 	string 			`bson:"type" json:"type"`
 	Destination		GeoJson      	`bson:"destination" json:"destination"`
 	Time			int64      		`bson:"time" json:"time"`
+	TotalCost 		int64			`bson:"total" json:"total"`
+}
+
+type CalculateCost struct{
+	ItemName         	string   `bson:"item_name"`
+	CostPerUnit      	int64    `bson:"cost_per_unit"`
 }
 
 func randomTime(minTime time.Duration , maxTime time.Duration) int64{
@@ -148,23 +168,90 @@ func randGeoJson() GeoJson {
 	return destination
 }
 
+func checkStockLeft(ctx context.Context, ingredient Ingredient, Coll *mongo.Collection) (state bool, result CalculateCost, err error) {
+	var totalCost, count int64 = 0, 0
+	cursor, err := Coll.Find(ctx,
+		bson.M{
+			"$and": bson.A{
+				bson.M{"item_name" : ingredient.IngredientName},
+				bson.M{"amount" : bson.M{"$gt": 0}},
+				bson.M{"status" : "in-use"},
+			}})
+
+	if cursor == nil{
+		return false, result, fmt.Errorf("error : error querying ingredient")
+	}
+
+	for cursor.Next(ctx) {
+		var resultStruct Stock
+		if err = cursor.Decode(&resultStruct); err != nil {
+			return false, result, err
+		}
+		totalCost += resultStruct.CostPerUnit
+		count += 1
+	}
+	if count == 0 {
+		err = errors.New("error : there is no ingredient left to make this menu")
+		return false, result,  err
+	}
+
+	result = CalculateCost{
+		ItemName: ingredient.IngredientName,
+		CostPerUnit: totalCost/count,
+	}
+
+	return true, result, err
+}
+
+func  CheckCost(ctx context.Context, ingredients []Ingredient, Coll *mongo.Collection) (totalCost int64) {
+	for _, entity := range ingredients {
+		state ,cost, _ := checkStockLeft(ctx, entity, Coll)
+		if state == false{
+			return  0
+		}
+		totalCost += (cost.CostPerUnit * entity.Amount)/100
+	}
+	return  totalCost
+}
+
+
+
 var CartList []Cart
-var totalPricePerMenu []int64
 var TransactionList []Transaction
+var CostList []int64
 
 func main(){
 	uri := "mongodb://touch:touchja@localhost:27018"
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 	moneyCollection := client.Database("product").Collection("money")
 	transactionCollection := client.Database("product").Collection("transactions")
+	stockClient, err := mongo.NewClient(options.Client().ApplyURI("mongodb://touch:touchja@localhost:27019"))
+	stockCollection := stockClient.Database("stock").Collection("stock")
+
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	err = stockClient.Connect(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	defer client.Disconnect(ctx)
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+
+		}
+	}(client, ctx)
+	defer func(stockClient *mongo.Client, ctx context.Context) {
+		err := stockClient.Disconnect(ctx)
+		if err != nil {
+
+		}
+	}(stockClient, ctx)
 	for _ ,v := range MoneyList{
 		initID := goxid.New()
 		idGen := initID.Gen()
@@ -188,10 +275,11 @@ func main(){
 		orderAmount := rand.Intn(4)+1
 		var menuList []Menu
 		var totalPrice int64 = 0
-		for j:=1; j<=orderAmount; j++{
+		var totalCost int64 = 0
+		for j:=0; j<=orderAmount; j++{
 			var order Menu
 			randTemp := rand.Intn(30)
-			order.ID 		= initID.Gen()
+			order.ID 		= MenuList[randTemp].ID
 			order.Category 	= MenuList[randTemp].Category
 			order.Name 		= MenuList[randTemp].Name
 			order.Ingredient = MenuList[randTemp].Ingredient
@@ -199,20 +287,26 @@ func main(){
 			order.Available	= MenuList[randTemp].Available
 			order.Amount 	= MenuList[randTemp].Amount
 			order.Option 	= MenuList[randTemp].Option
-			totalPrice += MenuList[randTemp].Price
+			totalPrice += MenuList[randTemp].Price * order.Amount
+			costTemp := CheckCost(ctx, MenuList[randTemp].Ingredient, stockCollection)
+			totalCost += costTemp
+			menuList = append(menuList, order)
 		}
-		CartList = append(CartList , Cart{CartID, CustomerID, menuList})
-		totalPricePerMenu = append(totalPricePerMenu, totalPrice)
+		CostList = append(CostList , totalCost)
+		CartList = append(CartList , Cart{CartID, CustomerID, menuList, totalPrice})
 	}
 
-	for i:=1; i<=10; i++ {
+	for i:=0; i<10; i++ {
 		var SingleTransaction Transaction
+		initID := goxid.New()
+		SingleTransaction.ID = initID.Gen()
 		SingleTransaction.Cart = CartList[i]
 		SingleTransaction.Finished = randBool()
-		SingleTransaction.Price = totalPricePerMenu[i]
+		SingleTransaction.Price = CartList[i].TotalPrice
 		SingleTransaction.TypeOfOrder = randTypeofOrder()
 		SingleTransaction.Destination = randGeoJson()
 		SingleTransaction.Time = randomTime(time.Duration(i*2), time.Duration(i*2 + 1))
+		SingleTransaction.TotalCost = CostList[i]
 
 		TransactionList = append(TransactionList, SingleTransaction)
 	}

@@ -6,9 +6,12 @@ import (
 	"log"
 )
 
-func buildMenuRequest(keyword string) bytes.Buffer {
+func buildMenuRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
@@ -47,7 +50,7 @@ func buildViewRequest(id string) bytes.Buffer{
 	query := map[string]interface{}{
 		"query" : map[string]interface{}{
 			"match": map[string]interface{}{
-				"id": id,
+				"_id": id,
 			},
 		},
 	}
@@ -57,9 +60,12 @@ func buildViewRequest(id string) bytes.Buffer{
 	return buf
 }
 
-func buildCategoryRequest(keyword string) bytes.Buffer {
+func buildCategoryRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
@@ -75,14 +81,17 @@ func buildCategoryRequest(keyword string) bytes.Buffer {
 	return buf
 }
 
-func buildIngredientRequest(keyword string) bytes.Buffer {
+func buildIngredientRequest(page int, size int,keyword string) bytes.Buffer {
 	var buf bytes.Buffer
+	from := (page-1)*size
 	query := map[string]interface{}{
+		"from": from,
+		"size": size,
 		"query": map[string]interface{}{
 			"query_string": map[string]interface{}{
 				"query" : "*"+keyword+"*",
 				"fields" : []interface{}{
-					"ingredient",
+					"ingredient.item_name",
 				},
 			},
 		},

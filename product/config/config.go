@@ -10,7 +10,12 @@ type Config struct {
 	// MongoDB config
 	MongoDBEndpoint         string `env:"MONGODB_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27018"`
 	MongoDBName             string `env:"MONGODB_NAME" envDefault:"product"`
-	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"product"`
+	MongoDBTableName 		string `env:"MONGODB_TABLE_NAME" envDefault:"transactions"`
+
+	MongoDBEndpointMoney    string `env:"MONGODB_MONEY_ENDPOINT" envDefault:"mongodb://touch:touchja@localhost:27018"`
+	MongoDBNameMoney        string `env:"MONGODB_MONEY_NAME" envDefault:"product"`
+	MongoDBTableNameMoney  	string `env:"MONGODB_MONEY_TABLE_NAME" envDefault:"money"`
+
 
 	// Jaeger config
 	JaegerAgentHost string `env:"JAEGER_AGENT_HOST" envDefault:"localhost"`
@@ -26,6 +31,12 @@ type Config struct {
 	ElasticDBEndpoint     string `env:"ELASTIC_ENDPOINT" envDefault:"http://localhost:9200"`
 	ElasticDBUsername     string `env:"ELASTIC_USERNAME" envDefault:"touch"`
 	ElasticDBPassword	  string `env:"ELASTIC_PASSWORD" envDefault:"touchja"`
+	// gRPC config
+	GRPCHost       string `env:"GRPC_HOST" envDefault:"localhost:50051"`
+	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
+	GRPCSenderReportHost string `env:"GRPC_SENDER_REPORT_HOST" envDefault:"localhost:50053"`
+	GRPCMenu string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50054"`
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
 
 }
 

@@ -2,23 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../product/app/user/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/app/user/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/app/user/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/domain/stock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/implement/updateStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/createStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/deleteStock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product/service/user/userin/updateStock.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../product/report.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../product/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/userin/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/userin/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../product/service/user/userin/msgbroker.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/userin/msgbroker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/msgbroker/implement/private.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/msgbroker/implement/private.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/implement/msgreceiver.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/msgreceiver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../product/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/service/user/implement/report.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/service/user/implement/report.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/../product/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/mongodb/match.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/mongodb/match.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/mongodb/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/mongodb/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/implement/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/grpc/implement/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/implement/sendReport.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/grpc/implement/sendReport.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/grpc/interface.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/setup.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,13 +69,17 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service/grpc/protobuf" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/grpc/protobuf" />
       <recent name="$PROJECT_DIR$/service/user/implement" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/grpc/protobuf/report" />
     </key>
   </component>
   <component name="RunManager">
@@ -121,11 +123,6 @@
           <url>file://$PROJECT_DIR$/service/msgbroker/implement/private.go</url>
           <line>21</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/setup.go</url>
-          <line>2</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

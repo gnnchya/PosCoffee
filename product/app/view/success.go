@@ -6,8 +6,6 @@ import (
 
 const (
 	okStatus       = "OK"
-	xContentLength = "X-Content-Length"
-	location       = "Content-Location"
 )
 
 type SuccessResp struct {
@@ -24,16 +22,3 @@ func MakeSuccessResp(c *gin.Context, status int, data interface{}) {
 	})
 }
 
-//func MakePaginatorResp(c *gin.Context, total int, items interface{}) {
-//	status := http.StatusOK
-//	if total < 1 {
-//		status = http.StatusNoContent
-//	}
-//	c.Header(xContentLength, strconv.Itoa(total))
-//	MakeSuccessResp(c, status, items)
-//}
-//
-//func MakeCreatedResp(c *gin.Context, ID string) {
-//	c.Header(location, ID)
-//	MakeSuccessResp(c, http.StatusCreated, nil)
-//}

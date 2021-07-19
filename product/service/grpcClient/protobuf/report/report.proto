@@ -1,0 +1,33 @@
+syntax="proto3";
+option go_package=  "/report";
+
+
+message ReportReply{
+  repeated ReportReplyStruct Report = 1;
+}
+message ReportReplyStruct{
+  string ID = 1;
+  string ItemName = 2;
+  string Category = 3;
+  int64 Amount = 4;
+  string Unit = 5;
+  int64 CostPerUnit = 6;
+  int64 EXPDate = 7;
+  int64 ImportDate = 8;
+  string Supplier = 9;
+  int64  TotalCost = 10;
+  int64 TotalAmount = 11;
+  string Status = 12;
+}
+
+
+message ReportRequest{
+  string Request = 1;
+  string field = 2;
+  string order = 3;
+}
+
+service SendReportToStock{
+  rpc SendReportToStock (ReportRequest) returns (ReportReply);
+}
+

@@ -27,10 +27,7 @@ func (repo *Repository) CheckExistCustomerID(ctx context.Context, id string) (bo
 
 func (repo *Repository) CheckExistInCart(ctx context.Context, id string, option string) (bool, error) {
 	var resultStruct domain.CreateStruct
-	var resultBson bson.D
-	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultBson)
-	bsonBytes, _ := bson.Marshal(resultBson)
-	bson.Unmarshal(bsonBytes, &resultStruct)
+	err := repo.Coll.FindOne(ctx, bson.D{{"_id", id}}).Decode(&resultStruct)
 	for _, temp := range resultStruct.Menu{
 		if temp.ID == id{
 			if temp.Option == option{

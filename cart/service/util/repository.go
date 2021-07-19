@@ -3,6 +3,7 @@ package util
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/domain"
+	"google.golang.org/grpc"
 )
 
 //go:generate mockery --name=Repository
@@ -16,9 +17,12 @@ type Repository interface {
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistCustomerID(ctx context.Context, id string) (bool, error)
 	CheckExistInCart(ctx context.Context, id string, option string) (bool, error)
-	//CheckAmountForDelete(ctx context.Context, id string, amount int64) (int64, bool, error)
 }
 
 type RepositoryUsers interface {
 	Repository
+}
+
+type RepositoryGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
 }

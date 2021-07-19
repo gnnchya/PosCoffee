@@ -1,0 +1,18 @@
+syntax="proto3";
+option go_package=  "/protobuf";
+
+package protobuf;
+
+message RequestMiddleware{
+  string token = 1;
+  string method = 2;
+  string path = 3;
+}
+
+message ReplyMiddleware{
+  bool allow = 1;
+}
+
+service Middleware{
+  rpc Middleware(RequestMiddleware) returns (ReplyMiddleware);
+}

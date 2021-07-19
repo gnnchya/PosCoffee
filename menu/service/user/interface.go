@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"github.com/gnnchya/PosCoffee/menu/domain"
+	"github.com/gnnchya/PosCoffee/menu/service/grpcClient/protobuf"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
 )
 
@@ -16,4 +17,5 @@ type Service interface {
 	SearchMenu(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
 	SearchCategory(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
 	SearchIngredient(ctx context.Context, input *userin.Search) ([]domain.CreateStruct, error)
+	Middleware(input *protobuf.RequestMiddleware) (allow bool, err error)
 }

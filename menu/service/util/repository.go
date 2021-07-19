@@ -4,6 +4,8 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"google.golang.org/grpc"
+	"time"
 )
 
 //go:generate mockery --name=Repository
@@ -20,7 +22,15 @@ type RepositoryElas interface {
 	CheckExistID(ctx context.Context, id string) (bool, error)
 	CheckExistName(ctx context.Context, name string) (bool, error)
 	CheckExistIndex(ctx context.Context, Index string) (bool, error)
-	//Create(ctx context.Context, ent interface{}) (err error)
-	//Update(ctx context.Context, ent interface{}, ID string) (err error)
-	//Delete(ctx context.Context, id string) (err error)
+}
+
+type RepositoryRedis interface {
+	Set(ctx context.Context, key string, value interface{}) (err error)
+	Get(ctx context.Context, key string, dest interface{}) (err error)
+	GetExpire(ctx context.Context, key string) (result time.Duration, err error)
+	Del(ctx context.Context, key string) (err error)
+}
+
+type RepositoryGRPC interface {
+	NewClient() (*grpc.ClientConn, error)
 }

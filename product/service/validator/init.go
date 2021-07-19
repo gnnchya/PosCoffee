@@ -9,15 +9,17 @@ import (
 type GoPlayGroundValidator struct {
 	validate *validator.Validate
 	userRepo util.Repository
+	moneyRepo util.RepositoryMoney
 }
 
-func New(userRepo util.Repository) (v *GoPlayGroundValidator) {
+func New(userRepo util.Repository, moneyRepo util.RepositoryMoney) (v *GoPlayGroundValidator) {
 	v = &GoPlayGroundValidator{
 		validate: validator.New(),
 		userRepo: userRepo,
+		moneyRepo: moneyRepo,
 	}
 	v.validate.RegisterStructValidation(v.UserCreateStockStructLevelValidation, &userin.CreateStockInput{})
-	//v.validate.RegisterStructValidation(v.UserUpdateStructLevelValidation, &userin.UpdateInput{})
+	v.validate.RegisterStructValidation(v.UserCreateMoneyStructLevelValidation, &userin.CreateMoneyInput{})
 
 	return v
 }

@@ -27,6 +27,8 @@ type Config struct {
 	ElasticDBUsername     string `env:"ELASTIC_USERNAME" envDefault:"touch"`
 	ElasticDBPassword	  string `env:"ELASTIC_PASSWORD" envDefault:"touchja"`
 
+	GRPCSenderHost string `env:"GRPC_SENDER_HOST" envDefault:"localhost:50052"`
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
 }
 
 func Get() *Config {

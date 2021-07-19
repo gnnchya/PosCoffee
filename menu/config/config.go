@@ -22,6 +22,11 @@ type Config struct {
 	ElasticDBUsername     string `env:"ELASTIC_USERNAME" envDefault:"touch"`
 	ElasticDBPassword	  string `env:"ELASTIC_PASSWORD" envDefault:"touchja"`
 
+	RedisEndpoint string `env:"REDIS_ENDPOINT" envDefault:"localhost:6379"`
+	RedisPassword string `env:"REDIS_PASSWORD" envDefault:""`
+
+	GRPCAuthenHost string `env:"GRPC_AUTHEN_HOST" envDefault:"localhost:50057"`
+
 }
 
 func Get() *Config {

@@ -2,33 +2,46 @@ package main
 
 import (
 	"context"
+	"github.com/gnnchya/PosCoffee/product/app"
 	"github.com/gnnchya/PosCoffee/product/config"
+	"github.com/gnnchya/PosCoffee/product/middleware"
+	repoGrpc "github.com/gnnchya/PosCoffee/product/repository/grpc"
 	"github.com/gnnchya/PosCoffee/product/repository/kafka"
+	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
+	grpcService "github.com/gnnchya/PosCoffee/product/service/grpc/implement"
+	grpcClientService "github.com/gnnchya/PosCoffee/product/service/grpcClient/implement"
 	msgBrokerService "github.com/gnnchya/PosCoffee/product/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
-	"log"
-
-	"github.com/gnnchya/PosCoffee/product/app"
-	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
-
-	userRepo "github.com/gnnchya/PosCoffee/product/repository/user"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
+	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
+	"log"
 )
 
 func newApp(appConfig *config.Config) *app.App {
 	ctx := context.Background()
 	uRepo, err := userRepo.New(ctx, appConfig.MongoDBEndpoint, appConfig.MongoDBName, appConfig.MongoDBTableName)
+	uRepoMoney, err := userRepo.New2(ctx, appConfig.MongoDBEndpointMoney, appConfig.MongoDBNameMoney, appConfig.MongoDBTableNameMoney, "THB")
 	panicIfErr(err)
 	kRepo, err := kafka.New(configKafka(appConfig))
 	panicIfErr(err)
-	validator := validatorService.New(uRepo)
+	validator := validatorService.New(uRepo, uRepoMoney)
 
-	user := userService.New(validator, uRepo, kRepo)
+	grpcRepo := repoGrpc.New(configGrpc(appConfig))
+	grpcRepoReport := repoGrpc.New(configGrpcReport(appConfig))
+	grpcMenu := repoGrpc.New(configGRPCMenu(appConfig))
+	grpcRepoMiddleware := repoGrpc.New(configGrpcMiddleware(appConfig))
+
+	gService := grpcClientService.New(repoGrpc.New(configGrpc2(appConfig)), grpcRepoReport, grpcMenu, grpcRepoMiddleware)
+	user := userService.New(validator, uRepo, uRepoMoney, kRepo, gService)
+
 	msgService := msgBrokerService.New(kRepo, user)
-	//wg.Add(1)
+
+	go grpcService.New(grpcRepo, user)
+
 	msgService.Receiver(topics)
+	midService := middleware.New(user)
 	//time.Sleep(10 * time.Second)
-	return app.New(user)
+	return app.New(user, gService, midService)
 }
 
 func panicIfErr(err error) {
@@ -52,3 +65,41 @@ var topics = []msgbrokerin.TopicMsgBroker{
 	msgbrokerin.TopicResponseDelete,
 }
 
+const (
+	NETWORK = "tcp"
+)
+
+func configGrpc(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCSenderHost,
+	}
+}
+
+func configGrpc2(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCHost,
+	}
+}
+
+func configGrpcReport(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCSenderReportHost,
+	}
+}
+
+func configGRPCMenu(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCMenu,
+	}
+}
+
+func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
+	return &repoGrpc.Config{
+		Network: NETWORK,
+		Port:    appConfig.GRPCAuthenHost,
+	}
+}

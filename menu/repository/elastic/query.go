@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
+	"io"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/menu/domain"
@@ -23,7 +25,12 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 	if err != nil {
 		log.Fatalf("Error getting response: %s", err)
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(res.Body)
 	if res.IsError() {
 		var e map[string]interface{}
 		if err := json.NewDecoder(res.Body).Decode(&e); err != nil {
@@ -43,27 +50,35 @@ func (repo *Repository)query(ctx context.Context,buf bytes.Buffer) (map[string]i
 }
 
 func (repo *Repository)SearchCategory(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildCategoryRequest(keyword))
-	result := InToStruct(q)
+		q, err := repo.query(ctx,buildCategoryRequest(1,10000,keyword))
+		result := InToStruct(q)
 	return result, err
 }
 
 func (repo *Repository)SearchIngredient(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildIngredientRequest(keyword))
-	result := InToStruct(q)
+		q, err := repo.query(ctx,buildIngredientRequest(1,10000,keyword))
+		result := InToStruct(q)
 	return result, err
 }
 
 func (repo *Repository)SearchMenu(keyword string,ctx context.Context)([]domain.CreateStruct, error){
-	q, err := repo.query(ctx,buildMenuRequest(keyword))
-	result := InToStruct(q)
+		q, err := repo.query(ctx,buildMenuRequest(1,10000,keyword))
+		fmt.Println(q)
+		result := InToStruct(q)
 	return result, err
 }
 
-func (repo *Repository)Read(id string,ctx context.Context)(domain.CreateStruct, error){
+func (repo *Repository)Read(id string,ctx context.Context)(result domain.CreateStruct, err error){
+	if found , err := repo.CheckExistID(ctx, id); found == false{
+		return result , fmt.Errorf("error : ID does not exist")
+	} else if err != nil{
+		return result , err
+	}
 	q, err := repo.query(ctx,buildViewRequest(id))
-	result := InToStruct(q)
-	return result[0], err
+	fmt.Println(q)
+	results := InToStruct(q)
+	fmt.Println(results[0])
+	return results[0], err
 }
 
 func (repo *Repository)ReadAll(page int, size int,ctx context.Context)([]domain.CreateStruct, error){

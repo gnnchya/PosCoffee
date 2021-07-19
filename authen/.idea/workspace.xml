@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="df0daa69-2899-496e-bb17-79f3b71fe957" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../cart/service/grpcClient/protobuf/menu/menu.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../cart/service/grpc/protobuf/cart/cart.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/grpc/client.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/grpc/init.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/init.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/protobuf/menu/menu.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpc/protobuf/menu/menu.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpcClient/implement/init.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpcClient/implement/sendMenu.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpcClient/interface.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/grpcClient/protobuf/cart/cart.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/implement/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/implement/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/implement/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/util/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/util/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/setup.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/main.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/setup.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/service/util/repository.go" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
+  <component name="ProjectId" id="1tmtu7Cpgk3kMT1cMaYDSFp36Uv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable..is.expanded" value="false" />
+    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/user/implement" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="newApp" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/gnnchya/InternAtTouch/tree/Develop-optimized/newApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/service/msgbroker/implement/private.go</url>
+          <line>21</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

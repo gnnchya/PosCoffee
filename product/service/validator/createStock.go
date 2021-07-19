@@ -13,3 +13,8 @@ func (v *GoPlayGroundValidator) UserCreateStockStructLevelValidation(structLV va
 	v.checkExpDate(structLV, input.EXPDate)
 	v.checkImportDate(structLV, input.ImportDate)
 }
+
+func (v *GoPlayGroundValidator) UserCreateMoneyStructLevelValidation(structLV validator.StructLevel) {
+	input := structLV.Current().Interface().(userin.CreateMoneyInput)
+	v.checkExistVal(structLV, input.Value)
+}

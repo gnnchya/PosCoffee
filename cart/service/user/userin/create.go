@@ -4,45 +4,24 @@ import (
 	"github.com/gnnchya/PosCoffee/cart/domain"
 )
 
-type CreateInput struct {
-	ID 				string  `bson:"_id" json:"_id"`
-	CustomerID 		string  `bson:"customer_id" json:"customer_id"`
-	Menu			[]domain.Menu 	`bson:"menu" json:"menu"`
-	Code 			int 	`json:"code"`
-	Err 			error	`json:"err"`
+type Input struct {
+	ID 				string  `json:"_id"`
+	CustomerID 		string  `json:"customer_id"`
+	Menu			[]domain.Menu 	`json:"menu"`
 }
 
-type CreateMenu struct {
-	ID         		string   `bson:"_id" json:"id"`
-	Category       	[]string   `bson:"category" json:"category"`
-	Name 			string   `bson:"name" json:"name" validate:"required"`
-	Ingredient 		[]string `bson:"ingredient" json:"ingredient"`
-	Price      		int64    `bson:"price" json:"price"`
-	Available 		bool	 `bson:"available" json:"available"`
-	Amount 			int64    `bson:"amount" json:"amount"`
-	Option 			string   `bson:"option" json:"option"`
+func CalculateTotalPrice(cart *Input) (T int64){
+	for _,i := range cart.Menu{
+		T = T+(i.Amount*i.Price)
+	}
+	return T
 }
 
-func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
+func (input *Input)CreateInputToUserDomain() (user *domain.CreateStruct) {
 	return &domain.CreateStruct{
 		ID:             input.ID,
-		CustomerID: input.CustomerID,
-		Menu: input.Menu,
-		Code: input.Code,
-		Err: input.Err,
+		CustomerID: 	input.CustomerID,
+		Menu: 			input.Menu,
+		TotalPrice: 	CalculateTotalPrice(input),
 	}
 }
-
-//func ToDomain(input *CreateInput) (user *domain.InsertQ) {
-//
-//	return &domain.InsertQ{
-//		ID:         input.ID,
-//		Name:       input.Name,
-//		ActualName: input.ActualName,
-//		Gender:     input.Gender,
-//		BirthDate:  input.BirthDate,
-//		Height:     input.Height,
-//		SuperPower: input.SuperPower,
-//		Alive:      input.Alive,
-//	}
-//}

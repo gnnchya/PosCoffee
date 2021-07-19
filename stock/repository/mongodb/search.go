@@ -1,15 +1,13 @@
 package mongodb
-//
+
 import (
 	"context"
 	"encoding/json"
 	"fmt"
-	domain "github.com/gnnchya/PosCoffee/stock/domain"
+	"github.com/gnnchya/PosCoffee/stock/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	//"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	//"strconv"
 )
 
 func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateStruct, error) {
@@ -22,6 +20,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.Cr
 		fmt.Println(resultStruct)
 		result = append(result, resultStruct)
 	}
+	fmt.Println("add to array", result)
 	return result,err
 }
 

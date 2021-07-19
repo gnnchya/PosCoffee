@@ -7,6 +7,7 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"github.com/gnnchya/PosCoffee/menu/domain"
 	"github.com/gnnchya/PosCoffee/menu/service/user/userin"
+	"io"
 	"log"
 	"strings"
 )
@@ -29,12 +30,22 @@ func (repo *Repository) Create(ctx context.Context, title *userin.CreateInput) e
 	if err != nil {
 		return err
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(res.Body)
 	fmt.Println("in create repo", title)
 	return err
 }
 
 func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) error{
+	if state ,err := repo.CheckExistID(ctx, title.ID); err != nil{
+		return err
+	} else if state == false{
+		return fmt.Errorf("this ID does not exist")
+	}
 	buf, err := BuildUpdateRequest(title)
 	if err != nil {
 		return err
@@ -43,11 +54,15 @@ func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) e
 		repo.Index, title.ID, &buf,
 		repo.Client.Update.WithContext(ctx),
 		repo.Client.Update.WithPretty())
-
 	if err != nil {
 		return err
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(res.Body)
 	if res.IsError() {
 		var e map[string]interface{}
 		if err := json.NewDecoder(res.Body).Decode(&e); err != nil {
@@ -65,6 +80,11 @@ func (repo *Repository)Update(ctx context.Context, title *domain.UpdateStruct) e
 }
 
 func (repo *Repository)Delete(ctx context.Context, id string) error{
+	if state ,err := repo.CheckExistID(ctx, id); err != nil{
+		return err
+	} else if state == false{
+		return fmt.Errorf("this ID does not exist")
+	}
 	req := esapi.DeleteRequest{
 		Index:      repo.Index,
 		DocumentID: id,
@@ -76,7 +96,12 @@ func (repo *Repository)Delete(ctx context.Context, id string) error{
 	if err != nil {
 		log.Fatalf("Error getting response: %s", err)
 	}
-	defer res.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(res.Body)
 
 	return err
 }

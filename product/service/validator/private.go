@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"context"
 	"fmt"
 	"github.com/go-playground/validator/v10"
 	"regexp"
@@ -43,5 +44,15 @@ func (v *GoPlayGroundValidator) checkExpDate(structLV validator.StructLevel, exp
 func (v *GoPlayGroundValidator) checkImportDate(structLV validator.StructLevel, imp int64) {
 	if imp > time.Now().Unix(){
 		structLV.ReportError(imp, "err validation import date", "err validation import date", "wrong", "")
+	}
+}
+
+func (v *GoPlayGroundValidator) checkExistVal(structLV validator.StructLevel, val int64) {
+	exist, _ := v.moneyRepo.CheckExistVal(context.Background(), val)
+	//if err != nil{
+	//	structLV.ReportError(val, "err1 validation check exist value", "err validation check exist value", "unique", "")
+	//}else
+	if exist{
+		structLV.ReportError(val, "err2 validation check exist value", "err validation check exist value", "unique", "")
 	}
 }

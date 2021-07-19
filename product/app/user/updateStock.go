@@ -16,7 +16,7 @@ func (ctrl *Controller) UpdateStock(c *gin.Context) {
 	}
 	fmt.Println("user input update", input)
 
-	a, err := ctrl.service.UpdateStock(c, input)
+	a, err := ctrl.service.UpdateStock(input)
 	fmt.Println("a, err:", a, err)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)

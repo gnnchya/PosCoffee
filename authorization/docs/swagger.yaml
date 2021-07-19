@@ -1,0 +1,685 @@
+definitions:
+  ErrorItemResponse:
+    properties:
+      cause:
+        type: string
+      code:
+        type: string
+      subCode:
+        type: string
+    type: object
+  ErrorResponse:
+    properties:
+      code:
+        type: integer
+      errors:
+        items:
+          $ref: '#/definitions/ErrorItemResponse'
+        type: array
+      status:
+        type: string
+    type: object
+  PermissionsCreateInput:
+    properties:
+      endpoint:
+        type: string
+      id:
+        type: string
+      method:
+        type: string
+    required:
+      - endpoint
+      - method
+    type: object
+  PermissionsUpdateInput:
+    properties:
+      endpoint:
+        type: string
+      method:
+        type: string
+    required:
+      - endpoint
+      - method
+    type: object
+  PermissionsView:
+    properties:
+      created_at:
+        type: integer
+      endpoint:
+        type: string
+      id:
+        type: string
+      method:
+        type: string
+      updated_at:
+        type: integer
+    type: object
+  RolesCreateInput:
+    properties:
+      name:
+        $ref: '#/definitions/RolesLangInput'
+        type: object
+      permissions:
+        items:
+          type: string
+        type: array
+    required:
+      - name
+      - permissions
+    type: object
+  RolesLangInput:
+    properties:
+      en:
+        type: string
+      th:
+        type: string
+    required:
+      - en
+      - th
+    type: object
+  RolesLangView:
+    properties:
+      en:
+        type: string
+      th:
+        type: string
+    type: object
+  RolesUpdateInput:
+    properties:
+      name:
+        $ref: '#/definitions/RolesLangInput'
+        type: object
+      permissions:
+        items:
+          type: string
+        type: array
+    required:
+      - name
+      - permissions
+    type: object
+  RolesView:
+    properties:
+      created_at:
+        type: integer
+      id:
+        type: string
+      name:
+        $ref: '#/definitions/RolesLangView'
+        type: object
+      permissions:
+        items:
+          $ref: '#/definitions/out.Permission'
+        type: array
+      updated_at:
+        type: integer
+    type: object
+  SuccessResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      status:
+        type: string
+    type: object
+  out.Permission:
+    properties:
+      endpoint:
+        type: string
+      id:
+        type: string
+      method:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /permissions:
+    get:
+      description: Return a list of permissions filtered by a given filters if any
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: A page number
+          in: query
+          name: page
+          type: string
+        - description: A total number of items per page
+          in: query
+          name: per_page
+          type: string
+        - description: Condition for permission retrieval, ex. 'method:eq:GET'
+          in: query
+          items:
+            type: string
+          name: filters
+          type: array
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/SuccessResponse'
+              - properties:
+                  data:
+                    items:
+                      $ref: '#/definitions/PermissionsView'
+                    type: array
+                type: object
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get a list of permissions
+      tags:
+        - Permissions
+    post:
+      consumes:
+        - application/json
+      description: A newly created permissions ID will be given in a Content-Location
+        response header
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: Input
+          in: body
+          name: input
+          required: true
+          schema:
+            $ref: '#/definitions/PermissionsCreateInput'
+      produces:
+        - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Create a new permissions
+      tags:
+        - Permissions
+  /permissions/{id}:
+    delete:
+      consumes:
+        - application/json
+      description: Delete permission with a given permission ID
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: permission ID
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Delete contents of a permission
+      tags:
+        - Permissions
+    get:
+      description: Response a permission data with a given permission ID
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: permission ID
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/SuccessResponse'
+              - properties:
+                  data:
+                    $ref: '#/definitions/PermissionsView'
+                type: object
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get a permission by permission ID
+      tags:
+        - Permissions
+    put:
+      consumes:
+        - application/json
+      description: Update permission with a given permission ID according to a given
+        data
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: permission ID
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: Input
+          in: body
+          name: input
+          required: true
+          schema:
+            $ref: '#/definitions/PermissionsUpdateInput'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Update contents of a permission
+      tags:
+        - Permissions
+  /roles:
+    get:
+      description: Return a list of roles filtered by a given filters if any
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: A page number
+          in: query
+          name: page
+          type: string
+        - description: A total number of items per page
+          in: query
+          name: per_page
+          type: string
+        - description: Condition for role retrieval, ex. 'name:eq:some name'
+          in: query
+          items:
+            type: string
+          name: filters
+          type: array
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/SuccessResponse'
+              - properties:
+                  data:
+                    items:
+                      $ref: '#/definitions/RolesView'
+                    type: array
+                type: object
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get a list of roles
+      tags:
+        - Roles
+    post:
+      consumes:
+        - application/json
+      description: A newly created roles ID will be given in a Content-Location response
+        header
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: Input
+          in: body
+          name: input
+          required: true
+          schema:
+            $ref: '#/definitions/RolesCreateInput'
+      produces:
+        - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Create a new roles
+      tags:
+        - Roles
+  /roles/{id}:
+    delete:
+      consumes:
+        - application/json
+      description: Delete role with a given role ID
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: role ID
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Delete contents of a role
+      tags:
+        - Roles
+    get:
+      description: Response a role data with a given role ID
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: role ID
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/SuccessResponse'
+              - properties:
+                  data:
+                    $ref: '#/definitions/RolesView'
+                type: object
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get a role by role ID
+      tags:
+        - Roles
+    put:
+      consumes:
+        - application/json
+      description: Update role with a given role ID according to a given data
+      parameters:
+        - default: Bearer <Add access token here>
+          description: Insert your access token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: role ID
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: Input
+          in: body
+          name: input
+          required: true
+          schema:
+            $ref: '#/definitions/RolesUpdateInput'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Update contents of a role
+      tags:
+        - Roles
+swagger: "2.0"

@@ -13,13 +13,13 @@ func (impl implementation) newHandler(topic msgbrokerin.TopicMsgBroker) (handler
 		switch topic {
 		case msgbrokerin.TopicResponseCreate:
 			fmt.Println("enter newHandler responseCreate topic")
-			err = impl.usrService.MsgReceiver(ctx, msg)
+			err = impl.usrService.MsgReceiver(msg)
 		case msgbrokerin.TopicResponseUpdate:
 			fmt.Println("enter newHandler responseUpdate topic")
-			err = impl.usrService.MsgReceiver(ctx, msg)
+			err = impl.usrService.MsgReceiver(msg)
 		case msgbrokerin.TopicResponseDelete:
 			fmt.Println("enter newHandler responseDel topic")
-			err = impl.usrService.MsgReceiver(ctx, msg)
+			err = impl.usrService.MsgReceiver(msg)
 		default:
 			fmt.Println(string(msg), "with default")
 		}

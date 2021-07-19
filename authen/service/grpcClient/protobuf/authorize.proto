@@ -1,0 +1,18 @@
+syntax="proto3";
+option go_package=  "/protobuf";
+package protobuf;
+
+message RequestPermission{
+  repeated string roles = 1;
+  string permission = 2;
+}
+
+message ReplyPermission{
+  bool allow = 1;
+}
+
+service Authorize{
+  rpc checkPermission(RequestPermission) returns (ReplyPermission);
+}
+
+//protoc --go_out=plugins=grpc:protobuf protobuf/authorize.proto

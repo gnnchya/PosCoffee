@@ -11,7 +11,6 @@ import (
 const InvalidInputTypeErr string = "invalid authentication type"
 
 func (impl *implementation) MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error) {
-	fmt.Println("enter msgsender", topic)
 	switch topic {
 	case msgbrokerin.TopicCreate:
 		err = impl.senderCreate(topic, input)

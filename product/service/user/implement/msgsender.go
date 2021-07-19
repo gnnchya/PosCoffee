@@ -3,7 +3,6 @@ package implement
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	"github.com/gnnchya/PosCoffee/product/service/user/userin"
 )
@@ -11,7 +10,6 @@ import (
 const InvalidInputTypeErr string = "invalid authentication type"
 
 func (impl *implementation) MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error) {
-	fmt.Println("enter msgsender", topic)
 	switch topic {
 	case msgbrokerin.TopicCreate:
 		err = impl.senderCreate(topic, input)
@@ -44,7 +42,6 @@ func (impl *implementation) senderCreate(topic msgbrokerin.TopicMsgBroker, input
 	}
 
 	err = impl.mBroker.Producer(topic, msg)
-	fmt.Println("producer", err)
 	if err != nil {
 		return err
 	}
@@ -64,7 +61,6 @@ func (impl *implementation) senderUpdate(topic msgbrokerin.TopicMsgBroker, input
 	}
 
 	err = impl.mBroker.Producer(topic, msg)
-	fmt.Println("producer", err)
 	if err != nil {
 		return err
 	}
@@ -84,7 +80,6 @@ func (impl *implementation) senderDelete(topic msgbrokerin.TopicMsgBroker, input
 	}
 
 	err = impl.mBroker.Producer(topic, msg)
-	fmt.Println("producer", err)
 	if err != nil {
 		return err
 	}

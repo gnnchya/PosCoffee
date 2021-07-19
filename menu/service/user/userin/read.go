@@ -1,12 +1,11 @@
 package userin
 
 import (
-	// "github.com/touchtechnologies-product/go-blueprint-clean-architecture/domain"
 	"github.com/gnnchya/PosCoffee/menu/domain"
 )
 
 type ReadInput struct {
-	ID string `json:"id"`
+	ID string `json:"_id"`
 }
 
 
