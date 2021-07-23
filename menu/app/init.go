@@ -25,8 +25,9 @@ func New(userService userService.Service, middle middleware.Service, client grpc
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
-	adminMiddleware := app.middle.Authorization(app.middle.Users)
-	adminRoute := router.Group("/pos", adminMiddleware)
+	//adminMiddleware := app.middle.Authorization(app.middle.Users)
+	//adminRoute := router.Group("/pos", adminMiddleware)
+	adminRoute := router.Group("/pos")
 	{
 		adminRoute.POST("/menu", app.user.Create)
 		adminRoute.PUT("/menu", app.user.Update)
