@@ -25,8 +25,9 @@ func New(userService userService.Service, grpcService grpcService.Service, middl
 }
 
 func (app *App) RegisterRoute(router *gin.Engine) *App {
-	middleware := app.middle.Authorization(app.middle.Users)
-	apiRoutes := router.Group("/pos", middleware)
+	//middleware := app.middle.Authorization(app.middle.Users)
+	//apiRoutes := router.Group("/pos", middleware)
+	apiRoutes := router.Group("/pos")
 	{
 		apiRoutes.POST("/cart", app.user.Create)
 		apiRoutes.GET("/cart/:id", app.user.Read)
