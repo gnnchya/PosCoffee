@@ -13,7 +13,7 @@ func (ctrl *Controller) AddToCart(c *gin.Context){
 		return
 	}
 	input := &userin.ViewInput{}
-	input.ID = c.Param("id")
+	input.CustomerID = c.Param("id")
 	a, err := ctrl.service.Read(c, input)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)

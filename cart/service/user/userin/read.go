@@ -5,12 +5,12 @@ import (
 )
 
 type ViewInput struct {
-	ID string `json:"id"`
+	CustomerID string `json:"customer_id"`
 } // @Name StaffCreateInput
 
 
 func ViewInputToUserDomain(input *ViewInput) (user *domain.ReadStruct) {
 	return &domain.ReadStruct{
-		ID: input.ID,
+		CustomerID: input.CustomerID,
 	}
 }

@@ -35,7 +35,7 @@ type UpdateStruct struct {
 }
 
 type ReadStruct struct {
-	ID string `bson:"_id" json:"id"`
+	CustomerID string `bson:"customer_id" json:"customer_id"`
 }
 
 type ReadAllStruct struct {
