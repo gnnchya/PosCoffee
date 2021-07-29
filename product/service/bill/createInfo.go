@@ -12,7 +12,7 @@ func InfoBill(order domain.CreateOrderStruct, paid int64)(temp []string){
 	temp = append(temp, "Proud Suay's Cafe")
 	temp = append(temp,"Bill")
 	temp = append(temp, strings.Repeat("-", 50))
-	temp = append(temp, "Customer ID: " + order.Cart.CustomerID)
+	temp = append(temp, "Staff ID: " + order.Cart.CustomerID)
 	temp = append(temp, "Order ID: " + order.ID)
 	temp = append(temp, " Time: " + time.Unix(order.Time, 0).String())
 	temp = append(temp, strings.Repeat("-", 50))
