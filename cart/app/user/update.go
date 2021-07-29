@@ -8,7 +8,6 @@ import (
 
 func (ctrl *Controller) Update(c *gin.Context) {
 	input := &userin.Input{}
-
 	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp(c, 400, "can't bind")
 		return

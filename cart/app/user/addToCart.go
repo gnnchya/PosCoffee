@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gnnchya/PosCoffee/cart/app/view"
 	"github.com/gnnchya/PosCoffee/cart/service/user/userin"
@@ -8,6 +9,9 @@ import (
 
 func (ctrl *Controller) AddToCart(c *gin.Context){
 	cart := &userin.Input{}
+	fmt.Println()
+	fmt.Println("ีinput update", c.Request.Body)
+
 	if err := c.ShouldBindJSON(cart); err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
