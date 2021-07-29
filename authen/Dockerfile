@@ -35,6 +35,9 @@ ADD config config
 # Expose port 8080 to the outside world
 EXPOSE 8080
 EXPOSE 50051
+EXPOSE 50052
+EXPOSE 50055
+EXPOSE 50057
 
 # Command to run the executable
 CMD ["./main"]

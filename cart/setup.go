@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gnnchya/PosCoffee/cart/config"
 	"github.com/gnnchya/PosCoffee/cart/middleware"
+	"github.com/sirupsen/logrus"
 	"log"
 	"time"
 
@@ -50,4 +51,11 @@ func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
 		Network: NETWORK,
 		Port:    appConfig.GRPCAuthenHost,
 	}
+}
+
+func setupLog() *logrus.Logger {
+	lr := logrus.New()
+	lr.SetFormatter(&logrus.JSONFormatter{})
+
+	return lr
 }

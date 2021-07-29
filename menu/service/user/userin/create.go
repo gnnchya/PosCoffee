@@ -12,8 +12,6 @@ type CreateInput struct {
 	Ingredient 		[]domain.Ingredient `bson:"ingredient" json:"ingredient"`
 	Price      		int64    `bson:"price" json:"price"`
 	Available 		bool	 `bson:"available" json:"available"`
-	Code int `json:"code"`
-	Err error `json:"err"`
 }
 
 func (input *CreateInput)CreateInputToUserDomain() (user *domain.CreateStruct) {
