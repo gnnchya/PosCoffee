@@ -5,8 +5,8 @@ import (
 )
 
 type ViewAllInput struct {
-	PerPage int
-	Page    int
+	PerPage int `json:"per_page"`
+	Page    int `json:"page"`
 } // @Name StaffCreateInput
 
 

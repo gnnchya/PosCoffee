@@ -13,7 +13,7 @@ import (
 func (ctrl *Controller) ReadAll(c *gin.Context) {
 
 	input := &userin.ViewAllInput{}
-	limit := 2
+	limit := 12
 	page := 1
 	query := c.Request.URL.Query()
 	for key, value := range query {
