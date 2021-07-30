@@ -30,7 +30,7 @@ func (repo *Repository) Update(ctx context.Context, figure interface{}, id strin
 	return err
 }
 
-func (repo *Repository) Read(ctx context.Context, id string) (resultStruct interface{}, err error) {
+func (repo *Repository) Read(ctx context.Context, id string) (resultStruct domain.CreateOrderStruct, err error) {
 	_, err = repo.checkExistID(ctx, id)
 	if err != nil{
 		return resultStruct, err

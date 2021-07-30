@@ -42,7 +42,7 @@ func (repo *RepositoryMoney) UpdateByVal(ctx context.Context, figure interface{}
 	return err
 }
 
-func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct interface{}, err error) {
+func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct domain.CreateMoneyStruct, err error) {
 	_, err = repo.checkExistID(ctx, id)
 	if err != nil{
 		return resultStruct, err

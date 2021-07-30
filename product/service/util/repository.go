@@ -15,7 +15,7 @@ type Repository interface {
 	Update(ctx context.Context, ent interface{}, id string) (err error)
 	Delete(ctx context.Context, id string) (err error)
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
-	Read(ctx context.Context, id string) (a interface{}, err error)
+	Read(ctx context.Context, id string) (a domain.CreateOrderStruct, err error)
 	ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct) ([]domain.CreateOrderStruct, error)
 	ReadByTimeRange(ctx context.Context, from int64, until int64) (result []domain.CreateOrderStruct, err error)
 	ReadMenuTotalSale(ctx context.Context, from int64, until int64) (result []domain.TotalSale, err error)
@@ -28,7 +28,7 @@ type RepositoryMoney interface {
 	UpdateByVal(ctx context.Context, ent interface{}, val int64) (err error)
 	Delete(ctx context.Context, id string) (err error)
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
-	Read(ctx context.Context, id string) (a interface{}, err error)
+	Read(ctx context.Context, id string) (a domain.CreateMoneyStruct, err error)
 	ReadMoneyAll(ctx context.Context) (a []domain.CreateMoneyStruct, err error)
 	CheckExistVal(ctx context.Context, val int64) (bool, error)
 }
