@@ -8,6 +8,8 @@ import (
 )
 
 func ReportStock(stock []domain.CreateStockStruct)(res [][]string){
+	fmt.Println()
+	fmt.Println("in report stock")
 	var temp []string
 	temp = InitStock()
 	res = append(res, temp)
@@ -29,6 +31,9 @@ func ReportStock(stock []domain.CreateStockStruct)(res [][]string){
 		temp = append(temp, i.Status)
 		res = append(res,temp)
 	}
+	fmt.Println()
+	fmt.Println("response")
+	fmt.Println(res)
 	return res
 }
 

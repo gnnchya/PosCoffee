@@ -13,6 +13,8 @@ import (
 func (ctrl *Controller) ReportStock(c *gin.Context) {
 
 	input := &userin.ReportFilter{}
+	fmt.Println()
+	fmt.Println("input report stock", c.Request.Body)
 	if err := c.ShouldBindJSON(input); err != nil {
 		view.MakeErrResp(c, 400, "can't bind")
 		fmt.Println("error", err)
@@ -22,6 +24,7 @@ func (ctrl *Controller) ReportStock(c *gin.Context) {
 	fromYear, fromMonth , fromDate:= time.Now().Date()
 	switch input.Format{
 	case "excel":
+		fmt.Println("here")
 		filename := "./reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".xls"
 		filepath := "./report/reportStock-"+strconv.Itoa(fromDate)+"."+strconv.Itoa(int(fromMonth))+"."+strconv.Itoa(fromYear)+".xls"
 		FileDownloadExcel(c, filename, filepath)

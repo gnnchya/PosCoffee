@@ -1,6 +1,7 @@
 package implement
 
 import (
+	"fmt"
 	"github.com/gnnchya/PosCoffee/product/domain"
 	"github.com/gnnchya/PosCoffee/product/service/createFile"
 	pb "github.com/gnnchya/PosCoffee/product/service/grpcClient/protobuf/report"
@@ -11,6 +12,8 @@ import (
 )
 
 func(impl *implementation)ReportStock(input *userin.ReportFilter){
+	fmt.Println()
+	fmt.Println("in report stock", input)
 	out := &pb.ReportRequest{
 		Request: "reportStock",
 		Field:   input.Field,
