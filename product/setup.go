@@ -14,6 +14,7 @@ import (
 	"github.com/gnnchya/PosCoffee/product/service/msgbroker/msgbrokerin"
 	userService "github.com/gnnchya/PosCoffee/product/service/user/implement"
 	validatorService "github.com/gnnchya/PosCoffee/product/service/validator"
+	"github.com/sirupsen/logrus"
 	"log"
 )
 
@@ -102,4 +103,11 @@ func configGrpcMiddleware(appConfig *config.Config) *repoGrpc.Config {
 		Network: NETWORK,
 		Port:    appConfig.GRPCAuthenHost,
 	}
+}
+
+func setupLog() *logrus.Logger {
+	lr := logrus.New()
+	lr.SetFormatter(&logrus.JSONFormatter{})
+
+	return lr
 }

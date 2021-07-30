@@ -7,6 +7,7 @@ import (
 	"github.com/gnnchya/PosCoffee/stock/repository/kafka"
 	msgBrokerService "github.com/gnnchya/PosCoffee/stock/service/msgbroker/implement"
 	"github.com/gnnchya/PosCoffee/stock/service/msgbroker/msgbrokerin"
+	"github.com/sirupsen/logrus"
 	"log"
 
 	"github.com/gnnchya/PosCoffee/stock/app"
@@ -69,4 +70,10 @@ func configGrpcRepo(appConfig *config.Config) *grpc.Config {
 		Network: "tcp",
 		Port:    appConfig.GRPCSenderReportHost,
 	}
+}
+func setupLog() *logrus.Logger {
+	lr := logrus.New()
+	lr.SetFormatter(&logrus.JSONFormatter{})
+
+	return lr
 }
