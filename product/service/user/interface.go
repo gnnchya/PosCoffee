@@ -17,7 +17,7 @@ type Service interface {
 	Update(ctx context.Context, input *userin.UpdateInput) (ID string, err error)
 	UpdateStock(input *userin.UpdateStockInput) (ID string, err error)
 	Read(ctx context.Context, input *userin.ReadInput) (a interface{}, err error)
-	ReadAll(ctx context.Context, input *userin.ReadAllInput) ([]interface{}, error)
+	ReadAll(ctx context.Context, input *userin.ReadAllInput) ([]domain.CreateOrderStruct, error)
 	Search(ctx context.Context, input *userin.Search) (string, error)
 	MsgReceiver(msg []byte) (err error)
 	MsgSender(topic msgbrokerin.TopicMsgBroker, input interface{}) (err error)

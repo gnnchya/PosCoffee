@@ -16,7 +16,7 @@ type Repository interface {
 	Delete(ctx context.Context, id string) (err error)
 	Search(ctx context.Context, s *domain.SearchValue) (result string, err error)
 	Read(ctx context.Context, id string) (a interface{}, err error)
-	ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct)([]interface{}, error)
+	ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct) ([]domain.CreateOrderStruct, error)
 	ReadByTimeRange(ctx context.Context, from int64, until int64) (result []domain.CreateOrderStruct, err error)
 	ReadMenuTotalSale(ctx context.Context, from int64, until int64) (result []domain.TotalSale, err error)
 	ReadBill(ctx context.Context, id string) (resultStruct domain.CreateOrderStruct, err error)

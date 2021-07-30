@@ -11,6 +11,44 @@ import (
 	"strconv"
 )
 
+func AddToArrayOrder(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateOrderStruct, error) {
+	var result []domain.CreateOrderStruct
+	for cursor.Next(ctx) {
+		var resultBson bson.M
+		var resultStruct domain.CreateOrderStruct
+		if err = cursor.Decode(&resultBson); err != nil {
+			return result,err
+		}
+		bsonBytes, _ := bson.Marshal(resultBson)
+		err1 := bson.Unmarshal(bsonBytes, &resultStruct)
+		if err1 != nil{
+			return result,err
+		}
+		//fmt.Println(resultStruct)
+		result = append(result, resultStruct)
+	}
+	return result,err
+}
+
+func AddToArrayMoney(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.CreateMoneyStruct, error) {
+	var result []domain.CreateMoneyStruct
+	for cursor.Next(ctx) {
+		var resultBson bson.M
+		var resultStruct domain.CreateMoneyStruct
+		if err = cursor.Decode(&resultBson); err != nil {
+			return result,err
+		}
+		bsonBytes, _ := bson.Marshal(resultBson)
+		err1 := bson.Unmarshal(bsonBytes, &resultStruct)
+		if err1 != nil{
+			return result,err
+		}
+		//fmt.Println(resultStruct)
+		result = append(result, resultStruct)
+	}
+	return result,err
+}
+
 func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]interface{}, error) {
 	var result []interface{}
 	for cursor.Next(ctx) {
@@ -29,6 +67,7 @@ func AddToArray(cursor *mongo.Cursor,err error,ctx context.Context) ([]interface
 	}
 	return result,err
 }
+
 
 func AddToArrayTotalSale(cursor *mongo.Cursor,err error,ctx context.Context) ([]domain.TotalSale, error) {
 	var result []domain.TotalSale

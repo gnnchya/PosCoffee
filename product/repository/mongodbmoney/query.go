@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/gnnchya/PosCoffee/product/domain"
+	"github.com/gnnchya/PosCoffee/product/repository/mongodb"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -61,5 +62,5 @@ func (repo *RepositoryMoney) Read(ctx context.Context, id string) (resultStruct 
 
 func (repo *RepositoryMoney) ReadMoneyAll(ctx context.Context) ([]domain.CreateMoneyStruct, error) {
 	cursor, err := repo.Coll.Find(ctx, bson.M{})
-	return AddToArray(cursor, err, ctx)
+	return mongodb.AddToArrayMoney(cursor, err, ctx)
 }

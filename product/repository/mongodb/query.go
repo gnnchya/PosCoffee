@@ -48,7 +48,7 @@ func (repo *Repository) Read(ctx context.Context, id string) (resultStruct inter
 	return resultStruct, err
 }
 
-func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct) ([]interface{}, error) {
+func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrderByPageStruct) ([]domain.CreateOrderStruct, error) {
 	skip := int64(user.Page * user.PerPage)
 	limit := int64(user.PerPage)
 	opts := options.FindOptions{
@@ -56,7 +56,7 @@ func (repo *Repository) ReadOrderAll(ctx context.Context, user *domain.ReadOrder
 		Limit: &limit,
 	}
 	cursor, err := repo.Coll.Find(ctx, bson.M{}, &opts)
-	return AddToArray(cursor, err, ctx)
+	return AddToArrayOrder(cursor, err, ctx)
 }
 
 func (repo *Repository) ReadBill(ctx context.Context, id string) (resultStruct domain.CreateOrderStruct, err error) {
