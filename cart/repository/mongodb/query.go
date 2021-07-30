@@ -25,6 +25,7 @@ func (repo *Repository) Delete(ctx context.Context, id string) (err error) {
 }
 
 func (repo *Repository) Update(ctx context.Context, figure interface{}, id string) (err error) {
+	fmt.Println("id in update", id)
 	state, err := repo.CheckExistID(ctx, id)
 	if err != nil{
 		return err

@@ -10,14 +10,14 @@ import (
 func (ctrl *Controller) AddToCart(c *gin.Context){
 	cart := &userin.Input{}
 	fmt.Println()
-	fmt.Println("ีinput update", c.Request.Body)
+	fmt.Println("ีinput add to cart", c.Request.Body)
 
 	if err := c.ShouldBindJSON(cart); err != nil {
 		view.MakeErrResp2(c, 422, err)
 		return
 	}
 	input := &userin.ViewInput{}
-	input.CustomerID = c.Param("id")
+	input.CustomerID = cart.CustomerID
 	a, err := ctrl.service.Read(c, input)
 	if err != nil {
 		view.MakeErrResp2(c, 422, err)
